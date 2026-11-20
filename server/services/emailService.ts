@@ -1,4 +1,5 @@
 import crypto from 'crypto';
+import nodemailer from 'nodemailer';
 import { AuditService } from './auditService';
 
 export interface EmailDispatchRecord {
@@ -71,8 +72,9 @@ export class EmailService {
   }): Promise<EmailDispatchRecord> {
     const id = `eml-${Date.now()}-${crypto.randomBytes(4).toString('hex')}`;
     const now = new Date().toISOString();
+    const isTest = process.env.NODE_ENV === 'test';
     const resendKey = process.env.RESEND_API_KEY;
-    const isLiveResend = resendKey && !resendKey.includes('YOUR_') && !resendKey.includes('replace_');
+    const isLiveResend = !isTest && resendKey && !resendKey.includes('YOUR_') && !resendKey.includes('replace_');
 
     if (isLiveResend) {
       try {
@@ -126,6 +128,79 @@ export class EmailService {
           subject: options.subject,
           template: options.template,
           provider: 'resend',
+          status: 'failed',
+          sentAt: now,
+          metadata: options.metadata,
+          error: err.message,
+        };
+        this.outboundLogs.push(failedRecord);
+        return failedRecord;
+      }
+    }
+
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
+    const isLiveSmtp =
+      !isTest &&
+      smtpHost &&
+      smtpUser &&
+      smtpPass &&
+      !smtpHost.includes('example.com') &&
+      !smtpHost.includes('YOUR_');
+
+    if (isLiveSmtp) {
+      try {
+        const port = parseInt(process.env.SMTP_PORT || '465', 10);
+        const secure = process.env.SMTP_SECURE === 'true' || port === 465;
+        const transporter = nodemailer.createTransport({
+          host: smtpHost,
+          port,
+          secure,
+          auth: {
+            user: smtpUser,
+            pass: smtpPass,
+          },
+        });
+
+        const sendInfo = await transporter.sendMail({
+          from: this.defaultFrom,
+          to: options.to,
+          subject: options.subject,
+          text: options.text,
+          html: options.html,
+        });
+
+        const logRecord: EmailDispatchRecord = {
+          id,
+          to: options.to,
+          from: this.defaultFrom,
+          subject: options.subject,
+          template: options.template,
+          provider: 'smtp',
+          status: 'sent',
+          sentAt: now,
+          metadata: { ...options.metadata, messageId: sendInfo.messageId },
+        };
+
+        this.outboundLogs.push(logRecord);
+        await AuditService.log({
+          action: 'email:dispatched_live',
+          resourceType: 'email',
+          resourceId: id,
+          details: { to: options.to, subject: options.subject, provider: 'smtp', messageId: sendInfo.messageId },
+        });
+
+        return logRecord;
+      } catch (err: any) {
+        console.warn(`[EmailService] Live SMTP dispatch failed: ${err.message}`);
+        const failedRecord: EmailDispatchRecord = {
+          id,
+          to: options.to,
+          from: this.defaultFrom,
+          subject: options.subject,
+          template: options.template,
+          provider: 'smtp',
           status: 'failed',
           sentAt: now,
           metadata: options.metadata,

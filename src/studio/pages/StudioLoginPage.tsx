@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ShieldCheck, Lock, Mail, ArrowRight, AlertCircle, ArrowLeft } from 'lucide-react';
-import { useStudioAuth } from '../context/StudioAuthContext';
+import { useStudioAuth, DEMO_CREDENTIALS } from '../context/StudioAuthContext';
 
 interface StudioLoginPageProps {
   onBackToPublicSite: () => void;
@@ -24,6 +24,11 @@ export const StudioLoginPage: React.FC<StudioLoginPageProps> = ({ onBackToPublic
 
   const handleQuickRole = async (role: 'super_admin' | 'editor' | 'research_editor' | 'author') => {
     setError(null);
+    const persona = DEMO_CREDENTIALS[role];
+    if (persona) {
+      setEmail(persona.email);
+      setPassword(persona.pass);
+    }
     try {
       await quickLogin(role);
     } catch (err: any) {

@@ -14,22 +14,71 @@ interface StudioAuthContextType {
 
 const StudioAuthContext = createContext<StudioAuthContextType | undefined>(undefined);
 
-const DEMO_CREDENTIALS: Record<string, { email: string; pass: string }> = {
+interface DemoAccount {
+  id: string;
+  email: string;
+  pass: string;
+  name: string;
+  roleId: UserRole;
+  affiliation: string;
+}
+
+export const DEMO_CREDENTIALS: Record<string, DemoAccount> = {
   super_admin: {
+    id: 'usr-admin-01',
     email: 'admin@tathastu-insights.org',
     pass: 'TathastuFrontierAdmin2026!',
+    name: 'Dr. Aravind Nair',
+    roleId: 'super_admin',
+    affiliation: 'Frontier Alignment Group, AI Tathastu',
+  },
+  admin: {
+    id: 'usr-admin-ops',
+    email: 'admin-desk@tathastu-insights.org',
+    pass: 'TathastuAdminDesk2026!',
+    name: 'Siddharth Rao',
+    roleId: 'admin',
+    affiliation: 'Digital Operations Desk',
   },
   editor: {
+    id: 'usr-editor-01',
     email: 'editor@tathastu-insights.org',
     pass: 'TathastuEditorialDesk2026!',
+    name: 'Prof. Clara Zheng',
+    roleId: 'editor',
+    affiliation: 'Editorial Review Board',
   },
   research_editor: {
+    id: 'usr-reviewer-01',
     email: 'reviewer@tathastu-insights.org',
     pass: 'TathastuReviewer2026!',
+    name: 'Vikram Sharma',
+    roleId: 'research_editor',
+    affiliation: 'Distributed Swarm Consortium',
+  },
+  media_manager: {
+    id: 'usr-media-01',
+    email: 'media@tathastu-insights.org',
+    pass: 'TathastuMediaManager2026!',
+    name: 'Maya Sen',
+    roleId: 'media_manager',
+    affiliation: 'Visual Communications & Media Lab',
   },
   author: {
+    id: 'usr-author-01',
     email: 'author@institution.edu',
     pass: 'TathastuAuthor2026!',
+    name: 'Dr. Elena Rostova',
+    roleId: 'author',
+    affiliation: 'Iris Vision Labs',
+  },
+  contributor: {
+    id: 'usr-contrib-01',
+    email: 'contributor@community.org',
+    pass: 'TathastuContributor2026!',
+    name: 'Arun Kumar',
+    roleId: 'contributor',
+    affiliation: 'Independent Community Researcher',
   },
 };
 
@@ -85,6 +134,39 @@ export const StudioAuthProvider: React.FC<{ children: React.ReactNode }> = ({ ch
         setToken(res.token);
         setUser(res.user);
       }
+    } catch (err: any) {
+      // In development / demo mode, if the standalone backend server is not running,
+      // allow instant client fallback for registered personas.
+      const matched = Object.values(DEMO_CREDENTIALS).find(
+        (u) =>
+          u.email.toLowerCase() === email.trim().toLowerCase() &&
+          (!password || u.pass === password.trim())
+      );
+
+      if (matched && typeof import.meta !== 'undefined' && import.meta.env?.MODE !== 'production') {
+        const payload = {
+          id: matched.id,
+          email: matched.email,
+          name: matched.name,
+          roleId: matched.roleId,
+          affiliation: matched.affiliation,
+          exp: Math.floor(Date.now() / 1000) + 7 * 86400,
+        };
+        const clientToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.${btoa(JSON.stringify(payload))}.dev_signature`;
+        localStorage.setItem('tathastu_auth_token', clientToken);
+        setToken(clientToken);
+        setUser({
+          id: matched.id,
+          email: matched.email,
+          name: matched.name,
+          roleId: matched.roleId,
+          affiliation: matched.affiliation,
+          isActive: true,
+          createdAt: new Date().toISOString(),
+        });
+        return;
+      }
+      throw err;
     } finally {
       setIsLoading(false);
     }

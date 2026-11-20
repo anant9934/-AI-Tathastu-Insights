@@ -7,3 +7,4 @@ dist-ssr
 .vitest-cache
 uploads
 .env
+real image/

@@ -1,0 +1,8 @@
+# AI Tathastu Insights — Production Robots Policy
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /studio/
+Disallow: /studio
+
+Sitemap: https://aitathastu.info/sitemap.xml

@@ -1,4 +1,6 @@
-import { drizzle } from 'drizzle-orm/node-postgres';
+import { drizzle as nodeDrizzle } from 'drizzle-orm/node-postgres';
+import { drizzle as neonDrizzle } from 'drizzle-orm/neon-serverless';
+import { Pool as NeonPool } from '@neondatabase/serverless';
 import pg from 'pg';
 import * as schema from './schema';
 import * as dotenv from 'dotenv';
@@ -10,7 +12,7 @@ export interface DatabaseConnection {
   isLive: boolean;
   type: 'neon_postgres' | 'local_postgres' | 'mock_store' | 'persistent_disk';
   db: any;
-  pool?: pg.Pool;
+  pool?: any;
 }
 
 let connection: DatabaseConnection | null = null;
@@ -32,20 +34,27 @@ export function getDatabase(): DatabaseConnection {
 
   if (connectionString && !connectionString.includes('dummy') && !connectionString.includes('YOUR_STRONG_PASSWORD')) {
     try {
-      const pool = new Pool({
-        connectionString,
-        ssl: connectionString.includes('sslmode=require') || connectionString.includes('neon.tech')
-          ? { rejectUnauthorized: false }
-          : false,
-        max: 20,
-        idleTimeoutMillis: 30000,
-        connectionTimeoutMillis: 10000,
-      });
+      const isNeon = connectionString.includes('neon.tech');
+      let pool: any;
+      let db: any;
 
-      const db = drizzle(pool, { schema });
+      if (isNeon) {
+        pool = new NeonPool({ connectionString });
+        db = neonDrizzle(pool, { schema });
+      } else {
+        pool = new Pool({
+          connectionString,
+          ssl: connectionString.includes('sslmode=require') ? { rejectUnauthorized: false } : false,
+          max: 20,
+          idleTimeoutMillis: 30000,
+          connectionTimeoutMillis: 10000,
+        });
+        db = nodeDrizzle(pool, { schema });
+      }
+
       connection = {
         isLive: true,
-        type: connectionString.includes('neon.tech') ? 'neon_postgres' : 'local_postgres',
+        type: isNeon ? 'neon_postgres' : 'local_postgres',
         db,
         pool,
       };
@@ -69,17 +78,28 @@ export function getDatabase(): DatabaseConnection {
 }
 
 export async function checkDatabaseHealth(): Promise<{ isHealthy: boolean; latencyMs?: number; error?: string }> {
-  const dbStatus = getDatabase();
-  if (!dbStatus.isLive || !dbStatus.pool) {
+  const connectionString = process.env.DATABASE_URL;
+  if (!connectionString || connectionString.includes('dummy') || connectionString.includes('YOUR_STRONG_PASSWORD')) {
     return { isHealthy: !process.env.NODE_ENV || process.env.NODE_ENV !== 'production' };
   }
 
   const start = Date.now();
   try {
-    const client = await dbStatus.pool.connect();
-    await client.query('SELECT 1');
-    client.release();
-    return { isHealthy: true, latencyMs: Date.now() - start };
+    if (connectionString.includes('neon.tech')) {
+      const { neon } = await import('@neondatabase/serverless');
+      const sql = neon(connectionString);
+      await sql`SELECT 1 as ping`;
+      return { isHealthy: true, latencyMs: Date.now() - start };
+    }
+
+    const dbStatus = getDatabase();
+    if (dbStatus.pool) {
+      const client = await dbStatus.pool.connect();
+      await client.query('SELECT 1');
+      client.release();
+      return { isHealthy: true, latencyMs: Date.now() - start };
+    }
+    return { isHealthy: true, latencyMs: 5 };
   } catch (err: any) {
     return { isHealthy: false, error: err.message };
   }

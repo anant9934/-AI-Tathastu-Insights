@@ -174,7 +174,7 @@ async function provisionAdmin() {
   console.log('[Provisioning] Persisted Super Admin credentials securely to persistent disk store.');
 }
 
-if (import.meta.url === `file://${process.argv[1]}`) {
+if (process.argv[1]?.includes('provision-admin')) {
   provisionAdmin()
     .then(() => process.exit(0))
     .catch((err) => {

@@ -164,9 +164,9 @@ editorialRouter.patch('/submissions/:id/status', requireAuth, requireEditorialAc
   // Validate state transitions
   const validTransitions: Record<string, string[]> = {
     draft: ['submitted', 'archived'],
-    submitted: ['in_review', 'rejected', 'archived'],
+    submitted: ['in_review', 'approved', 'rejected', 'archived'],
     in_review: ['revision_requested', 'approved', 'rejected'],
-    revision_requested: ['in_review', 'rejected', 'archived'],
+    revision_requested: ['in_review', 'approved', 'rejected', 'archived'],
     approved: ['scheduled', 'published', 'archived'],
     scheduled: ['published', 'archived'],
     published: ['archived'],

@@ -21,7 +21,25 @@ import { getDatabase } from './db';
 export function createApp(): Express {
   const app = express();
 
-  // 1. Security & Hygiene Middlewares
+  // 1. Canonical Domain Enforcement Middleware (301 Permanent Redirects)
+  app.use((req: Request, res: Response, next) => {
+    const rawHost = req.headers.host || '';
+    const host = rawHost.split(':')[0].toLowerCase();
+    const canonicalHost = 'aitathastu.info';
+
+    if (host === 'aitathastu.com' || host === 'www.aitathastu.com' || host === 'www.aitathastu.info') {
+      const targetUrl = `https://${canonicalHost}${req.originalUrl}`;
+      return res.redirect(301, targetUrl);
+    }
+
+    if (host === 'mentormaze.aitathastu.com') {
+      return res.redirect(301, `https://${canonicalHost}/products/mentormaze`);
+    }
+
+    next();
+  });
+
+  // 2. Security & Hygiene Middlewares
   app.use(helmet({
     contentSecurityPolicy: false, // Managed by Vite in dev / Vercel in prod
     crossOriginEmbedderPolicy: false,

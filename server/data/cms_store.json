@@ -5,10 +5,10 @@
       {
         "id": "usr-admin-01",
         "email": "admin@tathastu-insights.org",
-        "passwordHash": "$2b$12$iCNqDVABO0YmaeNqNFzicuYYqKvhiJKs3URH3Rvpvy1FttE/fV50a",
+        "passwordHash": "$2b$12$kImfNV4nyeWO74X6LP3KMO4qWse.L9YgzIRGeIqdurKB27ZayfWFy",
         "name": "Dr. Aravind Nair",
         "roleId": "super_admin",
-        "affiliation": "Frontier Alignment Group, AI Tathastu",
+        "affiliation": "Frontier Systems & Alignment, AI Tathastu",
         "isActive": true,
         "createdAt": "2026-01-01T00:00:00Z"
       }
@@ -44,7 +44,7 @@
       {
         "id": "usr-reviewer-01",
         "email": "reviewer@tathastu-insights.org",
-        "passwordHash": "$2b$12$KGNpKDA/N99ugPq2g7jn8ug9IHJbdlcp9ZZq/oSNw25PIIbBGLEqq",
+        "passwordHash": "$2b$12$jP.OQAZtLwMSuldZoIjRWeIp8SKfmkwPdBP8Mz9CQi8NLOL3efb12",
         "name": "Vikram Sharma",
         "roleId": "research_editor",
         "affiliation": "Distributed Swarm Consortium",
@@ -220,6 +220,97 @@
         "isActive": true,
         "createdAt": "2026-11-20T20:09:39.250Z"
       }
+    ],
+    [
+      "usr-1795206433744-902",
+      {
+        "id": "usr-1795206433744-902",
+        "email": "contrib-1795206433530@tathastu.org",
+        "passwordHash": "$2b$12$j4aCTbMeLINqP85lx9FMLu2efNUJaWxwLTnIjfosQhwDcvk2q3KZS",
+        "name": "Test Contributor",
+        "roleId": "contributor",
+        "affiliation": "Independent Researcher",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:27:13.744Z"
+      }
+    ],
+    [
+      "usr-1795207005325",
+      {
+        "id": "usr-1795207005325",
+        "email": "new-user-1795207005109@tathastu-insights.org",
+        "name": "New Staff Member",
+        "passwordHash": "$2b$12$3jGwxwoftLcMxk8390dCh.xuCHCUxZELa2oQWW6Id1gXBMleMxgY6",
+        "roleId": "editor",
+        "affiliation": "Editorial Board",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:36:45.325Z"
+      }
+    ],
+    [
+      "usr-1795207087201-929",
+      {
+        "id": "usr-1795207087201-929",
+        "email": "test-1795207086984@university.edu",
+        "passwordHash": "$2b$12$kZxesyKjvAh4MKHgeuWFau4j/G/Vg7U0kQ1bZZXwGywE9VE6uTtqm",
+        "name": "Test Contributor",
+        "roleId": "contributor",
+        "affiliation": "Independent Scholar",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:38:07.201Z"
+      }
+    ],
+    [
+      "usr-1795207127780-375",
+      {
+        "id": "usr-1795207127780-375",
+        "email": "contrib-1795207127562@tathastu.org",
+        "passwordHash": "$2b$12$BYhQH2Ttokq/LWl44AYGXuzSfRnY.aVU5kpCvvLsEauo4F0fl1uza",
+        "name": "Test Contributor",
+        "roleId": "contributor",
+        "affiliation": "Independent Researcher",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:38:47.780Z"
+      }
+    ],
+    [
+      "usr-1795207167600",
+      {
+        "id": "usr-1795207167600",
+        "email": "new-user-1795207167379@tathastu-insights.org",
+        "name": "New Staff Member",
+        "passwordHash": "$2b$12$9HRSvhudr3OwWm9CZZbMs.qAMrn0hn0RyldVzkzr..ywb6vEAFope",
+        "roleId": "editor",
+        "affiliation": "Editorial Board",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:39:27.600Z"
+      }
+    ],
+    [
+      "usr-1795207210945",
+      {
+        "id": "usr-1795207210945",
+        "email": "new-user-1795207210721@tathastu-insights.org",
+        "name": "New Staff Member",
+        "passwordHash": "$2b$12$r/hCm8VuMbxs.enYsotnQedKuGPvTseU0q6dJeIuiDkDcobn0xIu.",
+        "roleId": "editor",
+        "affiliation": "Editorial Board",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:40:10.945Z"
+      }
+    ],
+    [
+      "usr-1795207252278",
+      {
+        "id": "usr-1795207252278",
+        "email": "new-user-1795207252058@tathastu-insights.org",
+        "name": "New Staff Member",
+        "passwordHash": "$2b$12$.XwwmFwlkUk2qfbFVip.Te646nv0CV3ENwX9k7uRG5QAPRtkW.sTy",
+        "roleId": "editor",
+        "affiliation": "Editorial Board",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:40:52.278Z"
+      }
     ]
   ],
   "manuscripts": [
@@ -234,13 +325,13 @@
         "categoryId": "Frontier Systems",
         "abstract": "Mapping attention weights into simplicial complexes during Lean 4 formal verification trajectories.",
         "wordCount": 8400,
-        "status": "in_review",
+        "status": "revision_requested",
         "assignedEditorId": "usr-editor-01",
         "assignedEditorName": "Prof. Clara Zheng",
         "reviewerScore": 8.7,
         "reproducibilityAttestation": true,
         "submittedAt": "2026-10-18",
-        "updatedAt": "2026-10-20"
+        "updatedAt": "2026-11-20"
       }
     ],
     [
@@ -855,6 +946,64 @@
           "metaDescription": "Empirical analysis of quantum circuit representations in transformer residual layers."
         }
       }
+    ],
+    [
+      "cnt-1795206435022-fd7e28",
+      {
+        "id": "cnt-1795206435022-fd7e28",
+        "slug": "frontier-quantum-tracing-1795206432384",
+        "title": "Quantum Trace Invariance in Transformer Graphs",
+        "subtitle": "",
+        "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+        "contentType": "research_deep_dive",
+        "category": "Frontier Systems",
+        "status": "unpublished",
+        "primaryAuthorId": "usr-editor-01",
+        "authorName": "Staff Contributor",
+        "blocks": [],
+        "rawMarkdown": "",
+        "readingTimeMinutes": 4,
+        "wordCount": 500,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "publishedAt": "2026-11-20T20:27:15.025Z",
+        "createdById": "usr-editor-01",
+        "createdAt": "2026-11-20T20:27:15.022Z",
+        "updatedAt": "2026-11-20T20:27:15.026Z",
+        "seo": {
+          "metaTitle": "Quantum Trace Invariance in Transformer Graphs",
+          "metaDescription": "Empirical analysis of quantum circuit representations in transformer residual layers."
+        }
+      }
+    ],
+    [
+      "cnt-1795207129073-9bef52",
+      {
+        "id": "cnt-1795207129073-9bef52",
+        "slug": "frontier-quantum-tracing-1795207126410",
+        "title": "Quantum Trace Invariance in Transformer Graphs",
+        "subtitle": "",
+        "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+        "contentType": "research_deep_dive",
+        "category": "Frontier Systems",
+        "status": "unpublished",
+        "primaryAuthorId": "usr-editor-01",
+        "authorName": "Staff Contributor",
+        "blocks": [],
+        "rawMarkdown": "",
+        "readingTimeMinutes": 4,
+        "wordCount": 500,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "publishedAt": "2026-11-20T20:38:49.074Z",
+        "createdById": "usr-editor-01",
+        "createdAt": "2026-11-20T20:38:49.073Z",
+        "updatedAt": "2026-11-20T20:38:49.076Z",
+        "seo": {
+          "metaTitle": "Quantum Trace Invariance in Transformer Graphs",
+          "metaDescription": "Empirical analysis of quantum circuit representations in transformer residual layers."
+        }
+      }
     ]
   ],
   "contentVersions": [
@@ -1239,6 +1388,42 @@
           "createdAt": "2026-11-20T20:09:40.529Z"
         }
       ]
+    ],
+    [
+      "cnt-1795206435022-fd7e28",
+      [
+        {
+          "id": "ver-1795206435022",
+          "contentId": "cnt-1795206435022-fd7e28",
+          "versionNumber": 1,
+          "title": "Quantum Trace Invariance in Transformer Graphs",
+          "subtitle": "",
+          "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+          "blocks": [],
+          "rawMarkdown": "",
+          "changelog": "Initial draft created in CMS",
+          "createdById": "usr-editor-01",
+          "createdAt": "2026-11-20T20:27:15.022Z"
+        }
+      ]
+    ],
+    [
+      "cnt-1795207129073-9bef52",
+      [
+        {
+          "id": "ver-1795207129073",
+          "contentId": "cnt-1795207129073-9bef52",
+          "versionNumber": 1,
+          "title": "Quantum Trace Invariance in Transformer Graphs",
+          "subtitle": "",
+          "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+          "blocks": [],
+          "rawMarkdown": "",
+          "changelog": "Initial draft created in CMS",
+          "createdById": "usr-editor-01",
+          "createdAt": "2026-11-20T20:38:49.073Z"
+        }
+      ]
     ]
   ],
   "products": [
@@ -1252,10 +1437,9 @@
         "shortDescription": "Adaptive scaffolding engine converting open-ended problem exploration into structured reasoning pathways with deterministic sandbox execution.",
         "fullDescription": "MentorMaze addresses the brittleness of autonomous code evaluation and multi-turn educational reasoning. By decomposing complex algorithmic challenges into directed acyclic dependency graphs, students and engineers receive targeted conceptual interventions without shortcutting problem discovery.",
         "logoUrl": "/icons/mentormaze.svg",
-        "coverImageUrl": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1200",
+        "coverImageUrl": "/media/products/mentormaze/architecture-spec.svg",
         "screenshots": [
-          "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200",
-          "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1200"
+          "/media/products/mentormaze/architecture-spec.svg"
         ],
         "accentColor": "blue",
         "status": "Beta Lab",
@@ -1319,7 +1503,7 @@
             "url": "#about"
           }
         ],
-        "websiteUrl": "https://mentormaze.tathastu.org",
+        "websiteUrl": "https://mentormaze.aitathastu.com",
         "githubUrl": "https://github.com/anant9934/-AI-Tathastu-Insights",
         "isFeatured": true,
         "displayOrder": 1,
@@ -1340,9 +1524,9 @@
         "shortDescription": "Asynchronous multi-agent orchestration fabric ensuring deterministic agreement and conflict arbitration across distributed autonomous tools.",
         "fullDescription": "Collaborate coordinates swarms of heterogeneous AI agents operating concurrently across code repositories, database migrations, and production deployments. It guarantees serializable transaction semantics and prevents conflicting agent edits through sub-quadratic consensus protocols.",
         "logoUrl": "/icons/collaborate.svg",
-        "coverImageUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200",
+        "coverImageUrl": "/media/products/collaborate/collaborate-live.png",
         "screenshots": [
-          "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200"
+          "/media/products/collaborate/collaborate-live.png"
         ],
         "accentColor": "violet",
         "status": "Active Development",
@@ -1402,7 +1586,7 @@
             "url": "#research"
           }
         ],
-        "websiteUrl": "https://collaborate.tathastu.org",
+        "websiteUrl": "https://collaborate.aitathastu.com",
         "githubUrl": "https://github.com/anant9934/-AI-Tathastu-Insights",
         "isFeatured": true,
         "displayOrder": 2,
@@ -1423,9 +1607,9 @@
         "shortDescription": "Verifiable evaluation platform executing frontier AI benchmark suites under strict hardware constraints with cryptographic audit proofs.",
         "fullDescription": "Avsar systematically verifies claims in machine learning literature by automatically provisioning isolated compute environments, pulling model weights, re-running test suites, and publishing verifiable provenance logs.",
         "logoUrl": "/icons/avsar.svg",
-        "coverImageUrl": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200",
+        "coverImageUrl": "/media/products/avsar/avsar-live.png",
         "screenshots": [
-          "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1200"
+          "/media/products/avsar/avsar-live.png"
         ],
         "accentColor": "green",
         "status": "Prototype",
@@ -1479,7 +1663,7 @@
             "url": "#research"
           }
         ],
-        "websiteUrl": "https://avsar.tathastu.org",
+        "websiteUrl": "https://avsar.aitathastu.com",
         "githubUrl": "https://github.com/anant9934/-AI-Tathastu-Insights",
         "isFeatured": true,
         "displayOrder": 3,
@@ -1500,9 +1684,9 @@
         "shortDescription": "Perceptual AI system integrating live video streams into 3D voxel-semantic spatial memory buffers for real-time robotic and AR interaction.",
         "fullDescription": "Iris provides continuous spatial awareness for embodied robots and mixed reality headsets. It projects egocentric camera feeds into a dense 3D voxel representation augmented with semantic affordance embeddings at high frame rates.",
         "logoUrl": "/icons/iris.svg",
-        "coverImageUrl": "https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&q=80&w=1200",
+        "coverImageUrl": "/media/products/iris/architecture-spec.svg",
         "screenshots": [
-          "https://images.unsplash.com/photo-1535378620166-273708d44e4c?auto=format&fit=crop&q=80&w=1200"
+          "/media/products/iris/architecture-spec.svg"
         ],
         "accentColor": "indigo",
         "status": "Prototype",
@@ -1556,7 +1740,7 @@
             "url": "#research"
           }
         ],
-        "websiteUrl": "https://iris.tathastu.org",
+        "websiteUrl": "https://aitathastu.info/products/iris",
         "githubUrl": "https://github.com/anant9934/-AI-Tathastu-Insights",
         "isFeatured": true,
         "displayOrder": 4,
@@ -1957,6 +2141,170 @@
         "uploaderName": "Maya Sen",
         "createdAt": "2026-10-04T00:00:00Z"
       }
+    ],
+    [
+      "media-1795207005329",
+      {
+        "id": "media-1795207005329",
+        "title": "Aegis Architecture Diagram",
+        "originalFilename": "media-asset.jpg",
+        "format": "png",
+        "fileType": "image/jpeg",
+        "fileSizeBytes": 1048576,
+        "durationSeconds": 0,
+        "durationLabel": "",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/aegis.png",
+        "fileUrl": "/uploads/media/aegis.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "uploaderId": "usr-media-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:36:45.329Z"
+      }
+    ],
+    [
+      "media-1795207167605",
+      {
+        "id": "media-1795207167605",
+        "title": "Aegis Architecture Diagram",
+        "originalFilename": "media-asset.jpg",
+        "format": "png",
+        "fileType": "image/jpeg",
+        "fileSizeBytes": 1048576,
+        "durationSeconds": 0,
+        "durationLabel": "",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/aegis.png",
+        "fileUrl": "/uploads/media/aegis.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "uploaderId": "usr-media-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:39:27.605Z"
+      }
+    ],
+    [
+      "media-1795207168154",
+      {
+        "id": "media-1795207168154",
+        "title": "Frontier Verification Screenshot",
+        "originalFilename": "frontier-engine-screenshot.png",
+        "format": "image",
+        "fileType": "image/png",
+        "fileSizeBytes": 33,
+        "durationSeconds": 0,
+        "durationLabel": "0:00",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/1795207168152-0329f0e7becb20d4.png",
+        "fileUrl": "/uploads/media/1795207168152-0329f0e7becb20d4.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "altText": "frontier-engine-screenshot.png",
+        "uploaderId": "usr-admin-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:39:28.154Z"
+      }
+    ],
+    [
+      "media-1795207210950",
+      {
+        "id": "media-1795207210950",
+        "title": "Aegis Architecture Diagram",
+        "originalFilename": "media-asset.jpg",
+        "format": "png",
+        "fileType": "image/jpeg",
+        "fileSizeBytes": 1048576,
+        "durationSeconds": 0,
+        "durationLabel": "",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/aegis.png",
+        "fileUrl": "/uploads/media/aegis.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "uploaderId": "usr-media-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:40:10.950Z"
+      }
+    ],
+    [
+      "media-1795207211532",
+      {
+        "id": "media-1795207211532",
+        "title": "Frontier Verification Screenshot",
+        "originalFilename": "frontier-engine-screenshot.png",
+        "format": "image",
+        "fileType": "image/png",
+        "fileSizeBytes": 33,
+        "durationSeconds": 0,
+        "durationLabel": "0:00",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/1795207211531-0329f0e7becb20d4.png",
+        "fileUrl": "/uploads/media/1795207211531-0329f0e7becb20d4.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "altText": "frontier-engine-screenshot.png",
+        "uploaderId": "usr-admin-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:40:11.532Z"
+      }
+    ],
+    [
+      "media-1795207252282",
+      {
+        "id": "media-1795207252282",
+        "title": "Aegis Architecture Diagram",
+        "originalFilename": "media-asset.jpg",
+        "format": "png",
+        "fileType": "image/jpeg",
+        "fileSizeBytes": 1048576,
+        "durationSeconds": 0,
+        "durationLabel": "",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/aegis.png",
+        "fileUrl": "/uploads/media/aegis.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "uploaderId": "usr-media-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:40:52.282Z"
+      }
+    ],
+    [
+      "media-1795207252834",
+      {
+        "id": "media-1795207252834",
+        "title": "Frontier Verification Screenshot",
+        "originalFilename": "frontier-engine-screenshot.png",
+        "format": "image",
+        "fileType": "image/png",
+        "fileSizeBytes": 33,
+        "durationSeconds": 0,
+        "durationLabel": "0:00",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/1795207252833-0329f0e7becb20d4.png",
+        "fileUrl": "/uploads/media/1795207252833-0329f0e7becb20d4.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "altText": "frontier-engine-screenshot.png",
+        "uploaderId": "usr-admin-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:40:52.834Z"
+      }
     ]
   ],
   "staticPages": [
@@ -2310,7 +2658,7 @@
     "themeDefaults": {
       "defaultTheme": "system"
     },
-    "updatedAt": "2026-11-20T20:09:40.528Z"
+    "updatedAt": "2026-11-20T20:38:49.071Z"
   },
   "subscribers": [
     [
@@ -2351,6 +2699,47 @@
         "isConfirmed": false,
         "confirmationToken": "conf-ox-3312",
         "consentRecordedAt": "2026-11-05T08:00:00Z"
+      }
+    ],
+    [
+      "subscriber-1795207167611@oxford.edu",
+      {
+        "id": "sub-a4711383df7873aa",
+        "email": "subscriber-1795207167611@oxford.edu",
+        "isConfirmed": true,
+        "confirmationToken": "9af6c423378c03700f997cfcf28446b41b8fd89c26a4d2e7",
+        "consentRecordedAt": "2026-11-20T20:39:27.611Z"
+      }
+    ],
+    [
+      "researcher@oxford.ac.uk",
+      {
+        "id": "sub-aa16217bf9a8aca3",
+        "email": "researcher@oxford.ac.uk",
+        "isConfirmed": true,
+        "confirmationToken": "7b2f5ff2b31cd1beaebaf5bd883f1b45fbb3bbaf3ef27ca3",
+        "consentRecordedAt": "2026-11-20T20:40:52.290Z",
+        "unsubscribedAt": "2026-11-20T20:40:52.291Z"
+      }
+    ],
+    [
+      "subscriber-1795207210958@oxford.edu",
+      {
+        "id": "sub-33ebd630c4133c9c",
+        "email": "subscriber-1795207210958@oxford.edu",
+        "isConfirmed": true,
+        "confirmationToken": "4615c446ce28dc4ad799194a4468ef2a8e19b36e5c691ece",
+        "consentRecordedAt": "2026-11-20T20:40:10.959Z"
+      }
+    ],
+    [
+      "subscriber-1795207252288@oxford.edu",
+      {
+        "id": "sub-c8e12ea1e454ea2d",
+        "email": "subscriber-1795207252288@oxford.edu",
+        "isConfirmed": true,
+        "confirmationToken": "570eeee8cee7bce9ba4554e50ddcb0ace042094157da25ad",
+        "consentRecordedAt": "2026-11-20T20:40:52.288Z"
       }
     ]
   ],
@@ -2442,6 +2831,60 @@
         "tokenHash": "d42eaed569d00123df1e6cafb9286a25f9333dabf826688b3e12f23bbbb25b1e",
         "expiresAt": "2026-11-27T20:09:40.099Z",
         "revokedAt": "2026-11-20T20:09:40.099Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "a3596e0b6a9ffc665e1543f624b4ec62edf0b1a7d6e67b3b9897ef6e3515778e",
+      {
+        "tokenHash": "a3596e0b6a9ffc665e1543f624b4ec62edf0b1a7d6e67b3b9897ef6e3515778e",
+        "expiresAt": "2026-11-27T20:27:14.588Z",
+        "revokedAt": "2026-11-20T20:27:14.588Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "955be19dcbbe1ce67293541e0a833978a042c00221977192ceab6ff594e969b9",
+      {
+        "tokenHash": "955be19dcbbe1ce67293541e0a833978a042c00221977192ceab6ff594e969b9",
+        "expiresAt": "2026-11-27T20:36:45.107Z",
+        "revokedAt": "2026-11-20T20:36:45.107Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "230e5b9bbb91d4430e25e636c3940371ff3617005cbe92c460e10e6ef7b0ffef",
+      {
+        "tokenHash": "230e5b9bbb91d4430e25e636c3940371ff3617005cbe92c460e10e6ef7b0ffef",
+        "expiresAt": "2026-11-27T20:38:48.637Z",
+        "revokedAt": "2026-11-20T20:38:48.637Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "408364c9a14c5e67f840b13b64bedffe93d166c7bd76f72fa219cf475bfede63",
+      {
+        "tokenHash": "408364c9a14c5e67f840b13b64bedffe93d166c7bd76f72fa219cf475bfede63",
+        "expiresAt": "2026-11-27T20:39:27.377Z",
+        "revokedAt": "2026-11-20T20:39:27.377Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "b4f9728288285591f34677446663912a00c0bac04579c9f113ae7d84fe600f0f",
+      {
+        "tokenHash": "b4f9728288285591f34677446663912a00c0bac04579c9f113ae7d84fe600f0f",
+        "expiresAt": "2026-11-27T20:40:10.719Z",
+        "revokedAt": "2026-11-20T20:40:10.719Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "df28a40dee6c7c8a649cfcac0f84d753809c7b5f4b1e553489cc3c4592d9d7f9",
+      {
+        "tokenHash": "df28a40dee6c7c8a649cfcac0f84d753809c7b5f4b1e553489cc3c4592d9d7f9",
+        "expiresAt": "2026-11-27T20:40:52.056Z",
+        "revokedAt": "2026-11-20T20:40:52.056Z",
         "reason": "user_logout"
       }
     ]
@@ -2546,7 +2989,63 @@
         "createdAt": "2026-11-20T20:09:40.101Z",
         "usedAt": "2026-11-20T20:09:40.102Z"
       }
+    ],
+    [
+      "c0a968db7ad6978d30fe6809ea8d8c9f6f66391c0df74cf5bf05c68f2e32ee60",
+      {
+        "tokenHash": "c0a968db7ad6978d30fe6809ea8d8c9f6f66391c0df74cf5bf05c68f2e32ee60",
+        "userId": "usr-reviewer-01",
+        "expiresAt": "2026-11-20T21:27:14.590Z",
+        "createdAt": "2026-11-20T20:27:14.590Z",
+        "usedAt": "2026-11-20T20:27:14.592Z"
+      }
+    ],
+    [
+      "32c28049b533d41cb54f7f2106b7d07df7c999c075d230592a139c9ecc2a24ec",
+      {
+        "tokenHash": "32c28049b533d41cb54f7f2106b7d07df7c999c075d230592a139c9ecc2a24ec",
+        "userId": "usr-admin-01",
+        "expiresAt": "2026-11-20T21:36:48.740Z",
+        "createdAt": "2026-11-20T20:36:48.740Z"
+      }
+    ],
+    [
+      "e11f3479143bd9d1192e44771f93daeeec6caf3625a586c07addab26bf60899f",
+      {
+        "tokenHash": "e11f3479143bd9d1192e44771f93daeeec6caf3625a586c07addab26bf60899f",
+        "userId": "usr-reviewer-01",
+        "expiresAt": "2026-11-20T21:38:48.638Z",
+        "createdAt": "2026-11-20T20:38:48.638Z",
+        "usedAt": "2026-11-20T20:38:48.640Z"
+      }
+    ],
+    [
+      "c3e549736647cb4865d4028f9d9445d818d8e5c5a99df0a71d6d1254d643a85e",
+      {
+        "tokenHash": "c3e549736647cb4865d4028f9d9445d818d8e5c5a99df0a71d6d1254d643a85e",
+        "userId": "usr-admin-01",
+        "expiresAt": "2026-11-20T21:39:27.610Z",
+        "createdAt": "2026-11-20T20:39:27.610Z"
+      }
+    ],
+    [
+      "a9eba9efbc2ea66e9815436ba65949c2d755c4de147f55a33626ec253c013c8d",
+      {
+        "tokenHash": "a9eba9efbc2ea66e9815436ba65949c2d755c4de147f55a33626ec253c013c8d",
+        "userId": "usr-admin-01",
+        "expiresAt": "2026-11-20T21:40:10.957Z",
+        "createdAt": "2026-11-20T20:40:10.957Z"
+      }
+    ],
+    [
+      "8fddf13ab8a04bded00da68e17e51d46a39065305854e4000851a01b8c0e359f",
+      {
+        "tokenHash": "8fddf13ab8a04bded00da68e17e51d46a39065305854e4000851a01b8c0e359f",
+        "userId": "usr-admin-01",
+        "expiresAt": "2026-11-20T21:40:52.287Z",
+        "createdAt": "2026-11-20T20:40:52.287Z"
+      }
     ]
   ],
-  "persistedAt": "2026-11-20T20:09:40.535Z"
+  "persistedAt": "2026-11-20T20:40:52.855Z"
 }

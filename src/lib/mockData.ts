@@ -468,7 +468,7 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     badge: 'Education & Mentorship',
     status: 'Prototype',
     version: 'Prototype v0.8',
-    coverImage: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200',
+    coverImage: '/media/products/mentormaze/architecture-spec.svg',
     
     // 15-Section Specification
     overview: 'MentorMaze is an intelligent academic guidance platform engineered to diagnose cognitive prerequisite lattices and guide aspiring artificial intelligence researchers from fundamental linear algebra to frontier mechanistic interpretability.',
@@ -563,7 +563,7 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     badge: 'Research Lab Infrastructure',
     status: 'In Development',
     version: 'Dev v0.9',
-    coverImage: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1200',
+    coverImage: '/media/products/collaborate/collaborate-live.png',
 
     overview: 'Collaborate is an open multi-agent research laboratory environment combining real-time CRDT text collaboration, deterministic Docker capsules, and Aegis-BFT Byzantine consensus.',
     problem: 'Scientific teams lose 40% of their operational bandwidth to uncoordinated multi-agent hallucination drift, broken dependency environments, and disorganized preprint drafting.',
@@ -657,7 +657,7 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     badge: 'Grants & Fellowship Network',
     status: 'In Development',
     version: 'Dev v0.7',
-    coverImage: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1200',
+    coverImage: '/media/products/avsar/avsar-live.png',
 
     overview: 'Avsar is an algorithmic fellowship and micro-grant discovery engine that evaluates technical merit from verified code artifacts rather than institutional prestige.',
     problem: 'Over 80% of promising AI talent in emerging economies is excluded from frontier research grants due to geographical friction, opaque application processes, and legacy pedigree filters.',
@@ -751,7 +751,7 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     badge: 'Perceptual Intelligence',
     status: 'In Development',
     version: 'Dev v0.6',
-    coverImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200',
+    coverImage: '/media/products/iris/architecture-spec.svg',
 
     overview: 'Iris is an embodied perceptual intelligence foundation model providing continuous 3D spatial voxel memory and real-time physical affordance grounding at 60 FPS.',
     problem: 'Standard Vision-Language Models (VLMs) process disconnected 2D video frames. The moment an object leaves sensor field-of-view, all spatial permanence and geometric affordances are lost.',
@@ -847,7 +847,7 @@ export const mockMediaItems: MediaItem[] = [
     speaker: 'Dr. Aravind Nair & The MechInterp Lab',
     speakerRole: 'Principal Investigators',
     publishedAt: '2026-10-20',
-    coverImage: 'https://images.unsplash.com/photo-1507413245164-6160d8298b31?auto=format&fit=crop&q=80&w=800',
+    coverImage: '/media/company/platform-overview.png',
     category: 'Interpretability',
     videoUrl: '/media/documentary-residual-stream'
   },
@@ -860,7 +860,7 @@ export const mockMediaItems: MediaItem[] = [
     speaker: 'Vikram Sharma with Prof. Marcus Vance',
     speakerRole: 'Distributed Systems Series',
     publishedAt: '2026-10-15',
-    coverImage: 'https://images.unsplash.com/photo-1478737270239-2f02b77fc618?auto=format&fit=crop&q=80&w=800',
+    coverImage: '/media/products/collaborate/collaborate-live.png',
     audioDurationSeconds: 2912,
     category: 'Systems'
   },
@@ -873,7 +873,7 @@ export const mockMediaItems: MediaItem[] = [
     speaker: 'Dr. Elena Rostova',
     speakerRole: 'Director of Perceptual AI',
     publishedAt: '2026-09-25',
-    coverImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800',
+    coverImage: '/media/products/iris/architecture-spec.svg',
     category: 'Perception'
   },
   {
@@ -885,7 +885,7 @@ export const mockMediaItems: MediaItem[] = [
     speaker: 'Prof. Clara Zheng',
     speakerRole: 'Fellow in Computational Governance',
     publishedAt: '2026-09-12',
-    coverImage: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800',
+    coverImage: '/media/products/avsar/avsar-live.png',
     category: 'Governance'
   }
 ];
