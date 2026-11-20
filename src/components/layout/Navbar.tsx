@@ -52,7 +52,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
     setMobileMenuOpen(false);
   };
 
-  const isOverHero = currentTab === 'home' && !isScrolled;
+  const isOverHero = (currentTab === 'home' || currentTab === 'products' || currentTab === 'ecosystem') && !isScrolled;
 
   return (
     <header 
@@ -163,7 +163,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
                   : 'bg-brand-charcoal text-white hover:bg-brand-charcoal/90 dark:bg-white dark:text-brand-charcoal shadow-xs'
               }`}
             >
-              <span>Explore products</span>
+              <span>Explore Products</span>
               <ArrowUpRight className="w-3.5 h-3.5" />
             </button>
           </div>

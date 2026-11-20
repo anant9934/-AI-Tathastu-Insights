@@ -331,7 +331,7 @@
         "id": "usr-admin-1795207628602",
         "email": "test-provisioned-admin@tathastu.org",
         "name": "Test Admin",
-        "passwordHash": "$2b$12$Gvxh9Nav/JxGe5QKj1Jk0eDwwuCVyG6p8znNEZAEzWuZfIQWReujm",
+        "passwordHash": "$2b$12$GeZwNNA.O/VwXOialTURFe2zc0qhUcsLHm4zlLP3vr7R.tn/lq0uG",
         "roleId": "super_admin",
         "affiliation": "Frontier Systems & Alignment, AI Tathastu",
         "isActive": true,
@@ -427,6 +427,45 @@
         "affiliation": "Editorial Board",
         "isActive": true,
         "createdAt": "2026-11-20T21:09:28.076Z"
+      }
+    ],
+    [
+      "usr-1795209188043",
+      {
+        "id": "usr-1795209188043",
+        "email": "new-user-1795209187829@tathastu-insights.org",
+        "name": "New Staff Member",
+        "passwordHash": "$2b$12$K/qkxN.17xTAV.L81OBr/evBCDNJsOxve/XxkPaZCJeU.VU85rQki",
+        "roleId": "editor",
+        "affiliation": "Editorial Board",
+        "isActive": true,
+        "createdAt": "2026-11-20T21:13:08.043Z"
+      }
+    ],
+    [
+      "usr-1795209523727",
+      {
+        "id": "usr-1795209523727",
+        "email": "new-user-1795209523520@tathastu-insights.org",
+        "name": "New Staff Member",
+        "passwordHash": "$2b$12$6ntUC2iCoCWBIckh.VVrmO6caLgSgj4TyRiR32CftwUwPjjX5I/VK",
+        "roleId": "editor",
+        "affiliation": "Editorial Board",
+        "isActive": true,
+        "createdAt": "2026-11-20T21:18:43.727Z"
+      }
+    ],
+    [
+      "usr-1795210115117",
+      {
+        "id": "usr-1795210115117",
+        "email": "new-user-1795210114899@tathastu-insights.org",
+        "name": "New Staff Member",
+        "passwordHash": "$2b$12$7ZN9vhg9XLIjFznAqIdSou0jx8hrtwgyqDIs1T3oCgeySePrjI4wW",
+        "roleId": "editor",
+        "affiliation": "Editorial Board",
+        "isActive": true,
+        "createdAt": "2026-11-20T21:28:35.117Z"
       }
     ]
   ],
@@ -1550,7 +1589,7 @@
         "id": "mentormaze",
         "slug": "mentormaze",
         "name": "MentorMaze",
-        "tagline": "Deterministic execution tracing and pedagogical scaffolding for LLMs.",
+        "tagline": "Adaptive AI Mentorship & Academic Trajectory Synthesis",
         "shortDescription": "Adaptive scaffolding engine converting open-ended problem exploration into structured reasoning pathways with deterministic sandbox execution.",
         "fullDescription": "MentorMaze addresses the brittleness of autonomous code evaluation and multi-turn educational reasoning. By decomposing complex algorithmic challenges into directed acyclic dependency graphs, students and engineers receive targeted conceptual interventions without shortcutting problem discovery.",
         "logoUrl": "/icons/mentormaze.svg",
@@ -1559,9 +1598,9 @@
           "/media/products/mentormaze/architecture-spec.svg"
         ],
         "accentColor": "blue",
-        "status": "Beta Lab",
+        "status": "Prototype",
         "provenanceLabel": "Functional Demonstration",
-        "version": "0.8.4-beta",
+        "version": "Prototype v0.8",
         "problemSolved": "Preventing hallucinated debugging advice and unbounded trial-and-error code execution in educational environments.",
         "whyExists": "Traditional coding tutors provide completed answers rather than leading learners to discover the invariant principles.",
         "targetAudience": "Software engineering academies, computer science university departments, and self-directed developers.",
@@ -1637,7 +1676,7 @@
         "id": "collaborate",
         "slug": "collaborate",
         "name": "Collaborate",
-        "tagline": "Byzantine fault-tolerant multi-agent consensus and coordination runtime.",
+        "tagline": "Distributed Peer Research & Multi-Agent Synthesis Node",
         "shortDescription": "Asynchronous multi-agent orchestration fabric ensuring deterministic agreement and conflict arbitration across distributed autonomous tools.",
         "fullDescription": "Collaborate coordinates swarms of heterogeneous AI agents operating concurrently across code repositories, database migrations, and production deployments. It guarantees serializable transaction semantics and prevents conflicting agent edits through sub-quadratic consensus protocols.",
         "logoUrl": "/icons/collaborate.svg",
@@ -1646,9 +1685,9 @@
           "/media/products/collaborate/collaborate-live.png"
         ],
         "accentColor": "violet",
-        "status": "Active Development",
+        "status": "In Development",
         "provenanceLabel": "In Development",
-        "version": "0.4.1-alpha",
+        "version": "Dev v0.9",
         "problemSolved": "Eliminating race conditions and divergent states when multiple agents write to shared file trees or state machines.",
         "whyExists": "Multi-agent frameworks degrade rapidly into deadlock or state corruption when agents act asynchronously without formal consensus.",
         "targetAudience": "Enterprise platform teams deploying automated code modification pipelines and autonomous microservices.",
@@ -1720,7 +1759,7 @@
         "id": "avsar",
         "slug": "avsar",
         "name": "Avsar",
-        "tagline": "Automated research reproduction harness and benchmark verification platform.",
+        "tagline": "Frontier AI Talent & Opportunity Discovery Engine",
         "shortDescription": "Verifiable evaluation platform executing frontier AI benchmark suites under strict hardware constraints with cryptographic audit proofs.",
         "fullDescription": "Avsar systematically verifies claims in machine learning literature by automatically provisioning isolated compute environments, pulling model weights, re-running test suites, and publishing verifiable provenance logs.",
         "logoUrl": "/icons/avsar.svg",
@@ -1729,9 +1768,9 @@
           "/media/products/avsar/avsar-live.png"
         ],
         "accentColor": "green",
-        "status": "Prototype",
+        "status": "In Development",
         "provenanceLabel": "Functional Demonstration",
-        "version": "0.2.0-proto",
+        "version": "Dev v0.7",
         "problemSolved": "The replication crisis in frontier AI research where published benchmark numbers cannot be verified independently.",
         "whyExists": "Benchmark inflation and cherry-picked prompt templates obscure true model capability metrics.",
         "targetAudience": "Research institutions, regulatory audit teams, and AI safety organizations.",
@@ -1797,7 +1836,7 @@
         "id": "iris",
         "slug": "iris",
         "name": "Iris",
-        "tagline": "Egocentric spatial memory buffers and continuous physical affordance grounding.",
+        "tagline": "Continuous Spatial Intelligence & Multimodal Perceptual Systems",
         "shortDescription": "Perceptual AI system integrating live video streams into 3D voxel-semantic spatial memory buffers for real-time robotic and AR interaction.",
         "fullDescription": "Iris provides continuous spatial awareness for embodied robots and mixed reality headsets. It projects egocentric camera feeds into a dense 3D voxel representation augmented with semantic affordance embeddings at high frame rates.",
         "logoUrl": "/icons/iris.svg",
@@ -1806,9 +1845,9 @@
           "/media/products/iris/architecture-spec.svg"
         ],
         "accentColor": "indigo",
-        "status": "Prototype",
+        "status": "In Development",
         "provenanceLabel": "Functional Demonstration",
-        "version": "0.3.2-proto",
+        "version": "Dev v0.6",
         "problemSolved": "Loss of spatial context in continuous video reasoning models due to flat frame-by-frame memory bottlenecks.",
         "whyExists": "Robots and mixed reality devices need continuous 3D object persistence even when objects leave the immediate camera frustum.",
         "targetAudience": "Robotics labs, AR/VR headset developers, and spatial computing researchers.",
@@ -2750,6 +2789,147 @@
         "uploaderName": "Admin Desk",
         "createdAt": "2026-11-20T21:09:28.683Z"
       }
+    ],
+    [
+      "media-1795209188048",
+      {
+        "id": "media-1795209188048",
+        "title": "Aegis Architecture Diagram",
+        "originalFilename": "media-asset.jpg",
+        "format": "png",
+        "fileType": "image/jpeg",
+        "fileSizeBytes": 1048576,
+        "durationSeconds": 0,
+        "durationLabel": "",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/aegis.png",
+        "fileUrl": "/uploads/media/aegis.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "uploaderId": "usr-media-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T21:13:08.048Z"
+      }
+    ],
+    [
+      "media-1795209188618",
+      {
+        "id": "media-1795209188618",
+        "title": "Frontier Verification Screenshot",
+        "originalFilename": "frontier-engine-screenshot.png",
+        "format": "image",
+        "fileType": "image/png",
+        "fileSizeBytes": 33,
+        "durationSeconds": 0,
+        "durationLabel": "0:00",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/1795209188617-0329f0e7becb20d4.png",
+        "fileUrl": "/uploads/media/1795209188617-0329f0e7becb20d4.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "altText": "frontier-engine-screenshot.png",
+        "uploaderId": "usr-admin-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T21:13:08.618Z"
+      }
+    ],
+    [
+      "media-1795209523731",
+      {
+        "id": "media-1795209523731",
+        "title": "Aegis Architecture Diagram",
+        "originalFilename": "media-asset.jpg",
+        "format": "png",
+        "fileType": "image/jpeg",
+        "fileSizeBytes": 1048576,
+        "durationSeconds": 0,
+        "durationLabel": "",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/aegis.png",
+        "fileUrl": "/uploads/media/aegis.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "uploaderId": "usr-media-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T21:18:43.731Z"
+      }
+    ],
+    [
+      "media-1795209524314",
+      {
+        "id": "media-1795209524314",
+        "title": "Frontier Verification Screenshot",
+        "originalFilename": "frontier-engine-screenshot.png",
+        "format": "image",
+        "fileType": "image/png",
+        "fileSizeBytes": 33,
+        "durationSeconds": 0,
+        "durationLabel": "0:00",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/1795209524313-0329f0e7becb20d4.png",
+        "fileUrl": "/uploads/media/1795209524313-0329f0e7becb20d4.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "altText": "frontier-engine-screenshot.png",
+        "uploaderId": "usr-admin-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T21:18:44.314Z"
+      }
+    ],
+    [
+      "media-1795210115122",
+      {
+        "id": "media-1795210115122",
+        "title": "Aegis Architecture Diagram",
+        "originalFilename": "media-asset.jpg",
+        "format": "png",
+        "fileType": "image/jpeg",
+        "fileSizeBytes": 1048576,
+        "durationSeconds": 0,
+        "durationLabel": "",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/aegis.png",
+        "fileUrl": "/uploads/media/aegis.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "uploaderId": "usr-media-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T21:28:35.122Z"
+      }
+    ],
+    [
+      "media-1795210115679",
+      {
+        "id": "media-1795210115679",
+        "title": "Frontier Verification Screenshot",
+        "originalFilename": "frontier-engine-screenshot.png",
+        "format": "image",
+        "fileType": "image/png",
+        "fileSizeBytes": 33,
+        "durationSeconds": 0,
+        "durationLabel": "0:00",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/1795210115678-0329f0e7becb20d4.png",
+        "fileUrl": "/uploads/media/1795210115678-0329f0e7becb20d4.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "altText": "frontier-engine-screenshot.png",
+        "uploaderId": "usr-admin-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T21:28:35.679Z"
+      }
     ]
   ],
   "staticPages": [
@@ -3159,12 +3339,12 @@
     [
       "researcher@oxford.ac.uk",
       {
-        "id": "sub-0cf17c5edddf7dfa",
+        "id": "sub-c56958a1938445c2",
         "email": "researcher@oxford.ac.uk",
         "isConfirmed": true,
-        "confirmationToken": "8d9640d5d26d769e29972bbbafe17a209f3dc8b5529009cd",
-        "consentRecordedAt": "2026-11-20T21:09:28.087Z",
-        "unsubscribedAt": "2026-11-20T21:09:28.088Z"
+        "confirmationToken": "a70d60777926e181ea7fcd8fd59c06fab4e5872e4444e85d",
+        "consentRecordedAt": "2026-11-20T21:28:35.132Z",
+        "unsubscribedAt": "2026-11-20T21:28:35.133Z"
       }
     ],
     [
@@ -3265,6 +3445,36 @@
         "isConfirmed": true,
         "confirmationToken": "4a812f22b1703128d0344e2ef5a5e91447609243312ebd51",
         "consentRecordedAt": "2026-11-20T21:09:28.086Z"
+      }
+    ],
+    [
+      "subscriber-1795209188053@oxford.edu",
+      {
+        "id": "sub-b6718ac1632b122e",
+        "email": "subscriber-1795209188053@oxford.edu",
+        "isConfirmed": true,
+        "confirmationToken": "4781c94d42def1d91bef25ed36ba47d816eb158cbef953f6",
+        "consentRecordedAt": "2026-11-20T21:13:08.054Z"
+      }
+    ],
+    [
+      "subscriber-1795209523736@oxford.edu",
+      {
+        "id": "sub-995672959235f48e",
+        "email": "subscriber-1795209523736@oxford.edu",
+        "isConfirmed": true,
+        "confirmationToken": "2c8f485264b9f754b0f45cc9b1365467bde90fe228b81b10",
+        "consentRecordedAt": "2026-11-20T21:18:43.736Z"
+      }
+    ],
+    [
+      "subscriber-1795210115130@oxford.edu",
+      {
+        "id": "sub-d385ac1bf57fce40",
+        "email": "subscriber-1795210115130@oxford.edu",
+        "isConfirmed": true,
+        "confirmationToken": "393fc9ea709c1559635c9414c853e79c8aecbd6e5e666de1",
+        "consentRecordedAt": "2026-11-20T21:28:35.131Z"
       }
     ]
   ],
@@ -3482,6 +3692,33 @@
         "tokenHash": "ca0a5327d9380e6d807ddc4db265fdbcae751eb84683bb2c800bcf1fbc6f883e",
         "expiresAt": "2026-11-27T21:09:27.862Z",
         "revokedAt": "2026-11-20T21:09:27.862Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "0967acc5480cfdd38ba10cc3e4645bb77ecd819383de6b44c13e19a225bdda85",
+      {
+        "tokenHash": "0967acc5480cfdd38ba10cc3e4645bb77ecd819383de6b44c13e19a225bdda85",
+        "expiresAt": "2026-11-27T21:13:07.827Z",
+        "revokedAt": "2026-11-20T21:13:07.827Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "f5921d6f90e89bb7872235d2d80976c57bbc0d36f680c2c7998342d7e26a8214",
+      {
+        "tokenHash": "f5921d6f90e89bb7872235d2d80976c57bbc0d36f680c2c7998342d7e26a8214",
+        "expiresAt": "2026-11-27T21:18:43.518Z",
+        "revokedAt": "2026-11-20T21:18:43.518Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "a9dbb666a3bd6a10c7a8889f204848f7fd561ac29451af572fcebd16a5ec889e",
+      {
+        "tokenHash": "a9dbb666a3bd6a10c7a8889f204848f7fd561ac29451af572fcebd16a5ec889e",
+        "expiresAt": "2026-11-27T21:28:34.896Z",
+        "revokedAt": "2026-11-20T21:28:34.896Z",
         "reason": "user_logout"
       }
     ]
@@ -3714,7 +3951,34 @@
         "expiresAt": "2026-11-20T22:09:28.084Z",
         "createdAt": "2026-11-20T21:09:28.084Z"
       }
+    ],
+    [
+      "40a3d8889dd2417cba02479bf48819c07c558ceda424b840481eeb7bac46dcf6",
+      {
+        "tokenHash": "40a3d8889dd2417cba02479bf48819c07c558ceda424b840481eeb7bac46dcf6",
+        "userId": "usr-admin-01",
+        "expiresAt": "2026-11-20T22:13:08.052Z",
+        "createdAt": "2026-11-20T21:13:08.052Z"
+      }
+    ],
+    [
+      "9c4b3f000f07e1b6b9394933ef81fa74580e8eb96ad7b2dfd7d7205d22a98ef6",
+      {
+        "tokenHash": "9c4b3f000f07e1b6b9394933ef81fa74580e8eb96ad7b2dfd7d7205d22a98ef6",
+        "userId": "usr-admin-01",
+        "expiresAt": "2026-11-20T22:18:43.735Z",
+        "createdAt": "2026-11-20T21:18:43.735Z"
+      }
+    ],
+    [
+      "cd40bdf7752ad78f059d64a2f380062e87076057387afae8676a089eb46ca6d8",
+      {
+        "tokenHash": "cd40bdf7752ad78f059d64a2f380062e87076057387afae8676a089eb46ca6d8",
+        "userId": "usr-admin-01",
+        "expiresAt": "2026-11-20T22:28:35.128Z",
+        "createdAt": "2026-11-20T21:28:35.128Z"
+      }
     ]
   ],
-  "persistedAt": "2026-11-20T21:09:28.723Z"
+  "persistedAt": "2026-11-20T21:28:35.711Z"
 }
