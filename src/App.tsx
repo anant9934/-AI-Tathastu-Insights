@@ -23,6 +23,7 @@ import {
 } from './lib/mockData';
 import { Article, ResearchPaper, EcosystemProduct } from './types';
 import { EDITORIAL_EASE, MOTION_DURATIONS } from './lib/motion';
+import { api } from './lib/api';
 
 export const AppContent: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<NavTab>('home');
@@ -87,6 +88,8 @@ export const AppContent: React.FC = () => {
     if ('stopPropagation' in e && typeof e.stopPropagation === 'function') {
       e.stopPropagation();
     }
+    // Optimistic UI update + API persistence
+    api.bookmarks.toggleBookmark(article.id).catch(() => {});
     setBookmarkedIds((prev) => {
       if (prev.includes(article.id)) {
         showToast('Story removed from bookmarks', article.title, 'info');
@@ -120,6 +123,7 @@ export const AppContent: React.FC = () => {
   };
 
   const handleDownloadPaper = (paper: ResearchPaper) => {
+    api.research.downloadPaper(paper.id).catch(() => {});
     showToast('Download Complete', `${paper.title.slice(0, 40)}... downloaded with verification signatures.`, 'success');
   };
 

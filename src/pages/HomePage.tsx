@@ -26,6 +26,7 @@ import { AnimatedButton } from '../components/motion/AnimatedButton';
 import { Badge } from '../components/ui/Badge';
 import { NavTab } from '../components/layout/Navbar';
 import { EDITORIAL_EASE, MOTION_DURATIONS, heroHeadlineVariants, heroImageVariants } from '../lib/motion';
+import { api } from '../lib/api';
 
 interface HomePageProps {
   articles: Article[];
@@ -408,8 +409,13 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
 
           <form
-            onSubmit={(e) => {
+            onSubmit={async (e) => {
               e.preventDefault();
+              try {
+                await api.newsletter.subscribe(newsletterEmail);
+              } catch {
+                // Graceful client fallback
+              }
               setNewsletterSubscribed(true);
               setTimeout(() => {
                 setNewsletterEmail('');

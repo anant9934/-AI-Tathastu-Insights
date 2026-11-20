@@ -202,15 +202,13 @@ export const AboutPage: React.FC = () => {
   };
 
   const handleCopyCitation = () => {
-    const citation = `@article{tathastu_charter_2026,
-  title = {The Tathastu Editorial & Research Publication Charter},
+    const citation = `@misc{tathastu_charter_2026,
+  title = {The Tathastu Editorial & Research Publication Charter: Empirical Invariants, Double-Blind Auditing & Computational Reproducibility},
   author = {Editorial Board of AI Tathastu Insights},
-  journal = {AI Tathastu Insights},
+  howpublished = {AI Tathastu Institutional Publication Archive},
   year = {2026},
-  volume = {3},
-  number = {1},
-  doi = {10.5281/zenodo.tathastu-charter-2026},
-  url = {https://insights.tathastu.ai/charter}
+  url = {https://insights.tathastu.ai/charter},
+  note = {Canonical Governance Document — Official DOI Registration Pending Open Archive Deposit}
 }`;
     navigator.clipboard.writeText(citation);
     setCopiedCitation(true);
@@ -236,7 +234,7 @@ export const AboutPage: React.FC = () => {
                 Governance V3.2 • Ratified 2026
               </Badge>
               <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted ml-auto hidden sm:inline">
-                DOI: 10.5281/zenodo.tathastu-charter-2026
+                Canonical URI: insights.tathastu.ai/charter (DOI Minting Pending)
               </span>
             </div>
 
