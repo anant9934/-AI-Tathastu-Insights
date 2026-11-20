@@ -316,6 +316,181 @@ export const auditLogs = pgTable('audit_logs', {
   index('audit_logs_action_idx').on(table.action),
 ]);
 
+// 22. PRODUCTS
+export const products = pgTable('products', {
+  id: text('id').primaryKey(),
+  slug: text('slug').notNull().unique(),
+  name: text('name').notNull(),
+  tagline: text('tagline').notNull(),
+  shortDescription: text('short_description').notNull(),
+  fullDescription: text('full_description').notNull(),
+  logoUrl: text('logo_url'),
+  coverImageUrl: text('cover_image_url'),
+  screenshotsJson: jsonb('screenshots_json').notNull().default([]),
+  accentColor: text('accent_color').notNull().default('blue'),
+  status: text('status').notNull().default('Prototype'), // 'Live Platform' | 'Beta Lab' | 'Prototype' | 'In Development' | 'Planned' | 'Discontinued'
+  provenanceLabel: text('provenance_label').notNull().default('Functional Demonstration'),
+  version: text('version').notNull().default('0.1.0'),
+  problemSolved: text('problem_solved'),
+  whyExists: text('why_exists'),
+  targetAudience: text('target_audience'),
+  proposedSolution: text('proposed_solution'),
+  productValue: text('product_value'),
+  featuresJson: jsonb('features_json').notNull().default([]),
+  technicalArchitecture: text('technical_architecture'),
+  techStackJson: jsonb('tech_stack_json').notNull().default([]),
+  docLinksJson: jsonb('doc_links_json').notNull().default([]),
+  websiteUrl: text('website_url'),
+  githubUrl: text('github_url'),
+  isFeatured: boolean('is_featured').default(false).notNull(),
+  displayOrder: integer('display_order').default(0).notNull(),
+  seoTitle: text('seo_title'),
+  seoDescription: text('seo_description'),
+  isPublished: boolean('is_published').default(true).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('products_slug_idx').on(table.slug),
+  index('products_status_idx').on(table.status),
+]);
+
+// 23. PRODUCT FEATURES
+export const productFeatures = pgTable('product_features', {
+  id: text('id').primaryKey(),
+  productId: text('product_id').notNull().references(() => products.id, { onDelete: 'cascade' }),
+  title: text('title').notNull(),
+  description: text('description').notNull(),
+  tag: text('tag'),
+  displayOrder: integer('display_order').default(0).notNull(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
+// 24. ENGINEERING ARTICLES
+export const engineeringArticles = pgTable('engineering_articles', {
+  id: text('id').primaryKey(),
+  slug: text('slug').notNull().unique(),
+  title: text('title').notNull(),
+  subtitle: text('subtitle'),
+  category: text('category').notNull().default('System Architecture'),
+  abstract: text('abstract').notNull(),
+  contentJson: jsonb('content_json').notNull().default([]),
+  authorName: text('author_name').notNull(),
+  authorRole: text('author_role'),
+  authorAffiliation: text('author_affiliation'),
+  authorAvatarUrl: text('author_avatar_url'),
+  readingTimeMinutes: integer('reading_time_minutes').default(6).notNull(),
+  coverImageUrl: text('cover_image_url'),
+  tagsJson: jsonb('tags_json').notNull().default([]),
+  problem: text('problem'),
+  technicalContext: text('technical_context'),
+  approach: text('approach'),
+  implementation: text('implementation'),
+  challenges: text('challenges'),
+  tradeOffs: text('trade_offs'),
+  outcome: text('outcome'),
+  systemArchitectureJson: jsonb('system_architecture_json'),
+  codeSnippetsJson: jsonb('code_snippets_json').notNull().default([]),
+  benchmarksJson: jsonb('benchmarks_json').notNull().default([]),
+  relatedProductId: text('related_product_id').references(() => products.id, { onDelete: 'set null' }),
+  relatedResearchId: text('related_research_id').references(() => researchPapers.id, { onDelete: 'set null' }),
+  status: text('status').notNull().default('published'), // 'draft' | 'in_review' | 'published' | 'archived'
+  publishedAt: timestamp('published_at', { withTimezone: true }).defaultNow(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('eng_articles_slug_idx').on(table.slug),
+  index('eng_articles_status_idx').on(table.status),
+]);
+
+// 25. COMPANY UPDATES / CHANGELOG
+export const companyUpdates = pgTable('company_updates', {
+  id: text('id').primaryKey(),
+  slug: text('slug').notNull().unique(),
+  title: text('title').notNull(),
+  summary: text('summary').notNull(),
+  detailedExplanation: text('detailed_explanation'),
+  category: text('category').notNull().default('Product Release'),
+  productId: text('product_id').references(() => products.id, { onDelete: 'set null' }),
+  version: text('version'),
+  date: text('date').notNull(),
+  authorName: text('author_name').notNull(),
+  coverImageUrl: text('cover_image_url'),
+  contentJson: jsonb('content_json').notNull().default([]),
+  tagsJson: jsonb('tags_json').notNull().default([]),
+  relatedLinksJson: jsonb('related_links_json').notNull().default([]),
+  milestoneMetricJson: jsonb('milestone_metric_json'),
+  status: text('status').notNull().default('published'), // 'draft' | 'published' | 'archived'
+  publishedAt: timestamp('published_at', { withTimezone: true }).defaultNow(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('company_updates_slug_idx').on(table.slug),
+  index('company_updates_status_idx').on(table.status),
+]);
+
+// 26. STATIC PAGES
+export const staticPages = pgTable('static_pages', {
+  id: text('id').primaryKey(),
+  slug: text('slug').notNull().unique(),
+  title: text('title').notNull(),
+  template: text('template').notNull().default('default'),
+  content: text('content').notNull(),
+  excerpt: text('excerpt'),
+  featuredImageUrl: text('featured_image_url'),
+  seoTitle: text('seo_title'),
+  seoDescription: text('seo_description'),
+  status: text('status').notNull().default('published'), // 'draft' | 'published'
+  publishedAt: timestamp('published_at', { withTimezone: true }).defaultNow(),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('static_pages_slug_idx').on(table.slug),
+]);
+
+// 27. NAVIGATION MENUS
+export const navigationMenus = pgTable('navigation_menus', {
+  id: text('id').primaryKey(), // 'main' | 'footer' | 'product'
+  name: text('name').notNull(),
+  itemsJson: jsonb('items_json').notNull().default([]),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
+// 28. HOMEPAGE CONFIG
+export const homepageConfig = pgTable('homepage_config', {
+  id: text('id').primaryKey(), // 'default'
+  heroHeadline: text('hero_headline').notNull(),
+  heroSubtitle: text('hero_subtitle').notNull(),
+  heroDescription: text('hero_description').notNull(),
+  primaryCtaText: text('primary_cta_text').notNull().default('Explore Systems'),
+  primaryCtaLink: text('primary_cta_link').notNull().default('#products'),
+  secondaryCtaText: text('secondary_cta_text').notNull().default('Read Research'),
+  secondaryCtaLink: text('secondary_cta_link').notNull().default('#research'),
+  heroMediaUrl: text('hero_media_url'),
+  heroMediaType: text('hero_media_type').default('image'),
+  featuredStoryId: text('featured_story_id'),
+  featuredProductIdsJson: jsonb('featured_product_ids_json').notNull().default([]),
+  featuredResearchIdsJson: jsonb('featured_research_ids_json').notNull().default([]),
+  featuredEngineeringIdsJson: jsonb('featured_engineering_ids_json').notNull().default([]),
+  featuredMediaIdsJson: jsonb('featured_media_ids_json').notNull().default([]),
+  sectionsConfigJson: jsonb('sections_config_json').notNull().default([]),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
+// 29. SITE SETTINGS
+export const siteSettings = pgTable('site_settings', {
+  id: text('id').primaryKey(), // 'default'
+  siteTitle: text('site_title').notNull().default('AI Tathastu Insights'),
+  siteDescription: text('site_description').notNull().default('Official publication, research archive, and engineering documentation of AI Tathastu.'),
+  brandLogoUrl: text('brand_logo_url'),
+  faviconUrl: text('favicon_url'),
+  contactEmail: text('contact_email').notNull().default('editorial@tathastu-insights.org'),
+  socialLinksJson: jsonb('social_links_json').notNull().default([]),
+  defaultSeoJson: jsonb('default_seo_json').notNull().default({}),
+  footerConfigJson: jsonb('footer_config_json').notNull().default({}),
+  themeDefaultsJson: jsonb('theme_defaults_json').notNull().default({}),
+  updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
+});
+
 // RELATIONS DEFINITIONS FOR DRIZZLE ORM
 export const usersRelations = relations(users, ({ one, many }) => ({
   role: one(roles, { fields: [users.roleId], references: [roles.id] }),

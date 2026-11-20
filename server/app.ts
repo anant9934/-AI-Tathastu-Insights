@@ -10,6 +10,8 @@ import { bookmarksRouter } from './routes/bookmarks';
 import { newsletterRouter } from './routes/newsletter';
 import { mediaRouter } from './routes/media';
 import { searchRouter } from './routes/search';
+import { studioRouter } from './routes/studio';
+import { publicRouter } from './routes/public';
 import { requireAuth } from './middleware/auth';
 import { requireRole } from './middleware/rbac';
 import { AuditService } from './services/auditService';
@@ -41,6 +43,8 @@ export function createApp(): Express {
   app.use('/api/newsletter', newsletterRouter);
   app.use('/api/media', mediaRouter);
   app.use('/api/search', searchRouter);
+  app.use('/api/studio', studioRouter);
+  app.use('/api/public', publicRouter);
 
   // 4. System Health & Diagnostic Status Endpoint
   app.get('/api/system/health', (req: Request, res: Response) => {

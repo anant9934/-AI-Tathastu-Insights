@@ -28,6 +28,8 @@ import {
 import { Article, ResearchPaper, EcosystemProduct } from './types';
 import { EDITORIAL_EASE, MOTION_DURATIONS } from './lib/motion';
 import { api } from './lib/api';
+import { StudioApp } from './studio/StudioApp';
+import { StudioTab } from './types/studio';
 
 export const AppContent: React.FC = () => {
   const [currentTab, setCurrentTab] = useState<NavTab>('home');
@@ -35,12 +37,38 @@ export const AppContent: React.FC = () => {
   const [selectedEcosystemProduct, setSelectedEcosystemProduct] = useState<EcosystemProduct | null>(null);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
+  const [isStudioMode, setIsStudioMode] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      const hash = window.location.hash.replace(/^#\/?/, '');
+      return hash.startsWith('studio') || window.location.pathname.startsWith('/studio');
+    }
+    return false;
+  });
+  const [studioSubTab, setStudioSubTab] = useState<StudioTab>('dashboard');
+
+  // Dynamic live-hydrated content state (defaults to verified mock datasets)
+  const [articles, setArticles] = useState<Article[]>(mockArticles);
+  const [papers, setPapers] = useState<ResearchPaper[]>(mockResearchPapers);
+  const [ecosystemProducts, setEcosystemProducts] = useState<EcosystemProduct[]>(mockEcosystemProducts);
+  const [engineeringArticles, setEngineeringArticles] = useState(mockEngineeringArticles);
+  const [companyUpdates, setCompanyUpdates] = useState(mockCompanyUpdates);
+  const [mediaItems, setMediaItems] = useState(mockMediaItems);
 
   // Sync state with URL hash for deep-linking & browser navigation
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash.replace(/^#\/?/, '');
-      const foundArticle = mockArticles.find((a) => a.id === hash || a.slug === hash);
+      if (hash.startsWith('studio')) {
+        setIsStudioMode(true);
+        setSelectedArticle(null);
+        const parts = hash.split('/');
+        const sub = parts[1] as StudioTab;
+        if (sub) setStudioSubTab(sub);
+        return;
+      }
+      setIsStudioMode(false);
+
+      const foundArticle = articles.find((a) => a.id === hash || a.slug === hash) || mockArticles.find((a) => a.id === hash || a.slug === hash);
 
       if (foundArticle) {
         setSelectedArticle(foundArticle);
@@ -62,7 +90,128 @@ export const AppContent: React.FC = () => {
     handleHashChange();
     window.addEventListener('hashchange', handleHashChange);
     return () => window.removeEventListener('hashchange', handleHashChange);
-  }, []);
+  }, [articles]);
+
+  // Live synchronization with public headless CMS endpoints
+  useEffect(() => {
+    let active = true;
+    const loadPublishedData = async () => {
+      try {
+        const [pubArticles, pubPapers, pubProducts, pubEngineering, pubUpdates, pubMedia] = await Promise.allSettled([
+          api.public.getArticles(),
+          api.public.getResearch(),
+          api.public.getProducts(),
+          api.public.getEngineering(),
+          api.public.getUpdates(),
+          api.public.getMedia(),
+        ]);
+
+        if (!active) return;
+
+        // 1. Articles hydration
+        if (pubArticles.status === 'fulfilled' && pubArticles.value?.items && Array.isArray(pubArticles.value.items)) {
+          const cmsArticles: Article[] = pubArticles.value.items.map((c: any) => {
+            const existingMock = mockArticles.find((m) => m.id === c.id || m.slug === c.slug);
+            if (existingMock) {
+              return {
+                ...existingMock,
+                title: c.title || existingMock.title,
+                subtitle: c.subtitle || existingMock.subtitle,
+                abstract: c.abstract || existingMock.abstract,
+                doi: c.doi || existingMock.doi,
+              };
+            }
+            return {
+              id: c.id,
+              slug: c.slug || c.id,
+              title: c.title,
+              subtitle: c.subtitle || '',
+              abstract: c.abstract || '',
+              content: Array.isArray(c.blocks) ? c.blocks.map((b: any) => (typeof b.content === 'string' ? b.content : JSON.stringify(b.content))) : [c.abstract || ''],
+              coverImage: c.coverImageUrl || 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200',
+              author: {
+                name: c.authorName || 'AI Tathastu Research Desk',
+                role: 'Editorial Staff',
+                avatarUrl: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=200',
+                bio: 'Research and engineering contributors at AI Tathastu Insights.',
+              },
+              publishedAt: c.publishedAt || new Date().toISOString(),
+              readingTimeMinutes: c.readingTimeMinutes || 5,
+              category: (c.category as any) || 'Frontier Systems',
+              topicTag: c.tags?.[0] || 'RESEARCH',
+              accentColor: 'indigo',
+              doi: c.doi,
+              tableOfContents: [],
+            };
+          });
+
+          // Prepend new articles that are not in mockArticles
+          const newOnly = cmsArticles.filter((ca) => !mockArticles.some((ma) => ma.id === ca.id));
+          if (newOnly.length > 0) {
+            setArticles([...newOnly, ...mockArticles]);
+          }
+        }
+
+        // 2. Research Papers hydration
+        if (pubPapers.status === 'fulfilled' && Array.isArray(pubPapers.value) && pubPapers.value.length > 0) {
+          const cmsPapers: ResearchPaper[] = mockResearchPapers.map((existing) => {
+            const found = pubPapers.value.find((p: any) => p.id === existing.id || p.slug === existing.id);
+            if (found) {
+              return {
+                ...existing,
+                title: found.title || existing.title,
+                abstract: found.abstract || existing.abstract,
+                doi: found.doi || existing.doi,
+                downloadsCount: found.downloadCount ?? existing.downloadsCount,
+              };
+            }
+            return existing;
+          });
+          setPapers(cmsPapers);
+        }
+
+        // 3. Products hydration
+        if (pubProducts.status === 'fulfilled' && Array.isArray(pubProducts.value) && pubProducts.value.length > 0) {
+          const mergedProducts = mockEcosystemProducts.map((baseProduct) => {
+            const found = pubProducts.value.find((p: any) => p.id === baseProduct.id || p.slug === baseProduct.id);
+            if (found) {
+              return {
+                ...baseProduct,
+                name: found.name || baseProduct.name,
+                tagline: found.tagline || baseProduct.tagline,
+                status: found.status || baseProduct.status,
+                version: found.version || baseProduct.version,
+              };
+            }
+            return baseProduct;
+          });
+          setEcosystemProducts(mergedProducts);
+        }
+
+        // 4. Engineering Articles hydration
+        if (pubEngineering.status === 'fulfilled' && Array.isArray(pubEngineering.value) && pubEngineering.value.length > 0) {
+          setEngineeringArticles(pubEngineering.value);
+        }
+
+        // 5. Updates hydration
+        if (pubUpdates.status === 'fulfilled' && Array.isArray(pubUpdates.value) && pubUpdates.value.length > 0) {
+          setCompanyUpdates(pubUpdates.value);
+        }
+
+        // 6. Media Items hydration
+        if (pubMedia.status === 'fulfilled' && Array.isArray(pubMedia.value) && pubMedia.value.length > 0) {
+          setMediaItems(pubMedia.value);
+        }
+      } catch {
+        // Fallbacks remain intact
+      }
+    };
+
+    loadPublishedData();
+    return () => {
+      active = false;
+    };
+  }, [isStudioMode]);
 
   // Bookmarking state persisted in localStorage
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
@@ -152,7 +301,7 @@ export const AppContent: React.FC = () => {
   // Determine which view to render
   const renderContent = () => {
     if (selectedArticle) {
-      const related = mockArticles.filter((a) => a.id !== selectedArticle.id);
+      const related = articles.filter((a) => a.id !== selectedArticle.id);
       return (
         <ArticlePage
           article={selectedArticle}
@@ -171,9 +320,9 @@ export const AppContent: React.FC = () => {
       case 'articles':
         return (
           <HomePage
-            articles={mockArticles}
-            papers={mockResearchPapers}
-            ecosystemProducts={mockEcosystemProducts}
+            articles={articles}
+            papers={papers}
+            ecosystemProducts={ecosystemProducts}
             onSelectArticle={handleSelectArticle}
             onNavigate={handleNavigate}
             onDownloadPaper={handleDownloadPaper}
@@ -187,7 +336,7 @@ export const AppContent: React.FC = () => {
       case 'research':
         return (
           <ResearchLibraryPage
-            papers={mockResearchPapers}
+            papers={papers}
             onDownloadPaper={handleDownloadPaper}
             onCopyBibtex={handleCopyBibtex}
             onShowToast={showToast}
@@ -198,7 +347,7 @@ export const AppContent: React.FC = () => {
         return (
           <DiscoverPage
             topics={mockTopics}
-            articles={mockArticles}
+            articles={articles}
             onSelectArticle={handleSelectArticle}
             bookmarkedIds={bookmarkedIds}
             onToggleBookmark={handleToggleBookmark}
@@ -209,7 +358,7 @@ export const AppContent: React.FC = () => {
       case 'products':
         return (
           <EcosystemPage
-            products={mockEcosystemProducts}
+            products={ecosystemProducts}
             selectedProduct={selectedEcosystemProduct}
             onSelectProduct={setSelectedEcosystemProduct}
             onShowToast={showToast}
@@ -219,7 +368,7 @@ export const AppContent: React.FC = () => {
       case 'engineering':
         return (
           <EngineeringPage
-            articles={mockEngineeringArticles}
+            articles={engineeringArticles}
             onShowToast={showToast}
           />
         );
@@ -227,9 +376,9 @@ export const AppContent: React.FC = () => {
       case 'updates':
         return (
           <UpdatesPage
-            updates={mockCompanyUpdates}
+            updates={companyUpdates}
             onNavigateProduct={(id) => {
-              const p = mockEcosystemProducts.find((item) => item.id === id);
+              const p = ecosystemProducts.find((item) => item.id === id);
               if (p) handleExploreEcosystem(p);
             }}
             onShowToast={showToast}
@@ -239,7 +388,7 @@ export const AppContent: React.FC = () => {
       case 'media':
         return (
           <MediaPage
-            mediaItems={mockMediaItems}
+            mediaItems={mediaItems}
             onShowToast={showToast}
           />
         );
@@ -258,9 +407,9 @@ export const AppContent: React.FC = () => {
       default:
         return (
           <HomePage
-            articles={mockArticles}
-            papers={mockResearchPapers}
-            ecosystemProducts={mockEcosystemProducts}
+            articles={articles}
+            papers={papers}
+            ecosystemProducts={ecosystemProducts}
             onSelectArticle={handleSelectArticle}
             onNavigate={handleNavigate}
             onDownloadPaper={handleDownloadPaper}
@@ -272,6 +421,19 @@ export const AppContent: React.FC = () => {
         );
     }
   };
+
+  if (isStudioMode) {
+    return (
+      <StudioApp
+        initialSubTab={studioSubTab}
+        onBackToPublicSite={() => {
+          setIsStudioMode(false);
+          window.location.hash = '#home';
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }}
+      />
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-brand-canvas text-brand-charcoal dark:bg-dark-bg dark:text-dark-text transition-colors duration-250">
@@ -294,10 +456,10 @@ export const AppContent: React.FC = () => {
       <SearchModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
-        articles={mockArticles}
-        papers={mockResearchPapers}
-        ecosystemProducts={mockEcosystemProducts}
-        mediaItems={mockMediaItems}
+        articles={articles}
+        papers={papers}
+        ecosystemProducts={ecosystemProducts}
+        mediaItems={mediaItems}
         onSelectArticle={handleSelectArticle}
         onSelectProduct={handleExploreEcosystem}
         onSelectMedia={(media) => {

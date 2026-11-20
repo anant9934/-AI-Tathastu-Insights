@@ -4,8 +4,10 @@ import { AuthUser } from './auth';
 // Role hierarchy levels
 const ROLE_HIERARCHY: Record<AuthUser['roleId'], number> = {
   super_admin: 100,
+  admin: 90,
   editor: 80,
   research_editor: 60,
+  media_manager: 50,
   author: 40,
   contributor: 20,
 };

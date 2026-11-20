@@ -178,7 +178,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
         {/* Company Column */}
         <div>
           <h4 className="text-xs font-mono uppercase tracking-wider text-brand-charcoal dark:text-dark-text font-semibold mb-4">
-            Company
+            Company &amp; Governance
           </h4>
           <ul className="space-y-2.5 text-xs">
             <li>
@@ -203,6 +203,20 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
                 className="text-brand-muted hover:text-brand-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer"
               >
                 Long-Term Vision
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => {
+                  window.location.hash = '#studio';
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="text-brand-muted hover:text-brand-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer flex items-center space-x-1.5 pt-1 text-neutral-400 dark:text-neutral-500 hover:text-neutral-900 dark:hover:text-white"
+              >
+                <span>Editorial Studio</span>
+                <span className="text-[10px] font-mono px-1 py-0.2 rounded bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400 border border-neutral-200 dark:border-neutral-700">
+                  CMS
+                </span>
               </button>
             </li>
           </ul>

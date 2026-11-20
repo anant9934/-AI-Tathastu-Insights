@@ -256,4 +256,532 @@ export const api = {
       return await res.json();
     },
   },
+
+  // Studio CMS Backend APIs (Private Editorial Workspace)
+  studio: {
+    dashboard: {
+      async getMetrics() {
+        const res = await fetch(`${API_BASE}/studio/dashboard`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to load dashboard metrics');
+        return await res.json();
+      },
+    },
+
+    content: {
+      async list(params?: { type?: string; status?: string; productId?: string; authorId?: string; q?: string; limit?: number; offset?: number }) {
+        const query = new URLSearchParams(params as any).toString();
+        const res = await fetch(`${API_BASE}/studio/content?${query}`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to list content');
+        return await res.json();
+      },
+      async get(id: string) {
+        const res = await fetch(`${API_BASE}/studio/content/${id}`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to get content item');
+        return await res.json();
+      },
+      async create(data: any) {
+        const res = await fetch(`${API_BASE}/studio/content`, {
+          method: 'POST',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to create content');
+        return json;
+      },
+      async update(id: string, data: any, changelog?: string) {
+        const res = await fetch(`${API_BASE}/studio/content/${id}`, {
+          method: 'PUT',
+          headers: getAuthHeader(),
+          body: JSON.stringify({ ...data, changelog }),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to update content');
+        return json;
+      },
+      async updateStatus(id: string, status: string, notes?: string) {
+        const res = await fetch(`${API_BASE}/studio/content/${id}/status`, {
+          method: 'POST',
+          headers: getAuthHeader(),
+          body: JSON.stringify({ status, notes }),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to update status');
+        return json;
+      },
+      async duplicate(id: string) {
+        const res = await fetch(`${API_BASE}/studio/content/${id}/duplicate`, {
+          method: 'POST',
+          headers: getAuthHeader(),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to duplicate content');
+        return json;
+      },
+      async delete(id: string) {
+        const res = await fetch(`${API_BASE}/studio/content/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeader(),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to delete content');
+        return json;
+      },
+    },
+
+    products: {
+      async list() {
+        const res = await fetch(`${API_BASE}/studio/products`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to list products');
+        return await res.json();
+      },
+      async get(id: string) {
+        const res = await fetch(`${API_BASE}/studio/products/${id}`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to get product');
+        return await res.json();
+      },
+      async create(data: any) {
+        const res = await fetch(`${API_BASE}/studio/products`, {
+          method: 'POST',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to create product');
+        return json;
+      },
+      async update(id: string, data: any) {
+        const res = await fetch(`${API_BASE}/studio/products/${id}`, {
+          method: 'PUT',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to update product');
+        return json;
+      },
+      async reorder(orderIds: string[]) {
+        const res = await fetch(`${API_BASE}/studio/products/reorder`, {
+          method: 'POST',
+          headers: getAuthHeader(),
+          body: JSON.stringify({ orderIds }),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to reorder products');
+        return json;
+      },
+      async delete(id: string) {
+        const res = await fetch(`${API_BASE}/studio/products/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeader(),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to delete product');
+        return json;
+      },
+    },
+
+    engineering: {
+      async list() {
+        const res = await fetch(`${API_BASE}/studio/engineering`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to list engineering articles');
+        return await res.json();
+      },
+      async create(data: any) {
+        const res = await fetch(`${API_BASE}/studio/engineering`, {
+          method: 'POST',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to create engineering article');
+        return json;
+      },
+      async update(id: string, data: any) {
+        const res = await fetch(`${API_BASE}/studio/engineering/${id}`, {
+          method: 'PUT',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to update engineering article');
+        return json;
+      },
+      async delete(id: string) {
+        const res = await fetch(`${API_BASE}/studio/engineering/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeader(),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to delete engineering article');
+        return json;
+      },
+    },
+
+    research: {
+      async list() {
+        const res = await fetch(`${API_BASE}/studio/research`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to list research papers');
+        return await res.json();
+      },
+      async create(data: any) {
+        const res = await fetch(`${API_BASE}/studio/research`, {
+          method: 'POST',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to create research paper');
+        return json;
+      },
+      async update(id: string, data: any) {
+        const res = await fetch(`${API_BASE}/studio/research/${id}`, {
+          method: 'PUT',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to update research paper');
+        return json;
+      },
+      async verifyDoi(id: string) {
+        const res = await fetch(`${API_BASE}/studio/research/${id}/verify-doi`, {
+          method: 'POST',
+          headers: getAuthHeader(),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to verify DOI');
+        return json;
+      },
+      async delete(id: string) {
+        const res = await fetch(`${API_BASE}/studio/research/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeader(),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to delete research paper');
+        return json;
+      },
+    },
+
+    updates: {
+      async list() {
+        const res = await fetch(`${API_BASE}/studio/updates`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to list updates');
+        return await res.json();
+      },
+      async create(data: any) {
+        const res = await fetch(`${API_BASE}/studio/updates`, {
+          method: 'POST',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to create update');
+        return json;
+      },
+      async update(id: string, data: any) {
+        const res = await fetch(`${API_BASE}/studio/updates/${id}`, {
+          method: 'PUT',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to update update');
+        return json;
+      },
+      async delete(id: string) {
+        const res = await fetch(`${API_BASE}/studio/updates/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeader(),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to delete update');
+        return json;
+      },
+    },
+
+    media: {
+      async list(params?: { format?: string; q?: string }) {
+        const query = new URLSearchParams(params as any).toString();
+        const res = await fetch(`${API_BASE}/studio/media?${query}`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to list media');
+        return await res.json();
+      },
+      async upload(data: any) {
+        const res = await fetch(`${API_BASE}/studio/media`, {
+          method: 'POST',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to upload media');
+        return json;
+      },
+      async update(id: string, data: any) {
+        const res = await fetch(`${API_BASE}/studio/media/${id}`, {
+          method: 'PUT',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to update media');
+        return json;
+      },
+      async delete(id: string) {
+        const res = await fetch(`${API_BASE}/studio/media/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeader(),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to delete media');
+        return json;
+      },
+    },
+
+    pages: {
+      async list() {
+        const res = await fetch(`${API_BASE}/studio/pages`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to list pages');
+        return await res.json();
+      },
+      async get(slug: string) {
+        const res = await fetch(`${API_BASE}/studio/pages/${slug}`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to get page');
+        return await res.json();
+      },
+      async save(data: any) {
+        const res = await fetch(`${API_BASE}/studio/pages`, {
+          method: 'POST',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to save page');
+        return json;
+      },
+      async delete(slug: string) {
+        const res = await fetch(`${API_BASE}/studio/pages/${slug}`, {
+          method: 'DELETE',
+          headers: getAuthHeader(),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to delete page');
+        return json;
+      },
+    },
+
+    navigation: {
+      async get() {
+        const res = await fetch(`${API_BASE}/studio/navigation`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to get navigation');
+        return await res.json();
+      },
+      async update(location: 'main' | 'footer' | 'product', items: any[]) {
+        const res = await fetch(`${API_BASE}/studio/navigation/${location}`, {
+          method: 'PUT',
+          headers: getAuthHeader(),
+          body: JSON.stringify({ items }),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to update navigation');
+        return json;
+      },
+    },
+
+    homepage: {
+      async get() {
+        const res = await fetch(`${API_BASE}/studio/homepage`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to get homepage config');
+        return await res.json();
+      },
+      async update(data: any) {
+        const res = await fetch(`${API_BASE}/studio/homepage`, {
+          method: 'PUT',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to update homepage config');
+        return json;
+      },
+    },
+
+    newsletter: {
+      async list() {
+        const res = await fetch(`${API_BASE}/studio/newsletter`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to list newsletter subscribers');
+        return await res.json();
+      },
+      exportCsvUrl() {
+        return `${API_BASE}/studio/newsletter/export`;
+      },
+    },
+
+    analytics: {
+      async get() {
+        const res = await fetch(`${API_BASE}/studio/analytics`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to get analytics');
+        return await res.json();
+      },
+    },
+
+    users: {
+      async list() {
+        const res = await fetch(`${API_BASE}/studio/users`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to list users');
+        return await res.json();
+      },
+      async create(data: any) {
+        const res = await fetch(`${API_BASE}/studio/users`, {
+          method: 'POST',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to create user');
+        return json;
+      },
+      async updateRole(id: string, roleId: string) {
+        const res = await fetch(`${API_BASE}/studio/users/${id}/role`, {
+          method: 'PUT',
+          headers: getAuthHeader(),
+          body: JSON.stringify({ roleId }),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to update user role');
+        return json;
+      },
+      async delete(id: string) {
+        const res = await fetch(`${API_BASE}/studio/users/${id}`, {
+          method: 'DELETE',
+          headers: getAuthHeader(),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to delete user');
+        return json;
+      },
+    },
+
+    settings: {
+      async get() {
+        const res = await fetch(`${API_BASE}/studio/settings`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to get settings');
+        return await res.json();
+      },
+      async update(data: any) {
+        const res = await fetch(`${API_BASE}/studio/settings`, {
+          method: 'PUT',
+          headers: getAuthHeader(),
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        if (!res.ok) throw new Error(json.message || 'Failed to update settings');
+        return json;
+      },
+    },
+
+    audit: {
+      async list(limit = 100) {
+        const res = await fetch(`${API_BASE}/studio/audit?limit=${limit}`, { headers: getAuthHeader() });
+        if (!res.ok) throw new Error('Failed to get audit trail');
+        return await res.json();
+      },
+    },
+  },
+
+  // Public Synchronization Endpoints
+  public: {
+    async getHomepage() {
+      try {
+        const res = await fetch(`${API_BASE}/public/homepage`);
+        if (!res.ok) throw new Error();
+        return await res.json();
+      } catch {
+        return null;
+      }
+    },
+    async getProducts() {
+      try {
+        const res = await fetch(`${API_BASE}/public/products`);
+        if (!res.ok) throw new Error();
+        return await res.json();
+      } catch {
+        return null;
+      }
+    },
+    async getEngineering() {
+      try {
+        const res = await fetch(`${API_BASE}/public/engineering`);
+        if (!res.ok) throw new Error();
+        return await res.json();
+      } catch {
+        return null;
+      }
+    },
+    async getResearch() {
+      try {
+        const res = await fetch(`${API_BASE}/public/research`);
+        if (!res.ok) throw new Error();
+        return await res.json();
+      } catch {
+        return null;
+      }
+    },
+    async getUpdates() {
+      try {
+        const res = await fetch(`${API_BASE}/public/updates`);
+        if (!res.ok) throw new Error();
+        return await res.json();
+      } catch {
+        return null;
+      }
+    },
+    async getMedia() {
+      try {
+        const res = await fetch(`${API_BASE}/public/media`);
+        if (!res.ok) throw new Error();
+        return await res.json();
+      } catch {
+        return null;
+      }
+    },
+    async getPage(slug: string) {
+      try {
+        const res = await fetch(`${API_BASE}/public/pages/${slug}`);
+        if (!res.ok) throw new Error();
+        return await res.json();
+      } catch {
+        return null;
+      }
+    },
+    async getNavigation() {
+      try {
+        const res = await fetch(`${API_BASE}/public/navigation`);
+        if (!res.ok) throw new Error();
+        return await res.json();
+      } catch {
+        return null;
+      }
+    },
+    async getSettings() {
+      try {
+        const res = await fetch(`${API_BASE}/public/settings`);
+        if (!res.ok) throw new Error();
+        return await res.json();
+      } catch {
+        return null;
+      }
+    },
+    async getArticles(params?: { type?: string; limit?: number; offset?: number }) {
+      try {
+        const query = new URLSearchParams(params as any).toString();
+        const res = await fetch(`${API_BASE}/public/articles?${query}`);
+        if (!res.ok) throw new Error();
+        return await res.json();
+      } catch {
+        return null;
+      }
+    },
+  },
 };

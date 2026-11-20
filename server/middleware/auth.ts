@@ -7,7 +7,7 @@ export interface AuthUser {
   id: string;
   email: string;
   name: string;
-  roleId: 'super_admin' | 'editor' | 'research_editor' | 'author' | 'contributor';
+  roleId: 'super_admin' | 'admin' | 'editor' | 'research_editor' | 'author' | 'media_manager' | 'contributor';
   affiliation?: string;
 }
 
