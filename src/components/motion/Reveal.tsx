@@ -17,8 +17,8 @@ export const Reveal: React.FC<RevealProps> = ({
   className = '',
   delay = 0,
   direction = 'up',
-  distance = 16,
-  duration = MOTION_DURATIONS.sectionReveal,
+  distance = 12,
+  duration = 0.4,
   once = true,
 }) => {
   const shouldReduceMotion = useReducedMotion();
@@ -46,7 +46,7 @@ export const Reveal: React.FC<RevealProps> = ({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, ...getInitialPosition() }}
+      initial={{ opacity: 0.85, ...getInitialPosition() }}
       animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{
         duration,

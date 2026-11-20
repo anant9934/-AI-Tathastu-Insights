@@ -39,8 +39,16 @@ describe('Page Level Verification & User Workflows', () => {
       />
     );
 
-    expect(screen.getByText(/Empirical Investigations into Frontier Intelligence & Mechanistic Safety\./i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /read lead investigation/i })).toBeInTheDocument();
+    expect(screen.getByText(/Understanding AI beyond the surface\./i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /explore investigations/i })).toBeInTheDocument();
+    expect(screen.getByText(/Lead Research Investigation/i)).toBeInTheDocument();
+    expect(screen.getByText(/Research Spotlight/i)).toBeInTheDocument();
+    expect(screen.getByText(/Areas of Inquiry/i)).toBeInTheDocument();
+    expect(screen.getByText(/Perspectives & Debates/i)).toBeInTheDocument();
+    expect(screen.getByText(/Cinematic Investigations & Dialogues/i)).toBeInTheDocument();
+    expect(screen.getByText(/Applied Laboratories & Research Systems/i)).toBeInTheDocument();
+    expect(screen.getByText(/Editorial Standards & Open Science Invariants/i)).toBeInTheDocument();
+    expect(screen.getByText(/Research worth keeping up with\./i)).toBeInTheDocument();
   });
 
   it('renders ArticlePage with table of contents, abstract, and references', () => {

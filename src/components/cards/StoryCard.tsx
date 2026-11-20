@@ -36,14 +36,13 @@ export const StoryCard: React.FC<StoryCardProps> = ({
         transition={{ duration: MOTION_DURATIONS.cardTransition, ease: EDITORIAL_EASE }}
         className={`group cursor-pointer bg-white dark:bg-dark-surface rounded-2xl border border-foundation-border dark:border-dark-border overflow-hidden shadow-editorial hover:shadow-editorial-hover transition-all grid grid-cols-1 lg:grid-cols-12 gap-0 ${className}`}
       >
-        <div className="lg:col-span-7 relative overflow-hidden aspect-[16/10] lg:aspect-auto">
+        <div className="lg:col-span-7 relative overflow-hidden min-h-[300px] lg:min-h-[420px] aspect-[16/10] lg:aspect-auto">
           <motion.img
             src={article.coverImage}
             alt={article.title}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover min-h-[300px] lg:min-h-[420px]"
             whileHover={shouldReduceMotion ? {} : { scale: 1.03 }}
             transition={{ duration: 0.6, ease: EDITORIAL_EASE }}
-            loading="lazy"
           />
           <div className="absolute top-4 left-4 z-10 flex gap-2">
             <Badge accent={article.accentColor} size="sm">
@@ -141,7 +140,6 @@ export const StoryCard: React.FC<StoryCardProps> = ({
             src={article.coverImage}
             alt={article.title}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-            loading="lazy"
           />
           <div className="absolute top-2 left-2">
             <Badge accent={article.accentColor} size="xs">
@@ -194,7 +192,6 @@ export const StoryCard: React.FC<StoryCardProps> = ({
             className="w-full h-full object-cover"
             whileHover={shouldReduceMotion ? {} : { scale: 1.04 }}
             transition={{ duration: 0.5, ease: EDITORIAL_EASE }}
-            loading="lazy"
           />
           <div className="absolute top-3 left-3 z-10 flex gap-1.5">
             <Badge accent={article.accentColor} size="sm">

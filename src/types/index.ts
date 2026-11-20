@@ -155,3 +155,16 @@ export interface Topic {
   accentColor: AccentColor;
   count: number;
 }
+
+export interface PerspectiveItem {
+  id: string;
+  title: string;
+  subtitle: string;
+  author: Author;
+  category: string;
+  publishedAt: string;
+  format: 'Researcher Essay' | 'Editorial Debate' | 'Expert Opinion' | 'Guest Commentary';
+  pullQuote: string;
+  accentColor: AccentColor;
+  readingTimeMinutes: number;
+}

@@ -1,4 +1,4 @@
-import { Article, ResearchPaper, EcosystemProduct, MediaItem, EditorialSubmission, Topic, Author } from '../types';
+import { Article, ResearchPaper, EcosystemProduct, MediaItem, EditorialSubmission, Topic, Author, PerspectiveItem } from '../types';
 
 export const mockAuthors: Record<string, Author> = {
   aravind: {
@@ -728,4 +728,43 @@ export const mockTopics: Topic[] = [
     accentColor: 'ochre',
     count: 24,
   }
+];
+
+export const mockPerspectives: PerspectiveItem[] = [
+  {
+    id: 'persp-01',
+    title: 'Why Statutory Verification Sandboxes Must Precede Frontier Weight Releases',
+    subtitle: 'Relying on post-hoc corporate safety cards without reproducible air-gapped evaluation environments creates dangerous regulatory asymmetry.',
+    author: mockAuthors.clara,
+    category: 'AI Governance',
+    publishedAt: '2026-10-18',
+    format: 'Researcher Essay',
+    pullQuote: 'Voluntary safety commitments without independent air-gapped code harnesses are merely public relations. Verification requires statutory sandboxes.',
+    accentColor: 'ochre',
+    readingTimeMinutes: 7,
+  },
+  {
+    id: 'persp-02',
+    title: 'The Embodied Bottleneck: Why Language Models Cannot Ground Spatial Physics',
+    subtitle: 'Without continuous egocentric voxel buffers, language models merely hallucinate geometric affordances rather than comprehending 3D physical constraints.',
+    author: mockAuthors.elena,
+    category: 'Perceptual Intelligence',
+    publishedAt: '2026-10-10',
+    format: 'Expert Opinion',
+    pullQuote: 'Token sequences do not encode volumetric physics. Intelligence that interacts with the real world requires continuous sensory geometry.',
+    accentColor: 'mint',
+    readingTimeMinutes: 9,
+  },
+  {
+    id: 'persp-03',
+    title: 'Debate: Is Superposition a Structural Flaw or an Optimal Compression Regime?',
+    subtitle: 'A technical exchange between mechanistic circuit investigators on whether future architectures should enforce monosemanticity at training time.',
+    author: mockAuthors.aravind,
+    category: 'Mechanistic Interpretability',
+    publishedAt: '2026-09-29',
+    format: 'Editorial Debate',
+    pullQuote: 'Superposition is an inevitable consequence of parameter efficiency. Our goal should not be to banish it, but to systematically invert it.',
+    accentColor: 'violet',
+    readingTimeMinutes: 12,
+  },
 ];

@@ -10,6 +10,7 @@ export type NavTab =
   | 'articles' 
   | 'research' 
   | 'discover' 
+  | 'perspectives'
   | 'ecosystem' 
   | 'media' 
   | 'editorial-studio' 
@@ -25,14 +26,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
   const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const navLinks: { id: NavTab; label: string; icon?: React.ReactNode }[] = [
+  // Section 1: Public navigation links (Editorial Studio reserved for Submit Paper / private auth)
+  const navLinks: { id: NavTab; label: string }[] = [
     { id: 'home', label: 'Journal' },
-    { id: 'research', label: 'Research Library' },
+    { id: 'research', label: 'Research' },
     { id: 'discover', label: 'Topics' },
-    { id: 'ecosystem', label: 'Ecosystem' },
+    { id: 'perspectives', label: 'Perspectives' },
     { id: 'media', label: 'Media' },
-    { id: 'editorial-studio', label: 'Editorial Studio' },
-    { id: 'about', label: 'Charter' },
+    { id: 'ecosystem', label: 'Ecosystem' },
+    { id: 'about', label: 'About / Charter' },
   ];
 
   const handleTabClick = (tab: NavTab) => {
@@ -169,9 +171,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
             <div className="pt-3 border-t border-foundation-border dark:border-dark-border">
               <button
                 onClick={() => handleTabClick('editorial-studio')}
-                className="w-full py-2.5 px-4 text-center text-sm font-medium rounded-xl bg-foundation-ink text-white dark:bg-white dark:text-foundation-ink"
+                className="w-full py-2.5 px-4 text-center text-sm font-medium rounded-xl bg-foundation-ink text-white dark:bg-white dark:text-foundation-ink flex items-center justify-center gap-2"
               >
-                Editorial Studio &amp; Submissions
+                <PenTool className="w-4 h-4" />
+                <span>Submit Paper</span>
               </button>
             </div>
           </motion.div>

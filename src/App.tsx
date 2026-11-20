@@ -43,7 +43,13 @@ export const AppContent: React.FC = () => {
       } else if (!hash) {
         setSelectedArticle(null);
         setCurrentTab('home');
-      } else if (['home', 'articles', 'research', 'discover', 'ecosystem', 'media', 'editorial-studio', 'about'].includes(hash)) {
+      } else if (hash === 'perspectives') {
+        setSelectedArticle(null);
+        setCurrentTab('home');
+        setTimeout(() => {
+          document.getElementById('perspectives')?.scrollIntoView({ behavior: 'smooth' });
+        }, 50);
+      } else if (['home', 'articles', 'research', 'discover', 'perspectives', 'ecosystem', 'media', 'editorial-studio', 'about'].includes(hash)) {
         setSelectedArticle(null);
         setCurrentTab(hash as NavTab);
       }
@@ -103,6 +109,14 @@ export const AppContent: React.FC = () => {
 
   const handleNavigate = (tab: NavTab) => {
     setSelectedArticle(null);
+    if (tab === 'perspectives') {
+      setCurrentTab('home');
+      window.location.hash = 'perspectives';
+      setTimeout(() => {
+        document.getElementById('perspectives')?.scrollIntoView({ behavior: 'smooth' });
+      }, 50);
+      return;
+    }
     setCurrentTab(tab);
     window.location.hash = tab === 'home' ? '' : tab;
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -249,7 +263,7 @@ export const AppContent: React.FC = () => {
       </main>
 
       {/* Global Footer */}
-      <Footer onNavigate={handleNavigate} />
+      <Footer onNavigate={handleNavigate} hideNewsletter={currentTab === 'home' && !selectedArticle} />
 
       {/* Universal Search Modal */}
       <SearchModal

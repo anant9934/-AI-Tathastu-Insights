@@ -6,9 +6,10 @@ import { AnimatedButton } from '../motion/AnimatedButton';
 
 interface FooterProps {
   onNavigate: (tab: NavTab) => void;
+  hideNewsletter?: boolean;
 }
 
-export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
+export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = false }) => {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
   const [error, setError] = useState('');
@@ -29,50 +30,52 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
   return (
     <footer className="border-t border-foundation-border dark:border-dark-border bg-white dark:bg-dark-surface transition-colors mt-20">
-      {/* Newsletter Dispatch Banner */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-foundation-border dark:border-dark-border">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          <div className="lg:col-span-7">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-brand-editorial-violet block mb-2 font-medium">
-              The Tathastu Dispatch
-            </span>
-            <h3 className="font-editorial-serif text-2xl sm:text-3xl text-foundation-ink dark:text-dark-text tracking-tight font-normal">
-              Empirical breakthroughs and peer-reviewed dispatches, delivered fortnightly.
-            </h3>
-            <p className="mt-2 text-xs sm:text-sm text-foundation-secondary dark:text-dark-muted leading-relaxed">
-              No generic hype or speculative summaries. Only verified research findings, open model checkpoints, and statutory policy analyses.
-            </p>
-          </div>
+      {/* Newsletter Dispatch Banner (Conditional: hidden on Homepage which has Section 11) */}
+      {!hideNewsletter && (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-foundation-border dark:border-dark-border">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-7">
+              <span className="text-[11px] font-mono uppercase tracking-widest text-brand-editorial-violet block mb-2 font-medium">
+                The Tathastu Dispatch
+              </span>
+              <h3 className="font-editorial-serif text-2xl sm:text-3xl text-foundation-ink dark:text-dark-text tracking-tight font-normal">
+                Empirical breakthroughs and peer-reviewed dispatches, delivered fortnightly.
+              </h3>
+              <p className="mt-2 text-xs sm:text-sm text-foundation-secondary dark:text-dark-muted leading-relaxed">
+                No generic hype or speculative summaries. Only verified research findings, open model checkpoints, and statutory policy analyses.
+              </p>
+            </div>
 
-          <div className="lg:col-span-5">
-            <form onSubmit={handleSubmit} className="space-y-2">
-              <div className="flex gap-2">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@institution.edu"
-                  className="flex-1 px-4 py-2.5 rounded-xl border border-foundation-border dark:border-dark-border bg-foundation-paper dark:bg-dark-elevated text-sm text-foundation-ink dark:text-dark-text placeholder:text-foundation-secondary/60 focus:outline-none focus:ring-2 focus:ring-brand-editorial-violet transition-all"
-                />
-                <AnimatedButton
-                  type="submit"
-                  variant="primary"
-                  size="md"
-                  icon={subscribed ? <Check className="w-4 h-4 text-green-400" /> : <ArrowRight className="w-4 h-4" />}
-                >
-                  {subscribed ? 'Subscribed' : 'Join'}
-                </AnimatedButton>
-              </div>
-              {error && <p className="text-xs text-red-500 font-mono">{error}</p>}
-              {subscribed && (
-                <p className="text-xs text-green-600 dark:text-green-400 font-mono">
-                  ✓ Dispatch confirmed. You will receive Volume 26 next Tuesday.
-                </p>
-              )}
-            </form>
+            <div className="lg:col-span-5">
+              <form onSubmit={handleSubmit} className="space-y-2">
+                <div className="flex gap-2">
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="name@institution.edu"
+                    className="flex-1 px-4 py-2.5 rounded-xl border border-foundation-border dark:border-dark-border bg-foundation-paper dark:bg-dark-elevated text-sm text-foundation-ink dark:text-dark-text placeholder:text-foundation-secondary/60 focus:outline-none focus:ring-2 focus:ring-brand-editorial-violet transition-all"
+                  />
+                  <AnimatedButton
+                    type="submit"
+                    variant="primary"
+                    size="md"
+                    icon={subscribed ? <Check className="w-4 h-4 text-green-400" /> : <ArrowRight className="w-4 h-4" />}
+                  >
+                    {subscribed ? 'Subscribed' : 'Join'}
+                  </AnimatedButton>
+                </div>
+                {error && <p className="text-xs text-red-500 font-mono">{error}</p>}
+                {subscribed && (
+                  <p className="text-xs text-green-600 dark:text-green-400 font-mono">
+                    ✓ Dispatch confirmed. You will receive Volume 26 next Tuesday.
+                  </p>
+                )}
+              </form>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {/* Main Footer Links */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
@@ -124,6 +127,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
                 Topic Index
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => onNavigate('perspectives')}
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
+              >
+                Perspectives &amp; Debates
               </button>
             </li>
             <li>
@@ -223,10 +234,10 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       {/* Bottom Bar */}
       <div className="border-t border-foundation-border dark:border-dark-border py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-foundation-secondary dark:text-dark-muted text-center sm:text-left">
-          <p>© 2026 AI Tathastu Insights. Published under CC BY-NC 4.0 International.</p>
+          <p>© 2026 AI Tathastu Insights. Published under CC BY-NC 4.0 International Open Access.</p>
           <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-6">
-            <span>Latency Budget: &lt; 200ms</span>
-            <span>Typography: Fraunces, Geist &amp; Geist Mono</span>
+            <span>Open Access (CC BY-NC 4.0)</span>
+            <span>Typography: Fraunces &amp; Geist</span>
           </div>
         </div>
       </div>
