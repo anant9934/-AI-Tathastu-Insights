@@ -187,7 +187,7 @@ export interface CompanyUpdate {
   slug: string;
   title: string;
   summary: string;
-  category: 'Company' | 'Product Release' | 'Engineering' | 'Research' | 'Milestone';
+  category: 'Company' | 'Product Release' | 'Engineering' | 'Research' | 'Milestone' | 'Experiments';
   productId?: 'mentormaze' | 'collaborate' | 'avsar' | 'iris';
   version?: string;
   date: string;
@@ -197,6 +197,14 @@ export interface CompanyUpdate {
   tags: string[];
   relatedLinks?: { label: string; url: string }[];
   milestoneMetric?: { label: string; value: string };
+  problem?: string;
+  workUndertaken?: string;
+  changeMade?: string;
+  outcome?: string;
+  whatsNext?: string;
+  codeSnippet?: { title: string; language: string; code: string };
+  updateType?: 'release' | 'changelog' | 'technical' | 'research' | 'milestone';
+  isFeatured?: boolean;
 }
 
 export interface MediaTranscriptSegment {

@@ -221,7 +221,7 @@ describe('Page Level Verification & User Workflows', () => {
     );
 
     expect(screen.getByText(/What's new\./i)).toBeInTheDocument();
-    expect(screen.getByText(/MentorMaze 3.2: Speculative Socratic Reasoning/i)).toBeInTheDocument();
-    expect(screen.getByText(/Iris 2.1: Continuous Egocentric 3D Voxel Memory/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/MentorMaze 3.2: Speculative Socratic Reasoning/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/Iris 2.1: Continuous Egocentric 3D Voxel Memory/i).length).toBeGreaterThanOrEqual(1);
   });
 });

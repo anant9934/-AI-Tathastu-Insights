@@ -1232,12 +1232,24 @@ export const mockCompanyUpdates: CompanyUpdate[] = [
     version: 'v3.2.0',
     date: '2026-11-18',
     author: mockAuthors.marcus,
-    coverImage: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200',
+    coverImage: '/media/cards/card-products.png',
     tags: ['MentorMaze', 'Product Release', 'Socratic AI', 'Latency', 'Speculative Decoding'],
     milestoneMetric: { label: 'Active Students Mentored', value: '14,200+' },
+    isFeatured: true,
+    updateType: 'release',
+    problem: 'Traditional large-model coding tutors pause 1.8 to 2.4 seconds while computing curriculum paths, breaking student focus and conversational momentum.',
+    workUndertaken: 'Engineered a specialized 4B speculative draft model running alongside our 70B teacher model on isolated GPU nodes with vLLM token speculation.',
+    changeMade: 'Integrated speculative tree decoding into Socratic turn generation, combined with AST boundary guards that reject premature solution reveals.',
+    outcome: 'Turnaround latency dropped by 48% to 240ms median, with zero violation of pedagogical anti-spoiling invariants across 14,200 active learners.',
+    whatsNext: 'Extending speculative DAG generation to formal Lean 4 lemmas and Triton GPU kernel debugging exercises in Q1 2027.',
+    codeSnippet: {
+      title: 'speculative_socratic_runner.py',
+      language: 'python',
+      code: `@triton.jit\ndef speculative_socratic_verify(\n    student_ast_ptr, prerequisite_dag_ptr,\n    token_stream, stride_s, stride_d\n):\n    # Enforce anti-spoiling invariant: Never emit final token without proof step\n    pid = tl.program_id(0)\n    scaffold_mask = tl.load(prerequisite_dag_ptr + pid * stride_d)\n    tl.device_assert(scaffold_mask > 0, "Violated pedagogical isolation invariant")`
+    },
     relatedLinks: [
-      { label: 'Explore MentorMaze Product Details', url: '#/products' },
-      { label: 'Read Technical Benchmark', url: '#/engineering' }
+      { label: 'Explore MentorMaze Product Details', url: '#products' },
+      { label: 'Read Technical Benchmark', url: '#engineering' }
     ],
     content: [
       'Today we are shipping MentorMaze 3.2 to over 14,000 active students and academic researchers across 40 institutions.',
@@ -1255,11 +1267,23 @@ export const mockCompanyUpdates: CompanyUpdate[] = [
     version: 'v2.1.0',
     date: '2026-11-12',
     author: mockAuthors.elena,
-    coverImage: 'https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&q=80&w=1200',
+    coverImage: '/media/cards/card-research.png',
     tags: ['Iris', 'Spatial Intelligence', 'Edge AI', 'Computer Vision', 'Robotics'],
     milestoneMetric: { label: 'Perceptual Throughput', value: '88 FPS' },
+    updateType: 'technical',
+    problem: 'Standard Vision-Language Models process disconnected 2D video frames. The moment an object leaves sensor field-of-view, all spatial permanence is lost.',
+    workUndertaken: 'Implemented a continuous egocentric 3D voxel buffer maintained in embedded SRAM on Jetson Orin AGX silicon.',
+    changeMade: 'Projected RGB-D depth and segmentation features into a fixed-coordinate voxel tensor with temporal decay filters.',
+    outcome: 'Guaranteed object permanence for occluded physical tools up to 4.2 seconds of zero line-of-sight at 88 FPS and 4.2W power draw.',
+    whatsNext: 'Integrating dual-arm affordance prediction for tactile gripper manipulation in dynamic human environments.',
+    codeSnippet: {
+      title: 'voxel_permanence.cu',
+      language: 'cpp',
+      code: `__global__ void UpdateVoxelOccupancy(\n    const float* __restrict__ depth_map,\n    VoxelTensor* voxel_grid,\n    float dt_decay\n) {\n    int idx = blockIdx.x * blockDim.x + threadIdx.x;\n    if (voxel_grid[idx].is_occluded) {\n        voxel_grid[idx].confidence *= expf(-dt_decay * 0.12f);\n    }\n}`
+    },
     relatedLinks: [
-      { label: 'Iris Technical Specification', url: '#/products' }
+      { label: 'Iris Technical Specification', url: '#products' },
+      { label: 'View Spatial Vision Research', url: '#research' }
     ],
     content: [
       'Iris 2.1 is now generally available for partner robotics labs and perceptual intelligence researchers.',
@@ -1277,11 +1301,23 @@ export const mockCompanyUpdates: CompanyUpdate[] = [
     version: 'v2.4.1',
     date: '2026-11-04',
     author: mockAuthors.marcus,
-    coverImage: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1200',
+    coverImage: '/media/products/collaborate/collaborate-live.png',
     tags: ['Collaborate', 'Multi-Agent', 'Byzantine Consensus', 'Reproducible Science'],
     milestoneMetric: { label: 'Active Lab Clusters', value: '3,800+' },
+    updateType: 'technical',
+    problem: 'When teams of autonomous AI agents collaborate concurrently, uncoordinated tool calls cause state drift and corrupted shared Git branches.',
+    workUndertaken: 'Architected an asynchronous Byzantine consensus engine (Aegis-BFT) in Rust with Ed25519 cryptographic signatures on all proposed tool calls.',
+    changeMade: 'Enforced 2f + 1 quorum signatures across 64 heterogeneous nodes before any state transition can append to the immutable master ledger.',
+    outcome: 'Bound state divergence to 0% across 10,000 continuous benchmark cycles with sub-200ms commit confirmation.',
+    whatsNext: 'Shipping decentralized IPFS storage mirrors and peer refutation colocation in Collaborate 3.0.',
+    codeSnippet: {
+      title: 'aegis_consensus.rs',
+      language: 'rust',
+      code: `pub async fn propose_epoch_block(\n    &self,\n    proposal: StateProposal,\n) -> Result<BlockHeader, ConsensusError> {\n    let quorum = (2 * self.byzantine_threshold) + 1;\n    let signatures = self.collect_signatures(&proposal).await?;\n    if signatures.len() >= quorum {\n        self.ledger.atomic_append(proposal).await\n    } else { Err(ConsensusError::QuorumFailed) }\n}`
+    },
     relatedLinks: [
-      { label: 'Read Aegis-BFT Engineering Deep Dive', url: '#/engineering' }
+      { label: 'Read Aegis-BFT Engineering Deep Dive', url: '#engineering' },
+      { label: 'Explore Collaborate Platform', url: '#products' }
     ],
     content: [
       'Collaborate 2.4 brings distributed consensus to multi-agent scientific discovery.',
@@ -1297,11 +1333,17 @@ export const mockCompanyUpdates: CompanyUpdate[] = [
     productId: 'avsar',
     date: '2026-10-28',
     author: mockAuthors.clara,
-    coverImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200',
+    coverImage: '/media/products/avsar/avsar-live.png',
     tags: ['Avsar', 'Grants', 'Open Source', 'Fellowship', 'Non-Dilutive'],
     milestoneMetric: { label: 'Grants Seeded', value: '$2.4M+' },
+    updateType: 'milestone',
+    problem: 'Traditional grant committees take 6 to 9 months to evaluate proposals, excluding non-traditional builders and emerging researchers in the Global South.',
+    workUndertaken: 'Built an algorithmic Proof-of-Contribution auditing pipeline evaluating verified Git ASTs and reproducible preprint code test suites.',
+    changeMade: 'Automated escrow disbursals allowing peer-reviewed compute vouchers and cash stipends to release within 72 hours of verification.',
+    outcome: '$2.4M disbursed across 120 independent researchers in 22 countries with 94.6% milestone completion rate.',
+    whatsNext: 'Launching the sovereign Open Source Maintainer Endowment fund in Q2 2027.',
     relatedLinks: [
-      { label: 'Avsar Grant Opportunities', url: '#/products' }
+      { label: 'Avsar Grant Opportunities', url: '#products' }
     ],
     content: [
       'We are proud to announce that the Avsar grant registry has distributed over $2.4 million in equity-free, non-dilutive funding to 120 independent researchers across 22 countries.',
@@ -1316,12 +1358,18 @@ export const mockCompanyUpdates: CompanyUpdate[] = [
     category: 'Engineering',
     date: '2026-10-19',
     author: mockAuthors.clara,
-    coverImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200',
+    coverImage: '/media/cards/card-engineering.png',
     tags: ['Safety Invariants', 'Governance', 'FLOP Thresholds', 'Sandboxing'],
     milestoneMetric: { label: 'Safety Threshold', value: '10^24 FLOPs' },
+    updateType: 'technical',
+    problem: 'Self-reported safety evaluation cards lack third-party cryptographic verifiability once frontier training runs conclude.',
+    workUndertaken: 'Formalized Statutory Invariant 4.0 specifying eBPF kernel isolation, container memory locks, and deterministic seed proofs.',
+    changeMade: 'Enforced automated CI/CD gating: no weights can deploy without a signed reproduction certificate verified by three independent auditor nodes.',
+    outcome: 'Zero unverified weight executions across all production inference clusters since deployment.',
+    whatsNext: 'Publishing the Zero-Knowledge Model Provenance specification as an open IETF preprint in Q1 2027.',
     relatedLinks: [
-      { label: 'Read Zero-Knowledge Audit Architecture', url: '#/engineering' },
-      { label: 'Review Editorial Charter', url: '#/about' }
+      { label: 'Read Zero-Knowledge Audit Architecture', url: '#engineering' },
+      { label: 'Review Editorial Charter', url: '#about' }
     ],
     content: [
       'As frontier compute clusters surpass critical training thresholds, self-reported evaluation cards are insufficient to guarantee catastrophic safety invariants.',
@@ -1336,15 +1384,76 @@ export const mockCompanyUpdates: CompanyUpdate[] = [
     category: 'Company',
     date: '2026-11-20',
     author: mockAuthors.aravind,
-    coverImage: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=1200',
-    tags: ['Design System', 'Typography', 'Company Vision', 'Fraunces', 'Inter'],
+    coverImage: '/media/hero/cinematic-hero-bg.jpg',
+    tags: ['Design System', 'Typography', 'Company Vision', 'Design Tokens'],
     milestoneMetric: { label: 'Specification Version', value: 'v1.0' },
+    updateType: 'changelog',
+    problem: 'Academic publishing interfaces remain dry and unengaging, while commercial tech blogs prioritize click-through marketing over intellectual depth.',
+    workUndertaken: 'Designed a comprehensive editorial system pairing Manrope, DM Sans, and IBM Plex Mono with cinematic atmospheric lighting.',
+    changeMade: 'Deployed dark cinematic heroes, lime interaction highlights (#D9EF68), warm off-white reading canvases, and interactive systems consoles.',
+    outcome: 'Single unified design system across Home, Products, Updates, and Editorial Studio with 100% responsive consistency.',
+    whatsNext: 'Rolling out interactive Chart.js visualization blocks and LaTeX mathematical proofs in the research archive.',
     relatedLinks: [
-      { label: 'Explore Publication Ecosystem', url: '#/discover' }
+      { label: 'Explore Products Ecosystem', url: '#products' },
+      { label: 'Read Company Principles', url: '#about' }
     ],
     content: [
       'Today we are inaugurating the Master UI/UX Design Specification 1.0 for AI Tathastu.',
       'Our mission is to build what comes next and document how it works with unprecedented transparency. By marrying the intellectual depth of academic research with the readability of modern engineering publications, we provide the global community with a reliable, open window into our work.'
+    ]
+  },
+  {
+    id: 'upd-07',
+    slug: 'sparse-autoencoders-residual-stream-findings',
+    title: 'Research Findings: Monosemantic Dictionary Scaling at Residual Layer 28',
+    summary: 'Open empirical investigation verifying dictionary learning scaling laws on 70B parameter open weights with zero loss reconstruction drift.',
+    category: 'Research',
+    productId: 'collaborate',
+    date: '2026-11-08',
+    author: mockAuthors.elena,
+    coverImage: '/media/cards/card-engineering.png',
+    tags: ['Mechanistic Interpretability', 'Sparse Autoencoders', 'Residual Stream', 'Research'],
+    milestoneMetric: { label: 'Reconstruction Loss', value: '0.0024 nats' },
+    updateType: 'research',
+    problem: 'Polysemanticity in large transformer residual streams prevents transparent auditing of safety-critical reasoning circuits.',
+    workUndertaken: 'Trained a 65,536-feature Top-K Sparse Autoencoder against Llama-3-70B residual stream layer 28 using custom Triton kernels.',
+    changeMade: 'Isolated monosemantic feature directions corresponding to mathematical inductive reasoning and cryptographic hash verification.',
+    outcome: '98.4% variance explained with zero downstream perplexity penalty, establishing an open benchmark for feature interpretability.',
+    whatsNext: 'Publishing interactive feature explorer and weights on Tathastu Research Library in Q4 2026.',
+    relatedLinks: [
+      { label: 'Read Research Preprint', url: '#research' },
+      { label: 'View SAE Engineering Note', url: '#engineering' }
+    ],
+    content: [
+      'Our mechanistic interpretability team has published new findings on dictionary learning scaling across 70B parameter open weights.',
+      'By decomposing residual stream representations at Layer 28 into 65,536 sparse monosemantic directions, we demonstrate that abstract circuit behaviors can be isolated and verified without degrading model generation capabilities.'
+    ]
+  },
+  {
+    id: 'upd-08',
+    slug: 'sub-200ms-byzantine-swarms-benchmark',
+    title: 'Experiment Log: 64-Agent Fault Tolerance under Adversarial Byzantine Partitioning',
+    summary: 'Stress test experiment evaluating Aegis-BFT consensus when 20 of 64 nodes simulate arbitrary Byzantine partition and corrupted AST commits.',
+    category: 'Experiments',
+    productId: 'collaborate',
+    date: '2026-10-31',
+    author: mockAuthors.marcus,
+    coverImage: '/media/products/collaborate/collaborate-live.png',
+    tags: ['Aegis-BFT', 'Experiments', 'Adversarial Benchmarks', 'Byzantine Fault Tolerance'],
+    milestoneMetric: { label: 'Byzantine Resilience', value: 'f = 21 Nodes' },
+    updateType: 'technical',
+    problem: 'Autonomous multi-agent swarms face catastrophic state collapse when compromised or buggy agents issue conflicting tool calls.',
+    workUndertaken: 'Constructed an adversarial test harness simulating network latency spikes, dropped packets, and malicious AST rewrite attacks.',
+    changeMade: 'Tested Aegis-BFT state machine replication under maximum theoretical Byzantine fault threshold (f < n/3).',
+    outcome: 'Maintained 100% linearizable commit consistency with zero state drift; median commit latency remained under 186ms.',
+    whatsNext: 'Stress testing with 256 heterogeneous agent containers across global multi-cloud topologies.',
+    relatedLinks: [
+      { label: 'Explore Collaborate Specs', url: '#products' },
+      { label: 'Aegis Engineering Deep Dive', url: '#engineering' }
+    ],
+    content: [
+      'We conducted a comprehensive adversarial benchmark of the Aegis-BFT consensus protocol under simulated Byzantine node failure.',
+      'Across 50,000 synthetic transaction cycles with 20 intentionally corrupted agents, the quorum protocol successfully rejected all conflicting state proposals without causing deadlock or exceeding the 200ms latency ceiling.'
     ]
   }
 ];

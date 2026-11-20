@@ -195,7 +195,47 @@ export const AppContent: React.FC = () => {
 
         // 5. Updates hydration
         if (pubUpdates.status === 'fulfilled' && Array.isArray(pubUpdates.value) && pubUpdates.value.length > 0) {
-          setCompanyUpdates(pubUpdates.value);
+          const cmsUpdates = pubUpdates.value;
+          const mergedUpdates = [...mockCompanyUpdates];
+          for (const cu of cmsUpdates) {
+            const idx = mergedUpdates.findIndex(m => m.id === cu.id || m.slug === cu.slug);
+            if (idx >= 0) {
+              mergedUpdates[idx] = {
+                ...mergedUpdates[idx],
+                title: cu.title || mergedUpdates[idx].title,
+                summary: cu.summary || mergedUpdates[idx].summary,
+                category: cu.category || mergedUpdates[idx].category,
+                version: cu.version || mergedUpdates[idx].version,
+                date: cu.date || cu.publishedAt || mergedUpdates[idx].date,
+                coverImage: cu.coverImageUrl || mergedUpdates[idx].coverImage,
+              };
+            } else {
+              mergedUpdates.push({
+                id: cu.id,
+                slug: cu.slug || cu.id,
+                title: cu.title,
+                summary: cu.summary,
+                category: cu.category || 'Company',
+                productId: cu.productId,
+                version: cu.version,
+                date: cu.date || cu.publishedAt || new Date().toISOString().slice(0, 10),
+                author: {
+                  id: 'usr-core',
+                  name: cu.authorName || 'Tathastu Core Team',
+                  role: 'Staff Researcher',
+                  affiliation: 'AI Tathastu',
+                  bio: 'AI Tathastu Core Contributor',
+                  avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=256',
+                  articlesCount: 4,
+                  papersCount: 2,
+                },
+                coverImage: cu.coverImageUrl || '/media/hero/cinematic-hero-bg.jpg',
+                content: Array.isArray(cu.content) ? cu.content : [cu.content || cu.summary],
+                tags: cu.tags || ['Update'],
+              });
+            }
+          }
+          setCompanyUpdates(mergedUpdates);
         }
 
         // 6. Media Items hydration
