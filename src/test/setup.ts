@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import '@testing-library/jest-dom/vitest';
 
 // Mock window.matchMedia for motion and responsive tests
 Object.defineProperty(window, 'matchMedia', {
