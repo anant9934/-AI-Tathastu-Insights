@@ -60,9 +60,9 @@ export const HomePage: React.FC<HomePageProps> = ({
   const featuredPaper = papers[0];
 
   const headlineLines = [
-    'Empirical Investigations into',
-    'Frontier Intelligence &',
-    'Mechanistic Safety.',
+    'Empirical Investigations',
+    'into Frontier Intelligence',
+    '& Mechanistic Safety.',
   ];
 
   return (
@@ -78,48 +78,28 @@ export const HomePage: React.FC<HomePageProps> = ({
                 <span>Volume 4 • Fall/Winter 2026 Series</span>
               </div>
 
-              {/* Line-by-line reveal with controlled line length */}
-              <div className="space-y-0.5 max-w-3xl">
-                {headlineLines.map((line, idx) => (
-                  <div key={idx} className="overflow-hidden">
-                    <motion.h1
-                      custom={idx}
-                      variants={shouldReduceMotion ? {} : heroHeadlineVariants}
-                      initial="hidden"
-                      animate="visible"
-                      className="type-hero text-foundation-ink dark:text-dark-ink font-normal"
-                    >
-                      {line}
-                    </motion.h1>
-                  </div>
-                ))}
+              {/* Cohesive Editorial Headline */}
+              <div className="max-w-3xl">
+                <motion.h1
+                  initial={shouldReduceMotion ? {} : { opacity: 0, y: 18 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: MOTION_DURATIONS.heroEntrance,
+                    ease: EDITORIAL_EASE,
+                  }}
+                  className="type-hero text-foundation-ink dark:text-dark-ink font-normal tracking-tight"
+                >
+                  Empirical Investigations into Frontier Intelligence &amp; Mechanistic Safety.
+                </motion.h1>
               </div>
 
-              {/* Delayed Supporting Description */}
-              <motion.p
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: MOTION_DURATIONS.sectionReveal,
-                  delay: 0.35,
-                  ease: EDITORIAL_EASE,
-                }}
-                className="type-body text-foundation-secondary dark:text-dark-secondary max-w-2xl"
-              >
+              {/* Supporting Description */}
+              <p className="type-body text-foundation-secondary dark:text-dark-secondary max-w-2xl leading-relaxed">
                 An independent research publication exploring mechanistic interpretability, decentralized swarm arbitration, and embodied spatial memory. Every finding is verifiable with open checkpoints and reproducible evaluation suites.
-              </motion.p>
+              </p>
 
               {/* Action Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 14 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: MOTION_DURATIONS.sectionReveal,
-                  delay: 0.5,
-                  ease: EDITORIAL_EASE,
-                }}
-                className="flex flex-wrap items-center gap-4 pt-2"
-              >
+              <div className="flex flex-wrap items-center gap-4 pt-2">
                 <AnimatedButton
                   variant="primary"
                   size="lg"
@@ -138,15 +118,10 @@ export const HomePage: React.FC<HomePageProps> = ({
                 >
                   Browse Research Library
                 </AnimatedButton>
-              </motion.div>
+              </div>
 
               {/* Publication Telemetry */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.65, duration: 0.5 }}
-                className="pt-6 border-t border-foundation-border dark:border-dark-border grid grid-cols-3 gap-6 max-w-lg type-meta text-foundation-secondary dark:text-dark-secondary"
-              >
+              <div className="pt-6 border-t border-foundation-border dark:border-dark-border grid grid-cols-3 gap-6 max-w-lg type-meta text-foundation-secondary dark:text-dark-secondary">
                 <div>
                   <span className="block text-xl font-bold font-mono text-foundation-ink dark:text-dark-ink">
                     16M
@@ -165,7 +140,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                   </span>
                   <span>Open Verification</span>
                 </div>
-              </motion.div>
+              </div>
             </div>
 
             {/* Right: Balanced Featured Artwork with Editorial Framing */}

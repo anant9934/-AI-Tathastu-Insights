@@ -17,7 +17,7 @@ export const Reveal: React.FC<RevealProps> = ({
   className = '',
   delay = 0,
   direction = 'up',
-  distance = 24,
+  distance = 16,
   duration = MOTION_DURATIONS.sectionReveal,
   once = true,
 }) => {
@@ -43,23 +43,11 @@ export const Reveal: React.FC<RevealProps> = ({
     }
   };
 
-  const initial = {
-    opacity: 0,
-    ...getInitialPosition(),
-  };
-
-  const animate = {
-    opacity: 1,
-    x: 0,
-    y: 0,
-  };
-
   return (
     <motion.div
       className={className}
-      initial={initial}
-      whileInView={animate}
-      viewport={{ once, margin: '-60px' }}
+      initial={{ opacity: 0, ...getInitialPosition() }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
       transition={{
         duration,
         ease: EDITORIAL_EASE,

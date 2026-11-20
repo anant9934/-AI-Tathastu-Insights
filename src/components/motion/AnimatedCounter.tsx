@@ -14,20 +14,20 @@ interface AnimatedCounterProps {
 export const AnimatedCounter: React.FC<AnimatedCounterProps> = ({
   from = 0,
   to,
-  duration = 1.4,
+  duration = 0.6,
   prefix = '',
   suffix = '',
   decimals = 0,
   className = '',
 }) => {
   const ref = useRef<HTMLSpanElement>(null);
-  const isInView = useInView(ref, { once: true, margin: '-20px' });
+  const isInView = useInView(ref, { once: true });
   const shouldReduceMotion = useReducedMotion();
-  const [currentValue, setCurrentValue] = useState<number>(shouldReduceMotion ? to : from);
+  const [currentValue, setCurrentValue] = useState<number>(shouldReduceMotion ? to : to);
 
   useEffect(() => {
-    if (!isInView || shouldReduceMotion) {
-      if (shouldReduceMotion) setCurrentValue(to);
+    if (shouldReduceMotion) {
+      setCurrentValue(to);
       return;
     }
 

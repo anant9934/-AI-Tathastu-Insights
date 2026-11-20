@@ -31,6 +31,28 @@ export const AppContent: React.FC = () => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [toasts, setToasts] = useState<ToastMessage[]>([]);
 
+  // Sync state with URL hash for deep-linking & browser navigation
+  useEffect(() => {
+    const handleHashChange = () => {
+      const hash = window.location.hash.replace(/^#\/?/, '');
+      const foundArticle = mockArticles.find((a) => a.id === hash || a.slug === hash);
+
+      if (foundArticle) {
+        setSelectedArticle(foundArticle);
+      } else if (!hash) {
+        setSelectedArticle(null);
+        setCurrentTab('home');
+      } else if (['home', 'articles', 'research', 'discover', 'ecosystem', 'media', 'editorial-studio', 'about'].includes(hash)) {
+        setSelectedArticle(null);
+        setCurrentTab(hash as NavTab);
+      }
+    };
+
+    handleHashChange();
+    window.addEventListener('hashchange', handleHashChange);
+    return () => window.removeEventListener('hashchange', handleHashChange);
+  }, []);
+
   // Bookmarking state persisted in localStorage
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
     try {
@@ -79,11 +101,13 @@ export const AppContent: React.FC = () => {
   const handleNavigate = (tab: NavTab) => {
     setSelectedArticle(null);
     setCurrentTab(tab);
+    window.location.hash = tab === 'home' ? '' : tab;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSelectArticle = (article: Article) => {
     setSelectedArticle(article);
+    window.location.hash = article.id;
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -91,6 +115,7 @@ export const AppContent: React.FC = () => {
     setSelectedArticle(null);
     setSelectedEcosystemProduct(product);
     setCurrentTab('ecosystem');
+    window.location.hash = 'ecosystem';
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -214,19 +239,9 @@ export const AppContent: React.FC = () => {
         onOpenSearch={() => setIsSearchOpen(true)}
       />
 
-      {/* Main Page Content with Animated Page Transitions */}
+      {/* Main Page Content */}
       <main className="flex-1">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={selectedArticle ? `article-${selectedArticle.id}` : currentTab}
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: MOTION_DURATIONS.cardTransition, ease: EDITORIAL_EASE }}
-          >
-            {renderContent()}
-          </motion.div>
-        </AnimatePresence>
+        {renderContent()}
       </main>
 
       {/* Global Footer */}

@@ -100,7 +100,7 @@ export const EcosystemPage: React.FC<EcosystemPageProps> = ({
       {/* Interactive Platform Relationship Architecture Diagram (Section 4.D) */}
       <Reveal>
         <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial space-y-6">
-          <div className="flex items-center justify-between">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
             <div>
               <span className="type-meta text-foundation-secondary uppercase">
                 Interconnected Research Lifecycle
@@ -109,7 +109,7 @@ export const EcosystemPage: React.FC<EcosystemPageProps> = ({
                 How AI Tathastu Platforms Interlock
               </h3>
             </div>
-            <span className="type-meta px-2.5 py-1 rounded bg-foundation-paper dark:bg-dark-elevated text-foundation-secondary">
+            <span className="type-meta px-2.5 py-1 rounded bg-foundation-paper dark:bg-dark-elevated text-foundation-secondary self-start sm:self-auto">
               Synchronized Node Mesh
             </span>
           </div>

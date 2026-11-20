@@ -75,9 +75,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       </div>
 
       {/* Main Footer Links */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8">
         {/* Brand Column */}
-        <div className="col-span-2">
+        <div className="col-span-1 sm:col-span-2">
           <div className="flex items-center gap-2 mb-3">
             <div className="w-7 h-7 rounded-lg bg-foundation-ink text-white dark:bg-white dark:text-foundation-ink flex items-center justify-center font-editorial-serif font-bold text-sm">
               T
@@ -222,9 +222,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
       {/* Bottom Bar */}
       <div className="border-t border-foundation-border dark:border-dark-border py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-foundation-secondary dark:text-dark-muted">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-foundation-secondary dark:text-dark-muted text-center sm:text-left">
           <p>© 2026 AI Tathastu Insights. Published under CC BY-NC 4.0 International.</p>
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-6">
             <span>Latency Budget: &lt; 200ms</span>
             <span>Typography: Fraunces, Geist &amp; Geist Mono</span>
           </div>

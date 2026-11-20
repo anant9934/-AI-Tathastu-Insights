@@ -115,13 +115,13 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
             {article.topicTag}
           </Badge>
           {article.doi && (
-            <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted ml-auto">
+            <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted sm:ml-auto block sm:inline">
               DOI: {article.doi}
             </span>
           )}
         </div>
 
-        <h1 className="font-editorial-serif type-article-title text-foundation-ink dark:text-dark-text leading-[1.12] tracking-tight font-normal">
+        <h1 className="font-editorial-serif type-article-title text-foundation-ink dark:text-dark-text leading-[1.14] tracking-tight font-normal break-words">
           {article.title}
         </h1>
 

@@ -46,17 +46,17 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
         {/* Brand / Logo */}
         <div 
           onClick={() => handleTabClick('home')}
-          className="flex items-center gap-3 cursor-pointer select-none group"
+          className="flex items-center gap-2 sm:gap-3 cursor-pointer select-none group shrink-0"
         >
-          <div className="w-8 h-8 rounded-xl bg-foundation-ink text-foundation-paper dark:bg-white dark:text-foundation-ink flex items-center justify-center font-editorial-serif font-bold text-lg shadow-sm group-hover:rotate-6 transition-transform">
+          <div className="w-8 h-8 rounded-xl bg-foundation-ink text-foundation-paper dark:bg-white dark:text-foundation-ink flex items-center justify-center font-editorial-serif font-bold text-lg shadow-sm group-hover:rotate-6 transition-transform shrink-0">
             T
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="font-editorial-serif text-xl sm:text-2xl font-semibold tracking-tight text-foundation-ink dark:text-dark-text">
+              <span className="font-editorial-serif text-lg sm:text-2xl font-semibold tracking-tight text-foundation-ink dark:text-dark-text whitespace-nowrap">
                 AI Tathastu
               </span>
-              <span className="text-[10px] font-mono tracking-widest uppercase px-1.5 py-0.5 rounded bg-surface-lavender text-brand-editorial-violet dark:bg-brand-editorial-violet/20 dark:text-accent-lavender font-medium">
+              <span className="text-[10px] font-mono tracking-widest uppercase px-1.5 py-0.5 rounded bg-surface-lavender text-brand-editorial-violet dark:bg-brand-editorial-violet/20 dark:text-accent-lavender font-medium hidden sm:inline-block">
                 Insights
               </span>
             </div>
@@ -91,7 +91,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
         </nav>
 
         {/* Action Controls */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2 shrink-0">
           {/* Search Trigger */}
           <button
             onClick={onOpenSearch}

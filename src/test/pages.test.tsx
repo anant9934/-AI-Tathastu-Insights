@@ -4,14 +4,19 @@ import { render, screen, fireEvent } from '@testing-library/react';
 import { HomePage } from '../pages/HomePage';
 import { ArticlePage } from '../pages/ArticlePage';
 import { ResearchLibraryPage } from '../pages/ResearchLibraryPage';
+import { DiscoverPage } from '../pages/DiscoverPage';
 import { EcosystemPage } from '../pages/EcosystemPage';
+import { MediaPage } from '../pages/MediaPage';
 import { EditorialStudioPage } from '../pages/EditorialStudioPage';
 import { AboutPage } from '../pages/AboutPage';
+import { SearchModal } from '../components/ui/SearchModal';
 import { 
   mockArticles, 
   mockResearchPapers, 
   mockEcosystemProducts, 
-  mockEditorialSubmissions 
+  mockEditorialSubmissions,
+  mockMediaItems,
+  mockTopics
 } from '../lib/mockData';
 
 describe('Page Level Verification & User Workflows', () => {
@@ -34,9 +39,7 @@ describe('Page Level Verification & User Workflows', () => {
       />
     );
 
-    expect(screen.getByText(/Empirical Investigations into/i)).toBeInTheDocument();
-    expect(screen.getByText(/Frontier Intelligence &/i)).toBeInTheDocument();
-    expect(screen.getByText(/Mechanistic Safety./i)).toBeInTheDocument();
+    expect(screen.getByText(/Empirical Investigations into Frontier Intelligence & Mechanistic Safety\./i)).toBeInTheDocument();
     expect(screen.getByRole('button', { name: /read lead investigation/i })).toBeInTheDocument();
   });
 
@@ -122,5 +125,63 @@ describe('Page Level Verification & User Workflows', () => {
     expect(screen.getByText(/Dr. Aravind Nair/i)).toBeInTheDocument();
     expect(screen.getAllByText(/Preamble & Empirical Mandate/i).length).toBeGreaterThanOrEqual(1);
     expect(screen.getByRole('button', { name: /cite charter/i })).toBeInTheDocument();
+  });
+
+  it('renders DiscoverPage and filters articles by topic tag', () => {
+    const handleSelect = vi.fn();
+    render(
+      <DiscoverPage
+        topics={mockTopics}
+        articles={mockArticles}
+        onSelectArticle={handleSelect}
+        bookmarkedIds={[]}
+        onToggleBookmark={vi.fn()}
+      />
+    );
+
+    expect(screen.getByText(/Discover Inquiries & Topics/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Mechanistic Interpretability/i).length).toBeGreaterThanOrEqual(1);
+  });
+
+  it('renders MediaPage with broadcasts and handles playback', () => {
+    const showToast = vi.fn();
+    render(
+      <MediaPage
+        mediaItems={mockMediaItems}
+        onShowToast={showToast}
+      />
+    );
+
+    expect(screen.getByText(/Audiovisual Research Channel/i)).toBeInTheDocument();
+    expect(screen.getByText(/Watch 24-Min Film/i)).toBeInTheDocument();
+  });
+
+  it('handles search queries and article selection in SearchModal', () => {
+    const handleSelectArticle = vi.fn();
+    const handleClose = vi.fn();
+
+    render(
+      <SearchModal
+        isOpen={true}
+        onClose={handleClose}
+        articles={mockArticles}
+        papers={mockResearchPapers}
+        ecosystemProducts={mockEcosystemProducts}
+        mediaItems={mockMediaItems}
+        onSelectArticle={handleSelectArticle}
+        onSelectProduct={vi.fn()}
+        onSelectMedia={vi.fn()}
+      />
+    );
+
+    const input = screen.getByPlaceholderText(/type keywords, doi/i);
+    fireEvent.change(input, { target: { value: 'Residual Stream' } });
+
+    const match = screen.getByText(/Dissecting Residual Stream Dynamics with Scaled Sparse Autoencoders/i);
+    expect(match).toBeInTheDocument();
+    fireEvent.click(match);
+
+    expect(handleSelectArticle).toHaveBeenCalled();
+    expect(handleClose).toHaveBeenCalled();
   });
 });

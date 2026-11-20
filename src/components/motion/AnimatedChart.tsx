@@ -135,9 +135,8 @@ export const AnimatedChart: React.FC<AnimatedChartProps> = ({
                       {baselinePercent !== null && (
                         <motion.div
                           className="w-2/5 max-w-[28px] bg-foundation-secondary/25 dark:bg-white/15 rounded-t-sm"
-                          initial={{ height: 0 }}
-                          whileInView={{ height: `${baselinePercent}%` }}
-                          viewport={{ once: true }}
+                          initial={shouldReduceMotion ? false : { height: 0 }}
+                          animate={{ height: `${baselinePercent}%` }}
                           transition={{
                             duration: shouldReduceMotion ? 0.01 : MOTION_DURATIONS.sectionReveal,
                             ease: EDITORIAL_EASE,
@@ -149,9 +148,8 @@ export const AnimatedChart: React.FC<AnimatedChartProps> = ({
                       {/* Primary Bar */}
                       <motion.div
                         className="w-full max-w-[36px] bg-accent-violet rounded-t-sm group-hover:bg-[#6841c2] transition-colors relative"
-                        initial={{ height: 0 }}
-                        whileInView={{ height: `${heightPercent}%` }}
-                        viewport={{ once: true }}
+                        initial={shouldReduceMotion ? false : { height: 0 }}
+                        animate={{ height: `${heightPercent}%` }}
                         transition={{
                           duration: shouldReduceMotion ? 0.01 : MOTION_DURATIONS.sectionReveal,
                           ease: EDITORIAL_EASE,
