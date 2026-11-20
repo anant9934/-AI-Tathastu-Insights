@@ -12,6 +12,7 @@ interface AnimatedChartProps {
     primaryDatasetLabel?: string;
     baselineDatasetLabel?: string;
     unit?: string;
+    isDemonstration?: boolean;
     points: ChartDataPoint[];
   };
   type?: 'bar' | 'line';
@@ -45,8 +46,8 @@ export const AnimatedChart: React.FC<AnimatedChartProps> = ({
       {/* Chart Header */}
       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-6 pb-4 border-b border-foundation-border/70 dark:border-dark-border">
         <div>
-          <span className="type-meta text-accent-violet block uppercase mb-1">
-            Empirical Benchmark Telemetry
+          <span className="type-meta text-accent-violet block uppercase mb-1 font-semibold">
+            {data.isDemonstration ? 'Illustrative Benchmark Telemetry (Synthetic Model)' : 'Empirical Benchmark Telemetry'}
           </span>
           <h4 className="type-card-heading text-foundation-ink dark:text-dark-ink font-medium">
             {data.title}

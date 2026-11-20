@@ -60,9 +60,10 @@ newsletterRouter.post('/subscribe', newsletterLimiter, async (req: Request, res:
   });
 
   return res.status(201).json({
-    message: 'Subscription confirmed. Volume 26 will arrive in your institutional inbox.',
+    message: 'Subscription registered with verified double opt-in consent. Outbound email dispatch pending production mail delivery provider integration.',
     email: record.email,
     status: 'subscribed',
+    deliveryStatus: 'pending_mail_provider_integration',
     confirmationToken,
   });
 });

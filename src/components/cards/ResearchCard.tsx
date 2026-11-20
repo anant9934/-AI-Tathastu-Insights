@@ -58,6 +58,11 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
             <Badge accent="neutral" size="sm">
               {paper.topic}
             </Badge>
+            {paper.verificationStatus === 'demonstration_concept' && (
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 font-medium border border-amber-300/40">
+                Demo Preprint
+              </span>
+            )}
           </div>
           <div className="flex items-center gap-3 text-xs font-mono text-foundation-secondary dark:text-dark-secondary">
             <span>{paper.doi}</span>

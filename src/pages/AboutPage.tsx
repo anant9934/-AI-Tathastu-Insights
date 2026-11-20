@@ -414,7 +414,7 @@ export const AboutPage: React.FC = () => {
                   Resident Investigators &amp; Editorial Board
                 </h2>
                 <p className="type-secondary text-foundation-secondary dark:text-dark-muted mt-2">
-                  The principal researchers and systems architects maintaining editorial independence and empirical standards.
+                  The principal research domains maintaining editorial independence. Resident researcher profiles represent illustrative editorial personas created for design and workflow evaluation ahead of accredited board ratification.
                 </p>
               </div>
 
@@ -430,9 +430,16 @@ export const AboutPage: React.FC = () => {
                       className="w-14 h-14 rounded-full object-cover border border-foundation-border shrink-0"
                     />
                     <div className="space-y-1 min-w-0">
-                      <h3 className="font-editorial-serif text-xl text-foundation-ink dark:text-dark-text truncate">
-                        {author.name}
-                      </h3>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <h3 className="font-editorial-serif text-xl text-foundation-ink dark:text-dark-text truncate">
+                          {author.name}
+                        </h3>
+                        {author.isDemonstrationPersona && (
+                          <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950/40 text-amber-700 dark:text-amber-300 font-medium border border-amber-300/40 shrink-0">
+                            Demonstration Persona
+                          </span>
+                        )}
+                      </div>
                       <p className="text-xs font-medium text-brand-editorial-violet dark:text-accent-lavender truncate">
                         {author.role}
                       </p>

@@ -68,7 +68,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
                 {error && <p className="text-xs text-red-500 font-mono">{error}</p>}
                 {subscribed && (
                   <p className="text-xs text-green-600 dark:text-green-400 font-mono">
-                    ✓ Dispatch confirmed. You will receive Volume 26 next Tuesday.
+                    ✓ Subscription recorded with verified double opt-in consent. Outbound dispatch pending production mail provider integration.
                   </p>
                 )}
               </form>

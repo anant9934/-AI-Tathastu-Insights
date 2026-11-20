@@ -20,6 +20,8 @@ export interface Author {
   avatar: string;
   articlesCount: number;
   papersCount: number;
+  isDemonstrationPersona?: boolean;
+  orcid?: string;
 }
 
 export interface TableOfContentsItem {
@@ -58,6 +60,8 @@ export interface Article {
   doi?: string;
   isFeatured?: boolean;
   isEditorsChoice?: boolean;
+  verificationStatus?: 'verified' | 'demonstration_concept' | 'needs_review';
+  provenanceNote?: string;
   tableOfContents: TableOfContentsItem[];
   chartData?: {
     title: string;
@@ -95,6 +99,8 @@ export interface ResearchPaper {
     value: string;
     comparisonToSota: string;
   };
+  verificationStatus?: 'verified' | 'demonstration_concept' | 'needs_review';
+  provenanceNote?: string;
 }
 
 export interface EcosystemProduct {
@@ -167,4 +173,6 @@ export interface PerspectiveItem {
   pullQuote: string;
   accentColor: AccentColor;
   readingTimeMinutes: number;
+  verificationStatus?: 'verified' | 'demonstration_concept' | 'needs_review';
+  provenanceNote?: string;
 }

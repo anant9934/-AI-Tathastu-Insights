@@ -51,6 +51,11 @@ export const StoryCard: React.FC<StoryCardProps> = ({
             <Badge accent="neutral" size="sm">
               {article.publicationType || 'Lead Investigation'}
             </Badge>
+            {article.verificationStatus === 'demonstration_concept' && (
+              <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-600/90 text-white font-medium shadow-xs">
+                Demo Concept
+              </span>
+            )}
           </div>
         </div>
 

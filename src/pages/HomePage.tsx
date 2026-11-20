@@ -82,15 +82,16 @@ export const HomePage: React.FC<HomePageProps> = ({
   const secondaryArticles = articles.filter((a) => a.id !== featuredArticle.id);
   const featuredPaper = papers[0];
 
-  // Research Spotlight Chart Data (Empirical SAE Feature Purity)
+  // Research Spotlight Chart Data (Illustrative SAE Feature Purity)
   const chartData = {
     title: 'Monosemantic Feature Purity vs Latent Dictionary Size',
-    subtitle: 'Evaluation on Layer 28 residual stream across expansion factors (4x to 64x) on 70B parameter dense model',
+    subtitle: 'Illustrative benchmark model: Layer 28 residual stream simulation across dictionary expansion factors (4x to 64x), modeled on Anthropic Top-K SAE literature',
     xAxisLabel: 'Expansion Factor (Dictionary Size)',
     yAxisLabel: 'Feature Purity (%)',
-    primaryDatasetLabel: 'Tathastu Top-K SAE',
+    primaryDatasetLabel: 'Tathastu Top-K SAE (Model)',
     baselineDatasetLabel: 'Standard Gated SAE',
     unit: '%',
+    isDemonstration: true,
     points: [
       { label: '4x (16k)', value: 68.4, baseline: 52.1 },
       { label: '8x (32k)', value: 79.2, baseline: 58.4 },
@@ -190,19 +191,19 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </AnimatedButton>
               </div>
 
-              {/* Editorial Quality Attestation (Replaces fabricated telemetry counters) */}
+              {/* Editorial Quality Attestation & Invariants */}
               <div className="pt-6 border-t border-foundation-border dark:border-dark-border flex flex-wrap items-center gap-6 text-xs font-mono text-foundation-secondary dark:text-dark-muted">
                 <div className="flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-accent-violet shrink-0" />
-                  <span>Double-blind peer review</span>
+                  <span>Double-blind review standard</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Activity className="w-4 h-4 text-accent-blue shrink-0" />
-                  <span>Open weights &amp; reproducible seeds</span>
+                  <span>Open access (CC BY-NC 4.0)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <Code2 className="w-4 h-4 text-accent-mint shrink-0" />
-                  <span>Open Access (CC BY-NC 4.0)</span>
+                  <span>Apache 2.0 open tooling</span>
                 </div>
               </div>
             </div>
@@ -961,7 +962,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             )}
             {newsletterSubscribed && (
               <p className="text-xs font-mono text-green-600 dark:text-green-400">
-                ✓ Dispatch confirmed. Volume 26 will arrive in your institutional inbox.
+                ✓ Subscription recorded with verified double opt-in consent. Outbound dispatch pending production mail provider integration.
               </p>
             )}
           </form>
