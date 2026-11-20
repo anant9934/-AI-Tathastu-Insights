@@ -44,7 +44,7 @@
       {
         "id": "usr-reviewer-01",
         "email": "reviewer@tathastu-insights.org",
-        "passwordHash": "$2b$12$zvFE7AIHLSQrQjBsR6hzDOcMn0d4o7mP9VBafxbEinAjKGi.Kx3rG",
+        "passwordHash": "$2b$12$KGNpKDA/N99ugPq2g7jn8ug9IHJbdlcp9ZZq/oSNw25PIIbBGLEqq",
         "name": "Vikram Sharma",
         "roleId": "research_editor",
         "affiliation": "Distributed Swarm Consortium",
@@ -115,6 +115,110 @@
         "affiliation": "Independent Researcher",
         "isActive": true,
         "createdAt": "2026-11-20T19:55:10.726Z"
+      }
+    ],
+    [
+      "usr-1795204778844-501",
+      {
+        "id": "usr-1795204778844-501",
+        "email": "contrib-1795204778634@tathastu.org",
+        "passwordHash": "$2b$12$N5MvoNxh1Zf.A5S3m8fg9.H0yg5OpgDDGfEzj4RvvPUfuJnEbrsym",
+        "name": "Test Contributor",
+        "roleId": "contributor",
+        "affiliation": "Independent Researcher",
+        "isActive": true,
+        "createdAt": "2026-11-20T19:59:38.844Z"
+      }
+    ],
+    [
+      "usr-1795205190990-478",
+      {
+        "id": "usr-1795205190990-478",
+        "email": "contrib-1795205190777@tathastu.org",
+        "passwordHash": "$2b$12$OuBc/uVcvCwCt7yo3HE3deW93qN.ZeXuZdnaCCWQAAU2ELkBFjVOC",
+        "name": "Test Contributor",
+        "roleId": "contributor",
+        "affiliation": "Independent Researcher",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:06:30.990Z"
+      }
+    ],
+    [
+      "usr-1795205242858-190",
+      {
+        "id": "usr-1795205242858-190",
+        "email": "contrib-1795205242646@tathastu.org",
+        "passwordHash": "$2b$12$19udBFmB2rPVbwTnfo9PgeBZtmHDIbLmmZj1Hgw42YylYit8kl2Y.",
+        "name": "Test Contributor",
+        "roleId": "contributor",
+        "affiliation": "Independent Researcher",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:07:22.858Z"
+      }
+    ],
+    [
+      "usr-contrib-01",
+      {
+        "id": "usr-contrib-01",
+        "email": "contributor@community.org",
+        "passwordHash": "$2b$12$C2ungwl.EwqIyLdSki9XkuLQ3TUU.R1pcMw2mtQiz4KJvnlMy5.bu",
+        "name": "Arun Kumar",
+        "roleId": "contributor",
+        "affiliation": "Independent Community Researcher",
+        "isActive": true,
+        "createdAt": "2026-03-10T00:00:00Z"
+      }
+    ],
+    [
+      "usr-1795205293684-188",
+      {
+        "id": "usr-1795205293684-188",
+        "email": "contrib-1795205293439@tathastu.org",
+        "passwordHash": "$2b$12$mKa32XHUSiMX3MaS.eiAieiNbkoZNeIq8foqx8Up572NM4GxluPn6",
+        "name": "Test Contributor",
+        "roleId": "contributor",
+        "affiliation": "Independent Researcher",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:08:13.684Z"
+      }
+    ],
+    [
+      "usr-1795205313557-103",
+      {
+        "id": "usr-1795205313557-103",
+        "email": "contrib-1795205313340@tathastu.org",
+        "passwordHash": "$2b$12$TeiRbvUWyyszsvpqHiZWPefoSinrCU88bg3ygg5n26DEmpft2fYA6",
+        "name": "Test Contributor",
+        "roleId": "contributor",
+        "affiliation": "Independent Researcher",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:08:33.557Z"
+      }
+    ],
+    [
+      "usr-1795205340834-973",
+      {
+        "id": "usr-1795205340834-973",
+        "email": "contrib-1795205340617@tathastu.org",
+        "passwordHash": "$2b$12$Vb.1Bh.uUd2miLbijyWUkukij/.1g7QlV.6XQzdrGJyckHs4dKoLu",
+        "name": "Test Contributor",
+        "roleId": "contributor",
+        "affiliation": "Independent Researcher",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:09:00.834Z"
+      }
+    ],
+    [
+      "usr-1795205379250-819",
+      {
+        "id": "usr-1795205379250-819",
+        "email": "contrib-1795205379035@tathastu.org",
+        "passwordHash": "$2b$12$88/MfWGcs3n1o94Hx6oaUem.gYV0QUvwMRtvX8Wz9cExa8SWVwu06",
+        "name": "Test Contributor",
+        "roleId": "contributor",
+        "affiliation": "Independent Researcher",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:09:39.250Z"
       }
     ]
   ],
@@ -548,6 +652,209 @@
           "metaDescription": "Empirical analysis of quantum circuit representations in transformer residual layers."
         }
       }
+    ],
+    [
+      "cnt-1795204780095-4654b5",
+      {
+        "id": "cnt-1795204780095-4654b5",
+        "slug": "frontier-quantum-tracing-1795204777514",
+        "title": "Quantum Trace Invariance in Transformer Graphs",
+        "subtitle": "",
+        "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+        "contentType": "research_deep_dive",
+        "category": "Frontier Systems",
+        "status": "unpublished",
+        "primaryAuthorId": "usr-editor-01",
+        "authorName": "Staff Contributor",
+        "blocks": [],
+        "rawMarkdown": "",
+        "readingTimeMinutes": 4,
+        "wordCount": 500,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "publishedAt": "2026-11-20T19:59:40.097Z",
+        "createdById": "usr-editor-01",
+        "createdAt": "2026-11-20T19:59:40.095Z",
+        "updatedAt": "2026-11-20T19:59:40.099Z",
+        "seo": {
+          "metaTitle": "Quantum Trace Invariance in Transformer Graphs",
+          "metaDescription": "Empirical analysis of quantum circuit representations in transformer residual layers."
+        }
+      }
+    ],
+    [
+      "cnt-1795205192256-073e08",
+      {
+        "id": "cnt-1795205192256-073e08",
+        "slug": "frontier-quantum-tracing-1795205189640",
+        "title": "Quantum Trace Invariance in Transformer Graphs",
+        "subtitle": "",
+        "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+        "contentType": "research_deep_dive",
+        "category": "Frontier Systems",
+        "status": "unpublished",
+        "primaryAuthorId": "usr-editor-01",
+        "authorName": "Staff Contributor",
+        "blocks": [],
+        "rawMarkdown": "",
+        "readingTimeMinutes": 4,
+        "wordCount": 500,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "publishedAt": "2026-11-20T20:06:32.258Z",
+        "createdById": "usr-editor-01",
+        "createdAt": "2026-11-20T20:06:32.256Z",
+        "updatedAt": "2026-11-20T20:06:32.259Z",
+        "seo": {
+          "metaTitle": "Quantum Trace Invariance in Transformer Graphs",
+          "metaDescription": "Empirical analysis of quantum circuit representations in transformer residual layers."
+        }
+      }
+    ],
+    [
+      "cnt-1795205244123-52ff97",
+      {
+        "id": "cnt-1795205244123-52ff97",
+        "slug": "frontier-quantum-tracing-1795205241513",
+        "title": "Quantum Trace Invariance in Transformer Graphs",
+        "subtitle": "",
+        "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+        "contentType": "research_deep_dive",
+        "category": "Frontier Systems",
+        "status": "unpublished",
+        "primaryAuthorId": "usr-editor-01",
+        "authorName": "Staff Contributor",
+        "blocks": [],
+        "rawMarkdown": "",
+        "readingTimeMinutes": 4,
+        "wordCount": 500,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "publishedAt": "2026-11-20T20:07:24.125Z",
+        "createdById": "usr-editor-01",
+        "createdAt": "2026-11-20T20:07:24.123Z",
+        "updatedAt": "2026-11-20T20:07:24.126Z",
+        "seo": {
+          "metaTitle": "Quantum Trace Invariance in Transformer Graphs",
+          "metaDescription": "Empirical analysis of quantum circuit representations in transformer residual layers."
+        }
+      }
+    ],
+    [
+      "cnt-1795205294968-6af157",
+      {
+        "id": "cnt-1795205294968-6af157",
+        "slug": "frontier-quantum-tracing-1795205292315",
+        "title": "Quantum Trace Invariance in Transformer Graphs",
+        "subtitle": "",
+        "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+        "contentType": "research_deep_dive",
+        "category": "Frontier Systems",
+        "status": "unpublished",
+        "primaryAuthorId": "usr-editor-01",
+        "authorName": "Staff Contributor",
+        "blocks": [],
+        "rawMarkdown": "",
+        "readingTimeMinutes": 4,
+        "wordCount": 500,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "publishedAt": "2026-11-20T20:08:14.969Z",
+        "createdById": "usr-editor-01",
+        "createdAt": "2026-11-20T20:08:14.968Z",
+        "updatedAt": "2026-11-20T20:08:14.971Z",
+        "seo": {
+          "metaTitle": "Quantum Trace Invariance in Transformer Graphs",
+          "metaDescription": "Empirical analysis of quantum circuit representations in transformer residual layers."
+        }
+      }
+    ],
+    [
+      "cnt-1795205314866-ad3536",
+      {
+        "id": "cnt-1795205314866-ad3536",
+        "slug": "frontier-quantum-tracing-1795205312205",
+        "title": "Quantum Trace Invariance in Transformer Graphs",
+        "subtitle": "",
+        "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+        "contentType": "research_deep_dive",
+        "category": "Frontier Systems",
+        "status": "unpublished",
+        "primaryAuthorId": "usr-editor-01",
+        "authorName": "Staff Contributor",
+        "blocks": [],
+        "rawMarkdown": "",
+        "readingTimeMinutes": 4,
+        "wordCount": 500,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "publishedAt": "2026-11-20T20:08:34.868Z",
+        "createdById": "usr-editor-01",
+        "createdAt": "2026-11-20T20:08:34.866Z",
+        "updatedAt": "2026-11-20T20:08:34.870Z",
+        "seo": {
+          "metaTitle": "Quantum Trace Invariance in Transformer Graphs",
+          "metaDescription": "Empirical analysis of quantum circuit representations in transformer residual layers."
+        }
+      }
+    ],
+    [
+      "cnt-1795205342127-44c90e",
+      {
+        "id": "cnt-1795205342127-44c90e",
+        "slug": "frontier-quantum-tracing-1795205339475",
+        "title": "Quantum Trace Invariance in Transformer Graphs",
+        "subtitle": "",
+        "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+        "contentType": "research_deep_dive",
+        "category": "Frontier Systems",
+        "status": "unpublished",
+        "primaryAuthorId": "usr-editor-01",
+        "authorName": "Staff Contributor",
+        "blocks": [],
+        "rawMarkdown": "",
+        "readingTimeMinutes": 4,
+        "wordCount": 500,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "publishedAt": "2026-11-20T20:09:02.129Z",
+        "createdById": "usr-editor-01",
+        "createdAt": "2026-11-20T20:09:02.127Z",
+        "updatedAt": "2026-11-20T20:09:02.130Z",
+        "seo": {
+          "metaTitle": "Quantum Trace Invariance in Transformer Graphs",
+          "metaDescription": "Empirical analysis of quantum circuit representations in transformer residual layers."
+        }
+      }
+    ],
+    [
+      "cnt-1795205380529-ef24ee",
+      {
+        "id": "cnt-1795205380529-ef24ee",
+        "slug": "frontier-quantum-tracing-1795205377890",
+        "title": "Quantum Trace Invariance in Transformer Graphs",
+        "subtitle": "",
+        "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+        "contentType": "research_deep_dive",
+        "category": "Frontier Systems",
+        "status": "unpublished",
+        "primaryAuthorId": "usr-editor-01",
+        "authorName": "Staff Contributor",
+        "blocks": [],
+        "rawMarkdown": "",
+        "readingTimeMinutes": 4,
+        "wordCount": 500,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "publishedAt": "2026-11-20T20:09:40.531Z",
+        "createdById": "usr-editor-01",
+        "createdAt": "2026-11-20T20:09:40.529Z",
+        "updatedAt": "2026-11-20T20:09:40.533Z",
+        "seo": {
+          "metaTitle": "Quantum Trace Invariance in Transformer Graphs",
+          "metaDescription": "Empirical analysis of quantum circuit representations in transformer residual layers."
+        }
+      }
     ]
   ],
   "contentVersions": [
@@ -804,6 +1111,132 @@
           "changelog": "Initial draft created in CMS",
           "createdById": "usr-editor-01",
           "createdAt": "2026-11-20T19:55:12.008Z"
+        }
+      ]
+    ],
+    [
+      "cnt-1795204780095-4654b5",
+      [
+        {
+          "id": "ver-1795204780095",
+          "contentId": "cnt-1795204780095-4654b5",
+          "versionNumber": 1,
+          "title": "Quantum Trace Invariance in Transformer Graphs",
+          "subtitle": "",
+          "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+          "blocks": [],
+          "rawMarkdown": "",
+          "changelog": "Initial draft created in CMS",
+          "createdById": "usr-editor-01",
+          "createdAt": "2026-11-20T19:59:40.095Z"
+        }
+      ]
+    ],
+    [
+      "cnt-1795205192256-073e08",
+      [
+        {
+          "id": "ver-1795205192256",
+          "contentId": "cnt-1795205192256-073e08",
+          "versionNumber": 1,
+          "title": "Quantum Trace Invariance in Transformer Graphs",
+          "subtitle": "",
+          "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+          "blocks": [],
+          "rawMarkdown": "",
+          "changelog": "Initial draft created in CMS",
+          "createdById": "usr-editor-01",
+          "createdAt": "2026-11-20T20:06:32.256Z"
+        }
+      ]
+    ],
+    [
+      "cnt-1795205244123-52ff97",
+      [
+        {
+          "id": "ver-1795205244123",
+          "contentId": "cnt-1795205244123-52ff97",
+          "versionNumber": 1,
+          "title": "Quantum Trace Invariance in Transformer Graphs",
+          "subtitle": "",
+          "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+          "blocks": [],
+          "rawMarkdown": "",
+          "changelog": "Initial draft created in CMS",
+          "createdById": "usr-editor-01",
+          "createdAt": "2026-11-20T20:07:24.123Z"
+        }
+      ]
+    ],
+    [
+      "cnt-1795205294968-6af157",
+      [
+        {
+          "id": "ver-1795205294968",
+          "contentId": "cnt-1795205294968-6af157",
+          "versionNumber": 1,
+          "title": "Quantum Trace Invariance in Transformer Graphs",
+          "subtitle": "",
+          "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+          "blocks": [],
+          "rawMarkdown": "",
+          "changelog": "Initial draft created in CMS",
+          "createdById": "usr-editor-01",
+          "createdAt": "2026-11-20T20:08:14.968Z"
+        }
+      ]
+    ],
+    [
+      "cnt-1795205314866-ad3536",
+      [
+        {
+          "id": "ver-1795205314866",
+          "contentId": "cnt-1795205314866-ad3536",
+          "versionNumber": 1,
+          "title": "Quantum Trace Invariance in Transformer Graphs",
+          "subtitle": "",
+          "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+          "blocks": [],
+          "rawMarkdown": "",
+          "changelog": "Initial draft created in CMS",
+          "createdById": "usr-editor-01",
+          "createdAt": "2026-11-20T20:08:34.866Z"
+        }
+      ]
+    ],
+    [
+      "cnt-1795205342127-44c90e",
+      [
+        {
+          "id": "ver-1795205342127",
+          "contentId": "cnt-1795205342127-44c90e",
+          "versionNumber": 1,
+          "title": "Quantum Trace Invariance in Transformer Graphs",
+          "subtitle": "",
+          "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+          "blocks": [],
+          "rawMarkdown": "",
+          "changelog": "Initial draft created in CMS",
+          "createdById": "usr-editor-01",
+          "createdAt": "2026-11-20T20:09:02.127Z"
+        }
+      ]
+    ],
+    [
+      "cnt-1795205380529-ef24ee",
+      [
+        {
+          "id": "ver-1795205380529",
+          "contentId": "cnt-1795205380529-ef24ee",
+          "versionNumber": 1,
+          "title": "Quantum Trace Invariance in Transformer Graphs",
+          "subtitle": "",
+          "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+          "blocks": [],
+          "rawMarkdown": "",
+          "changelog": "Initial draft created in CMS",
+          "createdById": "usr-editor-01",
+          "createdAt": "2026-11-20T20:09:40.529Z"
         }
       ]
     ]
@@ -1877,7 +2310,7 @@
     "themeDefaults": {
       "defaultTheme": "system"
     },
-    "updatedAt": "2026-11-20T19:55:12.007Z"
+    "updatedAt": "2026-11-20T20:09:40.528Z"
   },
   "subscribers": [
     [
@@ -1948,6 +2381,69 @@
         "revokedAt": "2026-11-20T19:55:11.582Z",
         "reason": "user_logout"
       }
+    ],
+    [
+      "51fa8b9c59c85694524814de42718cfb45d3b73265fbab94536ea751e909d44d",
+      {
+        "tokenHash": "51fa8b9c59c85694524814de42718cfb45d3b73265fbab94536ea751e909d44d",
+        "expiresAt": "2026-11-27T19:59:39.670Z",
+        "revokedAt": "2026-11-20T19:59:39.670Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "6065a138b8cb43032d912f8b1162647f9ba9a94b118776fc322e503226115fa3",
+      {
+        "tokenHash": "6065a138b8cb43032d912f8b1162647f9ba9a94b118776fc322e503226115fa3",
+        "expiresAt": "2026-11-27T20:06:31.830Z",
+        "revokedAt": "2026-11-20T20:06:31.830Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "40126d346695da9edd7f70854df9a8775c7a0d344e4940dc089fedae9a74863d",
+      {
+        "tokenHash": "40126d346695da9edd7f70854df9a8775c7a0d344e4940dc089fedae9a74863d",
+        "expiresAt": "2026-11-27T20:07:23.696Z",
+        "revokedAt": "2026-11-20T20:07:23.696Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "166a047040982af9748c151bd1f73bd07c5b587688c7b6e11a47aa302de27942",
+      {
+        "tokenHash": "166a047040982af9748c151bd1f73bd07c5b587688c7b6e11a47aa302de27942",
+        "expiresAt": "2026-11-27T20:08:14.539Z",
+        "revokedAt": "2026-11-20T20:08:14.539Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "7d15a3e9dc1aee3dcf77fdbb9775095995e8f8959b40078002252289f3d59da5",
+      {
+        "tokenHash": "7d15a3e9dc1aee3dcf77fdbb9775095995e8f8959b40078002252289f3d59da5",
+        "expiresAt": "2026-11-27T20:08:34.430Z",
+        "revokedAt": "2026-11-20T20:08:34.430Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "85487c252ee7fc384333952698839c0fc6d048a0a1faad056886247bed1c815a",
+      {
+        "tokenHash": "85487c252ee7fc384333952698839c0fc6d048a0a1faad056886247bed1c815a",
+        "expiresAt": "2026-11-27T20:09:01.690Z",
+        "revokedAt": "2026-11-20T20:09:01.690Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "d42eaed569d00123df1e6cafb9286a25f9333dabf826688b3e12f23bbbb25b1e",
+      {
+        "tokenHash": "d42eaed569d00123df1e6cafb9286a25f9333dabf826688b3e12f23bbbb25b1e",
+        "expiresAt": "2026-11-27T20:09:40.099Z",
+        "revokedAt": "2026-11-20T20:09:40.099Z",
+        "reason": "user_logout"
+      }
     ]
   ],
   "passwordResetTokens": [
@@ -1980,7 +2476,77 @@
         "createdAt": "2026-11-20T19:55:11.584Z",
         "usedAt": "2026-11-20T19:55:11.585Z"
       }
+    ],
+    [
+      "fcd9882f32379b7af8454ad4f2e6c9eef3490fe851514d328740c142ed644106",
+      {
+        "tokenHash": "fcd9882f32379b7af8454ad4f2e6c9eef3490fe851514d328740c142ed644106",
+        "userId": "usr-reviewer-01",
+        "expiresAt": "2026-11-20T20:59:39.672Z",
+        "createdAt": "2026-11-20T19:59:39.672Z",
+        "usedAt": "2026-11-20T19:59:39.673Z"
+      }
+    ],
+    [
+      "3cf285c0e9a90c9e7221505faf27db90afaffc96e4971c79981707d9aa9c946b",
+      {
+        "tokenHash": "3cf285c0e9a90c9e7221505faf27db90afaffc96e4971c79981707d9aa9c946b",
+        "userId": "usr-reviewer-01",
+        "expiresAt": "2026-11-20T21:06:31.832Z",
+        "createdAt": "2026-11-20T20:06:31.832Z",
+        "usedAt": "2026-11-20T20:06:31.834Z"
+      }
+    ],
+    [
+      "7f849094bc720b0252b6a9b2c5d46636ffc7689539363f9d9f9654a0d133931a",
+      {
+        "tokenHash": "7f849094bc720b0252b6a9b2c5d46636ffc7689539363f9d9f9654a0d133931a",
+        "userId": "usr-reviewer-01",
+        "expiresAt": "2026-11-20T21:07:23.698Z",
+        "createdAt": "2026-11-20T20:07:23.698Z",
+        "usedAt": "2026-11-20T20:07:23.699Z"
+      }
+    ],
+    [
+      "3183d2a0f2cdeeabea709fb466ae16350b0f6b985ca2ad3b25c6cf5b36e48c84",
+      {
+        "tokenHash": "3183d2a0f2cdeeabea709fb466ae16350b0f6b985ca2ad3b25c6cf5b36e48c84",
+        "userId": "usr-reviewer-01",
+        "expiresAt": "2026-11-20T21:08:14.541Z",
+        "createdAt": "2026-11-20T20:08:14.541Z",
+        "usedAt": "2026-11-20T20:08:14.542Z"
+      }
+    ],
+    [
+      "96ce7a7e97d07589cb1274527942ea37f387efb518463c66eb4176bc4def9c4e",
+      {
+        "tokenHash": "96ce7a7e97d07589cb1274527942ea37f387efb518463c66eb4176bc4def9c4e",
+        "userId": "usr-reviewer-01",
+        "expiresAt": "2026-11-20T21:08:34.432Z",
+        "createdAt": "2026-11-20T20:08:34.432Z",
+        "usedAt": "2026-11-20T20:08:34.433Z"
+      }
+    ],
+    [
+      "9378d2d488bcd0e3d54fc53e704b90785d655351d9cd0533061016d905dadf53",
+      {
+        "tokenHash": "9378d2d488bcd0e3d54fc53e704b90785d655351d9cd0533061016d905dadf53",
+        "userId": "usr-reviewer-01",
+        "expiresAt": "2026-11-20T21:09:01.691Z",
+        "createdAt": "2026-11-20T20:09:01.691Z",
+        "usedAt": "2026-11-20T20:09:01.693Z"
+      }
+    ],
+    [
+      "eeee07d8f4ccc9f18737014c1ee54837e718b49318be27a5241fddc35aafdd72",
+      {
+        "tokenHash": "eeee07d8f4ccc9f18737014c1ee54837e718b49318be27a5241fddc35aafdd72",
+        "userId": "usr-reviewer-01",
+        "expiresAt": "2026-11-20T21:09:40.101Z",
+        "createdAt": "2026-11-20T20:09:40.101Z",
+        "usedAt": "2026-11-20T20:09:40.102Z"
+      }
     ]
   ],
-  "persistedAt": "2026-11-20T19:55:12.014Z"
+  "persistedAt": "2026-11-20T20:09:40.535Z"
 }

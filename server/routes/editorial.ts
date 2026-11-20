@@ -7,6 +7,7 @@ import { requireRole, requireEditorialAccess } from '../middleware/rbac';
 import { submissionLimiter } from '../middleware/rateLimiter';
 import { StorageService } from '../services/storageService';
 import { AuditService } from '../services/auditService';
+import { EmailService } from '../services/emailService';
 import fs from 'fs';
 
 export const editorialRouter = Router();
@@ -184,6 +185,17 @@ editorialRouter.patch('/submissions/:id/status', requireAuth, requireEditorialAc
   manuscript.status = newStatus;
   manuscript.updatedAt = new Date().toISOString().split('T')[0];
   repository.manuscripts.set(id, manuscript);
+
+  // Send formal editorial decision notice to corresponding author
+  if (manuscript.authorEmail) {
+    await EmailService.sendEditorialNotificationEmail(
+      manuscript.authorEmail,
+      manuscript.id,
+      manuscript.title,
+      newStatus,
+      result.data.notes
+    );
+  }
 
   await AuditService.log({
     userId: req.user!.id,

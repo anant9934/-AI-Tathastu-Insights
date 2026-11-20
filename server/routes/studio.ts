@@ -1,12 +1,19 @@
 import { Router, Request, Response } from 'express';
 import { z } from 'zod';
+import multer from 'multer';
 import { repository, ContentType, ContentStatus } from '../db/repository';
 import { requireAuth } from '../middleware/auth';
 import { requireRole } from '../middleware/rbac';
 import { AuditService } from '../services/auditService';
 import { DoiService } from '../services/doiService';
+import { StorageService } from '../services/storageService';
 
 export const studioRouter = Router();
+
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 50 * 1024 * 1024 },
+});
 
 function getParam(req: Request, key: string): string {
   const val = req.params[key];
@@ -283,6 +290,150 @@ studioRouter.put(
     } catch (err: any) {
       return res.status(400).json({ error: 'UpdateFailed', message: err.message });
     }
+  }
+);
+
+studioRouter.patch(
+  '/products/:id',
+  requireRole(['super_admin', 'admin']),
+  async (req: Request, res: Response) => {
+    const id = getParam(req, 'id');
+    try {
+      const product = repository.updateProduct(id, req.body, req.user!.id);
+      await AuditService.log({
+        userId: req.user!.id,
+        action: 'product:patch',
+        resourceType: 'product',
+        resourceId: product.id,
+        details: { name: product.name, status: product.status },
+      });
+      return res.json(product);
+    } catch (err: any) {
+      return res.status(400).json({ error: 'UpdateFailed', message: err.message });
+    }
+  }
+);
+
+// Review & Approval Workflow for Products
+studioRouter.patch(
+  '/products/:id/review',
+  requireRole(['super_admin', 'editor', 'research_editor']),
+  async (req: Request, res: Response) => {
+    const id = getParam(req, 'id');
+    const { status, notes } = req.body; // 'approved' | 'revision_requested' | 'rejected'
+    const product = repository.getProductById(id) || repository.getProductBySlug(id);
+    if (!product) {
+      return res.status(404).json({ error: 'NotFound', message: 'Product not found' });
+    }
+
+    try {
+      const updated = repository.updateProduct(
+        product.id,
+        {
+          editorialStatus: status || 'approved',
+          reviewNotes: notes,
+          approvedBy: req.user!.id,
+        },
+        req.user!.id
+      );
+
+      await AuditService.log({
+        userId: req.user!.id,
+        action: 'product:reviewed',
+        resourceType: 'product',
+        resourceId: product.id,
+        details: { decision: status || 'approved', reviewer: req.user!.name, notes },
+      });
+
+      return res.json(updated);
+    } catch (err: any) {
+      return res.status(400).json({ error: 'ReviewFailed', message: err.message });
+    }
+  }
+);
+
+// Publish Product Workflow
+studioRouter.patch(
+  '/products/:id/publish',
+  requireRole(['super_admin', 'admin']),
+  async (req: Request, res: Response) => {
+    const id = getParam(req, 'id');
+    const product = repository.getProductById(id) || repository.getProductBySlug(id);
+    if (!product) {
+      return res.status(404).json({ error: 'NotFound', message: 'Product not found' });
+    }
+
+    try {
+      const updated = repository.updateProduct(
+        product.id,
+        {
+          isPublished: true,
+          editorialStatus: 'published',
+        },
+        req.user!.id
+      );
+
+      await AuditService.log({
+        userId: req.user!.id,
+        action: 'product:publish',
+        resourceType: 'product',
+        resourceId: product.id,
+        details: { name: product.name },
+      });
+
+      return res.json(updated);
+    } catch (err: any) {
+      return res.status(400).json({ error: 'PublishFailed', message: err.message });
+    }
+  }
+);
+
+// Unpublish Product Workflow
+studioRouter.patch(
+  '/products/:id/unpublish',
+  requireRole(['super_admin', 'admin']),
+  async (req: Request, res: Response) => {
+    const id = getParam(req, 'id');
+    const product = repository.getProductById(id) || repository.getProductBySlug(id);
+    if (!product) {
+      return res.status(404).json({ error: 'NotFound', message: 'Product not found' });
+    }
+
+    try {
+      const updated = repository.updateProduct(
+        product.id,
+        {
+          isPublished: false,
+          editorialStatus: 'draft',
+        },
+        req.user!.id
+      );
+
+      await AuditService.log({
+        userId: req.user!.id,
+        action: 'product:unpublish',
+        resourceType: 'product',
+        resourceId: product.id,
+        details: { name: product.name },
+      });
+
+      return res.json(updated);
+    } catch (err: any) {
+      return res.status(400).json({ error: 'UnpublishFailed', message: err.message });
+    }
+  }
+);
+
+// Product Version History
+studioRouter.get(
+  '/products/:id/versions',
+  (req: Request, res: Response) => {
+    const id = getParam(req, 'id');
+    const product = repository.getProductById(id) || repository.getProductBySlug(id);
+    if (!product) {
+      return res.status(404).json({ error: 'NotFound', message: 'Product not found' });
+    }
+    return res.json(product.versions || []);
   }
 );
 
@@ -569,6 +720,73 @@ studioRouter.get(
     const { format, q } = req.query;
     const list = repository.listMediaAssets({ format: format as string, q: q as string });
     return res.json(list);
+  }
+);
+
+// Multipart Media File Upload (Images, Screenshots, Videos, Documents)
+studioRouter.post(
+  '/media/upload',
+  requireRole(['super_admin', 'admin', 'media_manager', 'editor', 'author']),
+  upload.single('file'),
+  async (req: Request, res: Response) => {
+    try {
+      if (!req.file) {
+        return res.status(400).json({ error: 'MissingFile', message: 'No file provided in form field "file"' });
+      }
+
+      const uploadResult = await StorageService.saveUploadedFile(
+        req.file.buffer,
+        req.file.originalname,
+        req.file.mimetype,
+        'media'
+      );
+
+      const format = uploadResult.mimeType.startsWith('image/')
+        ? ('image' as const)
+        : uploadResult.mimeType.startsWith('video/')
+        ? ('video' as const)
+        : uploadResult.mimeType.startsWith('audio/')
+        ? ('audio' as const)
+        : ('pdf' as const);
+
+      const asset = repository.createMediaAsset(
+        {
+          title: req.body.title || req.file.originalname,
+          originalFilename: req.file.originalname,
+          altText: req.body.altText || req.file.originalname,
+          caption: req.body.caption,
+          coverImageUrl: uploadResult.fileUrl,
+          fileUrl: uploadResult.fileUrl,
+          format,
+          fileType: uploadResult.mimeType,
+          fileSizeBytes: uploadResult.sizeBytes,
+          width: uploadResult.width,
+          height: uploadResult.height,
+          durationSeconds: uploadResult.durationSeconds || 0,
+          durationLabel: uploadResult.durationSeconds ? `${uploadResult.durationSeconds}s` : '0:00',
+          speaker: req.body.speaker || '',
+          speakerRole: req.body.speakerRole || '',
+          description: req.body.description || '',
+          isStreamAvailable: format === 'video' || format === 'audio',
+        },
+        req.user!.id
+      );
+
+      await AuditService.log({
+        userId: req.user!.id,
+        action: 'media:upload_file',
+        resourceType: 'media_asset',
+        resourceId: asset.id,
+        details: { filename: req.file.originalname, url: uploadResult.fileUrl, provider: uploadResult.storageProvider },
+      });
+
+      return res.status(201).json({
+        upload: uploadResult,
+        asset,
+      });
+    } catch (err: any) {
+      return res.status(400).json({ error: 'UploadError', message: err.message });
+    }
   }
 );
 

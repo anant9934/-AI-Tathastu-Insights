@@ -1,6 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import crypto from 'crypto';
+import { AuditService } from './auditService';
 
 export interface UploadResult {
   fileUrl: string;
@@ -12,6 +13,17 @@ export interface UploadResult {
   width?: number;
   height?: number;
   durationSeconds?: number;
+  publicId?: string;
+  createdAt: string;
+}
+
+export interface CloudinaryDiagnostic {
+  configured: boolean;
+  cloudName?: string;
+  apiKeyPresent: boolean;
+  apiSecretPresent: boolean;
+  canUpload: boolean;
+  message: string;
 }
 
 export class StorageService {
@@ -25,6 +37,45 @@ export class StorageService {
     if (!fs.existsSync(this.mediaDir)) fs.mkdirSync(this.mediaDir, { recursive: true });
   }
 
+  /**
+   * Diagnostic check of Cloudinary environment credentials
+   */
+  public static async testCloudinaryConnection(): Promise<CloudinaryDiagnostic> {
+    const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
+    const apiKey = process.env.CLOUDINARY_API_KEY;
+    const apiSecret = process.env.CLOUDINARY_API_SECRET;
+
+    const apiKeyPresent = !!apiKey && !apiKey.includes('YOUR_');
+    const apiSecretPresent = !!apiSecret && !apiSecret.includes('YOUR_');
+    const cloudNamePresent = !!cloudName && !cloudName.includes('YOUR_') && cloudName !== 'replace_me';
+
+    const configured = cloudNamePresent && apiKeyPresent && apiSecretPresent;
+
+    return {
+      configured,
+      cloudName: cloudName || undefined,
+      apiKeyPresent,
+      apiSecretPresent,
+      canUpload: configured,
+      message: configured
+        ? `Cloudinary storage target active: https://res.cloudinary.com/${cloudName}`
+        : 'Cloudinary environment variables not configured with authenticated credentials. Utilizing local persistent disk storage with cryptographic SHA256 integrity.',
+    };
+  }
+
+  /**
+   * Generate official Cloudinary SHA1 signature
+   * signature = SHA1(sorted_params + api_secret)
+   */
+  private static generateCloudinarySignature(params: Record<string, string | number>, apiSecret: string): string {
+    const sortedKeys = Object.keys(params).sort();
+    const toSign = sortedKeys.map((key) => `${key}=${params[key]}`).join('&') + apiSecret;
+    return crypto.createHash('sha1').update(toSign).digest('hex');
+  }
+
+  /**
+   * Upload file with strict type and size validation
+   */
   public static async saveUploadedFile(
     fileBuffer: Buffer,
     originalName: string,
@@ -76,32 +127,84 @@ export class StorageService {
 
     // 3. Compute SHA-256 integrity hash
     const hashSha256 = crypto.createHash('sha256').update(fileBuffer).digest('hex');
+    const now = new Date().toISOString();
 
-    // 4. Check if Cloudinary is configured via environment
-    if (
-      process.env.CLOUDINARY_URL ||
-      (process.env.CLOUDINARY_API_KEY && process.env.CLOUDINARY_API_SECRET && process.env.CLOUDINARY_CLOUD_NAME)
-    ) {
-      const cloudName = process.env.CLOUDINARY_CLOUD_NAME || 'tathastu-insights-prod';
-      const cleanName = encodeURIComponent(originalName.replace(/[^a-zA-Z0-9.-]/g, '_'));
-      const resourceType = mimeType.startsWith('video/') ? 'video' : mimeType.startsWith('image/') ? 'image' : 'raw';
-      
-      // Signed/Optimized Cloudinary URL
-      const fileUrl = `https://res.cloudinary.com/${cloudName}/${resourceType}/upload/q_auto,f_auto/v1/${hashSha256}/${cleanName}`;
+    // 4. Authenticated Cloudinary Upload Integration
+    const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
+    const apiKey = process.env.CLOUDINARY_API_KEY;
+    const apiSecret = process.env.CLOUDINARY_API_SECRET;
 
-      return {
-        fileUrl,
-        originalName,
-        mimeType,
-        sizeBytes: fileBuffer.length,
-        hashSha256,
-        storageProvider: 'cloudinary',
-      };
+    const hasCloudinary =
+      cloudName &&
+      apiKey &&
+      apiSecret &&
+      !apiKey.includes('YOUR_') &&
+      !apiSecret.includes('YOUR_');
+
+    if (hasCloudinary) {
+      const resourceType = mimeType.startsWith('video/')
+        ? 'video'
+        : mimeType.startsWith('image/')
+        ? 'image'
+        : 'raw';
+
+      const timestamp = Math.floor(Date.now() / 1000);
+      const publicId = `tathastu/${category}/${hashSha256.slice(0, 16)}`;
+
+      const signature = this.generateCloudinarySignature(
+        { public_id: publicId, timestamp },
+        apiSecret
+      );
+
+      try {
+        const formData = new FormData();
+        const base64Data = `data:${mimeType};base64,${fileBuffer.toString('base64')}`;
+        formData.append('file', base64Data);
+        formData.append('api_key', apiKey);
+        formData.append('timestamp', timestamp.toString());
+        formData.append('public_id', publicId);
+        formData.append('signature', signature);
+
+        const uploadUrl = `https://api.cloudinary.com/v1_1/${cloudName}/${resourceType}/upload`;
+        const res = await fetch(uploadUrl, {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (res.ok) {
+          const json = await res.json();
+          await AuditService.log({
+            action: 'media:cloudinary_uploaded',
+            resourceType: 'media_asset',
+            resourceId: publicId,
+            details: { url: json.secure_url, format: json.format, sizeBytes: fileBuffer.length },
+          });
+
+          return {
+            fileUrl: json.secure_url,
+            originalName,
+            mimeType,
+            sizeBytes: fileBuffer.length,
+            hashSha256,
+            storageProvider: 'cloudinary',
+            publicId: json.public_id,
+            width: json.width,
+            height: json.height,
+            durationSeconds: json.duration,
+            createdAt: now,
+          };
+        } else {
+          const errText = await res.text();
+          console.warn(`[StorageService] Cloudinary API returned ${res.status}: ${errText}. Falling back to persistent disk store.`);
+        }
+      } catch (err: any) {
+        console.warn(`[StorageService] Cloudinary upload error: ${err.message}. Falling back to persistent disk store.`);
+      }
     }
 
-    // 5. Local Persistent Disk Storage
+    // 5. Persistent Local Disk Storage
     const targetDir = category === 'manuscript' ? this.manuscriptsDir : this.mediaDir;
-    const safeExt = path.extname(originalName).toLowerCase() || (mimeType.startsWith('image/') ? '.jpg' : '.bin');
+    const safeExt = path.extname(originalName).toLowerCase() || (mimeType.startsWith('image/') ? '.png' : '.bin');
     const safeFilename = `${Date.now()}-${hashSha256.slice(0, 16)}${safeExt}`;
     const targetPath = path.join(targetDir, safeFilename);
 
@@ -112,6 +215,13 @@ export class StorageService {
         ? `/api/editorial/manuscripts/files/${safeFilename}`
         : `/uploads/media/${safeFilename}`;
 
+    await AuditService.log({
+      action: 'media:disk_saved',
+      resourceType: 'media_asset',
+      resourceId: safeFilename,
+      details: { path: targetPath, mimeType, sizeBytes: fileBuffer.length },
+    });
+
     return {
       fileUrl: publicUrl,
       originalName,
@@ -119,14 +229,40 @@ export class StorageService {
       sizeBytes: fileBuffer.length,
       hashSha256,
       storageProvider: 'local_secure',
+      publicId: safeFilename,
+      createdAt: now,
     };
   }
 
+  /**
+   * Delete uploaded file
+   */
   public static async deleteUploadedFile(fileUrl: string): Promise<boolean> {
     try {
-      if (fileUrl.startsWith('https://res.cloudinary.com')) {
-        // Cloudinary deletion handled via API
-        return true;
+      const cloudName = process.env.CLOUDINARY_CLOUD_NAME;
+      const apiKey = process.env.CLOUDINARY_API_KEY;
+      const apiSecret = process.env.CLOUDINARY_API_SECRET;
+
+      if (fileUrl.startsWith('https://res.cloudinary.com') && cloudName && apiKey && apiSecret) {
+        // Parse public_id from Cloudinary URL
+        const urlParts = fileUrl.split('/upload/');
+        if (urlParts.length > 1) {
+          const afterUpload = urlParts[1].replace(/^v\d+\//, ''); // strip version prefix
+          const publicIdWithExt = afterUpload.split('.')[0]; // strip extension
+
+          const timestamp = Math.floor(Date.now() / 1000);
+          const signature = this.generateCloudinarySignature({ public_id: publicIdWithExt, timestamp }, apiSecret);
+
+          const formData = new FormData();
+          formData.append('public_id', publicIdWithExt);
+          formData.append('api_key', apiKey);
+          formData.append('timestamp', timestamp.toString());
+          formData.append('signature', signature);
+
+          const destroyUrl = `https://api.cloudinary.com/v1_1/${cloudName}/image/destroy`;
+          await fetch(destroyUrl, { method: 'POST', body: formData });
+          return true;
+        }
       }
 
       const basename = path.basename(fileUrl);

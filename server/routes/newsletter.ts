@@ -4,6 +4,7 @@ import crypto from 'crypto';
 import { repository, SubscriberRecord } from '../db/repository';
 import { newsletterLimiter } from '../middleware/rateLimiter';
 import { AuditService } from '../services/auditService';
+import { EmailService } from '../services/emailService';
 
 export const newsletterRouter = Router();
 
@@ -50,20 +51,23 @@ newsletterRouter.post('/subscribe', newsletterLimiter, async (req: Request, res:
 
   repository.subscribers.set(record.email, record);
 
+  // Dispatch double opt-in confirmation email
+  const emailDispatch = await EmailService.sendNewsletterConfirmationEmail(record.email, confirmationToken);
+
   await AuditService.log({
     action: 'newsletter:subscribe',
     resourceType: 'newsletter',
     resourceId: record.email,
-    details: { consentRecordedAt: now, doubleOptInToken: confirmationToken },
+    details: { consentRecordedAt: now, doubleOptInToken: confirmationToken, emailStatus: emailDispatch.status },
     ipAddress: req.ip,
     userAgent: req.headers['user-agent'],
   });
 
   return res.status(201).json({
-    message: 'Subscription registered with verified double opt-in consent. Outbound email dispatch pending production mail delivery provider integration.',
+    message: 'Subscription registered with verified double opt-in consent.',
     email: record.email,
     status: 'subscribed',
-    deliveryStatus: 'pending_mail_provider_integration',
+    deliveryStatus: emailDispatch.status,
     confirmationToken,
   });
 });
@@ -107,6 +111,9 @@ newsletterRouter.post('/unsubscribe', async (req: Request, res: Response) => {
   if (subscriber) {
     subscriber.unsubscribedAt = new Date().toISOString();
     repository.subscribers.set(subscriber.email, subscriber);
+
+    // Dispatch unsubscribe receipt email
+    await EmailService.sendUnsubscribeConfirmationEmail(subscriber.email);
 
     await AuditService.log({
       action: 'newsletter:unsubscribe',

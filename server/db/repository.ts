@@ -111,6 +111,7 @@ export interface MediaAssetRecord {
   speakerRole: string;
   description: string;
   coverImageUrl: string;
+  fileUrl?: string;
   streamUrl?: string;
   isStreamAvailable: boolean;
   transcriptText?: string;
@@ -204,6 +205,13 @@ export interface ContentVersionRecord {
   createdAt: string;
 }
 
+export interface ProductVersionRecord {
+  version: string;
+  data: Partial<ProductRecord>;
+  savedAt: string;
+  savedBy: string;
+}
+
 export interface ProductRecord {
   id: string;
   slug: string;
@@ -218,6 +226,10 @@ export interface ProductRecord {
   status: 'Live Platform' | 'Beta Lab' | 'Prototype' | 'In Development' | 'Active Development' | 'Planned' | 'Discontinued';
   provenanceLabel: string;
   version: string;
+  editorialStatus?: 'draft' | 'in_review' | 'approved' | 'published' | 'archived';
+  reviewNotes?: string;
+  approvedBy?: string;
+  versions?: ProductVersionRecord[];
   problemSolved: string;
   whyExists: string;
   targetAudience: string;
@@ -480,7 +492,7 @@ class MemoryStore {
     }
   }
 
-  private loadFromDisk(): boolean {
+  public loadFromDisk(): boolean {
     try {
       if (fs.existsSync(this.diskStoragePath)) {
         const raw = fs.readFileSync(this.diskStoragePath, 'utf8');
@@ -503,6 +515,22 @@ class MemoryStore {
         if (state.subscribers) this.subscribers = new Map(state.subscribers);
         if (state.revokedTokens) this.revokedTokens = new Map(state.revokedTokens);
         if (state.passwordResetTokens) this.passwordResetTokens = new Map(state.passwordResetTokens);
+
+        // Ensure all 7 system roles exist even if loaded from older snapshot
+        if (!this.users.has('usr-contrib-01')) {
+          const salt = bcrypt.genSaltSync(12);
+          this.users.set('usr-contrib-01', {
+            id: 'usr-contrib-01',
+            email: 'contributor@community.org',
+            passwordHash: bcrypt.hashSync('TathastuContributor2026!', salt),
+            name: 'Arun Kumar',
+            roleId: 'contributor',
+            affiliation: 'Independent Community Researcher',
+            isActive: true,
+            createdAt: '2026-03-10T00:00:00Z',
+          });
+        }
+
         return true;
       }
     } catch (err: any) {
@@ -584,6 +612,16 @@ class MemoryStore {
         affiliation: 'Iris Vision Labs',
         isActive: true,
         createdAt: '2026-03-01T00:00:00Z',
+      },
+      {
+        id: 'usr-contrib-01',
+        email: 'contributor@community.org',
+        passwordHash: hash('TathastuContributor2026!'),
+        name: 'Arun Kumar',
+        roleId: 'contributor',
+        affiliation: 'Independent Community Researcher',
+        isActive: true,
+        createdAt: '2026-03-10T00:00:00Z',
       },
     ];
 
@@ -1873,7 +1911,11 @@ class MemoryStore {
       displayOrder: data.displayOrder ?? (this.products.size + 1),
       seoTitle: data.seoTitle || data.name,
       seoDescription: data.seoDescription || data.shortDescription,
-      isPublished: data.isPublished !== undefined ? data.isPublished : true,
+      isPublished: data.isPublished !== undefined ? data.isPublished : false,
+      editorialStatus: data.editorialStatus || (data.isPublished ? 'published' : 'draft'),
+      reviewNotes: data.reviewNotes,
+      approvedBy: data.approvedBy,
+      versions: data.versions || [],
       createdAt: now,
       updatedAt: now,
     };
@@ -1888,9 +1930,28 @@ class MemoryStore {
     if (!existing) throw new Error(`Product with ID ${id} not found`);
 
     const now = new Date().toISOString();
+    const versions = existing.versions ? [...existing.versions] : [];
+
+    // Archive previous snapshot into version history
+    versions.unshift({
+      version: existing.version,
+      data: {
+        name: existing.name,
+        shortDescription: existing.shortDescription,
+        status: existing.status,
+        version: existing.version,
+        isPublished: existing.isPublished,
+        editorialStatus: existing.editorialStatus,
+        screenshots: [...existing.screenshots],
+      },
+      savedAt: existing.updatedAt || existing.createdAt,
+      savedBy: userId,
+    });
+
     const updated: ProductRecord = {
       ...existing,
       ...updates,
+      versions,
       updatedAt: now,
     };
 
@@ -2187,9 +2248,10 @@ class MemoryStore {
       speaker: data.speaker || '',
       speakerRole: data.speakerRole || '',
       description: data.description || '',
-      coverImageUrl: data.coverImageUrl || '',
-      streamUrl: data.streamUrl || '',
-      isStreamAvailable: !!data.isStreamAvailable,
+      coverImageUrl: data.coverImageUrl || data.fileUrl || '',
+      fileUrl: data.fileUrl || data.coverImageUrl || '',
+      streamUrl: data.streamUrl || (data.format === 'video' || data.format === 'audio' ? data.fileUrl : ''),
+      isStreamAvailable: !!data.isStreamAvailable || (data.format === 'video' || data.format === 'audio'),
       transcriptText: data.transcriptText,
       altText: data.altText,
       caption: data.caption,

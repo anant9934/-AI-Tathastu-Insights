@@ -6,6 +6,7 @@ import { repository } from '../db/repository';
 import { AuthService, requireAuth } from '../middleware/auth';
 import { authLimiter } from '../middleware/rateLimiter';
 import { AuditService } from '../services/auditService';
+import { EmailService } from '../services/emailService';
 
 export const authRouter = Router();
 
@@ -246,6 +247,9 @@ authRouter.post('/forgot-password', authLimiter, async (req: Request, res: Respo
 
     repository.createPasswordResetToken(user.id, tokenHash, expiresAt);
     devResetToken = rawToken;
+
+    // Dispatches password reset email via configured transactional provider
+    await EmailService.sendPasswordResetEmail(user.email, rawToken, user.name);
 
     await AuditService.log({
       userId: user.id,
