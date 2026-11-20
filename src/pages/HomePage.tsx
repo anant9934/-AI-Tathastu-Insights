@@ -1,6 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { ArrowRight, Sparkles, BookOpen, Layers, ArrowUpRight, ShieldCheck, Cpu, Flame, Compass } from 'lucide-react';
+import { 
+  ArrowRight, 
+  Sparkles, 
+  BookOpen, 
+  Layers, 
+  ArrowUpRight, 
+  ShieldCheck, 
+  Cpu, 
+  Flame, 
+  Compass,
+  GraduationCap,
+  Users,
+  Award,
+  Eye,
+  Check
+} from 'lucide-react';
 import { Article, ResearchPaper, EcosystemProduct } from '../types';
 import { StoryCard } from '../components/cards/StoryCard';
 import { ResearchCard } from '../components/cards/ResearchCard';
@@ -37,6 +52,8 @@ export const HomePage: React.FC<HomePageProps> = ({
   bookmarkedIds,
   onToggleBookmark,
 }) => {
+  const [newsletterEmail, setNewsletterEmail] = useState('');
+  const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
   const shouldReduceMotion = useReducedMotion();
   const featuredArticle = articles.find((a) => a.isFeatured) || articles[0];
   const secondaryArticles = articles.filter((a) => a.id !== featuredArticle.id);
@@ -289,68 +306,113 @@ export const HomePage: React.FC<HomePageProps> = ({
       </section>
 
       {/* 5. ECOSYSTEM SPOTLIGHT WITH DISTINCT PRODUCT TREATMENTS */}
-      <section className="bg-foundation-ink text-white dark:bg-dark-surface py-16 sm:py-20 rounded-3xl mx-4 sm:mx-6 lg:mx-8 px-6 sm:px-10 lg:px-14 border border-foundation-border/20 dark:border-dark-border">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="max-w-3xl mb-12">
-            <span className="type-meta text-accent-lavender tracking-wider uppercase block mb-2">
-              The Tathastu Platform
-            </span>
-            <h2 className="type-section-heading text-white font-normal">
-              Applied Laboratories &amp; Research Systems
-            </h2>
-            <p className="mt-4 type-body text-white/70 leading-relaxed">
-              Our research is married to living software. Discover how our open-source platforms turn theoretical interpretability, swarm consensus, and spatial vision into accessible infrastructure.
-            </p>
+          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-foundation-border dark:border-dark-border pb-6 mb-8 gap-4">
+            <div className="max-w-2xl">
+              <span className="type-meta text-accent-violet block uppercase mb-1">
+                The Tathastu Platform
+              </span>
+              <h2 className="type-section-heading text-foundation-ink dark:text-dark-text font-normal">
+                Applied Laboratories &amp; Research Systems
+              </h2>
+              <p className="mt-2 type-body text-foundation-secondary dark:text-dark-muted leading-relaxed">
+                Our research is married to living software. Discover how our open-source platforms turn theoretical interpretability, swarm consensus, and spatial vision into accessible community infrastructure.
+              </p>
+            </div>
+            <AnimatedButton
+              variant="outline"
+              size="sm"
+              onClick={() => onNavigate('ecosystem')}
+              icon={<ArrowRight className="w-3.5 h-3.5" />}
+            >
+              Explore Full Architecture
+            </AnimatedButton>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {ecosystemProducts.map((product) => {
-              const borderAccent = {
-                mentormaze: 'hover:border-accent-violet',
-                collaborate: 'hover:border-accent-blue',
-                avsar: 'hover:border-accent-terracotta',
-                iris: 'hover:border-accent-mint',
-              }[product.id] || 'hover:border-white/40';
+              const productConfig: Record<string, {
+                borderClass: string;
+                iconBg: string;
+                iconColor: string;
+                badgeClass: string;
+                icon: React.ReactNode;
+              }> = {
+                mentormaze: {
+                  borderClass: 'border-accent-violet/30 hover:border-accent-violet',
+                  iconBg: 'bg-surface-lavender dark:bg-accent-violet/20',
+                  iconColor: 'text-accent-violet',
+                  badgeClass: 'bg-surface-lavender text-accent-violet',
+                  icon: <GraduationCap className="w-5 h-5 text-accent-violet" />,
+                },
+                collaborate: {
+                  borderClass: 'border-accent-blue/30 hover:border-accent-blue',
+                  iconBg: 'bg-surface-softblue dark:bg-accent-blue/20',
+                  iconColor: 'text-accent-blue',
+                  badgeClass: 'bg-surface-softblue text-accent-blue',
+                  icon: <Users className="w-5 h-5 text-accent-blue" />,
+                },
+                avsar: {
+                  borderClass: 'border-accent-terracotta/30 hover:border-accent-terracotta',
+                  iconBg: 'bg-surface-peach dark:bg-accent-terracotta/20',
+                  iconColor: 'text-accent-terracotta',
+                  badgeClass: 'bg-surface-peach text-accent-terracotta',
+                  icon: <Award className="w-5 h-5 text-accent-terracotta" />,
+                },
+                iris: {
+                  borderClass: 'border-accent-mint/30 hover:border-accent-mint',
+                  iconBg: 'bg-surface-softmint dark:bg-accent-mint/20',
+                  iconColor: 'text-accent-mint',
+                  badgeClass: 'bg-surface-softmint text-accent-mint',
+                  icon: <Eye className="w-5 h-5 text-accent-mint" />,
+                },
+              };
+
+              const config = productConfig[product.id] || {
+                borderClass: 'border-foundation-border hover:border-foundation-ink',
+                iconBg: 'bg-foundation-paper',
+                iconColor: 'text-foundation-ink',
+                badgeClass: 'bg-foundation-paper text-foundation-secondary',
+                icon: <Layers className="w-5 h-5" />,
+              };
 
               return (
                 <div
                   key={product.id}
                   onClick={() => onExploreEcosystem(product)}
-                  className={`p-6 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer group flex flex-col justify-between ${borderAccent}`}
+                  className={`p-6 rounded-2xl bg-white dark:bg-dark-surface border transition-all cursor-pointer group flex flex-col justify-between hover:shadow-editorial ${config.borderClass}`}
                 >
-                  <div>
-                    <div className="flex items-center justify-between mb-4">
-                      <span className="type-meta text-accent-lavender uppercase">
+                  <div className="space-y-4">
+                    <div className="flex items-center justify-between">
+                      <div className={`w-10 h-10 rounded-xl ${config.iconBg} flex items-center justify-center shrink-0`}>
+                        {config.icon}
+                      </div>
+                      <span className={`type-meta px-2 py-0.5 rounded font-mono uppercase ${config.badgeClass}`}>
                         {product.badge}
                       </span>
-                      <ArrowUpRight className="w-4 h-4 text-white/60 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                     </div>
-                    <h3 className="type-card-heading text-white font-medium mb-2">
-                      {product.name}
-                    </h3>
-                    <p className="text-xs text-white/70 leading-relaxed">
-                      {product.tagline}
-                    </p>
+
+                    <div>
+                      <div className="flex items-center justify-between mb-1">
+                        <h3 className="type-card-heading text-foundation-ink dark:text-dark-text font-medium group-hover:text-accent-violet transition-colors">
+                          {product.name}
+                        </h3>
+                        <ArrowUpRight className="w-4 h-4 text-foundation-secondary group-hover:text-accent-violet group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                      </div>
+                      <p className="type-secondary text-xs text-foundation-secondary dark:text-dark-muted leading-relaxed line-clamp-3">
+                        {product.tagline}
+                      </p>
+                    </div>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-white/10 text-xs font-mono text-white/50">
-                    {product.stats[0]?.label}: <span className="text-white font-medium">{product.stats[0]?.value}</span>
+                  <div className="mt-6 pt-4 border-t border-foundation-border dark:border-dark-border text-xs font-mono text-foundation-secondary dark:text-dark-muted flex justify-between items-center">
+                    <span>{product.stats[0]?.label}</span>
+                    <span className="text-foundation-ink dark:text-dark-text font-semibold">{product.stats[0]?.value}</span>
                   </div>
                 </div>
               );
             })}
-          </div>
-
-          <div className="mt-10 flex justify-end">
-            <AnimatedButton
-              variant="outline"
-              size="md"
-              className="text-white border-white/20 hover:border-white"
-              onClick={() => onNavigate('ecosystem')}
-              icon={<ArrowRight className="w-4 h-4" />}
-            >
-              Explore Full Ecosystem Architecture
-            </AnimatedButton>
           </div>
         </Reveal>
       </section>
@@ -359,13 +421,13 @@ export const HomePage: React.FC<HomePageProps> = ({
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
         <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial">
           <div className="max-w-2xl space-y-3">
-            <span className="type-meta text-accent-violet uppercase tracking-widest block">
+            <span className="type-meta text-accent-violet uppercase tracking-widest block font-medium">
               Fortnightly Peer Dispatch
             </span>
-            <h3 className="type-section-heading text-foundation-ink dark:text-dark-ink">
+            <h3 className="type-section-heading text-foundation-ink dark:text-dark-text font-normal">
               Read verified research before public preprint distribution.
             </h3>
-            <p className="type-secondary leading-relaxed">
+            <p className="type-secondary text-foundation-secondary dark:text-dark-muted leading-relaxed">
               We send concise summaries of verified residual circuits, multi-agent benchmarks, and statutory policy standards every second Tuesday. Zero promotional filler.
             </p>
           </div>
@@ -373,24 +435,37 @@ export const HomePage: React.FC<HomePageProps> = ({
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              alert('Subscribed to Tathastu Dispatch.');
+              setNewsletterSubscribed(true);
+              setTimeout(() => {
+                setNewsletterEmail('');
+                setNewsletterSubscribed(false);
+              }, 4000);
             }}
-            className="mt-6 flex flex-col sm:flex-row gap-3 max-w-xl"
+            className="mt-6 space-y-3 max-w-xl"
           >
-            <input
-              type="email"
-              required
-              placeholder="name@institution.edu"
-              className="flex-1 px-4 py-3 rounded-xl border border-foundation-border dark:border-dark-border bg-foundation-paper dark:bg-dark-elevated text-sm text-foundation-ink dark:text-dark-ink focus:outline-none focus:ring-2 focus:ring-accent-violet"
-            />
-            <AnimatedButton
-              type="submit"
-              variant="primary"
-              size="md"
-              icon={<ArrowRight className="w-4 h-4" />}
-            >
-              Subscribe
-            </AnimatedButton>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <input
+                type="email"
+                required
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                placeholder="name@institution.edu"
+                className="flex-1 px-4 py-3 rounded-xl border border-foundation-border dark:border-dark-border bg-foundation-paper dark:bg-dark-elevated text-sm text-foundation-ink dark:text-dark-text focus:outline-none focus:ring-2 focus:ring-accent-violet transition-all"
+              />
+              <AnimatedButton
+                type="submit"
+                variant="primary"
+                size="md"
+                icon={newsletterSubscribed ? <Check className="w-4 h-4 text-green-300" /> : <ArrowRight className="w-4 h-4" />}
+              >
+                {newsletterSubscribed ? 'Subscribed' : 'Subscribe'}
+              </AnimatedButton>
+            </div>
+            {newsletterSubscribed && (
+              <p className="text-xs font-mono text-green-600 dark:text-green-400">
+                ✓ Dispatch confirmed. Volume 26 will arrive in your institutional inbox.
+              </p>
+            )}
           </form>
         </div>
       </section>

@@ -206,7 +206,7 @@ export const AppContent: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-foundation-ivory text-foundation-charcoal dark:bg-dark-bg dark:text-dark-text transition-colors duration-250">
+    <div className="min-h-screen flex flex-col bg-foundation-paper text-foundation-ink dark:bg-dark-bg dark:text-dark-text transition-colors duration-250">
       {/* Top Navbar */}
       <Navbar
         currentTab={selectedArticle ? 'home' : currentTab}
