@@ -68,9 +68,6 @@ export const HomePage: React.FC<HomePageProps> = ({
   bookmarkedIds,
   onToggleBookmark,
 }) => {
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
-  const [newsletterError, setNewsletterError] = useState('');
   const [copiedBibtexId, setCopiedBibtexId] = useState<string | null>(null);
   const [activeHeroProduct, setActiveHeroProduct] = useState<string>('collaborate');
 
@@ -103,25 +100,6 @@ export const HomePage: React.FC<HomePageProps> = ({
     onCopyBibtex(paper);
     setCopiedBibtexId(paper.id);
     setTimeout(() => setCopiedBibtexId(null), 2500);
-  };
-
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!newsletterEmail || !newsletterEmail.includes('@')) {
-      setNewsletterError('Please provide a valid email address.');
-      return;
-    }
-    setNewsletterError('');
-    try {
-      await api.newsletter.subscribe(newsletterEmail);
-    } catch {
-      // Graceful fallback
-    }
-    setNewsletterSubscribed(true);
-    setTimeout(() => {
-      setNewsletterEmail('');
-      setNewsletterSubscribed(false);
-    }, 4500);
   };
 
   return (
@@ -683,56 +661,6 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
           </div>
         </Reveal>
-      </section>
-
-      {/* =========================================================================
-          SECTION 10 — STAY UPDATED & NEWSLETTER
-          ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
-        <div className="p-8 sm:p-12 rounded-3xl bg-brand-surface dark:bg-dark-surface border border-brand-stone-dark/80 dark:border-dark-border shadow-editorial">
-          <div className="max-w-2xl space-y-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-brand-muted font-semibold block">
-              Stay Updated
-            </span>
-            <h3 className="type-section-heading text-brand-charcoal dark:text-dark-text font-semibold">
-              Get updates as we ship new products and notes.
-            </h3>
-            <p className="text-xs sm:text-sm text-brand-muted dark:text-dark-muted leading-relaxed">
-              We send updates when new product releases, engineering write-ups, or open benchmarks are published. Zero marketing spam.
-            </p>
-          </div>
-
-          <form onSubmit={handleNewsletterSubmit} className="mt-6 space-y-3 max-w-xl">
-            <div className="flex flex-col sm:flex-row gap-3">
-              <input
-                type="email"
-                required
-                value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
-                placeholder="Enter your email"
-                className="flex-1 px-4 py-3 rounded-xl border border-brand-stone-dark dark:border-dark-border bg-brand-canvas dark:bg-dark-elevated text-sm text-brand-charcoal dark:text-dark-text focus:outline-none focus:ring-2 focus:ring-accent-blue transition-all"
-              />
-              <AnimatedButton
-                type="submit"
-                variant="primary"
-                size="md"
-                icon={newsletterSubscribed ? <Check className="w-4 h-4 text-green-300" /> : <ArrowRight className="w-4 h-4" />}
-              >
-                {newsletterSubscribed ? 'Subscribed' : 'Subscribe'}
-              </AnimatedButton>
-            </div>
-            {newsletterSubscribed && (
-              <p className="text-xs font-mono text-green-600 dark:text-green-400">
-                ✓ You're signed up. We'll send updates as new milestones land.
-              </p>
-            )}
-            {newsletterError && (
-              <p className="text-xs font-mono text-red-500">
-                {newsletterError}
-              </p>
-            )}
-          </form>
-        </div>
       </section>
     </div>
   );

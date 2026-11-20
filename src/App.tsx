@@ -449,8 +449,8 @@ export const AppContent: React.FC = () => {
         {renderContent()}
       </main>
 
-      {/* Global Footer */}
-      <Footer onNavigate={handleNavigate} hideNewsletter={currentTab === 'home' && !selectedArticle} />
+      {/* Global Dark Editorial Footer */}
+      <Footer onNavigate={handleNavigate} />
 
       {/* Universal Search Modal */}
       <SearchModal

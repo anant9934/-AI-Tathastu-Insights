@@ -51,7 +51,7 @@ describe('Page Level Verification & User Workflows', () => {
     expect(screen.getByText(/What's new\./i)).toBeInTheDocument();
     expect(screen.getByText(/Media & discussions\./i)).toBeInTheDocument();
     expect(screen.getByText(/Technology should be explained, not obscured\./i)).toBeInTheDocument();
-    expect(screen.getByText(/Get updates as we ship new products and notes\./i)).toBeInTheDocument();
+    expect(screen.getByText(/Read our story and principles/i)).toBeInTheDocument();
   });
 
   it('renders ArticlePage with table of contents, abstract, and references', () => {

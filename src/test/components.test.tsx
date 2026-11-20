@@ -108,4 +108,34 @@ describe('Reusable Motion & UI Components', () => {
     fireEvent.click(closeBtn);
     expect(handleClose).toHaveBeenCalled();
   });
+
+  it('renders dark editorial Footer with Area A newsletter, brand, products, and dispatches navigation', async () => {
+    const handleNavigate = vi.fn();
+    const { Footer } = await import('../components/layout/Footer');
+
+    render(<Footer onNavigate={handleNavigate} />);
+
+    // Area A: Newsletter Feature
+    expect(screen.getByText(/STAY UPDATED/i)).toBeInTheDocument();
+    expect(screen.getByText(/Get updates as we ship new products and research\./i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /subscribe/i })).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/enter your email/i)).toBeInTheDocument();
+
+    // Area B: Products & Navigation
+    expect(screen.getByText(/MentorMaze \(AI Mentorship\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/Collaborate \(Agent Lab\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/Avsar \(Grants & Talent\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/Iris \(Spatial Vision\)/i)).toBeInTheDocument();
+    expect(screen.getByText(/How We Built It/i)).toBeInTheDocument();
+    expect(screen.getByText(/Editorial Studio/i)).toBeInTheDocument();
+
+    // Test product navigation
+    const productBtn = screen.getByText(/MentorMaze \(AI Mentorship\)/i);
+    fireEvent.click(productBtn);
+    expect(handleNavigate).toHaveBeenCalledWith('products');
+
+    // Area C: Copyright & Lab Location
+    expect(screen.getByText(/San Francisco & Global Labs/i)).toBeInTheDocument();
+    expect(screen.getByText(/Open Research & Engineering/i)).toBeInTheDocument();
+  });
 });

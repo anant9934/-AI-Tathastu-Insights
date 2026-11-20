@@ -331,7 +331,7 @@
         "id": "usr-admin-1795207628602",
         "email": "test-provisioned-admin@tathastu.org",
         "name": "Test Admin",
-        "passwordHash": "$2b$12$hpPFLsl.Qxnutl9I9GHM9.O.KtotE6BpDZxre3qD54wX0tnVKq28K",
+        "passwordHash": "$2b$12$LWOK3St4/JfByJrMVeQqlusaQKdfV.7j1r9kii9oFrajWaLiKLDYG",
         "roleId": "super_admin",
         "affiliation": "Frontier Systems & Alignment, AI Tathastu",
         "isActive": true,
@@ -375,6 +375,32 @@
         "affiliation": "Editorial Board",
         "isActive": true,
         "createdAt": "2026-11-20T20:48:39.505Z"
+      }
+    ],
+    [
+      "usr-1795208208737",
+      {
+        "id": "usr-1795208208737",
+        "email": "new-user-1795208208526@tathastu-insights.org",
+        "name": "New Staff Member",
+        "passwordHash": "$2b$12$g2kQ90Qi9zA/aXgpIt5W1Onj17BKWaxUHXaUWwmEFzeFjpcgmgDMe",
+        "roleId": "editor",
+        "affiliation": "Editorial Board",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:56:48.737Z"
+      }
+    ],
+    [
+      "usr-1795208265856",
+      {
+        "id": "usr-1795208265856",
+        "email": "new-user-1795208265645@tathastu-insights.org",
+        "name": "New Staff Member",
+        "passwordHash": "$2b$12$6vIzm8W/HTLRxd6IulVv2eRtFj4DgE7y5o48jbIeV.3GdiuklZQZm",
+        "roleId": "editor",
+        "affiliation": "Editorial Board",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:57:45.856Z"
       }
     ]
   ],
@@ -2510,6 +2536,100 @@
         "uploaderName": "Admin Desk",
         "createdAt": "2026-11-20T20:48:40.070Z"
       }
+    ],
+    [
+      "media-1795208208741",
+      {
+        "id": "media-1795208208741",
+        "title": "Aegis Architecture Diagram",
+        "originalFilename": "media-asset.jpg",
+        "format": "png",
+        "fileType": "image/jpeg",
+        "fileSizeBytes": 1048576,
+        "durationSeconds": 0,
+        "durationLabel": "",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/aegis.png",
+        "fileUrl": "/uploads/media/aegis.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "uploaderId": "usr-media-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:56:48.741Z"
+      }
+    ],
+    [
+      "media-1795208209304",
+      {
+        "id": "media-1795208209304",
+        "title": "Frontier Verification Screenshot",
+        "originalFilename": "frontier-engine-screenshot.png",
+        "format": "image",
+        "fileType": "image/png",
+        "fileSizeBytes": 33,
+        "durationSeconds": 0,
+        "durationLabel": "0:00",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/1795208209303-0329f0e7becb20d4.png",
+        "fileUrl": "/uploads/media/1795208209303-0329f0e7becb20d4.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "altText": "frontier-engine-screenshot.png",
+        "uploaderId": "usr-admin-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:56:49.304Z"
+      }
+    ],
+    [
+      "media-1795208265860",
+      {
+        "id": "media-1795208265860",
+        "title": "Aegis Architecture Diagram",
+        "originalFilename": "media-asset.jpg",
+        "format": "png",
+        "fileType": "image/jpeg",
+        "fileSizeBytes": 1048576,
+        "durationSeconds": 0,
+        "durationLabel": "",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/aegis.png",
+        "fileUrl": "/uploads/media/aegis.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "uploaderId": "usr-media-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:57:45.860Z"
+      }
+    ],
+    [
+      "media-1795208266376",
+      {
+        "id": "media-1795208266376",
+        "title": "Frontier Verification Screenshot",
+        "originalFilename": "frontier-engine-screenshot.png",
+        "format": "image",
+        "fileType": "image/png",
+        "fileSizeBytes": 33,
+        "durationSeconds": 0,
+        "durationLabel": "0:00",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/1795208266375-0329f0e7becb20d4.png",
+        "fileUrl": "/uploads/media/1795208266375-0329f0e7becb20d4.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "altText": "frontier-engine-screenshot.png",
+        "uploaderId": "usr-admin-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:57:46.376Z"
+      }
     ]
   ],
   "staticPages": [
@@ -2919,12 +3039,12 @@
     [
       "researcher@oxford.ac.uk",
       {
-        "id": "sub-cf5c45a81eb325bb",
+        "id": "sub-77de05b695a4b038",
         "email": "researcher@oxford.ac.uk",
         "isConfirmed": true,
-        "confirmationToken": "a999c6c815305c4f9c898cbb7f38bc38c8a109d51cf396ea",
-        "consentRecordedAt": "2026-11-20T20:48:39.516Z",
-        "unsubscribedAt": "2026-11-20T20:48:39.516Z"
+        "confirmationToken": "b048c3daa20967ea0b5380f2c782facccea9abfdeb048523",
+        "consentRecordedAt": "2026-11-20T20:57:45.867Z",
+        "unsubscribedAt": "2026-11-20T20:57:45.868Z"
       }
     ],
     [
@@ -2985,6 +3105,26 @@
         "isConfirmed": true,
         "confirmationToken": "3ccb244cbb5b1e4f7eb25432d21a47d3726eb42aecf01ee3",
         "consentRecordedAt": "2026-11-20T20:48:39.514Z"
+      }
+    ],
+    [
+      "subscriber-1795208208747@oxford.edu",
+      {
+        "id": "sub-93195195d9f5916c",
+        "email": "subscriber-1795208208747@oxford.edu",
+        "isConfirmed": true,
+        "confirmationToken": "c566a3c80c9dfc539656cf756154e0fac93f2f1b971450fa",
+        "consentRecordedAt": "2026-11-20T20:56:48.747Z"
+      }
+    ],
+    [
+      "subscriber-1795208265865@oxford.edu",
+      {
+        "id": "sub-10e24c7a39984e01",
+        "email": "subscriber-1795208265865@oxford.edu",
+        "isConfirmed": true,
+        "confirmationToken": "710e1c9e67a7af55f75e727f15a1ac9bb7806edd3026929e",
+        "consentRecordedAt": "2026-11-20T20:57:45.866Z"
       }
     ]
   ],
@@ -3166,6 +3306,24 @@
         "tokenHash": "8b1cf5fecabbf0ee0bd545d222df3e4f20c75fa76edb9535e2641e7226ef064f",
         "expiresAt": "2026-11-27T20:48:39.287Z",
         "revokedAt": "2026-11-20T20:48:39.287Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "167807548cd283bbc65179c4b1277e8a38bfc9238a3b144825fc198c2d92309e",
+      {
+        "tokenHash": "167807548cd283bbc65179c4b1277e8a38bfc9238a3b144825fc198c2d92309e",
+        "expiresAt": "2026-11-27T20:56:48.524Z",
+        "revokedAt": "2026-11-20T20:56:48.524Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "940fcd79274156d0c0a5b860e8df32db1a5796f565c2148a7a0b426e63d080e3",
+      {
+        "tokenHash": "940fcd79274156d0c0a5b860e8df32db1a5796f565c2148a7a0b426e63d080e3",
+        "expiresAt": "2026-11-27T20:57:45.643Z",
+        "revokedAt": "2026-11-20T20:57:45.643Z",
         "reason": "user_logout"
       }
     ]
@@ -3362,7 +3520,25 @@
         "expiresAt": "2026-11-20T21:48:39.513Z",
         "createdAt": "2026-11-20T20:48:39.513Z"
       }
+    ],
+    [
+      "fa2a15ab2bf748484e99550dc8822262d34a2d960b81624443b3639c3658d2cb",
+      {
+        "tokenHash": "fa2a15ab2bf748484e99550dc8822262d34a2d960b81624443b3639c3658d2cb",
+        "userId": "usr-admin-01",
+        "expiresAt": "2026-11-20T21:56:48.746Z",
+        "createdAt": "2026-11-20T20:56:48.746Z"
+      }
+    ],
+    [
+      "b1adb7dbe5600811264637bc31e9f545ec2586ae2851d580dfb7953d66dad348",
+      {
+        "tokenHash": "b1adb7dbe5600811264637bc31e9f545ec2586ae2851d580dfb7953d66dad348",
+        "userId": "usr-admin-01",
+        "expiresAt": "2026-11-20T21:57:45.864Z",
+        "createdAt": "2026-11-20T20:57:45.865Z"
+      }
     ]
   ],
-  "persistedAt": "2026-11-20T20:48:40.093Z"
+  "persistedAt": "2026-11-20T20:57:46.396Z"
 }
