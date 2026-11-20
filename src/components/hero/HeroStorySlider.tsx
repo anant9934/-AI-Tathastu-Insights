@@ -41,6 +41,7 @@ export interface HeroSlide {
     onClick: () => void;
   };
   previewBadge: string;
+  visualAssetType: string;
 }
 
 interface HeroStorySliderProps {
@@ -80,6 +81,7 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
         onClick: onNavigateEngineering,
       },
       previewBadge: 'Architecture Prototype • 64-Node Mesh',
+      visualAssetType: 'Illustrative Prototype (Simulated Consensus Mesh)',
     },
     {
       id: 'mentormaze',
@@ -98,6 +100,7 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
         onClick: () => onExploreProduct('mentormaze'),
       },
       previewBadge: 'UI Prototype • Socratic Kernel IDE',
+      visualAssetType: 'Illustrative Prototype (Simulated Socratic IDE)',
     },
     {
       id: 'avsar',
@@ -116,6 +119,7 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
         onClick: onNavigateResearch,
       },
       previewBadge: 'Pipeline Prototype • Benchmark Ledger',
+      visualAssetType: 'Illustrative Prototype (Simulated Reproduction Ledger)',
     },
     {
       id: 'iris',
@@ -134,6 +138,7 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
         onClick: () => onExploreProduct('iris'),
       },
       previewBadge: 'Perception HUD Prototype • 3D Voxel Memory',
+      visualAssetType: 'Illustrative Rendering (Simulated 3D Sensory HUD)',
     },
   ];
 
@@ -306,7 +311,15 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
         </div>
 
         {/* Right: Live Interactive Console Viewport with Crossfade */}
-        <div className="lg:col-span-7">
+        <div className="lg:col-span-7 space-y-2">
+          <div className="flex items-center justify-between text-[11px] font-mono text-brand-muted dark:text-dark-muted px-1">
+            <span className="flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent-blue" />
+              <span>Asset: {currentSlide.visualAssetType}</span>
+            </span>
+            <span className="opacity-70">Interactive Simulation View</span>
+          </div>
+
           <AnimatePresence mode="wait">
             <motion.div
               key={currentSlide.id}
