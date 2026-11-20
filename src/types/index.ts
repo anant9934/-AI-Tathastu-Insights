@@ -1,8 +1,11 @@
 export type AccentColor = 
   | 'violet' 
+  | 'blue' 
+  | 'mint' 
+  | 'terracotta' 
+  | 'ochre' 
   | 'lavender' 
   | 'softblue' 
-  | 'mint' 
   | 'sage' 
   | 'peach' 
   | 'coral' 
@@ -49,6 +52,7 @@ export interface Article {
   publishedAt: string;
   readingTimeMinutes: number;
   category: 'Frontier Systems' | 'Interpretability' | 'Safety & Ethics' | 'Cognitive Architectures' | 'Policy & Governance';
+  publicationType?: 'Investigation' | 'Research Paper' | 'Perspective Essay' | 'Technical Report';
   topicTag: string;
   accentColor: AccentColor;
   doi?: string;

@@ -103,8 +103,8 @@ describe('Page Level Verification & User Workflows', () => {
       />
     );
 
-    expect(screen.getByText(/Publisher Console/i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /deposit new manuscript/i })).toBeInTheDocument();
+    expect(screen.getByText(/AI Tathastu Editorial Studio/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /deposit manuscript/i })).toBeInTheDocument();
 
     // Click on Draft Composition Lab tab
     const editorTab = screen.getByRole('button', { name: /draft composition lab/i });
@@ -120,6 +120,7 @@ describe('Page Level Verification & User Workflows', () => {
     render(<AboutPage />);
     expect(screen.getByText(/The Tathastu Editorial Charter/i)).toBeInTheDocument();
     expect(screen.getByText(/Dr. Aravind Nair/i)).toBeInTheDocument();
-    expect(screen.getByText(/Zero Speculative Clichés/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/Preamble & Empirical Mandate/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByRole('button', { name: /cite charter/i })).toBeInTheDocument();
   });
 });

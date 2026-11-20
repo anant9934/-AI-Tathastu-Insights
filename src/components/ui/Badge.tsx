@@ -18,19 +18,24 @@ export const Badge: React.FC<BadgeProps> = ({
   icon,
 }) => {
   const accentStyles: Record<string, string> = {
-    violet: 'bg-accent-lavender text-accent-violet border-accent-violet/20 dark:bg-accent-violet/15 dark:text-accent-lavender dark:border-accent-violet/30',
-    lavender: 'bg-[#F2EDFD] text-[#6943C2] border-[#6943C2]/20 dark:bg-[#6943C2]/20 dark:text-[#E2D5FC]',
-    softblue: 'bg-accent-softblue text-[#205493] border-[#205493]/20 dark:bg-[#205493]/20 dark:text-[#BFDCFC]',
-    mint: 'bg-accent-mint text-[#166534] border-[#166534]/20 dark:bg-[#166534]/20 dark:text-[#BBF7D0]',
-    sage: 'bg-accent-sage text-[#2D5A3C] border-[#2D5A3C]/20 dark:bg-[#2D5A3C]/20 dark:text-[#C7E3CF]',
-    peach: 'bg-accent-peach text-[#9A3412] border-[#9A3412]/20 dark:bg-[#9A3412]/20 dark:text-[#FED7AA]',
-    coral: 'bg-[#FDE8E1] text-[#C2410C] border-[#C2410C]/20 dark:bg-[#C2410C]/20 dark:text-[#FFD8CB]',
-    butter: 'bg-accent-butter text-[#854D0E] border-[#854D0E]/20 dark:bg-[#854D0E]/20 dark:text-[#FEF08A]',
-    neutral: 'bg-foundation-charcoal/5 text-foundation-charcoal dark:bg-white/10 dark:text-dark-text border-foundation-charcoal/10 dark:border-dark-border',
+    // Redesign V2 Semantic Categories
+    violet: 'bg-[#EEE8FA] text-[#7955D5] border-[#7955D5]/25 dark:bg-[#7955D5]/20 dark:text-[#EEE8FA] dark:border-[#7955D5]/40',
+    blue: 'bg-[#E8EFFB] text-[#4775C9] border-[#4775C9]/25 dark:bg-[#4775C9]/20 dark:text-[#E8EFFB] dark:border-[#4775C9]/40',
+    mint: 'bg-[#E4F1E9] text-[#368A70] border-[#368A70]/25 dark:bg-[#368A70]/20 dark:text-[#E4F1E9] dark:border-[#368A70]/40',
+    terracotta: 'bg-[#F8EAE2] text-[#D9785D] border-[#D9785D]/25 dark:bg-[#D9785D]/20 dark:text-[#F8EAE2] dark:border-[#D9785D]/40',
+    ochre: 'bg-[#F5EEDB] text-[#C58B35] border-[#C58B35]/25 dark:bg-[#C58B35]/20 dark:text-[#F5EEDB] dark:border-[#C58B35]/40',
+    // Aliases
+    lavender: 'bg-[#EEE8FA] text-[#7955D5] border-[#7955D5]/25 dark:bg-[#7955D5]/20 dark:text-[#EEE8FA]',
+    softblue: 'bg-[#E8EFFB] text-[#4775C9] border-[#4775C9]/25 dark:bg-[#4775C9]/20 dark:text-[#E8EFFB]',
+    sage: 'bg-[#E4F1E9] text-[#368A70] border-[#368A70]/25 dark:bg-[#368A70]/20 dark:text-[#E4F1E9]',
+    peach: 'bg-[#F8EAE2] text-[#D9785D] border-[#D9785D]/25 dark:bg-[#D9785D]/20 dark:text-[#F8EAE2]',
+    coral: 'bg-[#F8EAE2] text-[#D9785D] border-[#D9785D]/25 dark:bg-[#D9785D]/20 dark:text-[#F8EAE2]',
+    butter: 'bg-[#F5EEDB] text-[#C58B35] border-[#C58B35]/25 dark:bg-[#C58B35]/20 dark:text-[#F5EEDB]',
+    neutral: 'bg-foundation-paper text-foundation-secondary dark:bg-white/5 dark:text-dark-secondary border-foundation-border dark:border-dark-border',
   };
 
   const sizeStyles = {
-    xs: 'text-[10px] px-2 py-0.5 rounded font-mono',
+    xs: 'text-[11px] px-2 py-0.5 rounded font-mono',
     sm: 'text-xs px-2.5 py-1 rounded-full font-medium',
     md: 'text-xs px-3 py-1.5 rounded-full font-medium',
   };

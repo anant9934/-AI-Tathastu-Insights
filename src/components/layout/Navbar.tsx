@@ -41,22 +41,22 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
   };
 
   return (
-    <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-foundation-ivory/90 dark:bg-dark-bg/90 border-b border-foundation-charcoal/10 dark:border-dark-border transition-colors">
+    <header className="sticky top-0 z-40 w-full backdrop-blur-md bg-foundation-paper/90 dark:bg-dark-bg/90 border-b border-foundation-border dark:border-dark-border transition-colors">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-4">
         {/* Brand / Logo */}
         <div 
           onClick={() => handleTabClick('home')}
           className="flex items-center gap-3 cursor-pointer select-none group"
         >
-          <div className="w-8 h-8 rounded-xl bg-foundation-charcoal text-foundation-ivory dark:bg-white dark:text-foundation-charcoal flex items-center justify-center font-editorial-serif font-bold text-lg shadow-sm group-hover:rotate-6 transition-transform">
+          <div className="w-8 h-8 rounded-xl bg-foundation-ink text-foundation-paper dark:bg-white dark:text-foundation-ink flex items-center justify-center font-editorial-serif font-bold text-lg shadow-sm group-hover:rotate-6 transition-transform">
             T
           </div>
           <div>
             <div className="flex items-center gap-1.5">
-              <span className="font-editorial-serif text-xl sm:text-2xl font-semibold tracking-tight text-foundation-charcoal dark:text-dark-text">
+              <span className="font-editorial-serif text-xl sm:text-2xl font-semibold tracking-tight text-foundation-ink dark:text-dark-text">
                 AI Tathastu
               </span>
-              <span className="text-[10px] font-mono tracking-widest uppercase px-1.5 py-0.5 rounded bg-accent-lavender text-accent-violet dark:bg-accent-violet/20 dark:text-accent-lavender">
+              <span className="text-[10px] font-mono tracking-widest uppercase px-1.5 py-0.5 rounded bg-surface-lavender text-brand-editorial-violet dark:bg-brand-editorial-violet/20 dark:text-accent-lavender font-medium">
                 Insights
               </span>
             </div>
@@ -73,15 +73,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
                 onClick={() => handleTabClick(link.id)}
                 className={`relative px-3.5 py-2 text-xs sm:text-sm font-medium transition-colors cursor-pointer rounded-lg ${
                   isActive
-                    ? 'text-foundation-charcoal dark:text-dark-text'
-                    : 'text-foundation-muted hover:text-foundation-charcoal dark:text-dark-muted dark:hover:text-dark-text'
+                    ? 'text-foundation-ink dark:text-dark-text font-semibold'
+                    : 'text-foundation-secondary hover:text-foundation-ink dark:text-dark-muted dark:hover:text-dark-text'
                 }`}
               >
                 <span>{link.label}</span>
                 {isActive && (
                   <motion.div
                     layoutId="navbar-indicator"
-                    className="absolute bottom-0 left-3 right-3 h-[2px] bg-accent-violet rounded-full"
+                    className="absolute bottom-0 left-3 right-3 h-[2px] bg-brand-editorial-violet rounded-full"
                     transition={{ type: 'spring', stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -95,7 +95,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
           {/* Search Trigger */}
           <button
             onClick={onOpenSearch}
-            className="p-2 text-foundation-muted hover:text-foundation-charcoal dark:text-dark-muted dark:hover:text-dark-text rounded-xl hover:bg-foundation-charcoal/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
+            className="p-2 text-foundation-secondary hover:text-foundation-ink dark:text-dark-muted dark:hover:text-dark-text rounded-xl hover:bg-foundation-ink/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
             aria-label="Search articles and research"
           >
             <Search className="w-4 h-4" />
@@ -104,7 +104,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
           {/* Theme Toggle (Light default / Dark reading mode) */}
           <button
             onClick={toggleTheme}
-            className="p-2 text-foundation-muted hover:text-foundation-charcoal dark:text-dark-muted dark:hover:text-dark-text rounded-xl hover:bg-foundation-charcoal/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
+            className="p-2 text-foundation-secondary hover:text-foundation-ink dark:text-dark-muted dark:hover:text-dark-text rounded-xl hover:bg-foundation-ink/5 dark:hover:bg-white/5 transition-colors cursor-pointer"
             aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} reading mode`}
           >
             {theme === 'light' ? (
@@ -130,7 +130,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
           {/* Mobile Menu Hamburger */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 text-foundation-charcoal dark:text-dark-text rounded-xl hover:bg-foundation-charcoal/5 dark:hover:bg-white/5"
+            className="lg:hidden p-2 text-foundation-ink dark:text-dark-text rounded-xl hover:bg-foundation-ink/5 dark:hover:bg-white/5"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -146,7 +146,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.25, ease: EDITORIAL_EASE }}
-            className="lg:hidden border-t border-foundation-charcoal/10 dark:border-dark-border bg-foundation-ivory dark:bg-dark-surface px-4 py-4 space-y-1"
+            className="lg:hidden border-t border-foundation-border dark:border-dark-border bg-foundation-paper dark:bg-dark-surface px-4 py-4 space-y-1"
           >
             {navLinks.map((link) => {
               const isActive = currentTab === link.id;
@@ -156,22 +156,22 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
                   onClick={() => handleTabClick(link.id)}
                   className={`w-full text-left px-3 py-2.5 rounded-xl text-sm font-medium transition-colors flex items-center justify-between ${
                     isActive
-                      ? 'bg-accent-lavender text-accent-violet dark:bg-accent-violet/20 dark:text-accent-lavender'
-                      : 'text-foundation-charcoal dark:text-dark-text hover:bg-foundation-charcoal/5 dark:hover:bg-white/5'
+                      ? 'bg-surface-lavender text-brand-editorial-violet dark:bg-brand-editorial-violet/20 dark:text-accent-lavender'
+                      : 'text-foundation-ink dark:text-dark-text hover:bg-foundation-ink/5 dark:hover:bg-white/5'
                   }`}
                 >
                   <span>{link.label}</span>
-                  {isActive && <div className="w-1.5 h-1.5 rounded-full bg-accent-violet" />}
+                  {isActive && <div className="w-1.5 h-1.5 rounded-full bg-brand-editorial-violet" />}
                 </button>
               );
             })}
 
-            <div className="pt-3 border-t border-foundation-charcoal/10 dark:border-dark-border">
+            <div className="pt-3 border-t border-foundation-border dark:border-dark-border">
               <button
                 onClick={() => handleTabClick('editorial-studio')}
-                className="w-full py-2.5 px-4 text-center text-sm font-medium rounded-xl bg-foundation-charcoal text-white dark:bg-white dark:text-foundation-charcoal"
+                className="w-full py-2.5 px-4 text-center text-sm font-medium rounded-xl bg-foundation-ink text-white dark:bg-white dark:text-foundation-ink"
               >
-                Editorial Studio & Submissions
+                Editorial Studio &amp; Submissions
               </button>
             </div>
           </motion.div>

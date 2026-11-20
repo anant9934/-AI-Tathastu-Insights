@@ -99,7 +99,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6">
         <button
           onClick={onBack}
-          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-foundation-muted hover:text-accent-violet dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer"
+          className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer"
         >
           <ArrowLeft className="w-3.5 h-3.5" /> Back to Journal Overview
         </button>
@@ -115,36 +115,36 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
             {article.topicTag}
           </Badge>
           {article.doi && (
-            <span className="text-xs font-mono text-foundation-muted dark:text-dark-muted ml-auto">
+            <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted ml-auto">
               DOI: {article.doi}
             </span>
           )}
         </div>
 
-        <h1 className="font-editorial-serif text-3xl sm:text-5xl md:text-6xl text-foundation-charcoal dark:text-dark-text leading-[1.12] tracking-tight font-normal">
+        <h1 className="font-editorial-serif type-article-title text-foundation-ink dark:text-dark-text leading-[1.12] tracking-tight font-normal">
           {article.title}
         </h1>
 
-        <p className="mt-6 text-lg sm:text-xl text-foundation-muted dark:text-dark-muted leading-relaxed font-editorial-sans">
+        <p className="mt-6 type-secondary text-foundation-secondary dark:text-dark-muted leading-relaxed font-editorial-sans">
           {article.subtitle}
         </p>
 
         {/* Metadata bar with author and actions */}
-        <div className="mt-8 pt-6 border-t border-foundation-charcoal/10 dark:border-dark-border flex flex-wrap items-center justify-between gap-6">
+        <div className="mt-8 pt-6 border-t border-foundation-border dark:border-dark-border flex flex-wrap items-center justify-between gap-6">
           <div className="flex items-center gap-4">
             <img
               src={article.author.avatar}
               alt={article.author.name}
-              className="w-12 h-12 rounded-full object-cover border-2 border-foundation-charcoal/10"
+              className="w-12 h-12 rounded-full object-cover border-2 border-foundation-border"
             />
             <div>
-              <p className="text-sm font-semibold text-foundation-charcoal dark:text-dark-text">
+              <p className="text-sm font-semibold text-foundation-ink dark:text-dark-text">
                 {article.author.name}
               </p>
-              <p className="text-xs text-foundation-muted dark:text-dark-muted">
+              <p className="text-xs text-foundation-secondary dark:text-dark-muted">
                 {article.author.role} • {article.author.affiliation}
               </p>
-              <div className="flex items-center gap-2 text-xs font-mono text-foundation-muted dark:text-dark-muted mt-1">
+              <div className="flex items-center gap-2 text-xs font-mono text-foundation-secondary dark:text-dark-muted mt-1">
                 <span>{formatDate(article.publishedAt)}</span>
                 <span>•</span>
                 <span className="flex items-center gap-1">
@@ -181,7 +181,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
       {/* 3. Article Image reveal when entering viewport */}
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mb-16">
         <Reveal>
-          <div className="rounded-3xl overflow-hidden border border-foundation-charcoal/10 dark:border-dark-border shadow-xl aspect-[16/9]">
+          <div className="rounded-3xl overflow-hidden border border-foundation-border dark:border-dark-border shadow-xl aspect-[16/9]">
             <img
               src={article.coverImage}
               alt={article.title}
@@ -189,7 +189,7 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
             />
           </div>
           {article.imageCaption && (
-            <p className="text-xs text-foundation-muted dark:text-dark-muted mt-3 text-center italic font-mono">
+            <p className="text-xs text-foundation-secondary dark:text-dark-muted mt-3 text-center italic font-mono">
               Figure 1.0 — {article.imageCaption}
             </p>
           )}
@@ -201,8 +201,8 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* 2. Active Table-of-Contents Indicator */}
           <aside className="hidden lg:block lg:col-span-3">
-            <div className="sticky top-24 p-6 rounded-2xl bg-white dark:bg-dark-surface border border-foundation-charcoal/10 dark:border-dark-border shadow-editorial">
-              <span className="text-[11px] font-mono uppercase tracking-widest text-foundation-muted dark:text-dark-muted block mb-4">
+            <div className="sticky top-24 p-6 rounded-2xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-sm">
+              <span className="text-[11px] font-mono uppercase tracking-widest text-foundation-secondary dark:text-dark-muted block mb-4">
                 Contents
               </span>
               <nav className="space-y-2">
@@ -214,8 +214,8 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
                       onClick={() => scrollToSection(item.id)}
                       className={`block w-full text-left text-xs transition-colors py-1 pl-2 border-l-2 cursor-pointer ${
                         isActive
-                          ? 'border-accent-violet text-accent-violet font-semibold dark:text-accent-lavender'
-                          : 'border-transparent text-foundation-muted hover:text-foundation-charcoal dark:hover:text-dark-text'
+                          ? 'border-brand-editorial-violet text-brand-editorial-violet font-semibold dark:text-accent-lavender'
+                          : 'border-transparent text-foundation-secondary hover:text-foundation-ink dark:hover:text-dark-text'
                       }`}
                     >
                       {item.title}
@@ -224,8 +224,8 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
                 })}
               </nav>
 
-              <div className="mt-8 pt-6 border-t border-foundation-charcoal/5 dark:border-dark-border">
-                <span className="text-[11px] font-mono text-foundation-muted dark:text-dark-muted block mb-2">
+              <div className="mt-8 pt-6 border-t border-foundation-border dark:border-dark-border">
+                <span className="text-[11px] font-mono text-foundation-secondary dark:text-dark-muted block mb-2">
                   Dataset Status
                 </span>
                 <span className="inline-flex items-center gap-1.5 text-xs text-green-700 dark:text-green-400 font-medium">
@@ -239,11 +239,11 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
           {/* Core Content */}
           <main className="lg:col-span-8 space-y-12">
             {/* Abstract Callout */}
-            <div className="p-6 sm:p-8 rounded-2xl bg-foundation-ivory dark:bg-dark-elevated border-l-4 border-accent-violet shadow-sm">
-              <span className="text-xs font-mono uppercase tracking-widest text-accent-violet font-semibold block mb-2">
+            <div className="p-6 sm:p-8 rounded-2xl bg-foundation-paper dark:bg-dark-elevated border-l-4 border-brand-editorial-violet border border-foundation-border shadow-xs">
+              <span className="text-xs font-mono uppercase tracking-widest text-brand-editorial-violet font-semibold block mb-2">
                 Executive Abstract
               </span>
-              <p className="text-sm sm:text-base text-foundation-charcoal dark:text-dark-text leading-relaxed italic">
+              <p className="text-sm sm:text-base text-foundation-ink dark:text-dark-text leading-relaxed italic">
                 {article.abstract}
               </p>
             </div>
@@ -256,12 +256,12 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
                   {tocItem && (
                     <h2
                       id={tocItem.id}
-                      className="font-editorial-serif text-2xl sm:text-3xl text-foundation-charcoal dark:text-dark-text tracking-tight font-medium pt-6"
+                      className="font-editorial-serif type-section-heading text-foundation-ink dark:text-dark-text tracking-tight font-medium pt-6"
                     >
                       {tocItem.title}
                     </h2>
                   )}
-                  <p className="text-base sm:text-lg text-foundation-charcoal/90 dark:text-dark-text/90 leading-[1.8] font-editorial-sans">
+                  <p className="type-body text-foundation-ink/90 dark:text-dark-text/90 leading-[1.8] font-editorial-sans">
                     {paragraph}
                   </p>
                 </div>
@@ -271,12 +271,12 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
             {/* 4. Subtle Pull-Quote Entrance */}
             {article.pullQuote && (
               <Reveal>
-                <figure className="my-10 p-8 sm:p-10 rounded-2xl bg-accent-lavender/30 dark:bg-accent-violet/10 border border-accent-violet/20 relative">
-                  <Quote className="w-10 h-10 text-accent-violet/30 absolute top-4 left-4 -z-0" />
-                  <blockquote className="font-editorial-serif text-xl sm:text-2xl text-foundation-charcoal dark:text-dark-text leading-snug relative z-10 italic">
+                <figure className="my-10 p-8 sm:p-10 rounded-2xl bg-surface-lavender/40 dark:bg-brand-editorial-violet/10 border border-brand-editorial-violet/20 relative">
+                  <Quote className="w-10 h-10 text-brand-editorial-violet/30 absolute top-4 left-4 -z-0" />
+                  <blockquote className="font-editorial-serif text-xl sm:text-2xl text-foundation-ink dark:text-dark-text leading-snug relative z-10 italic">
                     "{article.pullQuote.text}"
                   </blockquote>
-                  <figcaption className="mt-4 text-xs font-mono text-accent-violet dark:text-accent-lavender">
+                  <figcaption className="mt-4 text-xs font-mono text-brand-editorial-violet dark:text-accent-lavender">
                     — {article.pullQuote.attribution}
                   </figcaption>
                 </figure>
@@ -293,19 +293,19 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
             )}
 
             {/* Citations and Reference Suite */}
-            <div className="pt-10 border-t border-foundation-charcoal/10 dark:border-dark-border">
-              <h3 className="font-editorial-serif text-2xl text-foundation-charcoal dark:text-dark-text mb-4">
+            <div className="pt-10 border-t border-foundation-border dark:border-dark-border">
+              <h3 className="font-editorial-serif text-2xl text-foundation-ink dark:text-dark-text mb-4">
                 References &amp; Citations
               </h3>
               <ul className="space-y-3">
                 {article.citations.map((cite) => (
                   <li
                     key={cite.id}
-                    className="text-xs text-foundation-muted dark:text-dark-muted leading-relaxed font-mono pl-4 border-l-2 border-foundation-charcoal/10 dark:border-dark-border"
+                    className="text-xs text-foundation-secondary dark:text-dark-muted leading-relaxed font-mono pl-4 border-l-2 border-foundation-border dark:border-dark-border"
                   >
                     <span>{cite.citation}</span>
                     {cite.doi && (
-                      <span className="block text-[11px] text-accent-violet mt-0.5">
+                      <span className="block text-[11px] text-brand-editorial-violet mt-0.5">
                         DOI: {cite.doi}
                       </span>
                     )}
@@ -319,12 +319,12 @@ export const ArticlePage: React.FC<ArticlePageProps> = ({
 
       {/* 6. Related Story Hover Interactions */}
       {relatedArticles.length > 0 && (
-        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 pt-16 border-t border-foundation-charcoal/10 dark:border-dark-border">
+        <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-24 pt-16 border-t border-foundation-border dark:border-dark-border">
           <div className="flex items-center justify-between mb-8">
-            <h3 className="font-editorial-serif text-3xl text-foundation-charcoal dark:text-dark-text tracking-tight font-normal">
+            <h3 className="font-editorial-serif type-section-heading text-foundation-ink dark:text-dark-text tracking-tight font-normal">
               Related Research &amp; Inquiries
             </h3>
-            <span className="text-xs font-mono text-foundation-muted dark:text-dark-muted">
+            <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted">
               Peer-reviewed series
             </span>
           </div>

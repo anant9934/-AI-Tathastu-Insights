@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { Download, FileText, Check, ExternalLink, Quote, Sparkles } from 'lucide-react';
+import { Download, FileText, Check, ExternalLink, Quote, Sparkles, BookOpen } from 'lucide-react';
 import { ResearchPaper } from '../../types';
 import { Badge } from '../ui/Badge';
 import { AnimatedButton } from '../motion/AnimatedButton';
@@ -31,8 +31,8 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
       setDownloading(false);
       setDownloadSuccess(true);
       onDownload(paper);
-      setTimeout(() => setDownloadSuccess(false), 2500);
-    }, 850);
+      setTimeout(() => setDownloadSuccess(false), 2400);
+    }, 750);
   };
 
   const handleCopy = () => {
@@ -46,9 +46,10 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
     <motion.article
       whileHover={shouldReduceMotion ? {} : { y: -3 }}
       transition={{ duration: MOTION_DURATIONS.cardTransition, ease: EDITORIAL_EASE }}
-      className="p-6 sm:p-8 bg-white dark:bg-dark-surface rounded-2xl border border-foundation-charcoal/10 dark:border-dark-border shadow-editorial hover:shadow-editorial-hover transition-shadow flex flex-col justify-between"
+      className="p-6 sm:p-8 bg-white dark:bg-dark-surface rounded-2xl border border-foundation-border dark:border-dark-border shadow-editorial hover:shadow-editorial-hover transition-all flex flex-col justify-between relative overflow-hidden"
     >
       <div>
+        {/* Top Metadata Row */}
         <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
           <div className="flex items-center gap-2">
             <Badge accent={paper.accentColor} size="sm">
@@ -58,34 +59,38 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
               {paper.topic}
             </Badge>
           </div>
-          <div className="flex items-center gap-3 text-xs font-mono text-foundation-muted dark:text-dark-muted">
+          <div className="flex items-center gap-3 text-xs font-mono text-foundation-secondary dark:text-dark-secondary">
             <span>{paper.doi}</span>
             <span>•</span>
             <span>{formatDate(paper.publishedAt)}</span>
           </div>
         </div>
 
+        {/* Paper Title */}
         <h3
           onClick={() => onViewPaper && onViewPaper(paper)}
-          className={`font-editorial-serif text-2xl sm:text-3xl leading-snug text-foundation-charcoal dark:text-dark-text tracking-tight font-normal ${
+          className={`type-card-heading text-foundation-ink dark:text-dark-ink font-medium ${
             onViewPaper ? 'cursor-pointer hover:text-accent-violet transition-colors' : ''
           }`}
         >
           {paper.title}
         </h3>
 
-        <p className="mt-2 text-xs font-medium text-foundation-muted dark:text-dark-muted">
+        {/* Author Line */}
+        <p className="mt-2 text-xs font-medium text-foundation-secondary dark:text-dark-secondary">
           By {paper.authors.join(', ')} •{' '}
           <span className="italic">{paper.primaryAuthorAffiliation}</span>
         </p>
 
-        <p className="mt-4 text-sm text-foundation-charcoal/80 dark:text-dark-text/80 leading-relaxed line-clamp-3">
+        {/* Abstract */}
+        <p className="mt-4 text-xs sm:text-sm text-foundation-ink/80 dark:text-dark-ink/80 leading-relaxed line-clamp-3">
           {paper.abstract}
         </p>
 
+        {/* Key Empirical Findings */}
         {paper.keyFindings && paper.keyFindings.length > 0 && (
-          <div className="mt-5 p-3.5 rounded-xl bg-foundation-ivory dark:bg-dark-elevated border border-foundation-charcoal/5 dark:border-dark-border">
-            <div className="flex items-center gap-1.5 text-xs font-medium text-accent-violet dark:text-accent-lavender mb-2">
+          <div className="mt-5 p-4 rounded-xl bg-foundation-paper dark:bg-dark-elevated border border-foundation-border/60 dark:border-dark-border">
+            <div className="flex items-center gap-1.5 text-xs font-semibold text-accent-violet dark:text-accent-lavender mb-2">
               <Sparkles className="w-3.5 h-3.5" />
               <span>Key Empirical Findings</span>
             </div>
@@ -93,7 +98,7 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
               {paper.keyFindings.slice(0, 2).map((finding, idx) => (
                 <li
                   key={idx}
-                  className="text-xs text-foundation-charcoal/90 dark:text-dark-text/90 flex items-start gap-2 leading-relaxed"
+                  className="text-xs text-foundation-ink/90 dark:text-dark-ink/90 flex items-start gap-2 leading-relaxed"
                 >
                   <span className="w-1.5 h-1.5 rounded-full bg-accent-violet shrink-0 mt-1.5" />
                   <span>{finding}</span>
@@ -103,16 +108,18 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
           </div>
         )}
 
+        {/* Benchmark Metric Chip */}
         {paper.benchmarkMetric && (
-          <div className="mt-4 flex items-center justify-between text-xs font-mono px-3.5 py-2 rounded-lg bg-accent-lavender/40 dark:bg-accent-violet/10 text-accent-violet dark:text-accent-lavender">
+          <div className="mt-4 flex items-center justify-between text-xs font-mono px-3.5 py-2 rounded-lg bg-accent-lavender/50 dark:bg-accent-violet/10 text-accent-violet dark:text-accent-lavender border border-accent-violet/15">
             <span>{paper.benchmarkMetric.name}: <strong>{paper.benchmarkMetric.value}</strong></span>
             <span className="text-[11px] opacity-80">{paper.benchmarkMetric.comparisonToSota}</span>
           </div>
         )}
       </div>
 
-      <div className="pt-6 mt-6 border-t border-foundation-charcoal/5 dark:border-dark-border flex flex-wrap items-center justify-between gap-4">
-        <div className="flex items-center gap-4 text-xs font-mono text-foundation-muted dark:text-dark-muted">
+      {/* Card Action Controls */}
+      <div className="pt-6 mt-6 border-t border-foundation-border dark:border-dark-border flex flex-wrap items-center justify-between gap-4">
+        <div className="flex items-center gap-4 text-xs font-mono text-foundation-secondary dark:text-dark-secondary">
           <span>{paper.citationCount} Citations</span>
           <span>•</span>
           <span>{paper.downloadsCount.toLocaleString()} Reads</span>
@@ -137,7 +144,7 @@ export const ResearchCard: React.FC<ResearchCardProps> = ({
             loading={downloading}
             icon={
               downloadSuccess ? (
-                <Check className="w-3.5 h-3.5" />
+                <Check className="w-3.5 h-3.5 text-green-500" />
               ) : (
                 <Download className="w-3.5 h-3.5" />
               )

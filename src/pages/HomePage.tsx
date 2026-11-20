@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { ArrowRight, Sparkles, BookOpen, Layers, ArrowUpRight, ShieldCheck, Cpu } from 'lucide-react';
+import { ArrowRight, Sparkles, BookOpen, Layers, ArrowUpRight, ShieldCheck, Cpu, Flame, Compass } from 'lucide-react';
 import { Article, ResearchPaper, EcosystemProduct } from '../types';
 import { StoryCard } from '../components/cards/StoryCard';
 import { ResearchCard } from '../components/cards/ResearchCard';
@@ -39,9 +39,9 @@ export const HomePage: React.FC<HomePageProps> = ({
 }) => {
   const shouldReduceMotion = useReducedMotion();
   const featuredArticle = articles.find((a) => a.isFeatured) || articles[0];
-  const regularArticles = articles.filter((a) => a.id !== featuredArticle.id);
+  const secondaryArticles = articles.filter((a) => a.id !== featuredArticle.id);
+  const featuredPaper = papers[0];
 
-  // Headlines lines for line-by-line reveal
   const headlineLines = [
     'Empirical Investigations into',
     'Frontier Intelligence &',
@@ -49,23 +49,20 @@ export const HomePage: React.FC<HomePageProps> = ({
   ];
 
   return (
-    <div className="space-y-24 sm:space-y-32">
-      {/* HERO SECTION */}
-      <section className="relative pt-8 sm:pt-16 pb-12 overflow-hidden">
-        {/* Subtle background ambient gradient (Phase 4.A item 8: restrained gradient transitions) */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-96 bg-gradient-to-b from-accent-lavender/30 via-accent-softblue/15 to-transparent dark:from-accent-violet/10 dark:via-transparent dark:to-transparent blur-3xl pointer-events-none -z-10" />
-
+    <div className="space-y-20 sm:space-y-28">
+      {/* 1. HERO SECTION */}
+      <section className="relative pt-6 sm:pt-12 pb-8 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-            {/* Left Column: Line-by-line Headline Reveal & CTAs */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+            {/* Left: Deliberate Editorial Headline & Statement */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-lavender/70 dark:bg-accent-violet/20 border border-accent-violet/20 text-accent-violet dark:text-accent-lavender text-xs font-mono">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-lavender text-accent-violet dark:bg-accent-violet/20 dark:text-accent-lavender text-xs font-mono">
                 <Sparkles className="w-3.5 h-3.5" />
                 <span>Volume 4 • Fall/Winter 2026 Series</span>
               </div>
 
-              {/* 1. Hero headline: line-by-line reveal */}
-              <div className="space-y-1">
+              {/* Line-by-line reveal with controlled line length */}
+              <div className="space-y-0.5 max-w-3xl">
                 {headlineLines.map((line, idx) => (
                   <div key={idx} className="overflow-hidden">
                     <motion.h1
@@ -73,7 +70,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                       variants={shouldReduceMotion ? {} : heroHeadlineVariants}
                       initial="hidden"
                       animate="visible"
-                      className="font-editorial-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-[1.08] tracking-tight text-foundation-charcoal dark:text-dark-text font-normal"
+                      className="type-hero text-foundation-ink dark:text-dark-ink font-normal"
                     >
                       {line}
                     </motion.h1>
@@ -81,23 +78,23 @@ export const HomePage: React.FC<HomePageProps> = ({
                 ))}
               </div>
 
-              {/* 2. Supporting description: delayed fade-in */}
+              {/* Delayed Supporting Description */}
               <motion.p
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: MOTION_DURATIONS.sectionReveal,
                   delay: 0.35,
                   ease: EDITORIAL_EASE,
                 }}
-                className="text-base sm:text-lg text-foundation-muted dark:text-dark-muted max-w-2xl leading-relaxed font-editorial-sans"
+                className="type-body text-foundation-secondary dark:text-dark-secondary max-w-2xl"
               >
-                AI Tathastu Insights publishes rigorous research at the frontier of machine learning. We deconstruct residual representations, prove fault-tolerant agent protocols, and advance grounded spatial vision without speculative hype.
+                An independent research publication exploring mechanistic interpretability, decentralized swarm arbitration, and embodied spatial memory. Every finding is verifiable with open checkpoints and reproducible evaluation suites.
               </motion.p>
 
-              {/* 3. CTA buttons: subtle entrance with a small upward movement */}
+              {/* Action Buttons */}
               <motion.div
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 14 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{
                   duration: MOTION_DURATIONS.sectionReveal,
@@ -126,27 +123,27 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </AnimatedButton>
               </motion.div>
 
-              {/* Publication metadata stats */}
+              {/* Publication Telemetry */}
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.65, duration: 0.5 }}
-                className="pt-6 border-t border-foundation-charcoal/10 dark:border-dark-border grid grid-cols-3 gap-4 max-w-lg text-xs font-mono text-foundation-muted dark:text-dark-muted"
+                className="pt-6 border-t border-foundation-border dark:border-dark-border grid grid-cols-3 gap-6 max-w-lg type-meta text-foundation-secondary dark:text-dark-secondary"
               >
                 <div>
-                  <span className="block text-lg font-semibold text-foundation-charcoal dark:text-dark-text">
+                  <span className="block text-xl font-bold font-mono text-foundation-ink dark:text-dark-ink">
                     16M
                   </span>
-                  <span>SAE Features Audited</span>
+                  <span>SAE Latents Audited</span>
                 </div>
                 <div>
-                  <span className="block text-lg font-semibold text-foundation-charcoal dark:text-dark-text">
+                  <span className="block text-xl font-bold font-mono text-foundation-ink dark:text-dark-ink">
                     178ms
                   </span>
-                  <span>Swarm Consensus (p99)</span>
+                  <span>Swarm Latency (p99)</span>
                 </div>
                 <div>
-                  <span className="block text-lg font-semibold text-foundation-charcoal dark:text-dark-text">
+                  <span className="block text-xl font-bold font-mono text-foundation-ink dark:text-dark-ink">
                     100%
                   </span>
                   <span>Open Verification</span>
@@ -154,18 +151,18 @@ export const HomePage: React.FC<HomePageProps> = ({
               </motion.div>
             </div>
 
-            {/* Right Column: Hero image with gentle scale 1.04 to 1 */}
+            {/* Right: Balanced Featured Artwork with Editorial Framing */}
             <div className="lg:col-span-5">
-              <div className="relative rounded-3xl overflow-hidden border border-foundation-charcoal/10 dark:border-dark-border shadow-2xl bg-foundation-charcoal aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5]">
+              <div className="relative rounded-3xl overflow-hidden border border-foundation-border dark:border-dark-border shadow-xl bg-foundation-ink aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5] group">
                 <motion.img
                   src={featuredArticle.coverImage}
                   alt={featuredArticle.title}
                   variants={shouldReduceMotion ? {} : heroImageVariants}
                   initial="hidden"
                   animate="visible"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-foundation-charcoal/90 via-foundation-charcoal/30 to-transparent p-6 sm:p-8 flex flex-col justify-end text-white">
+                <div className="absolute inset-0 bg-gradient-to-t from-foundation-ink/95 via-foundation-ink/40 to-transparent p-6 sm:p-8 flex flex-col justify-end text-white">
                   <div className="flex items-center gap-2 mb-2">
                     <Badge accent="violet" size="xs">
                       {featuredArticle.topicTag}
@@ -174,10 +171,10 @@ export const HomePage: React.FC<HomePageProps> = ({
                       {featuredArticle.author.name}
                     </span>
                   </div>
-                  <h2 className="font-editorial-serif text-2xl sm:text-3xl font-medium leading-tight">
+                  <h2 className="type-card-heading font-medium text-white leading-snug">
                     {featuredArticle.title}
                   </h2>
-                  <p className="mt-2 text-xs opacity-80 line-clamp-2">
+                  <p className="mt-2 text-xs text-white/80 line-clamp-2">
                     {featuredArticle.subtitle}
                   </p>
                 </div>
@@ -187,15 +184,15 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
       </section>
 
-      {/* FEATURED STORY: SCROLL-TRIGGERED REVEAL (Phase 4.A item 5) */}
+      {/* 2. LEAD INVESTIGATION FEATURED SECTION */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="flex items-end justify-between border-b border-foundation-charcoal/10 dark:border-dark-border pb-4 mb-8">
+          <div className="flex items-end justify-between border-b border-foundation-border dark:border-dark-border pb-4 mb-8">
             <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-accent-violet block">
+              <span className="type-meta text-accent-violet block uppercase">
                 Editor's Selection
               </span>
-              <h2 className="font-editorial-serif text-3xl sm:text-4xl text-foundation-charcoal dark:text-dark-text tracking-tight font-normal">
+              <h2 className="type-section-heading text-foundation-ink dark:text-dark-ink">
                 Lead Research Investigation
               </h2>
             </div>
@@ -217,27 +214,68 @@ export const HomePage: React.FC<HomePageProps> = ({
         </Reveal>
       </section>
 
-      {/* LATEST STORIES: STAGGERED CARD ENTRANCE (Phase 4.A item 6) */}
+      {/* 3. VARIED EDITORIAL LAYOUT: TWO-COLUMN DISPATCH SPLIT */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between border-b border-foundation-charcoal/10 dark:border-dark-border pb-4 mb-8">
+        <div className="flex items-end justify-between border-b border-foundation-border dark:border-dark-border pb-4 mb-8">
           <div>
-            <span className="text-xs font-mono uppercase tracking-wider text-foundation-muted dark:text-dark-muted block">
-              Continuous Dispatches
+            <span className="type-meta text-foundation-secondary dark:text-dark-secondary block uppercase">
+              Current Dispatch
             </span>
-            <h2 className="font-editorial-serif text-3xl sm:text-4xl text-foundation-charcoal dark:text-dark-text tracking-tight font-normal">
-              Latest Peer-Reviewed Articles
+            <h2 className="type-section-heading text-foundation-ink dark:text-dark-ink">
+              Recent Preprints &amp; Perspectives
             </h2>
           </div>
           <button
             onClick={() => onNavigate('discover')}
-            className="text-xs sm:text-sm font-medium text-foundation-charcoal dark:text-dark-text hover:text-accent-violet transition-colors flex items-center gap-1 cursor-pointer"
+            className="text-xs sm:text-sm font-medium text-foundation-ink dark:text-dark-ink hover:text-accent-violet transition-colors flex items-center gap-1 cursor-pointer"
           >
-            Explore all 24 topics <ArrowRight className="w-3.5 h-3.5" />
+            Explore all topics <ArrowRight className="w-3.5 h-3.5" />
           </button>
         </div>
 
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Featured Research Preprint Card (Left 6 cols) */}
+          <div className="lg:col-span-6">
+            {featuredPaper && (
+              <ResearchCard
+                paper={featuredPaper}
+                onDownload={onDownloadPaper}
+                onCopyBibtex={onCopyBibtex}
+              />
+            )}
+          </div>
+
+          {/* Horizontal Story Cards (Right 6 cols) */}
+          <div className="lg:col-span-6 space-y-4">
+            {secondaryArticles.slice(0, 2).map((article) => (
+              <StoryCard
+                key={article.id}
+                article={article}
+                onSelect={onSelectArticle}
+                onBookmark={onToggleBookmark}
+                isBookmarked={bookmarkedIds.includes(article.id)}
+                variant="horizontal"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. THREE-COLUMN CONTINUOUS DISPATCH GRID */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-end justify-between border-b border-foundation-border dark:border-dark-border pb-4 mb-8">
+          <div>
+            <span className="type-meta text-accent-violet block uppercase">
+              Peer-Reviewed Series
+            </span>
+            <h2 className="type-section-heading text-foundation-ink dark:text-dark-ink">
+              Selected Inquiries Across Frontier Systems
+            </h2>
+          </div>
+        </div>
+
         <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {regularArticles.map((article) => (
+          {secondaryArticles.slice(2).map((article) => (
             <StaggerItem key={article.id}>
               <StoryCard
                 article={article}
@@ -250,48 +288,57 @@ export const HomePage: React.FC<HomePageProps> = ({
         </StaggerContainer>
       </section>
 
-      {/* ECOSYSTEM SPOTLIGHT SECTION (MentorMaze, Collaborate, Avsar, Iris) */}
-      <section className="bg-foundation-charcoal text-white dark:bg-dark-surface py-20 rounded-3xl mx-4 sm:mx-6 lg:mx-8 px-6 sm:px-10 lg:px-16 border border-foundation-charcoal/20 dark:border-dark-border">
+      {/* 5. ECOSYSTEM SPOTLIGHT WITH DISTINCT PRODUCT TREATMENTS */}
+      <section className="bg-foundation-ink text-white dark:bg-dark-surface py-16 sm:py-20 rounded-3xl mx-4 sm:mx-6 lg:mx-8 px-6 sm:px-10 lg:px-14 border border-foundation-border/20 dark:border-dark-border">
         <Reveal>
           <div className="max-w-3xl mb-12">
-            <span className="text-xs font-mono text-accent-lavender tracking-wider uppercase block mb-2">
+            <span className="type-meta text-accent-lavender tracking-wider uppercase block mb-2">
               The Tathastu Platform
             </span>
-            <h2 className="font-editorial-serif text-3xl sm:text-5xl tracking-tight font-normal">
+            <h2 className="type-section-heading text-white font-normal">
               Applied Laboratories &amp; Research Systems
             </h2>
-            <p className="mt-4 text-sm sm:text-base text-white/70 leading-relaxed">
-              Our editorial journalism is inextricably linked with living tools. Discover how our open-source platforms turn theoretical interpretability, swarm consensus, and spatial vision into accessible infrastructure.
+            <p className="mt-4 type-body text-white/70 leading-relaxed">
+              Our research is married to living software. Discover how our open-source platforms turn theoretical interpretability, swarm consensus, and spatial vision into accessible infrastructure.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {ecosystemProducts.map((product) => (
-              <div
-                key={product.id}
-                onClick={() => onExploreEcosystem(product)}
-                className="p-6 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer group flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <span className="text-xs font-mono text-accent-lavender uppercase">
-                      {product.badge}
-                    </span>
-                    <ArrowUpRight className="w-4 h-4 text-white/60 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                  </div>
-                  <h3 className="font-editorial-serif text-2xl font-medium tracking-tight mb-2">
-                    {product.name}
-                  </h3>
-                  <p className="text-xs text-white/70 leading-relaxed">
-                    {product.tagline}
-                  </p>
-                </div>
+            {ecosystemProducts.map((product) => {
+              const borderAccent = {
+                mentormaze: 'hover:border-accent-violet',
+                collaborate: 'hover:border-accent-blue',
+                avsar: 'hover:border-accent-terracotta',
+                iris: 'hover:border-accent-mint',
+              }[product.id] || 'hover:border-white/40';
 
-                <div className="mt-6 pt-4 border-t border-white/10 text-xs font-mono text-white/50">
-                  {product.stats[0]?.label}: <span className="text-white font-medium">{product.stats[0]?.value}</span>
+              return (
+                <div
+                  key={product.id}
+                  onClick={() => onExploreEcosystem(product)}
+                  className={`p-6 rounded-2xl bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer group flex flex-col justify-between ${borderAccent}`}
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <span className="type-meta text-accent-lavender uppercase">
+                        {product.badge}
+                      </span>
+                      <ArrowUpRight className="w-4 h-4 text-white/60 group-hover:text-white group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                    </div>
+                    <h3 className="type-card-heading text-white font-medium mb-2">
+                      {product.name}
+                    </h3>
+                    <p className="text-xs text-white/70 leading-relaxed">
+                      {product.tagline}
+                    </p>
+                  </div>
+
+                  <div className="mt-6 pt-4 border-t border-white/10 text-xs font-mono text-white/50">
+                    {product.stats[0]?.label}: <span className="text-white font-medium">{product.stats[0]?.value}</span>
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
 
           <div className="mt-10 flex justify-end">
@@ -308,37 +355,44 @@ export const HomePage: React.FC<HomePageProps> = ({
         </Reveal>
       </section>
 
-      {/* RESEARCH LIBRARY HIGHLIGHT SECTION */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal>
-          <div className="flex items-end justify-between border-b border-foundation-charcoal/10 dark:border-dark-border pb-4 mb-8">
-            <div>
-              <span className="text-xs font-mono uppercase tracking-wider text-accent-violet block">
-                Open Access Archive
-              </span>
-              <h2 className="font-editorial-serif text-3xl sm:text-4xl text-foundation-charcoal dark:text-dark-text tracking-tight font-normal">
-                Preprints &amp; Technical Reports
-              </h2>
-            </div>
-            <button
-              onClick={() => onNavigate('research')}
-              className="text-xs sm:text-sm font-medium text-accent-violet hover:underline flex items-center gap-1 cursor-pointer"
-            >
-              View all preprints <ArrowRight className="w-3.5 h-3.5" />
-            </button>
+      {/* 6. REFINED INSTITUTIONAL DISPATCH NEWSLETTER (Section 4.A) */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
+        <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial">
+          <div className="max-w-2xl space-y-3">
+            <span className="type-meta text-accent-violet uppercase tracking-widest block">
+              Fortnightly Peer Dispatch
+            </span>
+            <h3 className="type-section-heading text-foundation-ink dark:text-dark-ink">
+              Read verified research before public preprint distribution.
+            </h3>
+            <p className="type-secondary leading-relaxed">
+              We send concise summaries of verified residual circuits, multi-agent benchmarks, and statutory policy standards every second Tuesday. Zero promotional filler.
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {papers.slice(0, 2).map((paper) => (
-              <ResearchCard
-                key={paper.id}
-                paper={paper}
-                onDownload={onDownloadPaper}
-                onCopyBibtex={onCopyBibtex}
-              />
-            ))}
-          </div>
-        </Reveal>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              alert('Subscribed to Tathastu Dispatch.');
+            }}
+            className="mt-6 flex flex-col sm:flex-row gap-3 max-w-xl"
+          >
+            <input
+              type="email"
+              required
+              placeholder="name@institution.edu"
+              className="flex-1 px-4 py-3 rounded-xl border border-foundation-border dark:border-dark-border bg-foundation-paper dark:bg-dark-elevated text-sm text-foundation-ink dark:text-dark-ink focus:outline-none focus:ring-2 focus:ring-accent-violet"
+            />
+            <AnimatedButton
+              type="submit"
+              variant="primary"
+              size="md"
+              icon={<ArrowRight className="w-4 h-4" />}
+            >
+              Subscribe
+            </AnimatedButton>
+          </form>
+        </div>
       </section>
     </div>
   );

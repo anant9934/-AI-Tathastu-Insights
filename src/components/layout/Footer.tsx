@@ -28,18 +28,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   };
 
   return (
-    <footer className="border-t border-foundation-charcoal/10 dark:border-dark-border bg-white dark:bg-dark-surface transition-colors mt-20">
+    <footer className="border-t border-foundation-border dark:border-dark-border bg-white dark:bg-dark-surface transition-colors mt-20">
       {/* Newsletter Dispatch Banner */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-foundation-charcoal/10 dark:border-dark-border">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-foundation-border dark:border-dark-border">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
           <div className="lg:col-span-7">
-            <span className="text-[11px] font-mono uppercase tracking-widest text-accent-violet block mb-2">
+            <span className="text-[11px] font-mono uppercase tracking-widest text-brand-editorial-violet block mb-2 font-medium">
               The Tathastu Dispatch
             </span>
-            <h3 className="font-editorial-serif text-2xl sm:text-3xl text-foundation-charcoal dark:text-dark-text tracking-tight font-normal">
+            <h3 className="font-editorial-serif text-2xl sm:text-3xl text-foundation-ink dark:text-dark-text tracking-tight font-normal">
               Empirical breakthroughs and peer-reviewed dispatches, delivered fortnightly.
             </h3>
-            <p className="mt-2 text-xs sm:text-sm text-foundation-muted dark:text-dark-muted leading-relaxed">
+            <p className="mt-2 text-xs sm:text-sm text-foundation-secondary dark:text-dark-muted leading-relaxed">
               No generic hype or speculative summaries. Only verified research findings, open model checkpoints, and statutory policy analyses.
             </p>
           </div>
@@ -52,7 +52,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="name@institution.edu"
-                  className="flex-1 px-4 py-2.5 rounded-xl border border-foundation-charcoal/20 dark:border-dark-border bg-foundation-ivory dark:bg-dark-elevated text-sm text-foundation-charcoal dark:text-dark-text placeholder:text-foundation-muted/60 focus:outline-none focus:ring-2 focus:ring-accent-violet transition-all"
+                  className="flex-1 px-4 py-2.5 rounded-xl border border-foundation-border dark:border-dark-border bg-foundation-paper dark:bg-dark-elevated text-sm text-foundation-ink dark:text-dark-text placeholder:text-foundation-secondary/60 focus:outline-none focus:ring-2 focus:ring-brand-editorial-violet transition-all"
                 />
                 <AnimatedButton
                   type="submit"
@@ -79,33 +79,33 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         {/* Brand Column */}
         <div className="col-span-2">
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-7 h-7 rounded-lg bg-foundation-charcoal text-white dark:bg-white dark:text-foundation-charcoal flex items-center justify-center font-editorial-serif font-bold text-sm">
+            <div className="w-7 h-7 rounded-lg bg-foundation-ink text-white dark:bg-white dark:text-foundation-ink flex items-center justify-center font-editorial-serif font-bold text-sm">
               T
             </div>
-            <span className="font-editorial-serif text-xl font-medium tracking-tight text-foundation-charcoal dark:text-dark-text">
+            <span className="font-editorial-serif text-xl font-medium tracking-tight text-foundation-ink dark:text-dark-text">
               AI Tathastu Insights
             </span>
           </div>
-          <p className="text-xs text-foundation-muted dark:text-dark-muted leading-relaxed max-w-sm">
+          <p className="text-xs text-foundation-secondary dark:text-dark-muted leading-relaxed max-w-sm">
             An open editorial publication and computational research journal committed to mechanistic clarity, Byzantine multi-agent safety, and grounded physical intelligence.
           </p>
 
-          <div className="mt-5 flex items-center gap-2 text-[11px] font-mono text-foundation-muted dark:text-dark-muted">
-            <ShieldCheck className="w-4 h-4 text-accent-violet" />
+          <div className="mt-5 flex items-center gap-2 text-[11px] font-mono text-foundation-secondary dark:text-dark-muted">
+            <ShieldCheck className="w-4 h-4 text-brand-editorial-violet" />
             <span>Open Access (CC BY-NC 4.0) • DOI Indexed</span>
           </div>
         </div>
 
         {/* Editorial Sections */}
         <div>
-          <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-charcoal dark:text-dark-text font-semibold mb-4">
+          <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-ink dark:text-dark-text font-semibold mb-4">
             Sections
           </h4>
           <ul className="space-y-2 text-xs">
             <li>
               <button
                 onClick={() => onNavigate('home')}
-                className="text-foundation-muted hover:text-accent-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
                 Lead Investigations
               </button>
@@ -113,15 +113,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <li>
               <button
                 onClick={() => onNavigate('research')}
-                className="text-foundation-muted hover:text-accent-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
-                Preprints & Benchmarks
+                Preprints &amp; Benchmarks
               </button>
             </li>
             <li>
               <button
                 onClick={() => onNavigate('discover')}
-                className="text-foundation-muted hover:text-accent-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
                 Topic Index
               </button>
@@ -129,7 +129,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <li>
               <button
                 onClick={() => onNavigate('media')}
-                className="text-foundation-muted hover:text-accent-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
                 Tathastu Dialogues
               </button>
@@ -139,14 +139,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Ecosystem Products */}
         <div>
-          <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-charcoal dark:text-dark-text font-semibold mb-4">
+          <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-ink dark:text-dark-text font-semibold mb-4">
             Ecosystem
           </h4>
           <ul className="space-y-2 text-xs">
             <li>
               <button
                 onClick={() => onNavigate('ecosystem')}
-                className="text-foundation-muted hover:text-accent-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
                 MentorMaze (Guidance)
               </button>
@@ -154,7 +154,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <li>
               <button
                 onClick={() => onNavigate('ecosystem')}
-                className="text-foundation-muted hover:text-accent-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
                 Collaborate (Lab Nodes)
               </button>
@@ -162,17 +162,17 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <li>
               <button
                 onClick={() => onNavigate('ecosystem')}
-                className="text-foundation-muted hover:text-accent-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
-                Avsar (Grants & Talent)
+                Avsar (Grants &amp; Talent)
               </button>
             </li>
             <li>
               <button
                 onClick={() => onNavigate('ecosystem')}
-                className="text-foundation-muted hover:text-accent-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
-                Iris (Vision & Robotics)
+                Iris (Vision &amp; Robotics)
               </button>
             </li>
           </ul>
@@ -180,14 +180,14 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
         {/* Governance & Operations */}
         <div>
-          <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-charcoal dark:text-dark-text font-semibold mb-4">
+          <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-ink dark:text-dark-text font-semibold mb-4">
             Editorial
           </h4>
           <ul className="space-y-2 text-xs">
             <li>
               <button
                 onClick={() => onNavigate('editorial-studio')}
-                className="text-foundation-muted hover:text-accent-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
                 Editorial Studio
               </button>
@@ -195,7 +195,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <li>
               <button
                 onClick={() => onNavigate('about')}
-                className="text-foundation-muted hover:text-accent-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
                 Peer Review Charter
               </button>
@@ -203,15 +203,15 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             <li>
               <button
                 onClick={() => onNavigate('about')}
-                className="text-foundation-muted hover:text-accent-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
-                Ethics & Conflict Policy
+                Ethics &amp; Conflict Policy
               </button>
             </li>
             <li>
               <a
                 href="#archive"
-                className="text-foundation-muted hover:text-accent-violet dark:text-dark-muted transition-colors"
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors"
               >
                 Zenodo Archive Repository
               </a>
@@ -221,12 +221,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-foundation-charcoal/5 dark:border-dark-border py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-foundation-muted dark:text-dark-muted">
+      <div className="border-t border-foundation-border dark:border-dark-border py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-foundation-secondary dark:text-dark-muted">
           <p>© 2026 AI Tathastu Insights. Published under CC BY-NC 4.0 International.</p>
           <div className="flex items-center gap-6">
-            <span>Latency Target: &lt; 200ms</span>
-            <span>Typography: Instrument Serif &amp; Geist</span>
+            <span>Latency Budget: &lt; 200ms</span>
+            <span>Typography: Fraunces, Geist &amp; Geist Mono</span>
           </div>
         </div>
       </div>
