@@ -40,37 +40,37 @@ export const ProductHeroStage: React.FC<{
       id: 'collaborate',
       tag: '01 / Distributed Systems',
       name: 'Collaborate',
-      headline: 'Multi-Agent Consensus Runtime',
-      problem: 'Autonomous agents fail from uncoordinated state drift across concurrent tool calls. Collaborate enforces Aegis-BFT Byzantine consensus in Rust.',
-      stack: 'Rust • Aegis-BFT • eBPF • 64-Node Mesh',
-      invariant: '142ms Quorum Latency Bound',
+      headline: 'Multi-Agent Consensus Runtime [Prototype]',
+      problem: 'Autonomous agents fail from uncoordinated state drift across concurrent tool calls. Collaborate proposes Aegis-BFT Byzantine consensus in Rust.',
+      stack: 'Rust Spec • Aegis-BFT • eBPF • 64-Node Mesh Sim',
+      invariant: 'Target Quorum Bound: < 200ms (Design Spec)',
     },
     {
       id: 'mentormaze',
       tag: '02 / Research Pedagogy',
       name: 'MentorMaze',
-      headline: 'Socratic Prerequisite & Kernel Debugger',
+      headline: 'Socratic Prerequisite & Kernel Debugger [Prototype]',
       problem: 'Advanced ML literature has steep mathematical lattices. Students get stuck on CUDA memory strides and GPU concurrency without Socratic feedback.',
-      stack: 'Python 3.12 • Triton • gVisor • Neo4j DAG',
-      invariant: 'Cycle-Accurate Memory Profiling',
+      stack: 'Python 3.12 • Triton 3.0 • gVisor • Neo4j DAG',
+      invariant: 'Socratic Kernel Feedback (Interactive Prototype)',
     },
     {
       id: 'avsar',
       tag: '03 / Research Infrastructure',
       name: 'Avsar',
-      headline: 'Automated Compute Grant Engine',
+      headline: 'Automated Compute Grant Engine [Prototype]',
       problem: 'Academic grant committees take 9 months to evaluate proposals. Avsar evaluates benchmark reproductions automatically in hours and grants compute credits.',
-      stack: 'PyTorch • Automated Harness • H100 Clusters',
-      invariant: 'Automated Audit Verification < 24h',
+      stack: 'PyTorch • Automated Harness • Cloud GPU Clusters',
+      invariant: 'Automated Audit Verification < 24h (Target)',
     },
     {
       id: 'iris',
       tag: '04 / Embodied Robotics',
       name: 'Iris',
-      headline: 'Real-Time 3D Spatial Occupancy System',
-      problem: '2D vision models forget physical objects the moment they are occluded. Iris maintains an egocentric 3D voxel tensor memory running at 88 FPS.',
-      stack: 'CUDA 12 • 3D Voxel Tensor • Jetson Orin AGX',
-      invariant: '88.4 FPS on Edge Silicon',
+      headline: 'Real-Time 3D Spatial Occupancy System [Prototype]',
+      problem: '2D vision models forget physical objects the moment they are occluded. Iris maintains an egocentric 3D voxel tensor memory targeting real-time edge robotics.',
+      stack: 'CUDA 12 • 3D Voxel Tensor • Jetson Orin AGX (Target)',
+      invariant: 'Target: 80+ FPS on Edge Silicon (Design Goal)',
     },
   ];
 
@@ -125,11 +125,11 @@ export const ProductHeroStage: React.FC<{
 
           <div className="pt-4 border-t border-brand-stone-dark/60 dark:border-dark-border space-y-2 text-xs font-mono">
             <div className="flex items-center justify-between text-brand-muted dark:text-dark-muted">
-              <span>Stack:</span>
+              <span>Architecture Stack:</span>
               <span className="text-brand-charcoal dark:text-white font-medium">{currentSystem.stack}</span>
             </div>
             <div className="flex items-center justify-between text-brand-muted dark:text-dark-muted">
-              <span>Verified Invariant:</span>
+              <span>Specification Target:</span>
               <span className="text-accent-blue dark:text-accent-softblue font-semibold">{currentSystem.invariant}</span>
             </div>
           </div>
@@ -188,56 +188,56 @@ export const ProductLedger: React.FC<ProductShowcaseProps> = ({
         return {
           systemId: 'SYS_01 // MENTORMAZE',
           category: 'Cognitive Research Pedagogy',
-          focus: 'Adaptive Prerequisite Diagnosis & Cycle-Accurate CUDA Sandboxing',
+          focus: 'Adaptive Prerequisite Diagnosis & Socratic Kernel Debugging [Interactive UI Prototype]',
           barrier: 'Advanced machine learning preprints move faster than university curricula. Independent students face steep prerequisite lattices in formal tensor math and CUDA GPU concurrency, hitting roadblocks without continuous Socratic debugging.',
-          solution: 'MentorMaze treats learning as interactive system debugging. Learners interact with intentionally broken Triton CUDA kernels and formal Lean 4 lemmas, while an isolated gVisor sandbox profiles memory strides and verifies mathematical invariants.',
+          solution: 'MentorMaze treats learning as interactive system debugging. The interactive prototype designs a learning interface for intentionally broken Triton CUDA kernels and formal Lean 4 lemmas, while modeling how an isolated gVisor sandbox can profile memory strides and verify mathematical invariants.',
           highlights: [
-            'Monaco-style interactive Triton/CUDA kernel debugger',
-            'Automated prerequisite DAG mapping across 120,000+ papers',
-            'Cycle-accurate memory profiler in isolated gVisor containers',
-            'Socratic feedback engine resolving compiler error cascades'
+            'Interactive Triton/CUDA kernel debugger interface (UI Prototype)',
+            'Automated prerequisite DAG mapping concept across ML literature',
+            'Planned cycle-accurate memory profiler in isolated gVisor containers',
+            'Socratic guidance interface resolving compiler error cascades'
           ]
         };
       case 'collaborate':
         return {
           systemId: 'SYS_02 // COLLABORATE',
           category: 'Distributed Agent Systems',
-          focus: 'Aegis-BFT Consensus Engine for Multi-Agent Swarms',
+          focus: 'Aegis-BFT Consensus Engine for Multi-Agent Swarms [Architecture Prototype]',
           barrier: 'Autonomous agents fail not on single turns, but on uncoordinated state drift across concurrent tool calls. When multiple agents generate code and run benchmarks concurrently, race conditions corrupt shared Git branches and research conclusions.',
-          solution: 'Collaborate implements Aegis-BFT, an asynchronous Byzantine consensus protocol in Rust. Every proposed code patch, benchmark assert, and environment update must be cryptographically signed by a 2f + 1 quorum before being linearized to the master ledger.',
+          solution: 'Collaborate explores Aegis-BFT, an asynchronous Byzantine consensus protocol in Rust. Under the protocol specification, every proposed code patch, benchmark assert, and environment update must reach quorum before being linearized to the master ledger.',
           highlights: [
-            'Asynchronous 2f + 1 Byzantine consensus in Rust',
-            'Sub-200ms quorum commitment bound across 64 nodes',
-            'Cryptographic ed25519 signature verification on state transitions',
-            'eBPF syscall auditing preventing silent filesystem race conditions'
+            'Asynchronous 2f + 1 Byzantine consensus protocol specification',
+            'Target quorum commitment bound < 200ms across 64 nodes (Design Goal)',
+            'Cryptographic Ed25519 signature verification model on state transitions',
+            'Proposed eBPF syscall auditing architecture to prevent state drift'
           ]
         };
       case 'avsar':
         return {
           systemId: 'SYS_03 // AVSAR',
           category: 'Open Research Infrastructure',
-          focus: 'Automated Preprint Benchmark Reproduction & Compute Micro-Grants',
+          focus: 'Automated Preprint Benchmark Reproduction & Compute Micro-Grants [Pipeline Prototype]',
           barrier: 'Traditional research grants are monopolized by legacy institutional committees requiring 9-month proposal cycles. Independent open-source contributors who actually reproduce and verify frontier papers lack access to high-end compute clusters.',
-          solution: 'Avsar connects compute grants directly to automated benchmark reproduction. When an independent contributor successfully reproduces a target preprint benchmark in an isolated H100 sandbox, compute credits and visiting fellowships are awarded automatically.',
+          solution: 'Avsar explores connecting compute grants directly to automated benchmark reproduction. The proposed pipeline aims to evaluate candidate preprint reproductions automatically on cloud GPU clusters and grant compute credits directly.',
           highlights: [
-            'Automated reproduction harness for arXiv preprints',
-            'Containerized execution on cloud H100 GPU clusters',
-            'Direct tokenized compute micro-grant allocation',
-            'Public cryptographic audit trail for reproducibility verification'
+            'Automated reproduction pipeline specification for arXiv preprints',
+            'Target containerized execution architecture on cloud GPU clusters (H100)',
+            'Direct tokenized compute micro-grant allocation model',
+            'Proposed public cryptographic audit trail for reproducibility verification'
           ]
         };
       case 'iris':
         return {
           systemId: 'SYS_04 // IRIS',
           category: 'Embodied Perception & Robotics',
-          focus: 'Continuous Egocentric 3D Voxel Memory for Edge Hardware',
+          focus: 'Continuous Egocentric 3D Voxel Memory for Edge Hardware [Sensory HUD Prototype]',
           barrier: 'Standard 2D vision models process disconnected video frames, immediately forgetting physical objects when occluded. Real-world robotics requires persistent 3D spatial permanence that continues to track objects when out of line-of-sight.',
-          solution: 'Iris constructs a continuous 3D spatial occupancy grid maintained directly in an egocentric voxel memory tensor. Running at 88 FPS on edge silicon (Jetson Orin AGX), robot manipulators reach behind visual barriers with verified spatial accuracy.',
+          solution: 'Iris constructs a continuous 3D spatial occupancy grid maintained directly in an egocentric voxel memory tensor. Designed to target 80+ FPS on embedded silicon (Jetson Orin AGX), the architecture enables robot manipulators to reach behind visual barriers with verified spatial permanence.',
           highlights: [
-            'Continuous 3D voxel occupancy tensor memory',
-            '88.4 FPS sustained throughput on NVIDIA Jetson Orin AGX',
-            'True object permanence tracking across total pixel occlusion',
-            'Sub-15ms edge sensor-to-action latency bound'
+            'Continuous 3D voxel occupancy tensor memory model',
+            'Target throughput: 80+ FPS on embedded silicon (Jetson Orin AGX)',
+            'True object permanence tracking concept across total pixel occlusion',
+            'Sub-15ms edge sensor-to-action latency design bound'
           ]
         };
       default:
@@ -296,7 +296,7 @@ export const ProductLedger: React.FC<ProductShowcaseProps> = ({
 
                     <div>
                       <strong className="text-brand-charcoal dark:text-white font-medium block text-xs font-mono uppercase tracking-wider mb-1">
-                        Our Implementation:
+                        Our Architecture &amp; Development:
                       </strong>
                       <p className="text-xs sm:text-sm font-normal">
                         {meta.solution}

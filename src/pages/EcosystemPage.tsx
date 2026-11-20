@@ -82,7 +82,7 @@ export const EcosystemPage: React.FC<EcosystemPageProps> = ({
             </span>
             <span className="text-brand-muted dark:text-dark-muted">•</span>
             <span className="text-xs font-mono text-brand-muted dark:text-dark-muted">
-              Live Software &amp; Tools
+              Prototypes &amp; Specifications
             </span>
           </div>
           <h1 className="type-hero text-brand-charcoal dark:text-dark-text tracking-tight font-semibold">
@@ -152,9 +152,17 @@ export const EcosystemPage: React.FC<EcosystemPageProps> = ({
                 <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted">
                   Version {currentProduct.version || 'v2.0'}
                 </span>
-                <span className="text-xs font-mono text-green-600 dark:text-green-400 font-semibold flex items-center gap-1">
-                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                  {currentProduct.status || 'Live Platform'}
+                <span className={`text-xs font-mono font-semibold flex items-center gap-1.5 ${
+                  currentProduct.status === 'Prototype' ? 'text-amber-500 dark:text-amber-400' :
+                  currentProduct.status === 'In Development' ? 'text-blue-500 dark:text-blue-400' :
+                  'text-green-600 dark:text-green-400'
+                }`}>
+                  <span className={`w-2 h-2 rounded-full ${
+                    currentProduct.status === 'Prototype' ? 'bg-amber-400' :
+                    currentProduct.status === 'In Development' ? 'bg-blue-400' :
+                    'bg-green-500 animate-pulse'
+                  }`} />
+                  {currentProduct.status || 'Active'}
                 </span>
               </div>
               <AnimatedButton

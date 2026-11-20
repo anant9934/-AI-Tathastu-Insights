@@ -466,8 +466,8 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     fullOverview: 'MentorMaze bridges the gap between ambitious university researchers and frontier laboratory practices. Rather than serving generic answers, MentorMaze diagnoses the cognitive prerequisites of advanced mathematical and engineering domains, constructing tailored project roadmaps, code-level debugging exercises, and literature digestion workflows.',
     accentColor: 'violet',
     badge: 'Education & Mentorship',
-    status: 'Live Platform',
-    version: 'v3.2.0',
+    status: 'Prototype',
+    version: 'Prototype v0.8',
     coverImage: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200',
     
     // 15-Section Specification
@@ -525,9 +525,9 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     relatedMediaIds: ['documentary-residual-stream'],
 
     stats: [
-      { label: 'Kernel Compiler', value: 'Triton / CUDA 12' },
-      { label: 'Sandbox Isolation', value: 'gVisor Container' },
-      { label: 'Memory Guard', value: 'eBPF Syscall Filter' },
+      { label: 'Kernel Compiler', value: 'Triton / CUDA 12 (Target)' },
+      { label: 'Sandbox Isolation', value: 'gVisor Container (Planned)' },
+      { label: 'Memory Guard', value: 'eBPF Filter (Planned)' },
       { label: 'Pedagogy Engine', value: 'Socratic Proof DAG' }
     ],
     coreCapabilities: [
@@ -561,8 +561,8 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     fullOverview: 'Scientific discoveries increasingly occur at the boundary between disciplines. Tathastu Collaborate provides a reproducible laboratory notebook where human scientists orchestrate swarms of specialized literature-review, code-generation, and statistical-verification agents under rigorous cryptographic audit trails.',
     accentColor: 'blue',
     badge: 'Research Lab Infrastructure',
-    status: 'Live Platform',
-    version: 'v2.4.1',
+    status: 'In Development',
+    version: 'Dev v0.9',
     coverImage: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1200',
 
     overview: 'Collaborate is an open multi-agent research laboratory environment combining real-time CRDT text collaboration, deterministic Docker capsules, and Aegis-BFT Byzantine consensus.',
@@ -619,10 +619,10 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     relatedMediaIds: ['podcast-tathastu-dialogues-ep14'],
 
     stats: [
-      { label: 'Consensus Protocol', value: 'Aegis-BFT (Rust)' },
-      { label: 'Network Topology', value: '64 Heterogeneous Nodes' },
+      { label: 'Consensus Protocol', value: 'Aegis-BFT (Rust Spec)' },
+      { label: 'Network Topology', value: '64 Heterogeneous Nodes (Sim)' },
       { label: 'Quorum Threshold', value: '2f + 1 Signatures' },
-      { label: 'State Invariant', value: 'Linearizable Commits' }
+      { label: 'State Invariant', value: 'Linearizable Commits (Target)' }
     ],
     coreCapabilities: [
       {
@@ -655,8 +655,8 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     fullOverview: 'Traditional academic credentialing filters out non-traditional builders and researchers in emerging economies. Avsar inverts this paradigm: by evaluating verified GitHub commits, arXiv preprints, benchmark submissions, and reproducible code reviews, Avsar automatically pairs talent with frontier funding and research fellowships.',
     accentColor: 'terracotta',
     badge: 'Grants & Fellowship Network',
-    status: 'Live Platform',
-    version: 'v1.8.4',
+    status: 'In Development',
+    version: 'Dev v0.7',
     coverImage: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1200',
 
     overview: 'Avsar is an algorithmic fellowship and micro-grant discovery engine that evaluates technical merit from verified code artifacts rather than institutional prestige.',
@@ -713,10 +713,10 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     relatedMediaIds: ['lecture-spatial-vision-iris'],
 
     stats: [
-      { label: 'Evaluation Cluster', value: '8x H100 80GB Nodes' },
+      { label: 'Evaluation Cluster', value: 'Cloud GPU Allocations' },
       { label: 'Target Preprints', value: 'arXiv Open Index' },
-      { label: 'Verification Turnaround', value: '< 24h Automated' },
-      { label: 'Audit Trail', value: 'Cryptographic Ledger' }
+      { label: 'Verification Turnaround', value: '< 24h Target' },
+      { label: 'Audit Trail', value: 'Public Reproduction Ledger' }
     ],
     coreCapabilities: [
       {
@@ -749,8 +749,8 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     fullOverview: 'Iris solves the temporal and spatial disconnect inherent to conventional multimodal models. Built on 3D voxel-semantic neural memories, Iris maintains a continuous spatial understanding of the physical environment, enabling assistive technology, automated inspection, and embodied robotic manipulation.',
     accentColor: 'mint',
     badge: 'Perceptual Intelligence',
-    status: 'Live Platform',
-    version: 'v2.1.2',
+    status: 'In Development',
+    version: 'Dev v0.6',
     coverImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200',
 
     overview: 'Iris is an embodied perceptual intelligence foundation model providing continuous 3D spatial voxel memory and real-time physical affordance grounding at 60 FPS.',
@@ -807,10 +807,10 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     relatedMediaIds: ['lecture-spatial-vision-iris'],
 
     stats: [
-      { label: 'Perception Model', value: '3D Voxel Occupancy' },
-      { label: 'Edge Silicon', value: 'Jetson Orin AGX' },
-      { label: 'Sustained Throughput', value: '88.4 FPS' },
-      { label: 'Sensor Inputs', value: 'Stereo RGB-D + IMU' }
+      { label: 'Perception Model', value: '3D Voxel Occupancy (Model)' },
+      { label: 'Target Silicon', value: 'Jetson Orin AGX (Planned)' },
+      { label: 'Throughput Target', value: '80+ FPS Design Target' },
+      { label: 'Memory Persistence', value: 'Egocentric Tensor' }
     ],
     coreCapabilities: [
       {

@@ -31,7 +31,7 @@ export const MentorMazeConsole: React.FC = () => {
           <span className="w-3 h-3 rounded-full bg-[#FF5F56] inline-block" />
           <span className="w-3 h-3 rounded-full bg-[#FFBD2E] inline-block" />
           <span className="w-3 h-3 rounded-full bg-[#27C93F] inline-block" />
-          <span className="ml-2 text-white/50 text-[11px]">mentormaze-v3 // kernel_debugger.py</span>
+          <span className="ml-2 text-white/50 text-[11px]">mentormaze // [Interactive UI Prototype] kernel_debugger.py</span>
         </div>
         <div className="flex items-center gap-1 bg-black/40 p-0.5 rounded-lg border border-white/10 text-[11px]">
           <button
@@ -128,7 +128,7 @@ def fused_cross_entropy_kernel(
 
       {activeTab === 'sandbox' && (
         <div className="flex-1 p-4 overflow-y-auto space-y-3 font-mono text-xs">
-          <div className="text-white/50 text-[11px]">// Isolated gVisor execution container with eBPF syscall filtering</div>
+          <div className="text-white/50 text-[11px]">// Architectural Simulation: Isolated gVisor execution container with eBPF syscall filtering (Planned)</div>
           <div className="p-3 rounded-xl bg-black/60 border border-white/10 space-y-2 text-[11px]">
             <div className="flex items-center justify-between text-white/60 border-b border-white/10 pb-2">
               <span>SANDBOX HOST: gvisor-worker-08</span>
@@ -138,11 +138,11 @@ def fused_cross_entropy_kernel(
             <div>[0.014s] Compiling Triton JIT kernel for sm_89 architecture</div>
             <div>[0.082s] Executing unit test matrix: 256 batch sizes x 4096 hidden_dim</div>
             <div className="text-green-400">[0.114s] Correctness: PyTorch baseline diff = 1.2e-7 (TOLERANCE_MET)</div>
-            <div className="text-accent-softblue">[0.119s] Measured Memory Bandwidth: 684 GB/s (92.4% theoretical peak)</div>
+            <div className="text-accent-softblue">[0.119s] Simulated Memory Bandwidth: 684 GB/s (Target Peak)</div>
           </div>
           <div className="p-2.5 rounded-lg bg-green-500/10 border border-green-500/20 text-green-300 text-[11px] flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0" />
-            <span>Kernel verified against automated regression suite. Ready for submission.</span>
+            <span>Interactive sandbox prototype. Code execution simulated in web demonstration.</span>
           </div>
         </div>
       )}
@@ -150,10 +150,10 @@ def fused_cross_entropy_kernel(
       {/* Console Status Bar */}
       <div className="px-4 py-2 bg-[#161B22] border-t border-white/10 flex items-center justify-between text-[11px] text-white/50">
         <span className="flex items-center gap-1.5">
-          <span className="w-2 h-2 rounded-full bg-green-400" />
-          Python 3.12 • Triton 3.0 • CUDA 12.4
+          <span className="w-2 h-2 rounded-full bg-amber-400" />
+          Interactive Prototype • Target Specs: Python 3.12 / Triton 3.0 / CUDA 12.4
         </span>
-        <span>Diagnostic Precision: 98.2%</span>
+        <span>Simulated Socratic IDE View</span>
       </div>
     </div>
   );
@@ -174,7 +174,7 @@ export const CollaborateConsole: React.FC = () => {
           <span className="w-3 h-3 rounded-full bg-[#FF5F56] inline-block" />
           <span className="w-3 h-3 rounded-full bg-[#FFBD2E] inline-block" />
           <span className="w-3 h-3 rounded-full bg-[#27C93F] inline-block" />
-          <span className="ml-2 text-white/50 text-[11px]">aegis-runtime // cluster: aegis-prod-04</span>
+          <span className="ml-2 text-white/50 text-[11px]">collaborate // [Architecture Prototype] aegis-runtime-sim</span>
         </div>
         <div className="flex items-center gap-1 bg-black/40 p-0.5 rounded-lg border border-white/10 text-[11px]">
           <button
@@ -183,7 +183,7 @@ export const CollaborateConsole: React.FC = () => {
               activeTab === 'nodes' ? 'bg-accent-blue text-white font-semibold' : 'text-white/60 hover:text-white'
             }`}
           >
-            Agent Mesh (64 Nodes)
+            Agent Mesh (64 Nodes Sim)
           </button>
           <button
             onClick={() => setActiveTab('ledger')}
@@ -199,7 +199,7 @@ export const CollaborateConsole: React.FC = () => {
               activeTab === 'protocol' ? 'bg-accent-blue text-white font-semibold' : 'text-white/60 hover:text-white'
             }`}
           >
-            Rust Consensus Engine
+            Rust Protocol Spec
           </button>
         </div>
       </div>
@@ -208,8 +208,8 @@ export const CollaborateConsole: React.FC = () => {
       {activeTab === 'nodes' && (
         <div className="flex-1 p-4 overflow-y-auto space-y-3">
           <div className="flex items-center justify-between text-[11px] text-white/60 border-b border-white/10 pb-2">
-            <span>BYZANTINE QUORUM: 2f + 1 = 43/64 SIGNATURES</span>
-            <span className="text-green-400 font-semibold">EPOCH #14,892 • 142ms BOUND</span>
+            <span>BYZANTINE QUORUM: 2f + 1 = 43/64 SIGNATURES (SIMULATED)</span>
+            <span className="text-green-400 font-semibold">EPOCH #14,892 • TARGET QUORUM: &lt; 200ms BOUND</span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
@@ -268,7 +268,7 @@ export const CollaborateConsole: React.FC = () => {
 
       {activeTab === 'protocol' && (
         <div className="flex-1 p-4 overflow-y-auto">
-          <div className="text-white/40 text-[11px] mb-2">// Rust implementation of Byzantine Fault Tolerant state transition:</div>
+          <div className="text-white/40 text-[11px] mb-2">// Architectural Design: Rust specification for Byzantine Fault Tolerant state transition:</div>
           <pre className="text-white/90 leading-relaxed text-[11px] bg-black/40 p-3 rounded-xl border border-white/5 overflow-x-auto">
             <code>
 {`// aegis-consensus/src/engine.rs
@@ -301,9 +301,9 @@ pub async fn verify_and_commit_epoch(
       <div className="px-4 py-2 bg-[#121824] border-t border-white/10 flex items-center justify-between text-[11px] text-white/50">
         <span className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-accent-blue" />
-          Aegis-BFT Rust Daemon • 64 Heterogeneous Nodes
+          Interactive Prototype • Proposed Aegis-BFT Rust Daemon • Simulated 64 Nodes
         </span>
-        <span>Consensus Bound: 142ms</span>
+        <span>Target Latency: &lt; 200ms (Design Target)</span>
       </div>
     </div>
   );
@@ -324,7 +324,7 @@ export const AvsarConsole: React.FC = () => {
           <span className="w-3 h-3 rounded-full bg-[#FF5F56] inline-block" />
           <span className="w-3 h-3 rounded-full bg-[#FFBD2E] inline-block" />
           <span className="w-3 h-3 rounded-full bg-[#27C93F] inline-block" />
-          <span className="ml-2 text-white/50 text-[11px]">avsar-engine // grant_verification_pipeline</span>
+          <span className="ml-2 text-white/50 text-[11px]">avsar // [Pipeline Prototype] grant_verification_pipeline</span>
         </div>
         <div className="flex items-center gap-1 bg-black/40 p-0.5 rounded-lg border border-white/10 text-[11px]">
           <button
@@ -357,7 +357,7 @@ export const AvsarConsole: React.FC = () => {
       {/* Main Viewport */}
       {activeTab === 'benchmarks' && (
         <div className="flex-1 p-4 overflow-y-auto space-y-3">
-          <div className="text-white/50 text-[11px]">// Active Preprint Benchmark Reproduction Tasks:</div>
+          <div className="text-white/50 text-[11px]">// Simulation: Active Preprint Benchmark Reproduction Tasks (Planned Architecture):</div>
           <div className="space-y-2.5">
             {[
               {
@@ -453,9 +453,9 @@ export const AvsarConsole: React.FC = () => {
       <div className="px-4 py-2 bg-[#1F1714] border-t border-white/10 flex items-center justify-between text-[11px] text-white/50">
         <span className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-accent-terracotta" />
-          Avsar Benchmark Verification Engine • Automated Compute Allocation
+          Interactive Prototype • Automated Reproduction Workflow • Planned Cloud Cluster
         </span>
-        <span>Review Turnaround: &lt; 24h</span>
+        <span>Target Review Turnaround: &lt; 24h</span>
       </div>
     </div>
   );
@@ -476,7 +476,7 @@ export const IrisConsole: React.FC = () => {
           <span className="w-3 h-3 rounded-full bg-[#FF5F56] inline-block" />
           <span className="w-3 h-3 rounded-full bg-[#FFBD2E] inline-block" />
           <span className="w-3 h-3 rounded-full bg-[#27C93F] inline-block" />
-          <span className="ml-2 text-white/50 text-[11px]">iris-perception-engine // edge_silicon: jetson_orin_agx</span>
+          <span className="ml-2 text-white/50 text-[11px]">iris // [Perception HUD Prototype] edge_silicon_sim</span>
         </div>
         <div className="flex items-center gap-1 bg-black/40 p-0.5 rounded-lg border border-white/10 text-[11px]">
           <button
@@ -510,8 +510,8 @@ export const IrisConsole: React.FC = () => {
       {activeTab === 'voxel' && (
         <div className="flex-1 p-4 overflow-y-auto space-y-3">
           <div className="flex items-center justify-between text-[11px] text-white/60 border-b border-white/10 pb-2">
-            <span>VOXEL OCCUPANCY RESOLUTION: 128 x 128 x 64</span>
-            <span className="text-green-400 font-semibold">88.4 FPS • 11.3ms LATENCY</span>
+            <span>VOXEL OCCUPANCY RESOLUTION: 128 x 128 x 64 (TARGET SPEC)</span>
+            <span className="text-green-400 font-semibold">TARGET: 80+ FPS • SIMULATED HUD</span>
           </div>
 
           {/* Voxel Sensor HUD Visual Simulation */}
@@ -565,11 +565,11 @@ export const IrisConsole: React.FC = () => {
 
       {activeTab === 'occlusion' && (
         <div className="flex-1 p-4 overflow-y-auto space-y-3 font-mono text-xs">
-          <div className="text-white/50 text-[11px]">// Physical Object Permanence Verification (Overcoming 2D Video Frame Forgetting)</div>
+          <div className="text-white/50 text-[11px]">// Architectural Simulation: Physical Object Permanence (Target Specification)</div>
           <div className="p-3.5 rounded-xl bg-black/50 border border-white/10 space-y-2 text-[11px]">
             <div className="flex items-center justify-between text-white/60 border-b border-white/10 pb-2">
               <span>TEST SCENARIO: OCCLUSION_BURST_04</span>
-              <span className="text-green-400 font-semibold">PERMANENCE: VERIFIED</span>
+              <span className="text-green-400 font-semibold">PERMANENCE: SIMULATED PASS</span>
             </div>
             <div>[0.00s] Target object 'CNC Motor Housing' fully visible in front of camera array.</div>
             <div>[1.40s] Metal storage bin moved in front of object, occluding 100% of 2D pixels.</div>
@@ -585,13 +585,13 @@ export const IrisConsole: React.FC = () => {
 
       {activeTab === 'telemetry' && (
         <div className="flex-1 p-4 overflow-y-auto space-y-3 text-[11px]">
-          <div className="text-white/50">// Edge Hardware Profile: NVIDIA Jetson Orin AGX (Industrial Robotics Host)</div>
+          <div className="text-white/50">// Target Silicon Profile: NVIDIA Jetson Orin AGX (Planned Deployment Target)</div>
           <div className="grid grid-cols-2 gap-3">
             {[
-              { metric: 'Tensor Inference Latency', value: '11.3 ms', sub: 'Sub-frame turnaround' },
-              { metric: 'Sustained Framerate', value: '88.4 FPS', sub: 'Exceeds 60 FPS real-time robotics bound' },
-              { metric: 'Edge Power Draw', value: '38.2 W', sub: 'Within 50W mobile robot power envelope' },
-              { metric: 'VRAM Footprint', value: '4.8 GB', sub: 'Leaves 59GB free for navigation planners' },
+              { metric: 'Tensor Inference Latency', value: '11.3 ms', sub: 'Target sub-frame bound' },
+              { metric: 'Sustained Framerate', value: '88.4 FPS', sub: 'Design goal on Orin AGX' },
+              { metric: 'Edge Power Draw', value: '38.2 W', sub: 'Target 50W mobile envelope' },
+              { metric: 'VRAM Footprint', value: '4.8 GB', sub: 'Projected model memory footprint' },
             ].map((stat, idx) => (
               <div key={idx} className="p-3 rounded-xl bg-white/5 border border-white/10">
                 <span className="text-white/50 block text-[10px]">{stat.metric}</span>
@@ -607,9 +607,9 @@ export const IrisConsole: React.FC = () => {
       <div className="px-4 py-2 bg-[#101F1A] border-t border-white/10 flex items-center justify-between text-[11px] text-white/50">
         <span className="flex items-center gap-1.5">
           <span className="w-2 h-2 rounded-full bg-accent-sage" />
-          Iris Embodied Perception • Real-Time 3D Voxel Memory
+          Interactive HUD Prototype • 3D Voxel Memory Simulation
         </span>
-        <span>Framerate: 88.4 FPS on Edge Silicon</span>
+        <span>Target Throughput: 80+ FPS on Jetson Orin (Planned)</span>
       </div>
     </div>
   );

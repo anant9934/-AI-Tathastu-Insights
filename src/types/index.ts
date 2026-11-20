@@ -103,7 +103,7 @@ export interface ResearchPaper {
   provenanceNote?: string;
 }
 
-export type ProductStatus = 'Live Platform' | 'Beta Lab' | 'Frontier Preview' | 'Active Development';
+export type ProductStatus = 'Live Platform' | 'Beta Lab' | 'Frontier Preview' | 'Active Development' | 'Prototype' | 'In Development' | 'Planned';
 
 export interface EcosystemProduct {
   id: 'mentormaze' | 'collaborate' | 'avsar' | 'iris';
