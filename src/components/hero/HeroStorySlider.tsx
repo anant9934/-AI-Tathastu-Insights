@@ -13,7 +13,9 @@ import {
   Activity,
   Cpu,
   Eye,
-  GitBranch
+  GitBranch,
+  Lock,
+  Maximize2
 } from 'lucide-react';
 import { 
   MentorMazeConsole, 
@@ -32,6 +34,9 @@ export interface HeroSlide {
   subtitle: string;
   description: string;
   component: React.ReactNode;
+  imageUrl: string;
+  liveUrl?: string;
+  provenanceLabel: string;
   primaryAction: {
     label: string;
     onClick: () => void;
@@ -59,6 +64,7 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
   const [progress, setProgress] = useState(0);
+  const [viewMode, setViewMode] = useState<'real' | 'sim'>('real');
   const timerRef = useRef<NodeJS.Timeout | null>(null);
 
   const SLIDE_DURATION = 7000; // 7 seconds per slide
@@ -72,6 +78,9 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
       subtitle: 'Targeting linearizable execution across 64 heterogeneous research agents.',
       description: 'When autonomous agents generate code and run benchmarks concurrently, uncoordinated tool calls corrupt shared branches. Collaborate proposes an Aegis-BFT consensus engine in Rust to target atomic, reproducible state commits across distributed agents.',
       component: <CollaborateConsole />,
+      imageUrl: '/media/products/collaborate/collaborate-live.png',
+      liveUrl: 'https://collaborate.aitathastu.com',
+      provenanceLabel: 'Live Product Interface • Rudra Ojha & EORA AI Guide',
       primaryAction: {
         label: 'Explore Collaborate',
         onClick: () => onExploreProduct('collaborate'),
@@ -80,8 +89,8 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
         label: 'Read Engineering Story',
         onClick: onNavigateEngineering,
       },
-      previewBadge: 'Architecture Prototype • 64-Node Mesh',
-      visualAssetType: 'Illustrative Prototype (Simulated Consensus Mesh)',
+      previewBadge: 'Live Platform • 28 Repositories',
+      visualAssetType: 'Live Application Screenshot (collaborate.aitathastu.com)',
     },
     {
       id: 'mentormaze',
@@ -91,6 +100,9 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
       subtitle: 'Socratic debugging interface for CUDA pointer arithmetic and memory strides.',
       description: 'Advanced machine learning moves too fast for static textbooks. MentorMaze models student prerequisite trees and designs an interactive feedback environment for Triton and CUDA kernel engineering.',
       component: <MentorMazeConsole />,
+      imageUrl: '/media/products/mentormaze/architecture-spec.svg',
+      liveUrl: 'https://aitathastu.info/products/mentormaze',
+      provenanceLabel: 'Verified Architecture Specification • AST & gVisor Sandbox',
       primaryAction: {
         label: 'Explore MentorMaze',
         onClick: () => onExploreProduct('mentormaze'),
@@ -99,8 +111,8 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
         label: 'View Prerequisite DAG',
         onClick: () => onExploreProduct('mentormaze'),
       },
-      previewBadge: 'UI Prototype • Socratic Kernel IDE',
-      visualAssetType: 'Illustrative Prototype (Simulated Socratic IDE)',
+      previewBadge: 'Architecture Spec • AST Sandbox',
+      visualAssetType: 'Verified Architectural Specification (Vector SVG)',
     },
     {
       id: 'avsar',
@@ -110,6 +122,9 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
       subtitle: 'Targeting automated empirical verification to replace 9-month grant committees.',
       description: 'Traditional grants require institutional affiliations and 9-month delays. Avsar is designed to evaluate candidate preprint reproductions automatically on cloud clusters, granting compute credits to independent researchers directly.',
       component: <AvsarConsole />,
+      imageUrl: '/media/products/avsar/avsar-live.png',
+      liveUrl: 'https://avsar.aitathastu.com',
+      provenanceLabel: 'Live Product Interface • Opportunities Discovery Doors',
       primaryAction: {
         label: 'Explore Avsar',
         onClick: () => onExploreProduct('avsar'),
@@ -118,8 +133,8 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
         label: 'Inspect Benchmark Suite',
         onClick: onNavigateResearch,
       },
-      previewBadge: 'Pipeline Prototype • Benchmark Ledger',
-      visualAssetType: 'Illustrative Prototype (Simulated Reproduction Ledger)',
+      previewBadge: 'Live Platform • Fellowships',
+      visualAssetType: 'Live Application Screenshot (avsar.aitathastu.com)',
     },
     {
       id: 'iris',
@@ -129,6 +144,9 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
       subtitle: 'Overcoming 2D video frame forgetting with egocentric voxel memory.',
       description: 'Standard 2D vision models forget physical objects when occluded. Iris designs continuous 3D voxel occupancy tensor memory targeting 80+ FPS on embedded silicon such as NVIDIA Jetson Orin AGX for robot manipulators.',
       component: <IrisConsole />,
+      imageUrl: '/media/products/iris/architecture-spec.svg',
+      liveUrl: 'https://aitathastu.info/products/iris',
+      provenanceLabel: 'Verified Architecture Specification • 3D Voxel Memory',
       primaryAction: {
         label: 'Explore Iris',
         onClick: () => onExploreProduct('iris'),
@@ -137,8 +155,8 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
         label: 'View Robotics Specs',
         onClick: () => onExploreProduct('iris'),
       },
-      previewBadge: 'Perception HUD Prototype • 3D Voxel Memory',
-      visualAssetType: 'Illustrative Rendering (Simulated 3D Sensory HUD)',
+      previewBadge: 'Architecture Spec • Jetson Orin AGX',
+      visualAssetType: 'Verified Architectural Specification (Vector SVG)',
     },
   ];
 
@@ -310,25 +328,107 @@ export const HeroStorySlider: React.FC<HeroStorySliderProps> = ({
           </div>
         </div>
 
-        {/* Right: Live Interactive Console Viewport with Crossfade */}
-        <div className="lg:col-span-7 space-y-2">
+        {/* Right: Live Authentic Screenshot / Architecture Viewport with Crossfade */}
+        <div className="lg:col-span-7 space-y-2.5">
           <div className="flex items-center justify-between text-[11px] font-mono text-brand-muted dark:text-dark-muted px-1">
             <span className="flex items-center gap-1.5">
-              <span className="w-1.5 h-1.5 rounded-full bg-accent-blue" />
-              <span>Asset: {currentSlide.visualAssetType}</span>
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span className="font-semibold text-neutral-900 dark:text-white">
+                {viewMode === 'real' ? currentSlide.provenanceLabel : currentSlide.visualAssetType}
+              </span>
             </span>
-            <span className="opacity-70">Interactive Simulation View</span>
+
+            {/* View Mode Toggle: Real Image (Default) vs Code Simulation */}
+            <div className="inline-flex rounded-lg border border-neutral-300 dark:border-neutral-700 p-0.5 bg-neutral-100 dark:bg-neutral-900 text-[11px]">
+              <button
+                type="button"
+                onClick={() => setViewMode('real')}
+                className={`px-3 py-1 rounded-md transition-all font-sans ${
+                  viewMode === 'real'
+                    ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-sm font-semibold'
+                    : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'
+                }`}
+              >
+                Real Interface
+              </button>
+              <button
+                type="button"
+                onClick={() => setViewMode('sim')}
+                className={`px-3 py-1 rounded-md transition-all font-sans ${
+                  viewMode === 'sim'
+                    ? 'bg-neutral-900 text-white dark:bg-white dark:text-neutral-900 shadow-sm font-semibold'
+                    : 'text-neutral-600 hover:text-neutral-900 dark:text-neutral-400 dark:hover:text-white'
+                }`}
+              >
+                Simulation
+              </button>
+            </div>
           </div>
 
           <AnimatePresence mode="wait">
             <motion.div
-              key={currentSlide.id}
+              key={`${currentSlide.id}-${viewMode}`}
               initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.98 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, scale: 0.98 }}
-              transition={{ duration: 0.4, ease: EDITORIAL_EASE }}
+              transition={{ duration: 0.35, ease: EDITORIAL_EASE }}
             >
-              {currentSlide.component}
+              {viewMode === 'real' ? (
+                <div className="rounded-2xl overflow-hidden border border-brand-stone-dark/80 dark:border-dark-border bg-white dark:bg-[#10141D] shadow-xl">
+                  {/* Browser Chrome Header */}
+                  <div className="px-4 py-2.5 bg-neutral-100/90 dark:bg-neutral-900/90 border-b border-neutral-200 dark:border-neutral-800 flex items-center justify-between">
+                    <div className="flex items-center gap-2">
+                      <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
+                      <div className="ml-2 flex items-center gap-1.5 px-3 py-0.5 rounded-md bg-white dark:bg-neutral-800 border border-neutral-200 dark:border-neutral-700 text-[11px] font-mono text-neutral-600 dark:text-neutral-300">
+                        <Lock className="w-3 h-3 text-emerald-600 dark:text-emerald-400" />
+                        <span>{currentSlide.liveUrl || 'https://aitathastu.info'}</span>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {currentSlide.liveUrl?.includes('aitathastu.com') && (
+                        <a
+                          href={currentSlide.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center gap-1 text-[11px] font-mono text-accent-blue hover:underline"
+                        >
+                          <span>Open Live</span>
+                          <ExternalLink className="w-3 h-3" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Real Authentic Image View */}
+                  <div className="relative group overflow-hidden bg-neutral-900 aspect-[16/10]">
+                    <img
+                      src={currentSlide.imageUrl}
+                      alt={currentSlide.title}
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-[1.01]"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end justify-between p-4 text-white">
+                      <span className="text-xs font-mono bg-black/60 backdrop-blur-sm px-2.5 py-1 rounded">
+                        {currentSlide.provenanceLabel}
+                      </span>
+                      {currentSlide.liveUrl && (
+                        <a
+                          href={currentSlide.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs font-semibold bg-accent-blue text-white px-3 py-1 rounded shadow-md hover:bg-accent-blue/90 transition-colors flex items-center gap-1"
+                        >
+                          <span>Visit Live Platform</span>
+                          <ArrowRight className="w-3 h-3" />
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                currentSlide.component
+              )}
             </motion.div>
           </AnimatePresence>
         </div>

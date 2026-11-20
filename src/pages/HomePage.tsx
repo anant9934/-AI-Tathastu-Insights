@@ -235,26 +235,37 @@ export const HomePage: React.FC<HomePageProps> = ({
               <div className="lg:col-span-5">
                 <div 
                   onClick={() => onNavigate('engineering')}
-                  style={{ backgroundColor: '#0C1322', color: '#FFFFFF' }}
-                  className="rounded-2xl overflow-hidden aspect-[16/11] relative group cursor-pointer border border-brand-stone-dark/80 dark:border-dark-border bg-brand-navy p-5 text-white flex flex-col justify-between"
+                  className="rounded-2xl overflow-hidden aspect-[16/11] relative group cursor-pointer border border-brand-stone-dark/80 dark:border-dark-border bg-neutral-900 shadow-xl"
                 >
-                  <div className="flex items-center justify-between text-xs font-mono text-white/70">
-                    <span className="text-accent-softblue">aegis_consensus.rs</span>
-                    <span>2f + 1 Quorum</span>
+                  {/* Browser Chrome Header */}
+                  <div className="px-3.5 py-2 bg-neutral-950 border-b border-neutral-800 flex items-center justify-between text-[11px] font-mono text-neutral-400">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
+                      <span className="ml-2 text-white/90 font-medium">collaborate.aitathastu.com</span>
+                    </div>
+                    <span className="text-[10px] text-emerald-400 font-mono">Live Interface</span>
                   </div>
-                  <pre className="text-xs font-mono leading-relaxed text-white/90 overflow-hidden line-clamp-6 bg-black/30 p-3 rounded-lg border border-white/10">
-                    <code>{`// Enforce linearizable epoch
-let quorum = (2 * byzantine_threshold) + 1;
-let valid = verify_signatures(proposal)?;
-if valid >= quorum {
-    state_ledger.atomic_append(proposal).await?;
-}`}</code>
-                  </pre>
-                  <div className="text-[11px] font-mono text-white/80 flex items-center justify-between pt-2 border-t border-white/10">
-                    <span>99th Percentile: 142ms</span>
-                    <span className="text-accent-softblue group-hover:translate-x-1 transition-transform flex items-center gap-1">
-                      Read full note →
-                    </span>
+
+                  {/* Real Live Collaborate Application Screenshot */}
+                  <div className="relative w-full h-[calc(100%-33px)] overflow-hidden">
+                    <img
+                      src="/media/products/collaborate/collaborate-live.png"
+                      alt="Collaborate Live Application Interface"
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/80 via-neutral-950/20 to-transparent p-4 flex flex-col justify-end text-white">
+                      <div className="flex items-center justify-between">
+                        <div>
+                          <p className="text-xs font-semibold text-white">Collaborate Swarm Workspace</p>
+                          <p className="text-[10px] font-mono text-emerald-300">Live Application Screenshot • EORA AI Guide</p>
+                        </div>
+                        <span className="text-xs font-mono text-accent-softblue group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                          Inspect Note →
+                        </span>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>

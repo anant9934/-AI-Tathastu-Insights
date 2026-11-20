@@ -5,7 +5,7 @@
       {
         "id": "usr-admin-01",
         "email": "admin@tathastu-insights.org",
-        "passwordHash": "$2b$12$kImfNV4nyeWO74X6LP3KMO4qWse.L9YgzIRGeIqdurKB27ZayfWFy",
+        "passwordHash": "$2b$12$kMhg8lM06NHdvZWJM16igOyyN6m20WDphwjmNdsJa5WMf/qTCRyX.",
         "name": "Dr. Aravind Nair",
         "roleId": "super_admin",
         "affiliation": "Frontier Systems & Alignment, AI Tathastu",
@@ -310,6 +310,71 @@
         "affiliation": "Editorial Board",
         "isActive": true,
         "createdAt": "2026-11-20T20:40:52.278Z"
+      }
+    ],
+    [
+      "usr-1795207583881",
+      {
+        "id": "usr-1795207583881",
+        "email": "new-user-1795207583679@tathastu-insights.org",
+        "name": "New Staff Member",
+        "passwordHash": "$2b$12$ygU4yEB22JgF55.Ynrvpt.HYa9el.6XcxLwaETMagNp1cKVkWj/Gu",
+        "roleId": "editor",
+        "affiliation": "Editorial Board",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:46:23.881Z"
+      }
+    ],
+    [
+      "usr-admin-1795207628602",
+      {
+        "id": "usr-admin-1795207628602",
+        "email": "test-provisioned-admin@tathastu.org",
+        "name": "Test Admin",
+        "passwordHash": "$2b$12$hpPFLsl.Qxnutl9I9GHM9.O.KtotE6BpDZxre3qD54wX0tnVKq28K",
+        "roleId": "super_admin",
+        "affiliation": "Frontier Systems & Alignment, AI Tathastu",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:47:08.602Z"
+      }
+    ],
+    [
+      "usr-1795207629040",
+      {
+        "id": "usr-1795207629040",
+        "email": "new-user-1795207628828@tathastu-insights.org",
+        "name": "New Staff Member",
+        "passwordHash": "$2b$12$oG0vudJzRP10Rz.lAMwjGOYkpAWpQOPFjN9efYubvxcE0MN0kgQf2",
+        "roleId": "editor",
+        "affiliation": "Editorial Board",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:47:09.040Z"
+      }
+    ],
+    [
+      "usr-1795207685341",
+      {
+        "id": "usr-1795207685341",
+        "email": "new-user-1795207685127@tathastu-insights.org",
+        "name": "New Staff Member",
+        "passwordHash": "$2b$12$AYIHRAg/5vCPfz/IbyOns.jCxNt/TJ4Iy35Qa61.JGbxBMkPG6Jsy",
+        "roleId": "editor",
+        "affiliation": "Editorial Board",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:48:05.341Z"
+      }
+    ],
+    [
+      "usr-1795207719505",
+      {
+        "id": "usr-1795207719505",
+        "email": "new-user-1795207719289@tathastu-insights.org",
+        "name": "New Staff Member",
+        "passwordHash": "$2b$12$Na53OWJbjpc/.g.jOLAfzOXDJVracahH/nqIHxNDbEDJeENk2gsSi",
+        "roleId": "editor",
+        "affiliation": "Editorial Board",
+        "isActive": true,
+        "createdAt": "2026-11-20T20:48:39.505Z"
       }
     ]
   ],
@@ -2305,6 +2370,146 @@
         "uploaderName": "Admin Desk",
         "createdAt": "2026-11-20T20:40:52.834Z"
       }
+    ],
+    [
+      "media-1795207583886",
+      {
+        "id": "media-1795207583886",
+        "title": "Aegis Architecture Diagram",
+        "originalFilename": "media-asset.jpg",
+        "format": "png",
+        "fileType": "image/jpeg",
+        "fileSizeBytes": 1048576,
+        "durationSeconds": 0,
+        "durationLabel": "",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/aegis.png",
+        "fileUrl": "/uploads/media/aegis.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "uploaderId": "usr-media-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:46:23.886Z"
+      }
+    ],
+    [
+      "media-1795207584419",
+      {
+        "id": "media-1795207584419",
+        "title": "Frontier Verification Screenshot",
+        "originalFilename": "frontier-engine-screenshot.png",
+        "format": "image",
+        "fileType": "image/png",
+        "fileSizeBytes": 33,
+        "durationSeconds": 0,
+        "durationLabel": "0:00",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/1795207584418-0329f0e7becb20d4.png",
+        "fileUrl": "/uploads/media/1795207584418-0329f0e7becb20d4.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "altText": "frontier-engine-screenshot.png",
+        "uploaderId": "usr-admin-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:46:24.419Z"
+      }
+    ],
+    [
+      "media-1795207629044",
+      {
+        "id": "media-1795207629044",
+        "title": "Aegis Architecture Diagram",
+        "originalFilename": "media-asset.jpg",
+        "format": "png",
+        "fileType": "image/jpeg",
+        "fileSizeBytes": 1048576,
+        "durationSeconds": 0,
+        "durationLabel": "",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/aegis.png",
+        "fileUrl": "/uploads/media/aegis.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "uploaderId": "usr-media-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:47:09.044Z"
+      }
+    ],
+    [
+      "media-1795207685345",
+      {
+        "id": "media-1795207685345",
+        "title": "Aegis Architecture Diagram",
+        "originalFilename": "media-asset.jpg",
+        "format": "png",
+        "fileType": "image/jpeg",
+        "fileSizeBytes": 1048576,
+        "durationSeconds": 0,
+        "durationLabel": "",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/aegis.png",
+        "fileUrl": "/uploads/media/aegis.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "uploaderId": "usr-media-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:48:05.345Z"
+      }
+    ],
+    [
+      "media-1795207719509",
+      {
+        "id": "media-1795207719509",
+        "title": "Aegis Architecture Diagram",
+        "originalFilename": "media-asset.jpg",
+        "format": "png",
+        "fileType": "image/jpeg",
+        "fileSizeBytes": 1048576,
+        "durationSeconds": 0,
+        "durationLabel": "",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/aegis.png",
+        "fileUrl": "/uploads/media/aegis.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "uploaderId": "usr-media-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:48:39.509Z"
+      }
+    ],
+    [
+      "media-1795207720070",
+      {
+        "id": "media-1795207720070",
+        "title": "Frontier Verification Screenshot",
+        "originalFilename": "frontier-engine-screenshot.png",
+        "format": "image",
+        "fileType": "image/png",
+        "fileSizeBytes": 33,
+        "durationSeconds": 0,
+        "durationLabel": "0:00",
+        "speaker": "",
+        "speakerRole": "",
+        "description": "",
+        "coverImageUrl": "/uploads/media/1795207720068-0329f0e7becb20d4.png",
+        "fileUrl": "/uploads/media/1795207720068-0329f0e7becb20d4.png",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "altText": "frontier-engine-screenshot.png",
+        "uploaderId": "usr-admin-01",
+        "uploaderName": "Admin Desk",
+        "createdAt": "2026-11-20T20:48:40.070Z"
+      }
     ]
   ],
   "staticPages": [
@@ -2714,12 +2919,12 @@
     [
       "researcher@oxford.ac.uk",
       {
-        "id": "sub-aa16217bf9a8aca3",
+        "id": "sub-cf5c45a81eb325bb",
         "email": "researcher@oxford.ac.uk",
         "isConfirmed": true,
-        "confirmationToken": "7b2f5ff2b31cd1beaebaf5bd883f1b45fbb3bbaf3ef27ca3",
-        "consentRecordedAt": "2026-11-20T20:40:52.290Z",
-        "unsubscribedAt": "2026-11-20T20:40:52.291Z"
+        "confirmationToken": "a999c6c815305c4f9c898cbb7f38bc38c8a109d51cf396ea",
+        "consentRecordedAt": "2026-11-20T20:48:39.516Z",
+        "unsubscribedAt": "2026-11-20T20:48:39.516Z"
       }
     ],
     [
@@ -2740,6 +2945,46 @@
         "isConfirmed": true,
         "confirmationToken": "570eeee8cee7bce9ba4554e50ddcb0ace042094157da25ad",
         "consentRecordedAt": "2026-11-20T20:40:52.288Z"
+      }
+    ],
+    [
+      "subscriber-1795207583891@oxford.edu",
+      {
+        "id": "sub-de61c9f2cf8a3ae6",
+        "email": "subscriber-1795207583891@oxford.edu",
+        "isConfirmed": true,
+        "confirmationToken": "fa361d653968fa93cf88ce42f31c53243e435a1d8cfba0f3",
+        "consentRecordedAt": "2026-11-20T20:46:23.892Z"
+      }
+    ],
+    [
+      "subscriber-1795207629050@oxford.edu",
+      {
+        "id": "sub-0dd9428c7acdf13d",
+        "email": "subscriber-1795207629050@oxford.edu",
+        "isConfirmed": true,
+        "confirmationToken": "04e34ba9be9171072230091d3af09a2b4733fbe27647a750",
+        "consentRecordedAt": "2026-11-20T20:47:09.050Z"
+      }
+    ],
+    [
+      "subscriber-1795207685350@oxford.edu",
+      {
+        "id": "sub-b29c82677400748f",
+        "email": "subscriber-1795207685350@oxford.edu",
+        "isConfirmed": true,
+        "confirmationToken": "6fd62a9a59c7408e625d0169cfc3e669a79ab87dab6e4554",
+        "consentRecordedAt": "2026-11-20T20:48:05.350Z"
+      }
+    ],
+    [
+      "subscriber-1795207719514@oxford.edu",
+      {
+        "id": "sub-1fe2d8630cb2a8d6",
+        "email": "subscriber-1795207719514@oxford.edu",
+        "isConfirmed": true,
+        "confirmationToken": "3ccb244cbb5b1e4f7eb25432d21a47d3726eb42aecf01ee3",
+        "consentRecordedAt": "2026-11-20T20:48:39.514Z"
       }
     ]
   ],
@@ -2885,6 +3130,42 @@
         "tokenHash": "df28a40dee6c7c8a649cfcac0f84d753809c7b5f4b1e553489cc3c4592d9d7f9",
         "expiresAt": "2026-11-27T20:40:52.056Z",
         "revokedAt": "2026-11-20T20:40:52.056Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "536ac5bf3d206c666d2896d0a8c7f9d6594efdcdbbb228bce5ac5f61e5397e24",
+      {
+        "tokenHash": "536ac5bf3d206c666d2896d0a8c7f9d6594efdcdbbb228bce5ac5f61e5397e24",
+        "expiresAt": "2026-11-27T20:46:23.677Z",
+        "revokedAt": "2026-11-20T20:46:23.677Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "fe91675289f3e3f29559dc780971c7923d60121bd8c72c12e9bd6ad2b4cc0c1e",
+      {
+        "tokenHash": "fe91675289f3e3f29559dc780971c7923d60121bd8c72c12e9bd6ad2b4cc0c1e",
+        "expiresAt": "2026-11-27T20:47:08.826Z",
+        "revokedAt": "2026-11-20T20:47:08.826Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "177e827dd1e7776b0b6f7f0f3438fc6edfe5e6c22f42281e68f8d95f2da1bc4c",
+      {
+        "tokenHash": "177e827dd1e7776b0b6f7f0f3438fc6edfe5e6c22f42281e68f8d95f2da1bc4c",
+        "expiresAt": "2026-11-27T20:48:05.126Z",
+        "revokedAt": "2026-11-20T20:48:05.126Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "8b1cf5fecabbf0ee0bd545d222df3e4f20c75fa76edb9535e2641e7226ef064f",
+      {
+        "tokenHash": "8b1cf5fecabbf0ee0bd545d222df3e4f20c75fa76edb9535e2641e7226ef064f",
+        "expiresAt": "2026-11-27T20:48:39.287Z",
+        "revokedAt": "2026-11-20T20:48:39.287Z",
         "reason": "user_logout"
       }
     ]
@@ -3045,7 +3326,43 @@
         "expiresAt": "2026-11-20T21:40:52.287Z",
         "createdAt": "2026-11-20T20:40:52.287Z"
       }
+    ],
+    [
+      "b75ffd340c3ba327f483351a4263a7ca7253a6911574d9b6070b93a942685519",
+      {
+        "tokenHash": "b75ffd340c3ba327f483351a4263a7ca7253a6911574d9b6070b93a942685519",
+        "userId": "usr-admin-01",
+        "expiresAt": "2026-11-20T21:46:23.890Z",
+        "createdAt": "2026-11-20T20:46:23.890Z"
+      }
+    ],
+    [
+      "a1b8ac8d9d3e99bd852d2bbac585d296f7e5692acc783a29cbde4a8443f12233",
+      {
+        "tokenHash": "a1b8ac8d9d3e99bd852d2bbac585d296f7e5692acc783a29cbde4a8443f12233",
+        "userId": "usr-admin-01",
+        "expiresAt": "2026-11-20T21:47:09.049Z",
+        "createdAt": "2026-11-20T20:47:09.049Z"
+      }
+    ],
+    [
+      "ee015b3f72f3bda43c279b7706117c888b5e2bb5977c790cf092a51439a60c26",
+      {
+        "tokenHash": "ee015b3f72f3bda43c279b7706117c888b5e2bb5977c790cf092a51439a60c26",
+        "userId": "usr-admin-01",
+        "expiresAt": "2026-11-20T21:48:05.349Z",
+        "createdAt": "2026-11-20T20:48:05.349Z"
+      }
+    ],
+    [
+      "81bf9c9066ad8fb3855a957adb792de476ca27abdaea5eb9cc6eea2ac1298cd4",
+      {
+        "tokenHash": "81bf9c9066ad8fb3855a957adb792de476ca27abdaea5eb9cc6eea2ac1298cd4",
+        "userId": "usr-admin-01",
+        "expiresAt": "2026-11-20T21:48:39.513Z",
+        "createdAt": "2026-11-20T20:48:39.513Z"
+      }
     ]
   ],
-  "persistedAt": "2026-11-20T20:40:52.855Z"
+  "persistedAt": "2026-11-20T20:48:40.093Z"
 }

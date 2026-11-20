@@ -110,12 +110,14 @@ describe('AI Tathastu Insights — Phase 6: Production Infrastructure & Live Int
 
     it('provisions Super Admin securely when password is provided via environment variable', async () => {
       const originalEnv = process.env.ADMIN_PASSWORD;
+      const originalArgv = [...process.argv];
+      process.argv = ['node', 'scripts/provision-admin.ts', '--email=test-provisioned-admin@tathastu.org', '--name=Test Admin'];
       process.env.ADMIN_PASSWORD = 'StrongFrontierAdmin2026!#';
 
       await provisionAdmin();
 
       const adminUser = Array.from(repository.users.values()).find(
-        (u) => u.email === 'admin@tathastu-insights.org'
+        (u) => u.email === 'test-provisioned-admin@tathastu.org'
       );
 
       expect(adminUser).toBeDefined();
@@ -123,6 +125,7 @@ describe('AI Tathastu Insights — Phase 6: Production Infrastructure & Live Int
       expect(adminUser?.passwordHash).toMatch(/^\$2[aby]\$12\$/); // Verified 12 salt rounds
 
       process.env.ADMIN_PASSWORD = originalEnv;
+      process.argv = originalArgv;
     });
 
     it('authenticates Super Admin, issues JWT, and revokes session on logout', async () => {
@@ -130,7 +133,7 @@ describe('AI Tathastu Insights — Phase 6: Production Infrastructure & Live Int
       const loginRes = await request(app)
         .post('/api/auth/login')
         .send({
-          email: 'admin@tathastu-insights.org',
+          email: 'test-provisioned-admin@tathastu.org',
           password: 'StrongFrontierAdmin2026!#',
         });
 
@@ -375,7 +378,7 @@ describe('AI Tathastu Insights — Phase 6: Production Infrastructure & Live Int
         .post('/api/auth/login')
         .send({
           email: 'admin@tathastu-insights.org',
-          password: 'StrongFrontierAdmin2026!#',
+          password: 'TathastuFrontierAdmin2026!',
         });
 
       expect(loginRes.status).toBe(200);
