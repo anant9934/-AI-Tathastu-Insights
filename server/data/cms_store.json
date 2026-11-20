@@ -1,0 +1,1986 @@
+{
+  "users": [
+    [
+      "usr-admin-01",
+      {
+        "id": "usr-admin-01",
+        "email": "admin@tathastu-insights.org",
+        "passwordHash": "$2b$12$iCNqDVABO0YmaeNqNFzicuYYqKvhiJKs3URH3Rvpvy1FttE/fV50a",
+        "name": "Dr. Aravind Nair",
+        "roleId": "super_admin",
+        "affiliation": "Frontier Alignment Group, AI Tathastu",
+        "isActive": true,
+        "createdAt": "2026-01-01T00:00:00Z"
+      }
+    ],
+    [
+      "usr-admin-ops",
+      {
+        "id": "usr-admin-ops",
+        "email": "admin-desk@tathastu-insights.org",
+        "passwordHash": "$2b$12$iCNqDVABO0YmaeNqNFzicuTow93JTm/bvzBJjHEfeD..wnEWQfqxW",
+        "name": "Siddharth Rao",
+        "roleId": "admin",
+        "affiliation": "Digital Operations Desk",
+        "isActive": true,
+        "createdAt": "2026-01-10T00:00:00Z"
+      }
+    ],
+    [
+      "usr-editor-01",
+      {
+        "id": "usr-editor-01",
+        "email": "editor@tathastu-insights.org",
+        "passwordHash": "$2b$12$iCNqDVABO0YmaeNqNFzicuRSvQmdCDdwagWW5x8NXRSgr0Ff.D26a",
+        "name": "Prof. Clara Zheng",
+        "roleId": "editor",
+        "affiliation": "Editorial Review Board",
+        "isActive": true,
+        "createdAt": "2026-01-15T00:00:00Z"
+      }
+    ],
+    [
+      "usr-reviewer-01",
+      {
+        "id": "usr-reviewer-01",
+        "email": "reviewer@tathastu-insights.org",
+        "passwordHash": "$2b$12$zvFE7AIHLSQrQjBsR6hzDOcMn0d4o7mP9VBafxbEinAjKGi.Kx3rG",
+        "name": "Vikram Sharma",
+        "roleId": "research_editor",
+        "affiliation": "Distributed Swarm Consortium",
+        "isActive": true,
+        "createdAt": "2026-02-01T00:00:00Z"
+      }
+    ],
+    [
+      "usr-media-01",
+      {
+        "id": "usr-media-01",
+        "email": "media@tathastu-insights.org",
+        "passwordHash": "$2b$12$iCNqDVABO0YmaeNqNFziculw6IU2j26gtMQXWVldcAt/rxPda0ZS.",
+        "name": "Maya Sen",
+        "roleId": "media_manager",
+        "affiliation": "Visual Communications & Media Lab",
+        "isActive": true,
+        "createdAt": "2026-02-15T00:00:00Z"
+      }
+    ],
+    [
+      "usr-author-01",
+      {
+        "id": "usr-author-01",
+        "email": "author@institution.edu",
+        "passwordHash": "$2b$12$iCNqDVABO0YmaeNqNFzicuPi6WAOC4wNwztu4fpBpA1hUrW2FN00K",
+        "name": "Dr. Elena Rostova",
+        "roleId": "author",
+        "affiliation": "Iris Vision Labs",
+        "isActive": true,
+        "createdAt": "2026-03-01T00:00:00Z"
+      }
+    ],
+    [
+      "usr-1795204471695-196",
+      {
+        "id": "usr-1795204471695-196",
+        "email": "contrib-1795204471482@tathastu.org",
+        "passwordHash": "$2b$12$AuC3mqeLH/V/r4MIaKpD6uQVwM3ESnhC5tvlpQIid/QDufkF5uYo2",
+        "name": "Test Contributor",
+        "roleId": "contributor",
+        "affiliation": "Independent Researcher",
+        "isActive": true,
+        "createdAt": "2026-11-20T19:54:31.695Z"
+      }
+    ],
+    [
+      "usr-1795204489524-382",
+      {
+        "id": "usr-1795204489524-382",
+        "email": "contrib-1795204489311@tathastu.org",
+        "passwordHash": "$2b$12$.bXFYmPjhzaM5mgtDTij/ufGVvfaHB75UBy7lGjQUYolqV8itv8O.",
+        "name": "Test Contributor",
+        "roleId": "contributor",
+        "affiliation": "Independent Researcher",
+        "isActive": true,
+        "createdAt": "2026-11-20T19:54:49.524Z"
+      }
+    ],
+    [
+      "usr-1795204510726-693",
+      {
+        "id": "usr-1795204510726-693",
+        "email": "contrib-1795204510514@tathastu.org",
+        "passwordHash": "$2b$12$9DM/998AtAeo.62/OfA/quEzgJU95LCPfrdqFnGohi8wbrouWdpAm",
+        "name": "Test Contributor",
+        "roleId": "contributor",
+        "affiliation": "Independent Researcher",
+        "isActive": true,
+        "createdAt": "2026-11-20T19:55:10.726Z"
+      }
+    ]
+  ],
+  "manuscripts": [
+    [
+      "sub-2026-0842",
+      {
+        "id": "sub-2026-0842",
+        "title": "Topological Features of Attention Heads in Formal Proof Search",
+        "authorName": "Dr. Marcus Vance",
+        "authorEmail": "m.vance@cambridge-ai.ac.uk",
+        "authorAffiliation": "Cambridge Automated Reasoning Group",
+        "categoryId": "Frontier Systems",
+        "abstract": "Mapping attention weights into simplicial complexes during Lean 4 formal verification trajectories.",
+        "wordCount": 8400,
+        "status": "in_review",
+        "assignedEditorId": "usr-editor-01",
+        "assignedEditorName": "Prof. Clara Zheng",
+        "reviewerScore": 8.7,
+        "reproducibilityAttestation": true,
+        "submittedAt": "2026-10-18",
+        "updatedAt": "2026-10-20"
+      }
+    ],
+    [
+      "sub-2026-0839",
+      {
+        "id": "sub-2026-0839",
+        "title": "Asymmetric Key-Value Quantization Under Extreme Sequence Lengths",
+        "authorName": "Dr. Priya Desai",
+        "authorEmail": "priya.desai@tathastu.org",
+        "authorAffiliation": "Hardware Efficiency Laboratory",
+        "categoryId": "Inference Systems",
+        "abstract": "Dual-phase FP4 cache compression maintaining 99.2% perplexity bounds beyond 128k context windows.",
+        "wordCount": 6200,
+        "status": "approved",
+        "assignedEditorId": "usr-admin-01",
+        "assignedEditorName": "Dr. Aravind Nair",
+        "reviewerScore": 9.3,
+        "reproducibilityAttestation": true,
+        "submittedAt": "2026-10-12",
+        "updatedAt": "2026-10-19"
+      }
+    ],
+    [
+      "sub-2026-0831",
+      {
+        "id": "sub-2026-0831",
+        "title": "Sub-Quadratic Latency in Byzantine Multi-Agent Swarms",
+        "authorName": "Vikram Sharma",
+        "authorEmail": "vikram@distributed-agents.net",
+        "authorAffiliation": "Consensus Engineering Foundation",
+        "categoryId": "Agentic Systems",
+        "abstract": "Aegis-BFT consensus protocol verified across heterogeneous 64-node clusters.",
+        "wordCount": 7100,
+        "status": "published",
+        "assignedEditorId": "usr-admin-01",
+        "assignedEditorName": "Dr. Aravind Nair",
+        "reviewerScore": 9.6,
+        "reproducibilityAttestation": true,
+        "submittedAt": "2026-09-28",
+        "updatedAt": "2026-10-08"
+      }
+    ],
+    [
+      "sub-2026-0814",
+      {
+        "id": "sub-2026-0814",
+        "title": "Continuous Egocentric Spatial Memory Grounding in Mixed Reality",
+        "authorName": "Dr. Elena Rostova",
+        "authorEmail": "elena@iris-labs.org",
+        "authorAffiliation": "Iris Vision Labs",
+        "categoryId": "Perceptual AI",
+        "abstract": "Real-time voxel reconstruction at 80 FPS on edge hardware.",
+        "wordCount": 9100,
+        "status": "revision_requested",
+        "assignedEditorId": "usr-editor-01",
+        "assignedEditorName": "Prof. Clara Zheng",
+        "reviewerScore": 7.2,
+        "reproducibilityAttestation": true,
+        "submittedAt": "2026-09-14",
+        "updatedAt": "2026-10-02"
+      }
+    ]
+  ],
+  "reviews": [],
+  "bookmarks": [],
+  "content": [
+    [
+      "sparse-autoencoders-residual-stream",
+      {
+        "id": "sparse-autoencoders-residual-stream",
+        "slug": "sparse-autoencoders-residual-stream",
+        "title": "Dissecting Residual Stream Dynamics with Scaled Sparse Autoencoders",
+        "subtitle": "How 16-million feature dictionaries expose monosemantic circuits in 70B parameter frontier models.",
+        "abstract": "Transformer representations are polysemantic—single activation vectors encode multiple unrelated concepts. By deploying top-k sparse autoencoders across intermediate residual layers, we isolate monosemantic features with 94.2% precision, providing empirical visibility into internal reasoning trajectories.",
+        "contentType": "research_article",
+        "category": "Interpretability",
+        "status": "published",
+        "primaryAuthorId": "usr-admin-01",
+        "authorName": "Dr. Aravind Nair",
+        "coverImageUrl": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200",
+        "imageCaption": "High-dimensional projection of 16M feature activations clustered by semantic monosemanticity.",
+        "pullQuoteText": "Superposition is not a failure of model capacity; it is an efficient compression regime that sparse autoencoders can systematically invert.",
+        "pullQuoteAttribution": "Dr. Aravind Nair, Lead Investigator",
+        "blocks": [
+          {
+            "id": "b1",
+            "type": "paragraph",
+            "sortOrder": 1,
+            "content": {
+              "text": "Transformer representations are notoriously polysemantic. A single activation vector simultaneously represents mathematical concepts, syntactic grammatical markers, and emotional valence."
+            }
+          },
+          {
+            "id": "b2",
+            "type": "heading2",
+            "sortOrder": 2,
+            "content": {
+              "text": "The Polysemantic Bottleneck"
+            }
+          },
+          {
+            "id": "b3",
+            "type": "callout",
+            "sortOrder": 3,
+            "content": {
+              "variant": "info",
+              "title": "Core Empirical Finding",
+              "text": "Expanding dictionary capacity to 32x d_model eliminates 88% of polysemantic interference without degrading downstream perplexity."
+            }
+          },
+          {
+            "id": "b4",
+            "type": "code",
+            "sortOrder": 4,
+            "content": {
+              "language": "python",
+              "code": "import torch\nimport triton\n\n# Top-k SAE Forward Kernel\n@triton.jit\ndef topk_sae_kernel(x_ptr, w_ptr, topk_idx_ptr, k: tl.constexpr): ...",
+              "explanation": "Triton 3.0 JIT kernel implementing bounded Top-K latent selection."
+            }
+          }
+        ],
+        "rawMarkdown": "## The Polysemantic Bottleneck\n\nTransformer representations are notoriously polysemantic...",
+        "readingTimeMinutes": 11,
+        "wordCount": 2840,
+        "isFeatured": true,
+        "isEditorsChoice": true,
+        "publishedAt": "2026-10-14T10:00:00Z",
+        "createdById": "usr-admin-01",
+        "createdAt": "2026-10-12T00:00:00Z",
+        "updatedAt": "2026-10-14T10:00:00Z",
+        "seo": {
+          "metaTitle": "Dissecting Residual Stream Dynamics with Sparse Autoencoders",
+          "metaDescription": "16M feature dictionary reveals monosemantic transformer circuits.",
+          "noIndex": false
+        }
+      }
+    ],
+    [
+      "collaborate-consensus-release",
+      {
+        "id": "collaborate-consensus-release",
+        "slug": "collaborate-consensus-release",
+        "title": "Collaborate v0.4: Sub-200ms Byzantine Consensus for Distributed Agent Swarms",
+        "subtitle": "Announcing our open protocol release for atomic tool coordination across autonomous agents.",
+        "abstract": "We are releasing Collaborate v0.4, introducing the Aegis-BFT consensus engine capable of coordinating 64 heterogeneous agents with verified linearizable transactions and zero state divergence.",
+        "contentType": "product_announcement",
+        "category": "Agentic Systems",
+        "status": "published",
+        "primaryAuthorId": "usr-reviewer-01",
+        "authorName": "Vikram Sharma",
+        "relatedProductId": "collaborate",
+        "coverImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200",
+        "blocks": [
+          {
+            "id": "b1",
+            "type": "paragraph",
+            "sortOrder": 1,
+            "content": {
+              "text": "As autonomous agents transition from single-prompt assistants to cooperating teams, multi-agent coordination becomes the fundamental bottleneck."
+            }
+          },
+          {
+            "id": "b2",
+            "type": "heading2",
+            "sortOrder": 2,
+            "content": {
+              "text": "Key Architectural Breakthroughs in v0.4"
+            }
+          },
+          {
+            "id": "b3",
+            "type": "callout",
+            "sortOrder": 3,
+            "content": {
+              "variant": "key_takeaway",
+              "title": "Zero Merge Conflicts",
+              "text": "Transactions are committed only after quorum verification passes across designated leader nodes."
+            }
+          }
+        ],
+        "readingTimeMinutes": 7,
+        "wordCount": 1650,
+        "isFeatured": true,
+        "isEditorsChoice": false,
+        "publishedAt": "2026-10-18T14:00:00Z",
+        "createdById": "usr-reviewer-01",
+        "createdAt": "2026-10-17T00:00:00Z",
+        "updatedAt": "2026-10-18T14:00:00Z"
+      }
+    ],
+    [
+      "mentormaze-ast-scaffolding",
+      {
+        "id": "mentormaze-ast-scaffolding",
+        "slug": "mentormaze-ast-scaffolding",
+        "title": "Behind MentorMaze: Real-Time AST Evaluation & Pedagogical Interventions",
+        "subtitle": "Why language models struggle with code tutoring and how structured AST parsing fixes it.",
+        "abstract": "A deep architectural review of MentorMaze's AST parsing pipeline and how combining static analysis with small generative models creates deterministic learning pathways.",
+        "contentType": "engineering_article",
+        "category": "System Architecture",
+        "status": "published",
+        "primaryAuthorId": "usr-admin-01",
+        "authorName": "Dr. Aravind Nair",
+        "relatedProductId": "mentormaze",
+        "coverImageUrl": "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200",
+        "blocks": [
+          {
+            "id": "b1",
+            "type": "paragraph",
+            "sortOrder": 1,
+            "content": {
+              "text": "When students write incorrect code, traditional LLM tutors either hallucinate syntax or dump the complete solution. MentorMaze parses the student code AST to detect exact conceptual misconceptions."
+            }
+          }
+        ],
+        "readingTimeMinutes": 9,
+        "wordCount": 2100,
+        "isFeatured": false,
+        "isEditorsChoice": true,
+        "publishedAt": "2026-10-05T09:00:00Z",
+        "createdById": "usr-admin-01",
+        "createdAt": "2026-10-03T00:00:00Z",
+        "updatedAt": "2026-10-05T09:00:00Z"
+      }
+    ],
+    [
+      "frontier-governance-perspectives",
+      {
+        "id": "frontier-governance-perspectives",
+        "slug": "frontier-governance-perspectives",
+        "title": "Statutory Verification Standards for Autonomous Systems Deployment",
+        "subtitle": "Why auditability and cryptographic reproducibility must replace self-reported safety benchmarks.",
+        "abstract": "An analytical perspective examining the statutory governance frameworks required for autonomous multi-agent systems operating in sensitive enterprise domains.",
+        "contentType": "perspective_interview",
+        "category": "Governance & Alignment",
+        "status": "published",
+        "primaryAuthorId": "usr-editor-01",
+        "authorName": "Prof. Clara Zheng",
+        "coverImageUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=1200",
+        "blocks": [
+          {
+            "id": "b1",
+            "type": "paragraph",
+            "sortOrder": 1,
+            "content": {
+              "text": "Frontier AI safety cannot rely on self-reported evals. As system agency expands, statutory verification demands signed run logs and reproducible validation suites."
+            }
+          }
+        ],
+        "readingTimeMinutes": 8,
+        "wordCount": 1950,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "publishedAt": "2026-09-30T11:00:00Z",
+        "createdById": "usr-editor-01",
+        "createdAt": "2026-09-28T00:00:00Z",
+        "updatedAt": "2026-09-30T11:00:00Z"
+      }
+    ],
+    [
+      "draft-quantization-investigation",
+      {
+        "id": "draft-quantization-investigation",
+        "slug": "draft-quantization-investigation",
+        "title": "Asymmetric 4-bit KV Cache Compression at 256K Context Boundaries",
+        "subtitle": "Empirical perplexity analysis of non-uniform FP4 quantizers under sustained reasoning chains.",
+        "abstract": "Evaluating memory bandwidth reductions using dual-codebook FP4 quantization without catastrophic attention drift.",
+        "contentType": "research_report",
+        "category": "Inference Systems",
+        "status": "draft",
+        "primaryAuthorId": "usr-admin-01",
+        "authorName": "Dr. Aravind Nair",
+        "blocks": [
+          {
+            "id": "b1",
+            "type": "paragraph",
+            "sortOrder": 1,
+            "content": {
+              "text": "Draft investigation comparing FP4, INT4 and NF4 quantizers for extreme context inference."
+            }
+          }
+        ],
+        "readingTimeMinutes": 6,
+        "wordCount": 1250,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "createdById": "usr-admin-01",
+        "createdAt": "2026-11-01T00:00:00Z",
+        "updatedAt": "2026-11-05T00:00:00Z"
+      }
+    ],
+    [
+      "scheduled-iris-edge-benchmarks",
+      {
+        "id": "scheduled-iris-edge-benchmarks",
+        "slug": "scheduled-iris-edge-benchmarks",
+        "title": "Iris 3D Spatial Memory: Edge Hardware Benchmarking on Jetson Orin",
+        "subtitle": "Detailed frame-time measurements and voxel reconstruction latency profiles.",
+        "abstract": "Independent latency validation of Iris 3D egocentric spatial memory engine on edge embedded GPUs.",
+        "contentType": "product_development_update",
+        "category": "Perceptual AI",
+        "status": "scheduled",
+        "primaryAuthorId": "usr-author-01",
+        "authorName": "Dr. Elena Rostova",
+        "relatedProductId": "iris",
+        "blocks": [
+          {
+            "id": "b1",
+            "type": "paragraph",
+            "sortOrder": 1,
+            "content": {
+              "text": "Edge benchmarking results across 5 indoor spatial navigation datasets."
+            }
+          }
+        ],
+        "readingTimeMinutes": 7,
+        "wordCount": 1720,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "scheduledAt": "2026-11-25T15:00:00Z",
+        "createdById": "usr-author-01",
+        "createdAt": "2026-11-02T00:00:00Z",
+        "updatedAt": "2026-11-08T00:00:00Z"
+      }
+    ],
+    [
+      "cnt-1795204472952-b4a8ce",
+      {
+        "id": "cnt-1795204472952-b4a8ce",
+        "slug": "frontier-quantum-tracing-1795204470362",
+        "title": "Quantum Trace Invariance in Transformer Graphs",
+        "subtitle": "",
+        "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+        "contentType": "research_deep_dive",
+        "category": "Frontier Systems",
+        "status": "unpublished",
+        "primaryAuthorId": "usr-editor-01",
+        "authorName": "Staff Contributor",
+        "blocks": [],
+        "rawMarkdown": "",
+        "readingTimeMinutes": 4,
+        "wordCount": 500,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "publishedAt": "2026-11-20T19:54:32.954Z",
+        "createdById": "usr-editor-01",
+        "createdAt": "2026-11-20T19:54:32.952Z",
+        "updatedAt": "2026-11-20T19:54:32.955Z",
+        "seo": {
+          "metaTitle": "Quantum Trace Invariance in Transformer Graphs",
+          "metaDescription": "Empirical analysis of quantum circuit representations in transformer residual layers."
+        }
+      }
+    ],
+    [
+      "cnt-1795204490803-03b927",
+      {
+        "id": "cnt-1795204490803-03b927",
+        "slug": "frontier-quantum-tracing-1795204488174",
+        "title": "Quantum Trace Invariance in Transformer Graphs",
+        "subtitle": "",
+        "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+        "contentType": "research_deep_dive",
+        "category": "Frontier Systems",
+        "status": "unpublished",
+        "primaryAuthorId": "usr-editor-01",
+        "authorName": "Staff Contributor",
+        "blocks": [],
+        "rawMarkdown": "",
+        "readingTimeMinutes": 4,
+        "wordCount": 500,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "publishedAt": "2026-11-20T19:54:50.805Z",
+        "createdById": "usr-editor-01",
+        "createdAt": "2026-11-20T19:54:50.803Z",
+        "updatedAt": "2026-11-20T19:54:50.807Z",
+        "seo": {
+          "metaTitle": "Quantum Trace Invariance in Transformer Graphs",
+          "metaDescription": "Empirical analysis of quantum circuit representations in transformer residual layers."
+        }
+      }
+    ],
+    [
+      "cnt-1795204512008-8e3560",
+      {
+        "id": "cnt-1795204512008-8e3560",
+        "slug": "frontier-quantum-tracing-1795204509383",
+        "title": "Quantum Trace Invariance in Transformer Graphs",
+        "subtitle": "",
+        "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+        "contentType": "research_deep_dive",
+        "category": "Frontier Systems",
+        "status": "unpublished",
+        "primaryAuthorId": "usr-editor-01",
+        "authorName": "Staff Contributor",
+        "blocks": [],
+        "rawMarkdown": "",
+        "readingTimeMinutes": 4,
+        "wordCount": 500,
+        "isFeatured": false,
+        "isEditorsChoice": false,
+        "publishedAt": "2026-11-20T19:55:12.010Z",
+        "createdById": "usr-editor-01",
+        "createdAt": "2026-11-20T19:55:12.008Z",
+        "updatedAt": "2026-11-20T19:55:12.012Z",
+        "seo": {
+          "metaTitle": "Quantum Trace Invariance in Transformer Graphs",
+          "metaDescription": "Empirical analysis of quantum circuit representations in transformer residual layers."
+        }
+      }
+    ]
+  ],
+  "contentVersions": [
+    [
+      "sparse-autoencoders-residual-stream",
+      [
+        {
+          "id": "v1-sparse-autoencoders-residual-stream",
+          "contentId": "sparse-autoencoders-residual-stream",
+          "versionNumber": 1,
+          "title": "Dissecting Residual Stream Dynamics with Scaled Sparse Autoencoders",
+          "subtitle": "How 16-million feature dictionaries expose monosemantic circuits in 70B parameter frontier models.",
+          "abstract": "Transformer representations are polysemantic—single activation vectors encode multiple unrelated concepts. By deploying top-k sparse autoencoders across intermediate residual layers, we isolate monosemantic features with 94.2% precision, providing empirical visibility into internal reasoning trajectories.",
+          "blocks": [
+            {
+              "id": "b1",
+              "type": "paragraph",
+              "sortOrder": 1,
+              "content": {
+                "text": "Transformer representations are notoriously polysemantic. A single activation vector simultaneously represents mathematical concepts, syntactic grammatical markers, and emotional valence."
+              }
+            },
+            {
+              "id": "b2",
+              "type": "heading2",
+              "sortOrder": 2,
+              "content": {
+                "text": "The Polysemantic Bottleneck"
+              }
+            },
+            {
+              "id": "b3",
+              "type": "callout",
+              "sortOrder": 3,
+              "content": {
+                "variant": "info",
+                "title": "Core Empirical Finding",
+                "text": "Expanding dictionary capacity to 32x d_model eliminates 88% of polysemantic interference without degrading downstream perplexity."
+              }
+            },
+            {
+              "id": "b4",
+              "type": "code",
+              "sortOrder": 4,
+              "content": {
+                "language": "python",
+                "code": "import torch\nimport triton\n\n# Top-k SAE Forward Kernel\n@triton.jit\ndef topk_sae_kernel(x_ptr, w_ptr, topk_idx_ptr, k: tl.constexpr): ...",
+                "explanation": "Triton 3.0 JIT kernel implementing bounded Top-K latent selection."
+              }
+            }
+          ],
+          "changelog": "Initial version created in Editorial Studio",
+          "createdById": "usr-admin-01",
+          "createdAt": "2026-10-12T00:00:00Z"
+        }
+      ]
+    ],
+    [
+      "collaborate-consensus-release",
+      [
+        {
+          "id": "v1-collaborate-consensus-release",
+          "contentId": "collaborate-consensus-release",
+          "versionNumber": 1,
+          "title": "Collaborate v0.4: Sub-200ms Byzantine Consensus for Distributed Agent Swarms",
+          "subtitle": "Announcing our open protocol release for atomic tool coordination across autonomous agents.",
+          "abstract": "We are releasing Collaborate v0.4, introducing the Aegis-BFT consensus engine capable of coordinating 64 heterogeneous agents with verified linearizable transactions and zero state divergence.",
+          "blocks": [
+            {
+              "id": "b1",
+              "type": "paragraph",
+              "sortOrder": 1,
+              "content": {
+                "text": "As autonomous agents transition from single-prompt assistants to cooperating teams, multi-agent coordination becomes the fundamental bottleneck."
+              }
+            },
+            {
+              "id": "b2",
+              "type": "heading2",
+              "sortOrder": 2,
+              "content": {
+                "text": "Key Architectural Breakthroughs in v0.4"
+              }
+            },
+            {
+              "id": "b3",
+              "type": "callout",
+              "sortOrder": 3,
+              "content": {
+                "variant": "key_takeaway",
+                "title": "Zero Merge Conflicts",
+                "text": "Transactions are committed only after quorum verification passes across designated leader nodes."
+              }
+            }
+          ],
+          "changelog": "Initial version created in Editorial Studio",
+          "createdById": "usr-reviewer-01",
+          "createdAt": "2026-10-17T00:00:00Z"
+        }
+      ]
+    ],
+    [
+      "mentormaze-ast-scaffolding",
+      [
+        {
+          "id": "v1-mentormaze-ast-scaffolding",
+          "contentId": "mentormaze-ast-scaffolding",
+          "versionNumber": 1,
+          "title": "Behind MentorMaze: Real-Time AST Evaluation & Pedagogical Interventions",
+          "subtitle": "Why language models struggle with code tutoring and how structured AST parsing fixes it.",
+          "abstract": "A deep architectural review of MentorMaze's AST parsing pipeline and how combining static analysis with small generative models creates deterministic learning pathways.",
+          "blocks": [
+            {
+              "id": "b1",
+              "type": "paragraph",
+              "sortOrder": 1,
+              "content": {
+                "text": "When students write incorrect code, traditional LLM tutors either hallucinate syntax or dump the complete solution. MentorMaze parses the student code AST to detect exact conceptual misconceptions."
+              }
+            }
+          ],
+          "changelog": "Initial version created in Editorial Studio",
+          "createdById": "usr-admin-01",
+          "createdAt": "2026-10-03T00:00:00Z"
+        }
+      ]
+    ],
+    [
+      "frontier-governance-perspectives",
+      [
+        {
+          "id": "v1-frontier-governance-perspectives",
+          "contentId": "frontier-governance-perspectives",
+          "versionNumber": 1,
+          "title": "Statutory Verification Standards for Autonomous Systems Deployment",
+          "subtitle": "Why auditability and cryptographic reproducibility must replace self-reported safety benchmarks.",
+          "abstract": "An analytical perspective examining the statutory governance frameworks required for autonomous multi-agent systems operating in sensitive enterprise domains.",
+          "blocks": [
+            {
+              "id": "b1",
+              "type": "paragraph",
+              "sortOrder": 1,
+              "content": {
+                "text": "Frontier AI safety cannot rely on self-reported evals. As system agency expands, statutory verification demands signed run logs and reproducible validation suites."
+              }
+            }
+          ],
+          "changelog": "Initial version created in Editorial Studio",
+          "createdById": "usr-editor-01",
+          "createdAt": "2026-09-28T00:00:00Z"
+        }
+      ]
+    ],
+    [
+      "draft-quantization-investigation",
+      [
+        {
+          "id": "v1-draft-quantization-investigation",
+          "contentId": "draft-quantization-investigation",
+          "versionNumber": 1,
+          "title": "Asymmetric 4-bit KV Cache Compression at 256K Context Boundaries",
+          "subtitle": "Empirical perplexity analysis of non-uniform FP4 quantizers under sustained reasoning chains.",
+          "abstract": "Evaluating memory bandwidth reductions using dual-codebook FP4 quantization without catastrophic attention drift.",
+          "blocks": [
+            {
+              "id": "b1",
+              "type": "paragraph",
+              "sortOrder": 1,
+              "content": {
+                "text": "Draft investigation comparing FP4, INT4 and NF4 quantizers for extreme context inference."
+              }
+            }
+          ],
+          "changelog": "Initial version created in Editorial Studio",
+          "createdById": "usr-admin-01",
+          "createdAt": "2026-11-01T00:00:00Z"
+        }
+      ]
+    ],
+    [
+      "scheduled-iris-edge-benchmarks",
+      [
+        {
+          "id": "v1-scheduled-iris-edge-benchmarks",
+          "contentId": "scheduled-iris-edge-benchmarks",
+          "versionNumber": 1,
+          "title": "Iris 3D Spatial Memory: Edge Hardware Benchmarking on Jetson Orin",
+          "subtitle": "Detailed frame-time measurements and voxel reconstruction latency profiles.",
+          "abstract": "Independent latency validation of Iris 3D egocentric spatial memory engine on edge embedded GPUs.",
+          "blocks": [
+            {
+              "id": "b1",
+              "type": "paragraph",
+              "sortOrder": 1,
+              "content": {
+                "text": "Edge benchmarking results across 5 indoor spatial navigation datasets."
+              }
+            }
+          ],
+          "changelog": "Initial version created in Editorial Studio",
+          "createdById": "usr-author-01",
+          "createdAt": "2026-11-02T00:00:00Z"
+        }
+      ]
+    ],
+    [
+      "cnt-1795204472952-b4a8ce",
+      [
+        {
+          "id": "ver-1795204472952",
+          "contentId": "cnt-1795204472952-b4a8ce",
+          "versionNumber": 1,
+          "title": "Quantum Trace Invariance in Transformer Graphs",
+          "subtitle": "",
+          "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+          "blocks": [],
+          "rawMarkdown": "",
+          "changelog": "Initial draft created in CMS",
+          "createdById": "usr-editor-01",
+          "createdAt": "2026-11-20T19:54:32.952Z"
+        }
+      ]
+    ],
+    [
+      "cnt-1795204490803-03b927",
+      [
+        {
+          "id": "ver-1795204490804",
+          "contentId": "cnt-1795204490803-03b927",
+          "versionNumber": 1,
+          "title": "Quantum Trace Invariance in Transformer Graphs",
+          "subtitle": "",
+          "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+          "blocks": [],
+          "rawMarkdown": "",
+          "changelog": "Initial draft created in CMS",
+          "createdById": "usr-editor-01",
+          "createdAt": "2026-11-20T19:54:50.803Z"
+        }
+      ]
+    ],
+    [
+      "cnt-1795204512008-8e3560",
+      [
+        {
+          "id": "ver-1795204512008",
+          "contentId": "cnt-1795204512008-8e3560",
+          "versionNumber": 1,
+          "title": "Quantum Trace Invariance in Transformer Graphs",
+          "subtitle": "",
+          "abstract": "Empirical analysis of quantum circuit representations in transformer residual layers.",
+          "blocks": [],
+          "rawMarkdown": "",
+          "changelog": "Initial draft created in CMS",
+          "createdById": "usr-editor-01",
+          "createdAt": "2026-11-20T19:55:12.008Z"
+        }
+      ]
+    ]
+  ],
+  "products": [
+    [
+      "mentormaze",
+      {
+        "id": "mentormaze",
+        "slug": "mentormaze",
+        "name": "MentorMaze",
+        "tagline": "Deterministic execution tracing and pedagogical scaffolding for LLMs.",
+        "shortDescription": "Adaptive scaffolding engine converting open-ended problem exploration into structured reasoning pathways with deterministic sandbox execution.",
+        "fullDescription": "MentorMaze addresses the brittleness of autonomous code evaluation and multi-turn educational reasoning. By decomposing complex algorithmic challenges into directed acyclic dependency graphs, students and engineers receive targeted conceptual interventions without shortcutting problem discovery.",
+        "logoUrl": "/icons/mentormaze.svg",
+        "coverImageUrl": "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=1200",
+        "screenshots": [
+          "https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&q=80&w=1200",
+          "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "accentColor": "blue",
+        "status": "Beta Lab",
+        "provenanceLabel": "Functional Demonstration",
+        "version": "0.8.4-beta",
+        "problemSolved": "Preventing hallucinated debugging advice and unbounded trial-and-error code execution in educational environments.",
+        "whyExists": "Traditional coding tutors provide completed answers rather than leading learners to discover the invariant principles.",
+        "targetAudience": "Software engineering academies, computer science university departments, and self-directed developers.",
+        "proposedSolution": "Constraint-guided AST evaluation coupled with sandboxed execution checks to guide problem solving step-by-step.",
+        "productValue": "4.2x higher concept retention rates and zero unchecked hallucinated syntax errors.",
+        "features": [
+          {
+            "title": "Deterministic AST Scaffolding",
+            "description": "Parses code attempts into syntax trees to identify conceptual gaps.",
+            "tag": "Core Engine"
+          },
+          {
+            "title": "Isolated Container Sandbox",
+            "description": "Executes candidate submissions within memory-bounded environments.",
+            "tag": "Infrastructure"
+          },
+          {
+            "title": "Adaptive Interventions",
+            "description": "Generates minimal Socratic hints instead of full code solutions.",
+            "tag": "AI Reasoning"
+          }
+        ],
+        "technicalArchitecture": "Containerized execution workers orchestrated via Redis message queues, communicating with a lightweight AST analyzer and model inference gateway.",
+        "techStack": [
+          {
+            "category": "Runtime",
+            "technologies": [
+              "TypeScript",
+              "Node.js",
+              "Python 3.12"
+            ]
+          },
+          {
+            "category": "Isolation",
+            "technologies": [
+              "Docker",
+              "Linux cgroups"
+            ]
+          },
+          {
+            "category": "Frontend",
+            "technologies": [
+              "React 19",
+              "Tailwind CSS",
+              "Monaco Editor"
+            ]
+          }
+        ],
+        "docLinks": [
+          {
+            "label": "Architecture Overview",
+            "url": "#engineering"
+          },
+          {
+            "label": "Sandbox Security Specifications",
+            "url": "#about"
+          }
+        ],
+        "websiteUrl": "https://mentormaze.tathastu.org",
+        "githubUrl": "https://github.com/anant9934/-AI-Tathastu-Insights",
+        "isFeatured": true,
+        "displayOrder": 1,
+        "seoTitle": "MentorMaze — Adaptive Code Scaffolding Engine",
+        "seoDescription": "Deterministic AST evaluation and containerized execution tracing for algorithmic education.",
+        "isPublished": true,
+        "createdAt": "2026-03-01T00:00:00Z",
+        "updatedAt": "2026-10-15T00:00:00Z"
+      }
+    ],
+    [
+      "collaborate",
+      {
+        "id": "collaborate",
+        "slug": "collaborate",
+        "name": "Collaborate",
+        "tagline": "Byzantine fault-tolerant multi-agent consensus and coordination runtime.",
+        "shortDescription": "Asynchronous multi-agent orchestration fabric ensuring deterministic agreement and conflict arbitration across distributed autonomous tools.",
+        "fullDescription": "Collaborate coordinates swarms of heterogeneous AI agents operating concurrently across code repositories, database migrations, and production deployments. It guarantees serializable transaction semantics and prevents conflicting agent edits through sub-quadratic consensus protocols.",
+        "logoUrl": "/icons/collaborate.svg",
+        "coverImageUrl": "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1200",
+        "screenshots": [
+          "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "accentColor": "violet",
+        "status": "Active Development",
+        "provenanceLabel": "In Development",
+        "version": "0.4.1-alpha",
+        "problemSolved": "Eliminating race conditions and divergent states when multiple agents write to shared file trees or state machines.",
+        "whyExists": "Multi-agent frameworks degrade rapidly into deadlock or state corruption when agents act asynchronously without formal consensus.",
+        "targetAudience": "Enterprise platform teams deploying automated code modification pipelines and autonomous microservices.",
+        "proposedSolution": "Aegis-BFT consensus engine combined with a distributed vector clock for atomic agent commit transactions.",
+        "productValue": "Guaranteed linearizability across concurrent agent operations with zero merge conflict rollbacks.",
+        "features": [
+          {
+            "title": "Aegis Consensus Engine",
+            "description": "Fault-tolerant consensus protocol tuned for token-constrained agent networks.",
+            "tag": "Protocol"
+          },
+          {
+            "title": "Atomic Tool Isolation",
+            "description": "Transactions are committed only after quorum verification passes.",
+            "tag": "Security"
+          },
+          {
+            "title": "Visual Swarm Topology",
+            "description": "Live monitoring UI visualizing agent communication graphs and voting rounds.",
+            "tag": "Observability"
+          }
+        ],
+        "technicalArchitecture": "Rust-based consensus daemon connected over gRPC to lightweight agent worker nodes, with an append-only commit ledger.",
+        "techStack": [
+          {
+            "category": "Consensus Core",
+            "technologies": [
+              "Rust",
+              "Tokio",
+              "gRPC",
+              "Protobuf"
+            ]
+          },
+          {
+            "category": "Storage",
+            "technologies": [
+              "RocksDB",
+              "SQLite"
+            ]
+          },
+          {
+            "category": "Integration",
+            "technologies": [
+              "TypeScript SDK",
+              "Python SDK"
+            ]
+          }
+        ],
+        "docLinks": [
+          {
+            "label": "Aegis-BFT Protocol Specification",
+            "url": "#research"
+          }
+        ],
+        "websiteUrl": "https://collaborate.tathastu.org",
+        "githubUrl": "https://github.com/anant9934/-AI-Tathastu-Insights",
+        "isFeatured": true,
+        "displayOrder": 2,
+        "seoTitle": "Collaborate — Byzantine Fault-Tolerant Multi-Agent Coordination",
+        "seoDescription": "Asynchronous consensus engine for distributed autonomous AI agent networks.",
+        "isPublished": true,
+        "createdAt": "2026-04-10T00:00:00Z",
+        "updatedAt": "2026-10-18T00:00:00Z"
+      }
+    ],
+    [
+      "avsar",
+      {
+        "id": "avsar",
+        "slug": "avsar",
+        "name": "Avsar",
+        "tagline": "Automated research reproduction harness and benchmark verification platform.",
+        "shortDescription": "Verifiable evaluation platform executing frontier AI benchmark suites under strict hardware constraints with cryptographic audit proofs.",
+        "fullDescription": "Avsar systematically verifies claims in machine learning literature by automatically provisioning isolated compute environments, pulling model weights, re-running test suites, and publishing verifiable provenance logs.",
+        "logoUrl": "/icons/avsar.svg",
+        "coverImageUrl": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200",
+        "screenshots": [
+          "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "accentColor": "green",
+        "status": "Prototype",
+        "provenanceLabel": "Functional Demonstration",
+        "version": "0.2.0-proto",
+        "problemSolved": "The replication crisis in frontier AI research where published benchmark numbers cannot be verified independently.",
+        "whyExists": "Benchmark inflation and cherry-picked prompt templates obscure true model capability metrics.",
+        "targetAudience": "Research institutions, regulatory audit teams, and AI safety organizations.",
+        "proposedSolution": "Automated containerized reproduction harnesses generating signed hardware telemetry and SHA-256 result hashes.",
+        "productValue": "Unambiguous empirical reproducibility with open benchmark logs.",
+        "features": [
+          {
+            "title": "Automated Reproduction Pipeline",
+            "description": "Re-runs benchmark scripts across fixed GPU thermal and batch constraints.",
+            "tag": "Evaluation"
+          },
+          {
+            "title": "Cryptographic Run Attestation",
+            "description": "Generates SHA-256 hashes of test data, model weights, and outputs.",
+            "tag": "Integrity"
+          },
+          {
+            "title": "Open Benchmark Archive",
+            "description": "Publicly browsable directory of verified empirical reproduction runs.",
+            "tag": "Transparency"
+          }
+        ],
+        "technicalArchitecture": "Slurm/Kubernetes job orchestrator spinning up ephemeral benchmark pods with read-only dataset volumes and GPU telemetry exporters.",
+        "techStack": [
+          {
+            "category": "Harness",
+            "technologies": [
+              "Python",
+              "PyTorch",
+              "vLLM",
+              "Hugging Face"
+            ]
+          },
+          {
+            "category": "Infra",
+            "technologies": [
+              "Kubernetes",
+              "Prometheus",
+              "Grafana"
+            ]
+          }
+        ],
+        "docLinks": [
+          {
+            "label": "Evaluation Methodology",
+            "url": "#research"
+          }
+        ],
+        "websiteUrl": "https://avsar.tathastu.org",
+        "githubUrl": "https://github.com/anant9934/-AI-Tathastu-Insights",
+        "isFeatured": true,
+        "displayOrder": 3,
+        "seoTitle": "Avsar — Automated AI Benchmark Verification",
+        "seoDescription": "Empirical reproduction platform for machine learning benchmarks and models.",
+        "isPublished": true,
+        "createdAt": "2026-05-15T00:00:00Z",
+        "updatedAt": "2026-10-20T00:00:00Z"
+      }
+    ],
+    [
+      "iris",
+      {
+        "id": "iris",
+        "slug": "iris",
+        "name": "Iris",
+        "tagline": "Egocentric spatial memory buffers and continuous physical affordance grounding.",
+        "shortDescription": "Perceptual AI system integrating live video streams into 3D voxel-semantic spatial memory buffers for real-time robotic and AR interaction.",
+        "fullDescription": "Iris provides continuous spatial awareness for embodied robots and mixed reality headsets. It projects egocentric camera feeds into a dense 3D voxel representation augmented with semantic affordance embeddings at high frame rates.",
+        "logoUrl": "/icons/iris.svg",
+        "coverImageUrl": "https://images.unsplash.com/photo-1507668077129-56e32842fceb?auto=format&fit=crop&q=80&w=1200",
+        "screenshots": [
+          "https://images.unsplash.com/photo-1535378620166-273708d44e4c?auto=format&fit=crop&q=80&w=1200"
+        ],
+        "accentColor": "indigo",
+        "status": "Prototype",
+        "provenanceLabel": "Functional Demonstration",
+        "version": "0.3.2-proto",
+        "problemSolved": "Loss of spatial context in continuous video reasoning models due to flat frame-by-frame memory bottlenecks.",
+        "whyExists": "Robots and mixed reality devices need continuous 3D object persistence even when objects leave the immediate camera frustum.",
+        "targetAudience": "Robotics labs, AR/VR headset developers, and spatial computing researchers.",
+        "proposedSolution": "Volumetric egocentric voxel buffer updated incrementally from monocular depth and segmentation heads.",
+        "productValue": "Sub-20ms memory lookup latency with robust physical affordance tracking.",
+        "features": [
+          {
+            "title": "Volumetric Voxel Memory",
+            "description": "Maintains 3D occupancy grids tagged with open-vocabulary semantic embeddings.",
+            "tag": "3D Perception"
+          },
+          {
+            "title": "Affordance Projection",
+            "description": "Calculates physical interaction points (grasping, avoidance) in real time.",
+            "tag": "Embodiment"
+          },
+          {
+            "title": "Edge Hardware Kernel",
+            "description": "Optimized CUDA/TensorRT kernels running directly on mobile compute units.",
+            "tag": "Edge AI"
+          }
+        ],
+        "technicalArchitecture": "C++ / CUDA perception pipeline processing camera feeds into an octree spatial index with Python bindings for higher-level planners.",
+        "techStack": [
+          {
+            "category": "Perception Core",
+            "technologies": [
+              "C++20",
+              "CUDA",
+              "TensorRT",
+              "OpenCV"
+            ]
+          },
+          {
+            "category": "Sensory Fusion",
+            "technologies": [
+              "VIO",
+              "Depth Estimation",
+              "CLIP Embeddings"
+            ]
+          }
+        ],
+        "docLinks": [
+          {
+            "label": "Spatial Memory Whitepaper",
+            "url": "#research"
+          }
+        ],
+        "websiteUrl": "https://iris.tathastu.org",
+        "githubUrl": "https://github.com/anant9934/-AI-Tathastu-Insights",
+        "isFeatured": true,
+        "displayOrder": 4,
+        "seoTitle": "Iris — Egocentric 3D Spatial Memory Engine",
+        "seoDescription": "Real-time volumetric perception and affordance grounding for mixed reality and robotics.",
+        "isPublished": true,
+        "createdAt": "2026-06-01T00:00:00Z",
+        "updatedAt": "2026-10-22T00:00:00Z"
+      }
+    ]
+  ],
+  "engineeringArticles": [
+    [
+      "eng-aegis-consensus",
+      {
+        "id": "eng-aegis-consensus",
+        "slug": "aegis-consensus-architecture",
+        "title": "Designing Aegis-BFT: Sub-200ms Byzantine Consensus for Distributed Agent Swarms",
+        "subtitle": "How we achieved deterministic tool execution across 64 heterogeneous nodes under network jitter.",
+        "category": "Distributed Systems",
+        "abstract": "When coordinating swarms of LLM agents acting upon shared codebases, standard Raft consensus fails under unpredictable LLM latency. We designed Aegis-BFT, an asynchronous consensus engine that decouples agent reasoning delays from transaction commit quorums.",
+        "content": [
+          "The fundamental dilemma in multi-agent consensus is heterogeneous turn completion times.",
+          "A single agent executing a complex AST rewrite may take 12 seconds, while an assertion checker finishes in 140ms.",
+          "Aegis-BFT introduces optimistic execution pipelines with rollback checkpoints verified by independent verifier nodes."
+        ],
+        "authorName": "Vikram Sharma",
+        "authorRole": "Lead Systems Architect",
+        "authorAffiliation": "Distributed Swarm Consortium",
+        "authorAvatarUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=300",
+        "readingTimeMinutes": 12,
+        "coverImageUrl": "https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=1200",
+        "tags": [
+          "Rust",
+          "Byzantine Fault Tolerance",
+          "Distributed Systems",
+          "Agent Swarms"
+        ],
+        "problem": "Asynchronous tool actions causing state divergence and merge conflicts across parallel agents.",
+        "technicalContext": "64-node heterogeneous compute environment with variable network packet drops.",
+        "approach": "Decoupled optimistic speculation with deterministic state commit checkpoints.",
+        "implementation": "Implemented in Rust using Tokio async runtime, RocksDB persistence, and gRPC.",
+        "challenges": "Managing vector clock drift and memory overhead during high-frequency micro-commits.",
+        "tradeOffs": "Slightly higher commit log memory footprint in exchange for guaranteed linearizability.",
+        "outcome": "Sub-200ms commit latency and zero state divergence over 10,000 simulated fault injections.",
+        "systemArchitecture": {
+          "topology": "Mesh network with rotating leader quorums and independent verifier witnesses.",
+          "components": [
+            {
+              "name": "Consensus Daemon",
+              "role": "State replication and voting engine",
+              "latency": "12ms"
+            },
+            {
+              "name": "Agent Worker Proxy",
+              "role": "Tool execution interceptor & sandbox",
+              "latency": "45ms"
+            },
+            {
+              "name": "Commit Ledger",
+              "role": "Append-only rocksdb transaction log",
+              "latency": "3ms"
+            }
+          ]
+        },
+        "codeSnippets": [
+          {
+            "title": "Optimistic Quorum Check in Rust",
+            "language": "rust",
+            "code": "pub async fn verify_quorum(&self, proposal_id: &TxId) -> Result<CommitProof, ConsensusError> {\n    let votes = self.vote_accumulator.get_votes(proposal_id).await?;\n    if votes.len() >= self.threshold_2f_plus_1() {\n        Ok(self.build_proof(proposal_id, votes)?)\n    } else {\n        Err(ConsensusError::QuorumPending)\n    }\n}",
+            "explanation": "Ensures 2f+1 Byzantine quorum threshold before writing to the local ledger."
+          }
+        ],
+        "benchmarks": [
+          {
+            "metric": "Median Commit Latency",
+            "value": "184ms",
+            "baseline": "420ms (Standard PBFT)",
+            "note": "Measured on 64 AWS c6i.2xlarge instances"
+          },
+          {
+            "metric": "Throughput",
+            "value": "1,420 tx/s",
+            "baseline": "380 tx/s",
+            "note": "Batch size = 32 actions"
+          }
+        ],
+        "relatedProductId": "collaborate",
+        "relatedResearchId": "paper-aegis-bft",
+        "status": "published",
+        "publishedAt": "2026-10-10T12:00:00Z",
+        "createdAt": "2026-10-08T00:00:00Z",
+        "updatedAt": "2026-10-10T12:00:00Z"
+      }
+    ],
+    [
+      "eng-triton-inference",
+      {
+        "id": "eng-triton-inference",
+        "slug": "triton-kernel-interpretability",
+        "title": "Writing Custom Triton Kernels for 16M Feature Sparse Autoencoders",
+        "subtitle": "Overcoming memory bandwidth bottlenecks in extreme-width dictionary forward passes.",
+        "category": "Kernel Engineering",
+        "abstract": "Scaling sparse autoencoders to 16 million latents causes catastrophic memory stall if implemented naively in PyTorch. We wrote a fused Triton 3.0 JIT kernel that combines matrix multiplication with top-k selection directly in SRAM.",
+        "content": [
+          "High expansion factors (32x to 128x d_model) place massive pressure on GPU High Bandwidth Memory (HBM).",
+          "By loading weights directly into streaming multiprocessor registers and applying online top-k thresholding, we reduce global memory writes by 98.4%."
+        ],
+        "authorName": "Marcus Vance",
+        "authorRole": "Staff Systems Architect",
+        "authorAffiliation": "Systems & Consensus Core, AI Tathastu",
+        "authorAvatarUrl": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=300",
+        "readingTimeMinutes": 10,
+        "coverImageUrl": "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1200",
+        "tags": [
+          "Triton",
+          "CUDA",
+          "GPU Kernels",
+          "Interpretability"
+        ],
+        "status": "published",
+        "publishedAt": "2026-10-16T14:00:00Z",
+        "createdAt": "2026-10-15T00:00:00Z",
+        "updatedAt": "2026-10-16T14:00:00Z"
+      }
+    ]
+  ],
+  "companyUpdates": [
+    [
+      "update-2026-10-24",
+      {
+        "id": "update-2026-10-24",
+        "slug": "update-collaborate-v04",
+        "title": "Collaborate v0.4 Released with Aegis-BFT Consensus",
+        "summary": "Major protocol upgrade adding sub-200ms consensus quorums, live swarm topology visualization, and TypeScript SDK.",
+        "detailedExplanation": "This release marks the completion of Milestone 2 for the Collaborate multi-agent runtime. All agents now communicate over encrypted gRPC channels with verifiable commit receipts.",
+        "category": "Product Release",
+        "productId": "collaborate",
+        "version": "0.4.1",
+        "date": "October 24, 2026",
+        "authorName": "Vikram Sharma",
+        "coverImageUrl": "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200",
+        "content": [
+          "Introduced Aegis-BFT consensus protocol verified across 64-node clusters.",
+          "Added automatic rollback checkpoints for speculative tool actions.",
+          "Released `@tathastu/collaborate-sdk` on npm."
+        ],
+        "tags": [
+          "Collaborate",
+          "Release",
+          "Consensus",
+          "Agents"
+        ],
+        "relatedLinks": [
+          {
+            "label": "Engineering Deep-Dive",
+            "url": "#engineering"
+          },
+          {
+            "label": "Whitepaper Preprint",
+            "url": "#research"
+          }
+        ],
+        "milestoneMetric": {
+          "label": "Cluster Scale",
+          "value": "64 Heterogeneous Nodes"
+        },
+        "status": "published",
+        "publishedAt": "2026-10-24T12:00:00Z",
+        "createdAt": "2026-10-24T00:00:00Z",
+        "updatedAt": "2026-10-24T12:00:00Z"
+      }
+    ],
+    [
+      "update-2026-10-15",
+      {
+        "id": "update-2026-10-15",
+        "slug": "update-open-archive-doi",
+        "title": "Open Science Archive Live with CrossRef DOI Verification",
+        "summary": "All research papers and preprints published on AI Tathastu Insights now feature real-time DOI resolution and BibTeX exports.",
+        "detailedExplanation": "We have updated our publication infrastructure to guarantee transparent provenance. Demonstrations and synthetic records are explicitly tagged to uphold publication ethics.",
+        "category": "Milestone",
+        "date": "October 15, 2026",
+        "authorName": "Prof. Clara Zheng",
+        "coverImageUrl": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200",
+        "content": [
+          "Live verification integration with CrossRef and DataCite APIs.",
+          "Provenances clearly categorized as Verified, Demonstration, or Needs Review.",
+          "Automated BibTeX and citation snippet generators."
+        ],
+        "tags": [
+          "Open Science",
+          "DOI",
+          "Ethics",
+          "Editorial"
+        ],
+        "milestoneMetric": {
+          "label": "Audit Standard",
+          "value": "Double-Blind Empirical Check"
+        },
+        "status": "published",
+        "publishedAt": "2026-10-15T10:00:00Z",
+        "createdAt": "2026-10-15T00:00:00Z",
+        "updatedAt": "2026-10-15T10:00:00Z"
+      }
+    ],
+    [
+      "update-2026-10-01",
+      {
+        "id": "update-2026-10-01",
+        "slug": "update-mentormaze-beta",
+        "title": "MentorMaze Beta Lab Opens for Academic Partners",
+        "summary": "First cohort of 5 computer science departments onboarded to the deterministic AST scaffolding environment.",
+        "category": "Company",
+        "productId": "mentormaze",
+        "version": "0.8.0",
+        "date": "October 1, 2026",
+        "authorName": "Dr. Aravind Nair",
+        "content": [
+          "Deployed isolated execution sandboxes for Python and C++ assignments.",
+          "Student code analyzed in real time with Socratic hints."
+        ],
+        "tags": [
+          "MentorMaze",
+          "Education",
+          "Beta"
+        ],
+        "status": "published",
+        "publishedAt": "2026-10-01T09:00:00Z",
+        "createdAt": "2026-10-01T00:00:00Z",
+        "updatedAt": "2026-10-01T09:00:00Z"
+      }
+    ]
+  ],
+  "researchPapers": [
+    [
+      "paper-sparse-autoencoders",
+      {
+        "id": "paper-sparse-autoencoders",
+        "title": "Top-K Sparse Autoencoders at Residual Layer Boundaries",
+        "slug": "sparse-autoencoders-residual-layer",
+        "doi": "10.5281/zenodo.1084291",
+        "isDoiVerified": false,
+        "doiVerificationSource": "Demonstration / Prototype Metadata",
+        "doiVerificationNotes": "Zenodo ID 1084291 was historically registered for external supply-chain research. Flagged as demonstrative prototype manuscript pending official open-archive minting.",
+        "publicationType": "Preprint",
+        "abstract": "By training top-k sparse autoencoders with 16 million latents on intermediate transformer activations, we identify interpretable monosemantic circuits without dead feature collapse.",
+        "authors": [
+          {
+            "name": "Dr. Aravind Nair",
+            "role": "Principal Investigator",
+            "affiliation": "Frontier Alignment Group"
+          },
+          {
+            "name": "Dr. Priya Desai",
+            "role": "Research Scientist",
+            "affiliation": "AI Tathastu Labs"
+          }
+        ],
+        "categoryId": "interpretability",
+        "publicationDate": "October 2026",
+        "publisher": "AI Tathastu Insights Open Science Archive (Demonstration)",
+        "license": "CC BY-NC 4.0",
+        "sourceProvenance": "demonstration_concept",
+        "sourceVerificationStatus": "demonstration",
+        "canonicalSource": "https://github.com/anant9934/-AI-Tathastu-Insights/tree/main/research",
+        "pdfAssetUrl": "/downloads/papers/paper-sparse-autoencoders.pdf",
+        "isDownloadAvailable": true,
+        "bibtex": "@article{nair2026sparse,\n  title={Top-K Sparse Autoencoders at Residual Layer Boundaries},\n  author={Nair, Aravind and Desai, Priya},\n  journal={AI Tathastu Insights (Demonstration Series)},\n  year={2026},\n  note={Demonstration Prototype Record}\n}",
+        "downloadCount": 142,
+        "status": "published",
+        "createdAt": "2026-10-14T00:00:00Z",
+        "updatedAt": "2026-10-14T00:00:00Z"
+      }
+    ],
+    [
+      "paper-aegis-bft",
+      {
+        "id": "paper-aegis-bft",
+        "title": "Aegis-BFT: Sub-200ms Fault-Tolerant Byzantine Consensus for Heterogeneous Agent Swarms",
+        "slug": "aegis-bft-byzantine-consensus",
+        "doi": "10.5281/zenodo.1084278",
+        "isDoiVerified": false,
+        "doiVerificationSource": "Demonstration / Prototype Metadata",
+        "doiVerificationNotes": "Synthetic DOI generated during layout development.",
+        "publicationType": "Technical Report",
+        "abstract": "Deterministic consensus protocol for autonomous agent networks operating under tight communication deadlines and adversarial tool actions.",
+        "authors": [
+          {
+            "name": "Vikram Sharma",
+            "role": "Lead Architect",
+            "affiliation": "Distributed Swarm Consortium"
+          },
+          {
+            "name": "Marcus Vance",
+            "role": "Senior Engineer",
+            "affiliation": "Cambridge AI"
+          }
+        ],
+        "categoryId": "agentic",
+        "publicationDate": "October 2026",
+        "publisher": "AI Tathastu Insights Technical Series",
+        "license": "CC BY-NC 4.0",
+        "sourceProvenance": "demonstration_concept",
+        "sourceVerificationStatus": "demonstration",
+        "pdfAssetUrl": "/downloads/papers/paper-aegis-bft.pdf",
+        "isDownloadAvailable": true,
+        "bibtex": "@article{sharma2026aegis,\n  title={Aegis-BFT: Sub-200ms Fault-Tolerant Byzantine Consensus for Heterogeneous Agent Swarms},\n  author={Sharma, Vikram and Vance, Marcus},\n  journal={AI Tathastu Insights Technical Series},\n  year={2026}\n}",
+        "downloadCount": 98,
+        "status": "published",
+        "createdAt": "2026-10-08T00:00:00Z",
+        "updatedAt": "2026-10-08T00:00:00Z"
+      }
+    ],
+    [
+      "paper-iris-voxel",
+      {
+        "id": "paper-iris-voxel",
+        "title": "Egocentric Voxel-Semantic Memory Buffers for Continuous Physical Affordance Tracking",
+        "slug": "egocentric-voxel-memory",
+        "doi": "10.5281/zenodo.1084265",
+        "isDoiVerified": false,
+        "doiVerificationSource": "Demonstration / Prototype Metadata",
+        "doiVerificationNotes": "Synthetic DOI generated during layout development.",
+        "publicationType": "Journal Article",
+        "abstract": "Real-time 3D sensory spatial memory integration for mixed reality systems operating at edge latencies.",
+        "authors": [
+          {
+            "name": "Dr. Elena Rostova",
+            "role": "Director",
+            "affiliation": "Iris Vision Labs"
+          },
+          {
+            "name": "Dr. Aravind Nair",
+            "role": "Investigator",
+            "affiliation": "AI Tathastu"
+          }
+        ],
+        "categoryId": "perceptual",
+        "publicationDate": "September 2026",
+        "publisher": "AI Tathastu Insights",
+        "license": "CC BY-NC 4.0",
+        "sourceProvenance": "demonstration_concept",
+        "sourceVerificationStatus": "demonstration",
+        "pdfAssetUrl": "/downloads/papers/paper-iris-voxel.pdf",
+        "isDownloadAvailable": true,
+        "bibtex": "@article{rostova2026iris,\n  title={Egocentric Voxel-Semantic Memory Buffers for Continuous Physical Affordance Tracking},\n  author={Rostova, Elena and Nair, Aravind},\n  journal={AI Tathastu Insights},\n  year={2026}\n}",
+        "downloadCount": 76,
+        "status": "published",
+        "createdAt": "2026-09-24T00:00:00Z",
+        "updatedAt": "2026-09-24T00:00:00Z"
+      }
+    ]
+  ],
+  "mediaAssets": [
+    [
+      "media-doc-01",
+      {
+        "id": "media-doc-01",
+        "title": "The Architecture of Monosemanticity: A 4K Visual Walkthrough",
+        "format": "documentary",
+        "fileType": "video/mp4",
+        "fileSizeBytes": 420000000,
+        "durationSeconds": 1472,
+        "durationLabel": "24:32",
+        "speaker": "Dr. Aravind Nair",
+        "speakerRole": "Principal Investigator",
+        "description": "Cinematic visual exploration inside the residual streams of foundation models, featuring volumetric activations and mathematical circuit mappings.",
+        "coverImageUrl": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1200",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "altText": "Volumetric activation diagram in deep residual stream",
+        "caption": "Figure 1.2: Latent vector projection across 32 transformer layers",
+        "attribution": "AI Tathastu Media Lab",
+        "uploaderName": "Maya Sen",
+        "createdAt": "2026-10-10T00:00:00Z"
+      }
+    ],
+    [
+      "media-dialogue-14",
+      {
+        "id": "media-dialogue-14",
+        "title": "Tathastu Dialogues #14: The Geometry of Latency in Agent Swarms",
+        "format": "dialogue",
+        "fileType": "audio/mp3",
+        "fileSizeBytes": 68000000,
+        "durationSeconds": 2912,
+        "durationLabel": "48:32",
+        "speaker": "Vikram Sharma & Dr. Marcus Vance",
+        "speakerRole": "Systems Architects",
+        "description": "Technical conversation dissecting why multi-agent frameworks fail under token budgets, Byzantine consensus dynamics, and asynchronous arbitration.",
+        "coverImageUrl": "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?auto=format&fit=crop&q=80&w=800",
+        "streamUrl": "",
+        "isStreamAvailable": false,
+        "altText": "Audio waveform and network topology graph",
+        "caption": "Consensus delay distribution across 64-node clusters",
+        "attribution": "Tathastu Dialogues Audio Series",
+        "uploaderName": "Maya Sen",
+        "createdAt": "2026-10-04T00:00:00Z"
+      }
+    ]
+  ],
+  "staticPages": [
+    [
+      "about",
+      {
+        "id": "page-about",
+        "slug": "about",
+        "title": "About AI Tathastu Insights",
+        "template": "about",
+        "excerpt": "The official publication, research archive, and engineering documentation of AI Tathastu.",
+        "content": "## Who We Are\n\nAI Tathastu Insights is the official public publication and open research archive of AI Tathastu. We exist to make complex artificial intelligence architectures, empirical evaluations, systems engineering challenges, and safety invariants discoverable, understandable, and verifiable.\n\n### Our Core Mission\n\n1. **Empirical Verifiability**: We reject ungrounded benchmark inflation. Every research paper, performance statistic, and latency metric published on this platform must be backed by reproducible test harnesses or explicitly labeled as a prototype.\n2. **Open Science & Transparent Provenance**: We champion open inquiry, verified citations, open dataset availability, and clear distinction between working platforms and conceptual designs.\n3. **Engineering Depth**: We share real architecture lessons—trade-offs, kernel optimizations, deadlocks, and failure modes—so the engineering community learns alongside us.",
+        "seoTitle": "About AI Tathastu Insights — Mission, Principles & Team",
+        "seoDescription": "Learn about AI Tathastu Insights, our empirical verification standards, and our open science publication philosophy.",
+        "status": "published",
+        "publishedAt": "2026-01-01T00:00:00Z",
+        "createdAt": "2026-01-01T00:00:00Z",
+        "updatedAt": "2026-10-20T00:00:00Z"
+      }
+    ],
+    [
+      "editorial-charter",
+      {
+        "id": "page-charter",
+        "slug": "editorial-charter",
+        "title": "Editorial Charter & Verification Standards",
+        "template": "editorial_charter",
+        "excerpt": "Our statutory commitment to factual integrity, honest prototype labeling, and double-blind peer review.",
+        "content": "## Editorial Charter\n\nThis Charter establishes the immutable principles governing all publications on AI Tathastu Insights:\n\n1. **No Fabricated Benchmarks**: Articles must not claim performance numbers without linking to verifiable test harnesses.\n2. **Transparent Prototype Disclosure**: Functional demonstrations, laboratory prototypes, and planned roadmap items must be visibly labeled as such.\n3. **Independent Review**: Submissions undergo multi-stage editorial review including reproducibility attestations and ethics screening.\n4. **No Advertising Or Sponsored Research**: Editorial selections are strictly based on scientific merit and systems engineering significance.",
+        "seoTitle": "Editorial Charter — AI Tathastu Insights",
+        "seoDescription": "Our rigorous standards for empirical review, honest benchmark reporting, and open science transparency.",
+        "status": "published",
+        "publishedAt": "2026-01-01T00:00:00Z",
+        "createdAt": "2026-01-01T00:00:00Z",
+        "updatedAt": "2026-10-20T00:00:00Z"
+      }
+    ],
+    [
+      "contact",
+      {
+        "id": "page-contact",
+        "slug": "contact",
+        "title": "Contact & Editorial Inquiries",
+        "template": "contact",
+        "excerpt": "Direct channels for manuscript submission, research reproduction reports, and press inquiries.",
+        "content": "## Contact Our Team\n\nFor editorial inquiries, peer-review correspondence, and research reproduction claims:\n\n- **Editorial Desk**: `editorial@tathastu-insights.org`\n- **Research Review Board**: `review@tathastu-insights.org`\n- **Press & Media Inquiries**: `press@tathastu.org`\n- **Security & Vulnerability Disclosure**: `security@tathastu.org`",
+        "status": "published",
+        "publishedAt": "2026-01-01T00:00:00Z",
+        "createdAt": "2026-01-01T00:00:00Z",
+        "updatedAt": "2026-10-20T00:00:00Z"
+      }
+    ],
+    [
+      "privacy",
+      {
+        "id": "page-privacy",
+        "slug": "privacy",
+        "title": "Privacy & Data Governance Policy",
+        "template": "legal",
+        "excerpt": "How we respect researcher anonymity, guest sessions, and newsletter subscriber data.",
+        "content": "## Privacy & Data Protection\n\nAI Tathastu Insights respects your privacy and complies with modern data governance standards. We do not sell user data, track visitors across third-party networks, or inject commercial trackers into our publication.",
+        "status": "published",
+        "publishedAt": "2026-01-01T00:00:00Z",
+        "createdAt": "2026-01-01T00:00:00Z",
+        "updatedAt": "2026-10-20T00:00:00Z"
+      }
+    ],
+    [
+      "terms",
+      {
+        "id": "page-terms",
+        "slug": "terms",
+        "title": "Terms of Use & Open Science License",
+        "template": "legal",
+        "excerpt": "Usage terms, Creative Commons licensing, and citation attribution requirements.",
+        "content": "## Terms of Publication & Use\n\nAll editorial articles and research documentation published on AI Tathastu Insights are made available under the Creative Commons Attribution-NonCommercial 4.0 International License (CC BY-NC 4.0) unless otherwise specified.",
+        "status": "published",
+        "publishedAt": "2026-01-01T00:00:00Z",
+        "createdAt": "2026-01-01T00:00:00Z",
+        "updatedAt": "2026-10-20T00:00:00Z"
+      }
+    ],
+    [
+      "submission-guidelines",
+      {
+        "id": "page-guidelines",
+        "slug": "submission-guidelines",
+        "title": "Author Submission & Reproducibility Guidelines",
+        "template": "submission_guidelines",
+        "excerpt": "Standard operating procedures for submitting manuscripts, datasets, and benchmark reproduction harnesses.",
+        "content": "## Submission Guidelines\n\nAuthors wishing to submit research or engineering deep-dives to AI Tathastu Insights must adhere to our Empirical Reproducibility Protocol:\n\n1. **Abstract**: Must clearly state the empirical claims, dataset size, and hardware environment.\n2. **Artifact Attestation**: Authors must attest that the results can be replicated with the provided artifacts.\n3. **Double-Blind Screening**: Submissions are anonymized during initial screening.",
+        "status": "published",
+        "publishedAt": "2026-01-01T00:00:00Z",
+        "createdAt": "2026-01-01T00:00:00Z",
+        "updatedAt": "2026-10-20T00:00:00Z"
+      }
+    ]
+  ],
+  "navigationMenus": [
+    [
+      "main",
+      {
+        "id": "main",
+        "name": "Main Public Navigation",
+        "items": [
+          {
+            "id": "nav-home",
+            "label": "Home",
+            "path": "#home",
+            "order": 1,
+            "isEnabled": true
+          },
+          {
+            "id": "nav-products",
+            "label": "Products",
+            "path": "#products",
+            "order": 2,
+            "isEnabled": true
+          },
+          {
+            "id": "nav-research",
+            "label": "Research",
+            "path": "#research",
+            "order": 3,
+            "isEnabled": true
+          },
+          {
+            "id": "nav-eng",
+            "label": "Engineering",
+            "path": "#engineering",
+            "order": 4,
+            "isEnabled": true
+          },
+          {
+            "id": "nav-updates",
+            "label": "Updates",
+            "path": "#updates",
+            "order": 5,
+            "isEnabled": true
+          },
+          {
+            "id": "nav-media",
+            "label": "Media",
+            "path": "#media",
+            "order": 6,
+            "isEnabled": true
+          },
+          {
+            "id": "nav-about",
+            "label": "About",
+            "path": "#about",
+            "order": 7,
+            "isEnabled": true
+          }
+        ],
+        "updatedAt": "2026-11-20T19:54:30.103Z"
+      }
+    ],
+    [
+      "footer",
+      {
+        "id": "footer",
+        "name": "Footer Navigation",
+        "items": [
+          {
+            "id": "foot-products",
+            "label": "Ecosystem & Products",
+            "path": "#products",
+            "order": 1,
+            "isEnabled": true
+          },
+          {
+            "id": "foot-research",
+            "label": "Research Archive",
+            "path": "#research",
+            "order": 2,
+            "isEnabled": true
+          },
+          {
+            "id": "foot-charter",
+            "label": "Editorial Charter",
+            "path": "#about",
+            "order": 3,
+            "isEnabled": true
+          },
+          {
+            "id": "foot-studio",
+            "label": "Editorial Studio",
+            "path": "#studio",
+            "order": 4,
+            "isEnabled": true
+          }
+        ],
+        "updatedAt": "2026-11-20T19:54:30.103Z"
+      }
+    ],
+    [
+      "product",
+      {
+        "id": "product",
+        "name": "Product Sub-Navigation",
+        "items": [
+          {
+            "id": "prod-mm",
+            "label": "MentorMaze",
+            "path": "#products",
+            "order": 1,
+            "isEnabled": true
+          },
+          {
+            "id": "prod-collab",
+            "label": "Collaborate",
+            "path": "#products",
+            "order": 2,
+            "isEnabled": true
+          },
+          {
+            "id": "prod-avsar",
+            "label": "Avsar",
+            "path": "#products",
+            "order": 3,
+            "isEnabled": true
+          },
+          {
+            "id": "prod-iris",
+            "label": "Iris",
+            "path": "#products",
+            "order": 4,
+            "isEnabled": true
+          }
+        ],
+        "updatedAt": "2026-11-20T19:54:30.103Z"
+      }
+    ]
+  ],
+  "homepageConfig": {
+    "id": "default",
+    "heroHeadline": "Advancing Frontier AI Through Verifiable Research & Systems",
+    "heroSubtitle": "The official publication, research archive, and engineering documentation of AI Tathastu.",
+    "heroDescription": "AI Tathastu Insights publishes verified empirical investigations, system architectures, and peer-reviewed preprints across alignment, scalable inference, distributed agent consensus, and perceptual models.",
+    "primaryCtaText": "Explore Systems",
+    "primaryCtaLink": "#products",
+    "secondaryCtaText": "Read Research",
+    "secondaryCtaLink": "#research",
+    "heroMediaUrl": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200",
+    "heroMediaType": "image",
+    "featuredStoryId": "sparse-autoencoders-residual-stream",
+    "featuredProductIds": [
+      "mentormaze",
+      "collaborate",
+      "avsar",
+      "iris"
+    ],
+    "featuredResearchIds": [
+      "paper-sparse-autoencoders",
+      "paper-aegis-bft",
+      "paper-iris-voxel"
+    ],
+    "featuredEngineeringIds": [
+      "eng-aegis-consensus",
+      "eng-triton-inference",
+      "eng-kv-quantization"
+    ],
+    "featuredMediaIds": [
+      "media-doc-01",
+      "media-dialogue-14"
+    ],
+    "sectionsConfig": [
+      {
+        "id": "hero",
+        "title": "Hero Story & Identity",
+        "description": "Main hero narrative and primary interaction",
+        "enabled": true,
+        "order": 1
+      },
+      {
+        "id": "products",
+        "title": "Ecosystem & Products",
+        "description": "Verified products and active development platforms",
+        "enabled": true,
+        "order": 2
+      },
+      {
+        "id": "research",
+        "title": "Research & Preprints",
+        "description": "Empirical papers with DOI and verification stamps",
+        "enabled": true,
+        "order": 3
+      },
+      {
+        "id": "engineering",
+        "title": "Engineering Deep-Dives",
+        "description": "Systems architecture, kernel optimizations, and benchmarks",
+        "enabled": true,
+        "order": 4
+      },
+      {
+        "id": "media",
+        "title": "Media & Dialogues",
+        "description": "Lectures, architectural walkthroughs, and discussions",
+        "enabled": true,
+        "order": 5
+      },
+      {
+        "id": "updates",
+        "title": "Changelog & Updates",
+        "description": "Chronological releases and milestone logs",
+        "enabled": true,
+        "order": 6
+      },
+      {
+        "id": "newsletter",
+        "title": "Newsletter & Subscriptions",
+        "description": "Verified research dispatch signup",
+        "enabled": true,
+        "order": 7
+      }
+    ],
+    "updatedAt": "2026-11-20T19:54:28.751Z"
+  },
+  "siteSettings": {
+    "id": "default",
+    "siteTitle": "AI Tathastu Insights — Verified Frontier Systems",
+    "siteDescription": "The official publication, open research archive, and engineering documentation of AI Tathastu.",
+    "brandLogoUrl": "/logo.svg",
+    "faviconUrl": "/favicon.ico",
+    "contactEmail": "editorial@tathastu-insights.org",
+    "socialLinks": [
+      {
+        "platform": "GitHub",
+        "url": "https://github.com/anant9934/-AI-Tathastu-Insights"
+      },
+      {
+        "platform": "Twitter",
+        "url": "https://twitter.com/aitathastu"
+      },
+      {
+        "platform": "LinkedIn",
+        "url": "https://linkedin.com/company/ai-tathastu"
+      }
+    ],
+    "defaultSeo": {
+      "metaTitle": "AI Tathastu Insights — Frontier AI Research & Systems",
+      "metaDescription": "Verified investigations, distributed systems architectures, and open preprints by AI Tathastu.",
+      "ogImage": "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&q=80&w=1200"
+    },
+    "footerConfig": {
+      "copyrightText": "© 2026 AI Tathastu Insights. Published under CC BY-NC 4.0 Open Science Charter.",
+      "disclaimerText": "Empirical verifiability policy enforced. Prototypes and roadmaps are explicitly identified."
+    },
+    "themeDefaults": {
+      "defaultTheme": "system"
+    },
+    "updatedAt": "2026-11-20T19:55:12.007Z"
+  },
+  "subscribers": [
+    [
+      "sub-01",
+      {
+        "id": "sub-01",
+        "email": "researcher@stanford.edu",
+        "isConfirmed": true,
+        "confirmationToken": "conf-stanford-8821",
+        "consentRecordedAt": "2026-08-14T10:00:00Z"
+      }
+    ],
+    [
+      "sub-02",
+      {
+        "id": "sub-02",
+        "email": "systems.lead@deepmind.google.com",
+        "isConfirmed": true,
+        "confirmationToken": "conf-dm-4491",
+        "consentRecordedAt": "2026-09-02T12:00:00Z"
+      }
+    ],
+    [
+      "sub-03",
+      {
+        "id": "sub-03",
+        "email": "safety-eval@cmu.edu",
+        "isConfirmed": true,
+        "confirmationToken": "conf-cmu-1942",
+        "consentRecordedAt": "2026-10-01T15:30:00Z"
+      }
+    ],
+    [
+      "sub-04",
+      {
+        "id": "sub-04",
+        "email": "scholar@oxford.ac.uk",
+        "isConfirmed": false,
+        "confirmationToken": "conf-ox-3312",
+        "consentRecordedAt": "2026-11-05T08:00:00Z"
+      }
+    ]
+  ],
+  "revokedTokens": [
+    [
+      "80da6ca212a28265fdd13c6e7548b9d0cb7516c00fb71abdaed0c6c39600c7e3",
+      {
+        "tokenHash": "80da6ca212a28265fdd13c6e7548b9d0cb7516c00fb71abdaed0c6c39600c7e3",
+        "expiresAt": "2026-11-27T19:54:32.527Z",
+        "revokedAt": "2026-11-20T19:54:32.527Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "255219bbc2585219bdcfb2a3663f3fe67c2ca8e9c1a5a9c19d042d0bcee857d8",
+      {
+        "tokenHash": "255219bbc2585219bdcfb2a3663f3fe67c2ca8e9c1a5a9c19d042d0bcee857d8",
+        "expiresAt": "2026-11-27T19:54:50.375Z",
+        "revokedAt": "2026-11-20T19:54:50.375Z",
+        "reason": "user_logout"
+      }
+    ],
+    [
+      "a259dc50b6d37ed3d1be4707fa95a33e86eac6378e39f5fb898add23be7dcf62",
+      {
+        "tokenHash": "a259dc50b6d37ed3d1be4707fa95a33e86eac6378e39f5fb898add23be7dcf62",
+        "expiresAt": "2026-11-27T19:55:11.582Z",
+        "revokedAt": "2026-11-20T19:55:11.582Z",
+        "reason": "user_logout"
+      }
+    ]
+  ],
+  "passwordResetTokens": [
+    [
+      "e015a1b1c2f864ece82ea51166440888130093326f81e337142a37a2a175efe6",
+      {
+        "tokenHash": "e015a1b1c2f864ece82ea51166440888130093326f81e337142a37a2a175efe6",
+        "userId": "usr-reviewer-01",
+        "expiresAt": "2026-11-20T20:54:32.530Z",
+        "createdAt": "2026-11-20T19:54:32.530Z",
+        "usedAt": "2026-11-20T19:54:32.531Z"
+      }
+    ],
+    [
+      "bbfb517958358bf7922daa321797ada6d8c0abba63c502924ca561f2bb730f9c",
+      {
+        "tokenHash": "bbfb517958358bf7922daa321797ada6d8c0abba63c502924ca561f2bb730f9c",
+        "userId": "usr-reviewer-01",
+        "expiresAt": "2026-11-20T20:54:50.377Z",
+        "createdAt": "2026-11-20T19:54:50.377Z",
+        "usedAt": "2026-11-20T19:54:50.378Z"
+      }
+    ],
+    [
+      "28c9204740224148651d222beceeaa0584d3bbeee5d600b6bed6581ff8ec68ba",
+      {
+        "tokenHash": "28c9204740224148651d222beceeaa0584d3bbeee5d600b6bed6581ff8ec68ba",
+        "userId": "usr-reviewer-01",
+        "expiresAt": "2026-11-20T20:55:11.584Z",
+        "createdAt": "2026-11-20T19:55:11.584Z",
+        "usedAt": "2026-11-20T19:55:11.585Z"
+      }
+    ]
+  ],
+  "persistedAt": "2026-11-20T19:55:12.014Z"
+}

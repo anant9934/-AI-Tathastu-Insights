@@ -8,6 +8,12 @@ function getParam(req: Request, key: string): string {
   return Array.isArray(val) ? val[0] : (val as string) || '';
 }
 
+// Global Cache-Control header for all public synchronization endpoints
+publicRouter.use((req: Request, res: Response, next) => {
+  res.setHeader('Cache-Control', 'public, max-age=60, s-maxage=300, stale-while-revalidate=600');
+  next();
+});
+
 // Publicly accessible endpoints — strictly return ONLY published items!
 // Private drafts, unapproved manuscripts, or admin records are never exposed here.
 

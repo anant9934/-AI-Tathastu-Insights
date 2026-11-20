@@ -1,5 +1,7 @@
 import bcrypt from 'bcryptjs';
 import crypto from 'crypto';
+import fs from 'fs';
+import path from 'path';
 import { ProvenanceRecord, DoiService } from '../services/doiService';
 import { AuditService } from '../services/auditService';
 
@@ -440,12 +442,85 @@ class MemoryStore {
     updatedAt: new Date().toISOString(),
   };
 
+  public revokedTokens: Map<string, { tokenHash: string; userId?: string; expiresAt: string; revokedAt: string; reason?: string }> = new Map();
+  public passwordResetTokens: Map<string, { tokenHash: string; userId: string; expiresAt: string; usedAt?: string; createdAt: string }> = new Map();
+
+  private diskStoragePath = path.resolve(process.cwd(), 'server/data/cms_store.json');
+
+  public persistToDisk(): void {
+    try {
+      const dir = path.dirname(this.diskStoragePath);
+      if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+      }
+      const snapshot = {
+        users: Array.from(this.users.entries()),
+        manuscripts: Array.from(this.manuscripts.entries()),
+        reviews: Array.from(this.reviews.entries()),
+        bookmarks: Array.from(this.bookmarks.entries()),
+        content: Array.from(this.content.entries()),
+        contentVersions: Array.from(this.contentVersions.entries()),
+        products: Array.from(this.products.entries()),
+        engineeringArticles: Array.from(this.engineeringArticles.entries()),
+        companyUpdates: Array.from(this.companyUpdates.entries()),
+        researchPapers: Array.from(this.researchPapers.entries()),
+        mediaAssets: Array.from(this.mediaAssets.entries()),
+        staticPages: Array.from(this.staticPages.entries()),
+        navigationMenus: Array.from(this.navigationMenus.entries()),
+        homepageConfig: this.homepageConfig,
+        siteSettings: this.siteSettings,
+        subscribers: Array.from(this.subscribers.entries()),
+        revokedTokens: Array.from(this.revokedTokens.entries()),
+        passwordResetTokens: Array.from(this.passwordResetTokens.entries()),
+        persistedAt: new Date().toISOString(),
+      };
+      fs.writeFileSync(this.diskStoragePath, JSON.stringify(snapshot, null, 2), 'utf8');
+    } catch (err: any) {
+      console.warn('[Repository Persistence] Warning: failed to flush snapshot to disk:', err.message);
+    }
+  }
+
+  private loadFromDisk(): boolean {
+    try {
+      if (fs.existsSync(this.diskStoragePath)) {
+        const raw = fs.readFileSync(this.diskStoragePath, 'utf8');
+        const state = JSON.parse(raw);
+        if (state.users) this.users = new Map(state.users);
+        if (state.manuscripts) this.manuscripts = new Map(state.manuscripts);
+        if (state.reviews) this.reviews = new Map(state.reviews);
+        if (state.bookmarks) this.bookmarks = new Map(state.bookmarks);
+        if (state.content) this.content = new Map(state.content);
+        if (state.contentVersions) this.contentVersions = new Map(state.contentVersions);
+        if (state.products) this.products = new Map(state.products);
+        if (state.engineeringArticles) this.engineeringArticles = new Map(state.engineeringArticles);
+        if (state.companyUpdates) this.companyUpdates = new Map(state.companyUpdates);
+        if (state.researchPapers) this.researchPapers = new Map(state.researchPapers);
+        if (state.mediaAssets) this.mediaAssets = new Map(state.mediaAssets);
+        if (state.staticPages) this.staticPages = new Map(state.staticPages);
+        if (state.navigationMenus) this.navigationMenus = new Map(state.navigationMenus);
+        if (state.homepageConfig) this.homepageConfig = state.homepageConfig;
+        if (state.siteSettings) this.siteSettings = state.siteSettings;
+        if (state.subscribers) this.subscribers = new Map(state.subscribers);
+        if (state.revokedTokens) this.revokedTokens = new Map(state.revokedTokens);
+        if (state.passwordResetTokens) this.passwordResetTokens = new Map(state.passwordResetTokens);
+        return true;
+      }
+    } catch (err: any) {
+      console.warn('[Repository Persistence] Error reading from disk, initializing defaults:', err.message);
+    }
+    return false;
+  }
+
   constructor() {
-    this.seedDefaults();
+    const loaded = this.loadFromDisk();
+    if (!loaded) {
+      this.seedDefaults();
+      this.persistToDisk();
+    }
   }
 
   private seedDefaults() {
-    const salt = bcrypt.genSaltSync(10);
+    const salt = bcrypt.genSaltSync(12);
     const hash = (pwd: string) => bcrypt.hashSync(pwd, salt);
 
     // 1. Seed Users (All Roles)
@@ -1591,6 +1666,7 @@ class MemoryStore {
       createdAt: now,
     };
     this.contentVersions.set(id, [versionRecord]);
+    this.persistToDisk();
 
     return record;
   }
@@ -1629,6 +1705,7 @@ class MemoryStore {
     };
     versions.unshift(newVersion);
     this.contentVersions.set(id, versions);
+    this.persistToDisk();
 
     return updated;
   }
@@ -1645,6 +1722,7 @@ class MemoryStore {
     }
 
     this.content.set(id, existing);
+    this.persistToDisk();
     return existing;
   }
 
@@ -1685,6 +1763,7 @@ class MemoryStore {
         createdAt: now,
       },
     ]);
+    this.persistToDisk();
 
     return duplicate;
   }
@@ -1692,11 +1771,53 @@ class MemoryStore {
   public deleteContent(id: string): boolean {
     const existed = this.content.delete(id);
     this.contentVersions.delete(id);
+    if (existed) this.persistToDisk();
     return existed;
   }
 
   public getContentVersions(id: string): ContentVersionRecord[] {
     return this.contentVersions.get(id) || [];
+  }
+
+  public restoreContentVersion(contentId: string, versionId: string, userId: string): ContentRecord {
+    const existing = this.content.get(contentId);
+    if (!existing) throw new Error(`Content with ID ${contentId} not found`);
+
+    const versions = this.contentVersions.get(contentId) || [];
+    const targetVersion = versions.find((v) => v.id === versionId);
+    if (!targetVersion) throw new Error(`Version ${versionId} not found for content ${contentId}`);
+
+    const now = new Date().toISOString();
+    const restored: ContentRecord = {
+      ...existing,
+      title: targetVersion.title,
+      subtitle: targetVersion.subtitle,
+      abstract: targetVersion.abstract,
+      blocks: targetVersion.blocks,
+      rawMarkdown: targetVersion.rawMarkdown,
+      updatedAt: now,
+    };
+
+    this.content.set(contentId, restored);
+
+    const newVersion: ContentVersionRecord = {
+      id: `ver-${Date.now()}-${versions.length + 1}`,
+      contentId,
+      versionNumber: versions.length + 1,
+      title: restored.title,
+      subtitle: restored.subtitle,
+      abstract: restored.abstract,
+      blocks: restored.blocks,
+      rawMarkdown: restored.rawMarkdown,
+      changelog: `Restored from snapshot ${targetVersion.versionNumber}`,
+      createdById: userId,
+      createdAt: now,
+    };
+    versions.unshift(newVersion);
+    this.contentVersions.set(contentId, versions);
+    this.persistToDisk();
+
+    return restored;
   }
 
   // -------------------------------------------------------------
@@ -1758,6 +1879,7 @@ class MemoryStore {
     };
 
     this.products.set(id, record);
+    this.persistToDisk();
     return record;
   }
 
@@ -1773,11 +1895,14 @@ class MemoryStore {
     };
 
     this.products.set(id, updated);
+    this.persistToDisk();
     return updated;
   }
 
   public deleteProduct(id: string): boolean {
-    return this.products.delete(id);
+    const res = this.products.delete(id);
+    if (res) this.persistToDisk();
+    return res;
   }
 
   public reorderProducts(orderIds: string[]): ProductRecord[] {
@@ -1788,6 +1913,7 @@ class MemoryStore {
         prod.updatedAt = new Date().toISOString();
       }
     });
+    this.persistToDisk();
     return this.listProducts();
   }
 
@@ -1845,6 +1971,7 @@ class MemoryStore {
     };
 
     this.engineeringArticles.set(id, record);
+    this.persistToDisk();
     return record;
   }
 
@@ -1863,11 +1990,14 @@ class MemoryStore {
     }
 
     this.engineeringArticles.set(id, updated);
+    this.persistToDisk();
     return updated;
   }
 
   public deleteEngineeringArticle(id: string): boolean {
-    return this.engineeringArticles.delete(id);
+    const res = this.engineeringArticles.delete(id);
+    if (res) this.persistToDisk();
+    return res;
   }
 
   // -------------------------------------------------------------
@@ -1922,6 +2052,7 @@ class MemoryStore {
     };
 
     this.researchPapers.set(id, record);
+    this.persistToDisk();
     return record;
   }
 
@@ -1937,11 +2068,14 @@ class MemoryStore {
     };
 
     this.researchPapers.set(id, updated);
+    this.persistToDisk();
     return updated;
   }
 
   public deleteResearchPaper(id: string): boolean {
-    return this.researchPapers.delete(id);
+    const res = this.researchPapers.delete(id);
+    if (res) this.persistToDisk();
+    return res;
   }
 
   // -------------------------------------------------------------
@@ -1987,6 +2121,7 @@ class MemoryStore {
     };
 
     this.companyUpdates.set(id, record);
+    this.persistToDisk();
     return record;
   }
 
@@ -2005,11 +2140,14 @@ class MemoryStore {
     }
 
     this.companyUpdates.set(id, updated);
+    this.persistToDisk();
     return updated;
   }
 
   public deleteUpdate(id: string): boolean {
-    return this.companyUpdates.delete(id);
+    const res = this.companyUpdates.delete(id);
+    if (res) this.persistToDisk();
+    return res;
   }
 
   // -------------------------------------------------------------
@@ -2062,6 +2200,7 @@ class MemoryStore {
     };
 
     this.mediaAssets.set(id, record);
+    this.persistToDisk();
     return record;
   }
 
@@ -2075,11 +2214,14 @@ class MemoryStore {
     };
 
     this.mediaAssets.set(id, updated);
+    this.persistToDisk();
     return updated;
   }
 
   public deleteMediaAsset(id: string): boolean {
-    return this.mediaAssets.delete(id);
+    const res = this.mediaAssets.delete(id);
+    if (res) this.persistToDisk();
+    return res;
   }
 
   // -------------------------------------------------------------
@@ -2115,11 +2257,14 @@ class MemoryStore {
     };
 
     this.staticPages.set(slug, record);
+    this.persistToDisk();
     return record;
   }
 
   public deleteStaticPage(slug: string): boolean {
-    return this.staticPages.delete(slug);
+    const res = this.staticPages.delete(slug);
+    if (res) this.persistToDisk();
+    return res;
   }
 
   // -------------------------------------------------------------
@@ -2142,6 +2287,7 @@ class MemoryStore {
       updatedAt: new Date().toISOString(),
     };
     this.navigationMenus.set(location, updated);
+    this.persistToDisk();
     return updated;
   }
 
@@ -2158,6 +2304,7 @@ class MemoryStore {
       ...updates,
       updatedAt: new Date().toISOString(),
     };
+    this.persistToDisk();
     return this.homepageConfig;
   }
 
@@ -2174,6 +2321,7 @@ class MemoryStore {
       ...updates,
       updatedAt: new Date().toISOString(),
     };
+    this.persistToDisk();
     return this.siteSettings;
   }
 
@@ -2192,7 +2340,7 @@ class MemoryStore {
       throw new Error(`User with email ${data.email} already exists`);
     }
 
-    const salt = bcrypt.genSaltSync(10);
+    const salt = bcrypt.genSaltSync(12);
     const pwd = data.password || 'TathastuPass2026!';
     const passwordHash = bcrypt.hashSync(pwd, salt);
     const id = `usr-${Date.now()}`;
@@ -2210,6 +2358,7 @@ class MemoryStore {
     };
 
     this.users.set(id, record);
+    this.persistToDisk();
     return { ...record, passwordHash: '[PROTECTED_HASH]' };
   }
 
@@ -2219,6 +2368,17 @@ class MemoryStore {
 
     user.roleId = roleId;
     this.users.set(userId, user);
+    this.persistToDisk();
+    return { ...user, passwordHash: '[PROTECTED_HASH]' };
+  }
+
+  public toggleUserStatus(userId: string, isActive: boolean): UserRecord {
+    const user = this.users.get(userId);
+    if (!user) throw new Error(`User with ID ${userId} not found`);
+
+    user.isActive = isActive;
+    this.users.set(userId, user);
+    this.persistToDisk();
     return { ...user, passwordHash: '[PROTECTED_HASH]' };
   }
 
@@ -2231,7 +2391,63 @@ class MemoryStore {
         throw new Error('Cannot delete the sole Super Administrator account.');
       }
     }
-    return this.users.delete(userId);
+    const res = this.users.delete(userId);
+    if (res) this.persistToDisk();
+    return res;
+  }
+
+  public updateUserPassword(userId: string, newPasswordHash: string): boolean {
+    const user = this.users.get(userId);
+    if (!user) return false;
+    user.passwordHash = newPasswordHash;
+    this.users.set(userId, user);
+    this.persistToDisk();
+    return true;
+  }
+
+  // -------------------------------------------------------------
+  // TOKEN REVOCATION & PASSWORD RESET MANAGEMENT
+  // -------------------------------------------------------------
+  public revokeToken(tokenHash: string, userId?: string, expiresAt?: string, reason = 'logout'): void {
+    this.revokedTokens.set(tokenHash, {
+      tokenHash,
+      userId,
+      expiresAt: expiresAt || new Date(Date.now() + 7 * 24 * 3600 * 1000).toISOString(),
+      revokedAt: new Date().toISOString(),
+      reason,
+    });
+    this.persistToDisk();
+  }
+
+  public isTokenRevoked(tokenHash: string): boolean {
+    return this.revokedTokens.has(tokenHash);
+  }
+
+  public createPasswordResetToken(userId: string, tokenHash: string, expiresAt: string): void {
+    this.passwordResetTokens.set(tokenHash, {
+      tokenHash,
+      userId,
+      expiresAt,
+      createdAt: new Date().toISOString(),
+    });
+    this.persistToDisk();
+  }
+
+  public verifyAndConsumePasswordResetToken(tokenHash: string): { valid: boolean; userId?: string; error?: string } {
+    const entry = this.passwordResetTokens.get(tokenHash);
+    if (!entry) {
+      return { valid: false, error: 'Invalid or unrecognized password reset token.' };
+    }
+    if (entry.usedAt) {
+      return { valid: false, error: 'This password reset token has already been consumed.' };
+    }
+    if (new Date(entry.expiresAt).getTime() < Date.now()) {
+      return { valid: false, error: 'Password reset token has expired. Please request a new token.' };
+    }
+    entry.usedAt = new Date().toISOString();
+    this.passwordResetTokens.set(tokenHash, entry);
+    this.persistToDisk();
+    return { valid: true, userId: entry.userId };
   }
 }
 

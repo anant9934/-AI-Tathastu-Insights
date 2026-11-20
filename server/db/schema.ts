@@ -491,6 +491,32 @@ export const siteSettings = pgTable('site_settings', {
   updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull(),
 });
 
+// 30. REVOKED TOKENS (SESSION REVOCATION & LOGOUT BLACKLIST)
+export const revokedTokens = pgTable('revoked_tokens', {
+  id: text('id').primaryKey(),
+  tokenHash: text('token_hash').notNull().unique(),
+  userId: text('user_id').references(() => users.id, { onDelete: 'cascade' }),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  revokedAt: timestamp('revoked_at', { withTimezone: true }).defaultNow().notNull(),
+  reason: text('reason').default('logout'),
+}, (table) => [
+  uniqueIndex('revoked_tokens_hash_idx').on(table.tokenHash),
+  index('revoked_tokens_expires_idx').on(table.expiresAt),
+]);
+
+// 31. PASSWORD RESET TOKENS
+export const passwordResetTokens = pgTable('password_reset_tokens', {
+  id: text('id').primaryKey(),
+  userId: text('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+  tokenHash: text('token_hash').notNull().unique(),
+  expiresAt: timestamp('expires_at', { withTimezone: true }).notNull(),
+  usedAt: timestamp('used_at', { withTimezone: true }),
+  createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+}, (table) => [
+  uniqueIndex('pwd_reset_tokens_hash_idx').on(table.tokenHash),
+  index('pwd_reset_tokens_user_idx').on(table.userId),
+]);
+
 // RELATIONS DEFINITIONS FOR DRIZZLE ORM
 export const usersRelations = relations(users, ({ one, many }) => ({
   role: one(roles, { fields: [users.roleId], references: [roles.id] }),

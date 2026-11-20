@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import path from 'path';
 import { generalApiLimiter } from './middleware/rateLimiter';
 import { errorHandler } from './middleware/errorHandler';
 import { authRouter } from './routes/auth';
@@ -32,7 +33,8 @@ export function createApp(): Express {
   app.use(express.json({ limit: '10mb' }));
   app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-  // 2. Global Rate Limiting
+  // 2. Global Rate Limiting & Static Uploads
+  app.use('/uploads', express.static(path.resolve(process.cwd(), 'uploads')));
   app.use('/api', generalApiLimiter);
 
   // 3. Mount Domain Routers
