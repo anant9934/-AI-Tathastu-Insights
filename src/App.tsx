@@ -11,6 +11,8 @@ import { EcosystemPage } from './pages/EcosystemPage';
 import { MediaPage } from './pages/MediaPage';
 import { EditorialStudioPage } from './pages/EditorialStudioPage';
 import { AboutPage } from './pages/AboutPage';
+import { EngineeringPage } from './pages/EngineeringPage';
+import { UpdatesPage } from './pages/UpdatesPage';
 import { SearchModal } from './components/ui/SearchModal';
 import { ToastContainer, ToastMessage } from './components/motion/Toast';
 import { 
@@ -19,7 +21,9 @@ import {
   mockEcosystemProducts, 
   mockMediaItems, 
   mockEditorialSubmissions, 
-  mockTopics 
+  mockTopics,
+  mockEngineeringArticles,
+  mockCompanyUpdates
 } from './lib/mockData';
 import { Article, ResearchPaper, EcosystemProduct } from './types';
 import { EDITORIAL_EASE, MOTION_DURATIONS } from './lib/motion';
@@ -49,9 +53,9 @@ export const AppContent: React.FC = () => {
         setTimeout(() => {
           document.getElementById('perspectives')?.scrollIntoView({ behavior: 'smooth' });
         }, 50);
-      } else if (['home', 'articles', 'research', 'discover', 'perspectives', 'ecosystem', 'media', 'editorial-studio', 'about'].includes(hash)) {
+      } else if (['home', 'articles', 'research', 'discover', 'perspectives', 'ecosystem', 'products', 'engineering', 'updates', 'media', 'editorial-studio', 'about'].includes(hash)) {
         setSelectedArticle(null);
-        setCurrentTab(hash as NavTab);
+        setCurrentTab((hash === 'products' ? 'products' : hash) as NavTab);
       }
     };
 
@@ -202,11 +206,32 @@ export const AppContent: React.FC = () => {
         );
 
       case 'ecosystem':
+      case 'products':
         return (
           <EcosystemPage
             products={mockEcosystemProducts}
             selectedProduct={selectedEcosystemProduct}
             onSelectProduct={setSelectedEcosystemProduct}
+            onShowToast={showToast}
+          />
+        );
+
+      case 'engineering':
+        return (
+          <EngineeringPage
+            articles={mockEngineeringArticles}
+            onShowToast={showToast}
+          />
+        );
+
+      case 'updates':
+        return (
+          <UpdatesPage
+            updates={mockCompanyUpdates}
+            onNavigateProduct={(id) => {
+              const p = mockEcosystemProducts.find((item) => item.id === id);
+              if (p) handleExploreEcosystem(p);
+            }}
             onShowToast={showToast}
           />
         );

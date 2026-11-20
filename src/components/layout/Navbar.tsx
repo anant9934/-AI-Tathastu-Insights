@@ -7,14 +7,17 @@ import { EDITORIAL_EASE } from '../../lib/motion';
 
 export type NavTab = 
   | 'home' 
-  | 'articles' 
-  | 'research' 
   | 'discover' 
-  | 'perspectives'
-  | 'ecosystem' 
+  | 'products' 
+  | 'research' 
+  | 'engineering' 
+  | 'updates' 
   | 'media' 
-  | 'editorial-studio' 
-  | 'about';
+  | 'about' 
+  | 'editorial-studio'
+  | 'ecosystem'
+  | 'articles'
+  | 'perspectives';
 
 interface NavbarProps {
   currentTab: NavTab;
@@ -26,15 +29,15 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
   const { theme, toggleTheme } = useTheme();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  // Section 1: Public navigation links (Editorial Studio reserved for Submit Paper / private auth)
+  // Section 4 Specification: Public navigation: Discover, Products, Research, Engineering, Updates, Media, About
   const navLinks: { id: NavTab; label: string }[] = [
-    { id: 'home', label: 'Journal' },
+    { id: 'discover', label: 'Discover' },
+    { id: 'products', label: 'Products' },
     { id: 'research', label: 'Research' },
-    { id: 'discover', label: 'Topics' },
-    { id: 'perspectives', label: 'Perspectives' },
+    { id: 'engineering', label: 'Engineering' },
+    { id: 'updates', label: 'Updates' },
     { id: 'media', label: 'Media' },
-    { id: 'ecosystem', label: 'Ecosystem' },
-    { id: 'about', label: 'About / Charter' },
+    { id: 'about', label: 'About' },
   ];
 
   const handleTabClick = (tab: NavTab) => {
@@ -68,7 +71,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
         {/* Desktop Navigation Links with Animated Underline */}
         <nav className="hidden lg:flex items-center gap-1">
           {navLinks.map((link) => {
-            const isActive = currentTab === link.id || (link.id === 'home' && currentTab === 'articles');
+            const isActive = currentTab === link.id || (link.id === 'products' && currentTab === 'ecosystem');
             return (
               <button
                 key={link.id}

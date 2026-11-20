@@ -9,6 +9,8 @@ import { EcosystemPage } from '../pages/EcosystemPage';
 import { MediaPage } from '../pages/MediaPage';
 import { EditorialStudioPage } from '../pages/EditorialStudioPage';
 import { AboutPage } from '../pages/AboutPage';
+import { EngineeringPage } from '../pages/EngineeringPage';
+import { UpdatesPage } from '../pages/UpdatesPage';
 import { SearchModal } from '../components/ui/SearchModal';
 import { 
   mockArticles, 
@@ -16,7 +18,9 @@ import {
   mockEcosystemProducts, 
   mockEditorialSubmissions,
   mockMediaItems,
-  mockTopics
+  mockTopics,
+  mockEngineeringArticles,
+  mockCompanyUpdates
 } from '../lib/mockData';
 
 describe('Page Level Verification & User Workflows', () => {
@@ -39,16 +43,16 @@ describe('Page Level Verification & User Workflows', () => {
       />
     );
 
-    expect(screen.getByText(/Understanding AI beyond the surface\./i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /explore investigations/i })).toBeInTheDocument();
-    expect(screen.getByText(/Lead Research Investigation/i)).toBeInTheDocument();
+    expect(screen.getByText(/Building what comes next\./i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /read featured story/i })).toBeInTheDocument();
+    expect(screen.getByText(/Featured Investigation/i)).toBeInTheDocument();
     expect(screen.getByText(/Research Spotlight/i)).toBeInTheDocument();
-    expect(screen.getByText(/Areas of Inquiry/i)).toBeInTheDocument();
-    expect(screen.getByText(/Perspectives & Debates/i)).toBeInTheDocument();
-    expect(screen.getByText(/Cinematic Investigations & Dialogues/i)).toBeInTheDocument();
     expect(screen.getByText(/Applied Laboratories & Research Systems/i)).toBeInTheDocument();
-    expect(screen.getByText(/Editorial Standards & Open Science Invariants/i)).toBeInTheDocument();
-    expect(screen.getByText(/Research worth keeping up with\./i)).toBeInTheDocument();
+    expect(screen.getByText(/Engineering Insights & Kernels/i)).toBeInTheDocument();
+    expect(screen.getByText(/Development Updates & Milestones/i)).toBeInTheDocument();
+    expect(screen.getByText(/Cinematic Investigations & Dialogues/i)).toBeInTheDocument();
+    expect(screen.getByText(/Why AI Tathastu Exists/i)).toBeInTheDocument();
+    expect(screen.getByText(/Read verified research before public preprint distribution\./i)).toBeInTheDocument();
   });
 
   it('renders ArticlePage with table of contents, abstract, and references', () => {
@@ -191,5 +195,33 @@ describe('Page Level Verification & User Workflows', () => {
 
     expect(handleSelectArticle).toHaveBeenCalled();
     expect(handleClose).toHaveBeenCalled();
+  });
+
+  it('renders EngineeringPage with architecture topology and code snippet copy', () => {
+    const showToast = vi.fn();
+    render(
+      <EngineeringPage
+        articles={mockEngineeringArticles}
+        onShowToast={showToast}
+      />
+    );
+
+    expect(screen.getByText(/Engineering at AI Tathastu/i)).toBeInTheDocument();
+    expect(screen.getByText(/Aegis-BFT: Sub-200ms Byzantine Consensus/i)).toBeInTheDocument();
+    expect(screen.getByText(/Triton Top-K SAE Kernels/i)).toBeInTheDocument();
+  });
+
+  it('renders UpdatesPage with chronological changelog and category filter', () => {
+    render(
+      <UpdatesPage
+        updates={mockCompanyUpdates}
+        onNavigateProduct={vi.fn()}
+        onShowToast={vi.fn()}
+      />
+    );
+
+    expect(screen.getByText(/Company Updates & Releases/i)).toBeInTheDocument();
+    expect(screen.getByText(/MentorMaze 3.2: Speculative Socratic Reasoning/i)).toBeInTheDocument();
+    expect(screen.getByText(/Iris 2.1: Continuous Egocentric 3D Voxel Memory/i)).toBeInTheDocument();
   });
 });

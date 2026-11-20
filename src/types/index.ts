@@ -103,6 +103,8 @@ export interface ResearchPaper {
   provenanceNote?: string;
 }
 
+export type ProductStatus = 'Live Platform' | 'Beta Lab' | 'Frontier Preview' | 'Active Development';
+
 export interface EcosystemProduct {
   id: 'mentormaze' | 'collaborate' | 'avsar' | 'iris';
   name: string;
@@ -111,6 +113,31 @@ export interface EcosystemProduct {
   fullOverview: string;
   accentColor: AccentColor;
   badge: string;
+  status: ProductStatus;
+  version: string;
+  coverImage?: string;
+  
+  // The 15 Product Specification Sections
+  overview: string;
+  problem: string;
+  whyWeStarted: string;
+  researchBasis: string;
+  ourApproach: string;
+  howItWorks: { step: number; title: string; description: string }[];
+  features: { title: string; description: string; tag?: string }[];
+  architecture: {
+    overview: string;
+    diagramDescription: string;
+    layers: { layer: string; components: string[]; purpose: string }[];
+  };
+  technologyStack: { category: string; technologies: string[] }[];
+  engineeringChallenges: { challenge: string; solution: string }[];
+  developmentTimeline: { date: string; milestone: string; impact: string }[];
+  benefits: { audience: string; benefit: string }[];
+  roadmap: { phase: string; title: string; target: string; status: 'completed' | 'in_progress' | 'planned' }[];
+  relatedStoryIds: string[];
+  relatedMediaIds: string[];
+
   coreCapabilities: {
     title: string;
     description: string;
@@ -124,19 +151,78 @@ export interface EcosystemProduct {
   }[];
 }
 
+export interface EngineeringArticle {
+  id: string;
+  slug: string;
+  title: string;
+  subtitle: string;
+  category: 'System Architecture' | 'Distributed Systems' | 'Infrastructure' | 'Kernel Engineering' | 'Database Architecture' | 'Security & Invariants';
+  abstract: string;
+  author: Author;
+  publishedAt: string;
+  readingTimeMinutes: number;
+  coverImage: string;
+  tags: string[];
+  systemArchitecture?: {
+    topology: string;
+    components: { name: string; role: string; latency?: string }[];
+  };
+  codeSnippets?: {
+    title: string;
+    language: string;
+    code: string;
+    explanation: string;
+  }[];
+  benchmarks?: {
+    metric: string;
+    value: string;
+    baseline: string;
+    note?: string;
+  }[];
+  content: string[];
+}
+
+export interface CompanyUpdate {
+  id: string;
+  slug: string;
+  title: string;
+  summary: string;
+  category: 'Company' | 'Product Release' | 'Engineering' | 'Research' | 'Milestone';
+  productId?: 'mentormaze' | 'collaborate' | 'avsar' | 'iris';
+  version?: string;
+  date: string;
+  author: Author;
+  coverImage?: string;
+  content: string[];
+  tags: string[];
+  relatedLinks?: { label: string; url: string }[];
+  milestoneMetric?: { label: string; value: string };
+}
+
+export interface MediaTranscriptSegment {
+  timestamp: string;
+  speaker: string;
+  text: string;
+}
+
 export interface MediaItem {
   id: string;
   title: string;
   description: string;
-  format: 'documentary' | 'dialogue' | 'lecture';
+  format: 'documentary' | 'dialogue' | 'lecture' | 'demonstration' | 'interview';
   duration: string;
   speaker: string;
   speakerRole: string;
   publishedAt: string;
   coverImage: string;
   videoUrl?: string;
+  videoSrc?: string;
   audioDurationSeconds?: number;
   category: string;
+  transcript?: MediaTranscriptSegment[];
+  keyTakeaways?: string[];
+  credits?: string;
+  altText?: string;
 }
 
 export interface EditorialSubmission {

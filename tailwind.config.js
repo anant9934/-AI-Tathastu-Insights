@@ -15,6 +15,7 @@ export default {
           ink: '#22231F',
           secondary: '#70736F',
           border: '#E7E5DF',
+          stone: '#E8E6DF',
           // Backwards compatibility mappings
           ivory: '#F8F7F3',
           charcoal: '#22231F',
@@ -74,8 +75,8 @@ export default {
       },
       fontFamily: {
         serif: ['"Fraunces"', '"Instrument Serif"', 'Newsreader', 'Georgia', 'serif'],
-        sans: ['Geist', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
-        mono: ['"Geist Mono"', '"JetBrains Mono"', 'monospace'],
+        sans: ['Inter', 'Geist', 'system-ui', '-apple-system', 'sans-serif'],
+        mono: ['"JetBrains Mono"', '"Geist Mono"', 'monospace'],
       },
       transitionTimingFunction: {
         editorial: 'cubic-bezier(0.22, 1, 0.36, 1)',

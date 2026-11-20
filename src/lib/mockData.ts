@@ -1,4 +1,4 @@
-import { Article, ResearchPaper, EcosystemProduct, MediaItem, EditorialSubmission, Topic, Author, PerspectiveItem } from '../types';
+import { Article, ResearchPaper, EcosystemProduct, MediaItem, EditorialSubmission, Topic, Author, PerspectiveItem, EngineeringArticle, CompanyUpdate } from '../types';
 
 export const mockAuthors: Record<string, Author> = {
   aravind: {
@@ -43,6 +43,17 @@ export const mockAuthors: Record<string, Author> = {
     avatar: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=300',
     articlesCount: 12,
     papersCount: 14,
+    isDemonstrationPersona: true,
+  },
+  marcus: {
+    id: 'marcus-vance',
+    name: 'Marcus Vance',
+    role: 'Staff Systems Architect (Demonstration Persona)',
+    affiliation: 'Systems & Consensus Core, AI Tathastu',
+    bio: 'Designs low-latency distributed consensus engines, GPU kernels in Triton/CUDA, and Byzantine fault-tolerant multi-agent runtime environments.',
+    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=300',
+    articlesCount: 9,
+    papersCount: 7,
     isDemonstrationPersona: true,
   }
 };
@@ -455,6 +466,64 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     fullOverview: 'MentorMaze bridges the gap between ambitious university researchers and frontier laboratory practices. Rather than serving generic answers, MentorMaze diagnoses the cognitive prerequisites of advanced mathematical and engineering domains, constructing tailored project roadmaps, code-level debugging exercises, and literature digestion workflows.',
     accentColor: 'violet',
     badge: 'Education & Mentorship',
+    status: 'Live Platform',
+    version: 'v3.2.0',
+    coverImage: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200',
+    
+    // 15-Section Specification
+    overview: 'MentorMaze is an intelligent academic guidance platform engineered to diagnose cognitive prerequisite lattices and guide aspiring artificial intelligence researchers from fundamental linear algebra to frontier mechanistic interpretability.',
+    problem: 'Advanced ML research literature has steep prerequisite lattices; traditional university textbooks lag 3 years behind frontier preprints, leaving students stranded on complex formal proofs, CUDA kernel optimizations, and empirical circuit discovery.',
+    whyWeStarted: 'We observed brilliant undergraduate engineers and self-directed researchers hitting insurmountable cognitive plateaus when attempting to reproduce 70B parameter models. MentorMaze was built to provide the personalized Socratic guidance of a tenure-track advisor at scale.',
+    researchBasis: 'Grounded in Cognitive Diagnostic Modeling (CDM) and topological knowledge graph extraction from over 120,000 computer science preprints indexed in the Tathastu Research Graph.',
+    ourApproach: 'Instead of passive video lectures, MentorMaze treats research education as interactive debugging: students resolve intentionally corrupted gradient descent loops, formal Lean 4 lemmas, and sparse autoencoder loss spikes.',
+    howItWorks: [
+      { step: 1, title: 'Prerequisite Graph Diagnosis', description: 'Evaluates the learner against 420 prerequisite concepts spanning abstract algebra, GPU hardware concurrency, and transformer mechanics.' },
+      { step: 2, title: 'Synthesized Trajectory Generation', description: 'Generates a personalized pedagogical path dynamically updated after every problem set.' },
+      { step: 3, title: 'Interactive Sandbox Verification', description: 'Compiles student PyTorch and Triton code against automated test matrices on cloud GPUs.' },
+      { step: 4, title: 'Faculty & Fellowship Matching', description: 'Unlocks direct lab introductions and Avsar micro-grants upon mastering advanced milestone nodes.' }
+    ],
+    features: [
+      { title: 'Socratic Proof Debugger', description: 'Guides learners through step-by-step mathematical derivations without revealing final answers.', tag: 'Core AI' },
+      { title: 'Interactive CUDA Playground', description: 'Browser-based execution environment providing cycle-accurate GPU profiler feedback.', tag: 'Systems' },
+      { title: 'Citation Deep-Linking', description: 'Direct annotations linking every exercise back to primary Zenodo and arXiv research papers.', tag: 'Research' },
+      { title: 'Adaptive Spaced Repetition', description: 'Algorithmic reinforcement schedules to ensure permanent retention of mathematical invariants.', tag: 'Pedagogy' }
+    ],
+    architecture: {
+      overview: 'Microservices architecture with real-time graph traversal, sandboxed execution worker nodes, and WebSockets state streaming.',
+      diagramDescription: 'Browser Client ↔ API Gateway ↔ Neo4j Prerequisite Graph ↔ Sandboxed GPU Worker Pool (CUDA 12.4 / PyTorch 2.4).',
+      layers: [
+        { layer: 'Presentation Layer', components: ['React 19', 'Tailwind CSS', 'Monaco Code Editor'], purpose: 'Responsive coding interface' },
+        { layer: 'Diagnostic Engine', components: ['FastAPI', 'Neo4j Graph Database', 'Socratic Agent'], purpose: 'Prerequisite modeling' },
+        { layer: 'Execution Cluster', components: ['Docker', 'gVisor Sandboxing', 'NVIDIA L4 Instances'], purpose: 'Secure GPU code verification' }
+      ]
+    },
+    technologyStack: [
+      { category: 'Frontend', technologies: ['React 19', 'TypeScript', 'Tailwind CSS', 'Framer Motion'] },
+      { category: 'Backend & Diagnostics', technologies: ['FastAPI', 'Python 3.12', 'Neo4j Graph DB', 'PostgreSQL'] },
+      { category: 'Execution Sandbox', technologies: ['Docker', 'gVisor', 'CUDA 12.4', 'Triton'] }
+    ],
+    engineeringChallenges: [
+      { challenge: 'Cycle-accurate grading of student CUDA kernels without risking host server security.', solution: 'Isolated gVisor containers with strict GPU memory caps and eBPF syscall filtering.' },
+      { challenge: 'Maintaining low-latency Socratic conversational turn intervals under 350ms.', solution: 'Speculative draft generation with fine-tuned 8B parameter mentor models running on local vLLM nodes.' }
+    ],
+    developmentTimeline: [
+      { date: 'Q1 2025', milestone: 'Alpha Prototype', impact: 'Tested with 250 university students across 4 institutions.' },
+      { date: 'Q3 2025', milestone: 'Interactive GPU Sandboxing', impact: 'Automated CUDA grading rolled out to 3,000 active learners.' },
+      { date: 'Q2 2026', milestone: 'Version 3.0 Socratic Engine', impact: 'Achieved 91.4% curriculum completion rate across 14,200 students.' }
+    ],
+    benefits: [
+      { audience: 'Students & Self-Learners', benefit: 'Accelerates path to frontier ML publication from 24 months to 6 months.' },
+      { audience: 'Academic Labs', benefit: 'Reduces faculty onboarding overhead by delivering pre-trained apprentice researchers.' },
+      { audience: 'Open Source Community', benefit: 'Increases the global pool of engineers capable of auditing large model safety.' }
+    ],
+    roadmap: [
+      { phase: 'Phase 1', title: 'Lean 4 Formal Proof Integration', target: 'Q4 2026', status: 'in_progress' },
+      { phase: 'Phase 2', title: 'Federated Campus Compute Nodes', target: 'Q1 2027', status: 'planned' },
+      { phase: 'Phase 3', title: 'Multi-lingual Mathematical Reasoning', target: 'Q2 2027', status: 'planned' }
+    ],
+    relatedStoryIds: ['sparse-autoencoders-residual-stream'],
+    relatedMediaIds: ['documentary-residual-stream'],
+
     stats: [
       { label: 'Active Students Mentored', value: '14,200+' },
       { label: 'Research Projects Launched', value: '890+' },
@@ -492,6 +561,63 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     fullOverview: 'Scientific discoveries increasingly occur at the boundary between disciplines. Tathastu Collaborate provides a reproducible laboratory notebook where human scientists orchestrate swarms of specialized literature-review, code-generation, and statistical-verification agents under rigorous cryptographic audit trails.',
     accentColor: 'blue',
     badge: 'Research Lab Infrastructure',
+    status: 'Live Platform',
+    version: 'v2.4.1',
+    coverImage: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1200',
+
+    overview: 'Collaborate is an open multi-agent research laboratory environment combining real-time CRDT text collaboration, deterministic Docker capsules, and Aegis-BFT Byzantine consensus.',
+    problem: 'Scientific teams lose 40% of their operational bandwidth to uncoordinated multi-agent hallucination drift, broken dependency environments, and disorganized preprint drafting.',
+    whyWeStarted: 'Modern frontier research requires running dozens of agentic experiments in parallel. We built Collaborate so that research findings are reproducible from day one.',
+    researchBasis: 'Built on the Aegis-BFT consensus protocol published in the Tathastu Technical Series, bounding turn-taking latencies to under 200ms.',
+    ourApproach: 'Every experiment, script run, and data table is treated as an immutable cryptographic commit tied to an execution container.',
+    howItWorks: [
+      { step: 1, title: 'Hypothesis Initialization', description: 'Lead investigator defines the experimental hypothesis and constraint bounds.' },
+      { step: 2, title: 'Multi-Agent Fanout', description: 'Specialized agents execute literature search, baseline benchmarking, and statistical verification in parallel.' },
+      { step: 3, title: 'Byzantine Verification', description: 'Independent auditor agents verify code outputs against ground-truth datasets.' },
+      { step: 4, title: 'Manuscript Synthesis', description: 'Compiles findings into camera-ready LaTeX documents with interactive citation verification.' }
+    ],
+    features: [
+      { title: 'Aegis Swarm Consensus', description: 'Deterministic agreement protocol ensuring agents never hallucinate conflicting findings.', tag: 'Consensus' },
+      { title: 'Reproducible Capsules', description: 'One-click snapshotting of datasets, environment variables, and random seeds.', tag: 'Infrastructure' },
+      { title: 'Double-Blind Review Stage', description: 'Integrated manuscript submission directly connected to Editorial Studio.', tag: 'Peer Review' },
+      { title: 'Live CRDT Notebooks', description: 'Concurrent multi-user editing with mathematical typography and inline Python cells.', tag: 'Editor' }
+    ],
+    architecture: {
+      overview: 'Decentralized node topology with WebRTC peer connections, Redis cluster for state syncing, and Kubernetes runner pods.',
+      diagramDescription: 'Browser Clients ↔ Y.js CRDT Gateway ↔ Aegis Consensus Engine ↔ Kubernetes Execution Pods.',
+      layers: [
+        { layer: 'Collaboration Layer', components: ['Y.js', 'WebSockets', 'TipTap Editor'], purpose: 'Zero-latency multi-user authoring' },
+        { layer: 'Consensus Layer', components: ['Aegis-BFT Daemon', 'Rust', 'gRPC'], purpose: 'Agent turn arbitration' },
+        { layer: 'Compute Cluster', components: ['Kubernetes', 'KServe', 'S3 Object Storage'], purpose: 'Sandboxed code execution' }
+      ]
+    },
+    technologyStack: [
+      { category: 'Real-time Sync', technologies: ['Y.js', 'WebSockets', 'Redis', 'Node.js'] },
+      { category: 'Consensus Engine', technologies: ['Rust', 'Tokio', 'gRPC', 'Cryptographic Hashes'] },
+      { category: 'Execution', technologies: ['Kubernetes', 'Docker', 'Python 3.12', 'Ray'] }
+    ],
+    engineeringChallenges: [
+      { challenge: 'Preventing cascading hallucination when 16 agents debate simultaneously.', solution: 'Token-bounded assertion hashing requiring cryptographic signatures on experimental claims.' },
+      { challenge: 'Real-time collaborative editing of 200-page research manuscripts with zero merge conflicts.', solution: 'Optimized Y.js state vector synchronization over binary WebSockets.' }
+    ],
+    developmentTimeline: [
+      { date: 'Q2 2025', milestone: 'v1.0 Launch', impact: 'Deployed across 8 pilot labs.' },
+      { date: 'Q4 2025', milestone: 'Aegis-BFT Protocol Integration', impact: 'Reduced p99 multi-agent consensus latency to 178ms.' },
+      { date: 'Q3 2026', milestone: 'Version 2.4 Enterprise Release', impact: 'Surpassed 3,800 completed research laboratory sessions.' }
+    ],
+    benefits: [
+      { audience: 'Research Labs', benefit: 'Accelerates peer-reviewed preprint drafting turnaround by 65%.' },
+      { audience: 'Independent Scientists', benefit: 'Provides institutional-grade compute orchestration without dedicated DevOps teams.' },
+      { audience: 'Journal Reviewers', benefit: 'Enables 100% deterministic reproduction of submitted paper results.' }
+    ],
+    roadmap: [
+      { phase: 'Phase 1', title: 'Interactive Plotly Data Weaving', target: 'Q4 2026', status: 'in_progress' },
+      { phase: 'Phase 2', title: 'Decentralized IPFS Storage Mirrors', target: 'Q1 2027', status: 'planned' },
+      { phase: 'Phase 3', title: 'Automated Refutation Collation', target: 'Q2 2027', status: 'planned' }
+    ],
+    relatedStoryIds: ['latency-bounded-swarm-consensus'],
+    relatedMediaIds: ['podcast-tathastu-dialogues-ep14'],
+
     stats: [
       { label: 'Collaborative Lab Sessions', value: '3,800+' },
       { label: 'Synthesized Experiments', value: '18,500' },
@@ -529,6 +655,63 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     fullOverview: 'Traditional academic credentialing filters out non-traditional builders and researchers in emerging economies. Avsar inverts this paradigm: by evaluating verified GitHub commits, arXiv preprints, benchmark submissions, and reproducible code reviews, Avsar automatically pairs talent with frontier funding and research fellowships.',
     accentColor: 'terracotta',
     badge: 'Grants & Fellowship Network',
+    status: 'Live Platform',
+    version: 'v1.8.4',
+    coverImage: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1200',
+
+    overview: 'Avsar is an algorithmic fellowship and micro-grant discovery engine that evaluates technical merit from verified code artifacts rather than institutional prestige.',
+    problem: 'Over 80% of promising AI talent in emerging economies is excluded from frontier research grants due to geographical friction, opaque application processes, and legacy pedigree filters.',
+    whyWeStarted: 'Breakthrough contributions in open-source AI increasingly originate from independent researchers outside elite Western universities. Avsar was founded to fund talent on merit alone.',
+    researchBasis: 'Grounded in algorithmic contribution analysis and automated test coverage verification.',
+    ourApproach: 'We analyze code quality, commit consistency, algorithmic test suites, and benchmark submissions to calculate an objective Proof-of-Contribution score.',
+    howItWorks: [
+      { step: 1, title: 'Repository Ingestion', description: 'Applicant submits their GitHub profile and reproduction repositories.' },
+      { step: 2, title: 'Algorithmic Evaluation', description: 'Automated analyzers grade code maintainability, test depth, and theoretical difficulty.' },
+      { step: 3, title: 'Peer Fellowship Committee', description: 'Unanimous blind review by the Tathastu Foundation Academic Board.' },
+      { step: 4, title: '72-Hour Grant Disbursal', description: 'Compute vouchers and non-dilutive research stipends wired within 3 business days.' }
+    ],
+    features: [
+      { title: 'Proof-of-Contribution Scoring', description: 'Automated code auditing evaluating algorithmic complexity and reproducibility.', tag: 'Auditing' },
+      { title: 'Micro-Grant Rails', description: 'Rapid compute voucher and stipend disbursal with zero bureaucratic paperwork.', tag: 'Funding' },
+      { title: 'Global Talent Registry', description: 'Searchable directory of verified builders accessible to partner AI safety labs.', tag: 'Network' },
+      { title: 'Milestone Disbursal Escrow', description: 'Funding released in stages upon verifiable code checkpoint delivery.', tag: 'Governance' }
+    ],
+    architecture: {
+      overview: 'Serverless event-driven architecture with GitHub API webhooks, static code analyzers, and automated escrow smart contracts.',
+      diagramDescription: 'GitHub Webhooks ↔ Event Bridge ↔ AST Analyzer ↔ Merit Scoring Service ↔ Escrow Disbursal Rail.',
+      layers: [
+        { layer: 'Ingestion Layer', components: ['GitHub GraphQL API', 'arXiv Crawler', 'Webhook Ingestion'], purpose: 'Raw artifact intake' },
+        { layer: 'Analysis Engine', components: ['Tree-sitter AST Parser', 'pytest Runners', 'Complexity Analyzer'], purpose: 'Objective code audit' },
+        { layer: 'Financial Rails', components: ['Stripe Treasury', 'AWS Cloud Credits API', 'Escrow Ledger'], purpose: 'Automated grant routing' }
+      ]
+    },
+    technologyStack: [
+      { category: 'Data Ingestion', technologies: ['Node.js', 'GraphQL', 'PostgreSQL', 'Redis'] },
+      { category: 'Code Analysis', technologies: ['Python 3.12', 'Tree-sitter', 'Bandit Security', 'Docker'] },
+      { category: 'Disbursal', technologies: ['Stripe Treasury', 'AWS Credit API', 'Audit Logs'] }
+    ],
+    engineeringChallenges: [
+      { challenge: 'Detecting synthetic or plagiarized commits submitted for grant eligibility.', solution: 'Semantic AST differential hashing and Git author commit frequency anomaly detection.' },
+      { challenge: 'Ensuring global compliance for instant non-dilutive research disbursements across 42 nations.', solution: 'Automated KYC/AML verification integrated with Stripe Treasury and institutional wires.' }
+    ],
+    developmentTimeline: [
+      { date: 'Q3 2025', milestone: 'Avsar Pilot Program', impact: 'Disbursed $350k to 45 independent fellows.' },
+      { date: 'Q1 2026', milestone: 'Automated Code Scorer v2', impact: 'Reduced grant evaluation cycle from 6 weeks to 72 hours.' },
+      { date: 'Q3 2026', milestone: '$2.4M Milestone Reached', impact: 'Funded 320+ research fellows across 42 countries.' }
+    ],
+    benefits: [
+      { audience: 'Independent Researchers', benefit: 'Receive non-dilutive capital and compute without giving up intellectual property.' },
+      { audience: 'Grant Foundations', benefit: 'Maximizes dollar efficiency by allocating capital based on verified code output.' },
+      { audience: 'Global South Builders', benefit: 'Bypasses legacy geographical barriers to access frontier research opportunities.' }
+    ],
+    roadmap: [
+      { phase: 'Phase 1', title: 'Direct GPU Cluster Provisioning', target: 'Q4 2026', status: 'in_progress' },
+      { phase: 'Phase 2', title: 'Open Source Maintainer Endowment', target: 'Q1 2027', status: 'planned' },
+      { phase: 'Phase 3', title: 'Decentralized Sovereign DAO Governance', target: 'Q3 2027', status: 'planned' }
+    ],
+    relatedStoryIds: ['formal-statutory-verification-frontier-ai'],
+    relatedMediaIds: ['lecture-spatial-vision-iris'],
+
     stats: [
       { label: 'Research Grants Awarded', value: '$2.4M+' },
       { label: 'Fellows Placed', value: '320+' },
@@ -566,6 +749,63 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     fullOverview: 'Iris solves the temporal and spatial disconnect inherent to conventional multimodal models. Built on 3D voxel-semantic neural memories, Iris maintains a continuous spatial understanding of the physical environment, enabling assistive technology, automated inspection, and embodied robotic manipulation.',
     accentColor: 'mint',
     badge: 'Perceptual Intelligence',
+    status: 'Live Platform',
+    version: 'v2.1.2',
+    coverImage: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=1200',
+
+    overview: 'Iris is an embodied perceptual intelligence foundation model providing continuous 3D spatial voxel memory and real-time physical affordance grounding at 60 FPS.',
+    problem: 'Standard Vision-Language Models (VLMs) process disconnected 2D video frames. The moment an object leaves sensor field-of-view, all spatial permanence and geometric affordances are lost.',
+    whyWeStarted: 'Real-world physical agency requires spatial permanence. We built Iris so robots and spatial vision systems can navigate, remember occluded objects, and interact safely with dynamic human spaces.',
+    researchBasis: 'Based on egocentric neural radiance fields and persistent 3D voxel-semantic buffers published in AI Tathastu Insights Volume 4.',
+    ourApproach: 'As RGB-D and event camera streams arrive, Iris continuously projects neural features into a dynamic 3D voxel coordinate space with explicit uncertainty bounds.',
+    howItWorks: [
+      { step: 1, title: 'Multi-Modal Stream Capture', description: 'Synchronizes RGB, depth, and IMU sensor streams at 60 FPS.' },
+      { step: 2, title: 'Voxel Feature Projection', description: 'Projects high-dimensional semantic representations into continuous 3D world space.' },
+      { step: 3, title: 'Occlusion-Resistant Memory', description: 'Maintains object permanence even when objects are obscured or cameras pan away.' },
+      { step: 4, title: 'Affordance Synthesis', description: 'Generates sub-15ms collision-free trajectory vectors for robotic actuators.' }
+    ],
+    features: [
+      { title: 'Egocentric Voxel Memory', description: 'Dense 3D representation retaining spatial permanence over 24-hour periods.', tag: 'Vision 3D' },
+      { title: 'Real-Time ROS 2 Integration', description: 'Native C++ and Python bindings for direct robot operating system control.', tag: 'Robotics' },
+      { title: 'Sub-15ms Trajectory Planner', description: 'Generates obstacle-free robotic arm grasping paths in dynamic environments.', tag: 'Control' },
+      { title: 'Zero-Shot Object Re-ID', description: 'Re-identifies previously seen physical objects under severe lighting changes.', tag: 'Perception' }
+    ],
+    architecture: {
+      overview: 'Hybrid edge-cloud architecture with TensorRT-optimized local perception models and cloud-backed long-term world memory synchronization.',
+      diagramDescription: 'Optical Sensors ↔ Jetson Orin Edge Node (Iris Kernel 60 FPS) ↔ ROS 2 Bridge ↔ Long-Term Memory Cloud Hub.',
+      layers: [
+        { layer: 'Sensor Ingestion Layer', components: ['RealSense SDK', 'V4L2 Drivers', 'IMU Kalman Filter'], purpose: 'Low-latency sensor fusion' },
+        { layer: 'Spatial Neural Memory', components: ['TensorRT', 'CUDA 12.4', 'Sparse 3D ConvNet'], purpose: 'Voxel grid maintenance' },
+        { layer: 'Action Generation', components: ['ROS 2 Humble', 'MoveIt 2', 'Control Loop'], purpose: 'Actuator vector dispatch' }
+      ]
+    },
+    technologyStack: [
+      { category: 'Edge Runtime', technologies: ['NVIDIA Jetson Orin', 'CUDA', 'TensorRT 10', 'C++20'] },
+      { category: 'Robotics Middleware', technologies: ['ROS 2 Humble', 'DDS', 'MoveIt 2', 'Zenoh'] },
+      { category: 'Neural Architecture', technologies: ['PyTorch 2.4', 'TorchScript', 'ONNX Runtime', 'FlashAttention'] }
+    ],
+    engineeringChallenges: [
+      { challenge: 'Maintaining 60 FPS voxel projection on power-constrained 35W embedded edge hardware.', solution: 'Custom FP8 quantized tensor kernels fusing depth reprojection with spatial attention.' },
+      { challenge: 'Eliminating coordinate drift during aggressive camera rotations.', solution: 'Visual-inertial odometry tightly coupled with high-confidence semantic anchor landmarks.' }
+    ],
+    developmentTimeline: [
+      { date: 'Q4 2024', milestone: 'Voxel Memory Proof of Concept', impact: 'Demonstrated 10-second occlusion tracking in simulated laboratory.' },
+      { date: 'Q2 2025', milestone: 'Version 1.0 Embedded Release', impact: 'Deployed to 200 physical robotic arms in pilot manufacturing plants.' },
+      { date: 'Q3 2026', milestone: 'Version 2.1 Spatial Intelligence', impact: 'Scaled to 1,200+ hardware deployments operating at 60 FPS.' }
+    ],
+    benefits: [
+      { audience: 'Robotics Engineers', benefit: 'Replaces brittle custom vision pipelines with a unified spatial memory API.' },
+      { audience: 'Industrial Automation', benefit: 'Reduces robot stoppage and occlusion errors by over 84% in dynamic facilities.' },
+      { audience: 'Assistive Tech Developers', benefit: 'Enables wearable egocentric navigation for visually impaired individuals.' }
+    ],
+    roadmap: [
+      { phase: 'Phase 1', title: 'Cross-Embodiment Sensor Calibration', target: 'Q4 2026', status: 'in_progress' },
+      { phase: 'Phase 2', title: 'Multi-Robot Collaborative Voxel Mesh', target: 'Q1 2027', status: 'planned' },
+      { phase: 'Phase 3', title: 'Open Edge Checkpoints on Hugging Face', target: 'Q2 2027', status: 'planned' }
+    ],
+    relatedStoryIds: ['multimodal-grounding-iris-spatial-memory'],
+    relatedMediaIds: ['lecture-spatial-vision-iris'],
+
     stats: [
       { label: 'Framerate Inference', value: '60 FPS' },
       { label: 'Spatial Memory Retention', value: '24 Hours' },
@@ -800,3 +1040,312 @@ export const mockPerspectives: PerspectiveItem[] = [
     provenanceNote: 'Demonstration debate dialogue authored by illustrative persona Dr. Aravind Nair.',
   },
 ];
+
+// ============================================================================
+// ENGINEERING ARTICLES (Master UI/UX Specification - Section 5 & 7)
+// ============================================================================
+
+export const mockEngineeringArticles: EngineeringArticle[] = [
+  {
+    id: 'eng-01',
+    slug: 'aegis-bft-distributed-consensus',
+    title: 'Aegis-BFT: Sub-200ms Byzantine Consensus for Swarms of Heterogeneous Agents',
+    subtitle: 'How we engineered a deterministic turn arbitration engine in Rust to bound multi-agent state drift without stalling inference pipelines.',
+    category: 'Distributed Systems',
+    abstract: 'Autonomous agent swarms fail in production not from single-step reasoning errors, but from state drift and Byzantine race conditions across concurrent tool calls. Aegis-BFT is our open consensus engine that provides linearizable state transitions across up to 64 heterogeneous LLM workers under 200 milliseconds.',
+    author: mockAuthors.marcus,
+    publishedAt: '2026-11-14',
+    readingTimeMinutes: 14,
+    coverImage: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&q=80&w=1200',
+    tags: ['Rust', 'Distributed Systems', 'Consensus', 'Multi-Agent', 'Byzantine Fault Tolerance'],
+    systemArchitecture: {
+      topology: 'Decentralized Gossip Mesh with Leaderless Quorum Epochs',
+      components: [
+        { name: 'Aegis Core Daemon', role: 'Rust Tokio async consensus loop enforcing 2f+1 quorum', latency: '12ms' },
+        { name: 'CRDT Memory Broker', role: 'Y.js-compatible binary state difference distributor', latency: '24ms' },
+        { name: 'Kernel Sandbox Enclave', role: 'gRPC-gated Docker / Firecracker execution capsule', latency: '85ms' },
+        { name: 'Audit Proof Ledger', role: 'SHA-256 Merkle root verification before commit broadcast', latency: '18ms' }
+      ]
+    },
+    codeSnippets: [
+      {
+        title: 'aegis_consensus.rs — Quorum State Commit Invariant',
+        language: 'rust',
+        code: `pub async fn verify_and_commit_turn(
+    &self,
+    proposal: &AgentTurnProposal,
+    peer_signatures: &[AgentSignature],
+) -> Result<TurnCommitReceipt, ConsensusError> {
+    // Enforce 2f + 1 quorum requirement
+    let required_quorum = (2 * self.byzantine_threshold) + 1;
+    let valid_count = self.verify_cryptographic_signatures(proposal, peer_signatures)?;
+
+    if valid_count < required_quorum {
+        return Err(ConsensusError::QuorumDeficit {
+            required: required_quorum,
+            observed: valid_count,
+        });
+    }
+
+    // Atomic linearizable epoch increment
+    let receipt = self.state_ledger.atomic_append(proposal).await?;
+    self.broadcast_gossip_commit(&receipt).await?;
+    Ok(receipt)
+}`,
+        explanation: 'Enforces statutory quorum before any tool action is applied to the global shared agent memory, preventing cascading hallucinations.'
+      }
+    ],
+    benchmarks: [
+      { metric: '99th Percentile Consensus Latency', value: '142ms', baseline: '1,840ms (Raft vanilla)', note: 'Measured with 32 agents on c6i.4xlarge AWS instances' },
+      { metric: 'Byzantine Injection Rejection Rate', value: '100%', baseline: '64.2%', note: 'Tested against adversarial prompt injection injecting malicious tool state' },
+      { metric: 'Throughput Under Full Contention', value: '1,480 ops/sec', baseline: '180 ops/sec', note: 'Linearizable CRDT write operations across 64 node clusters' }
+    ],
+    content: [
+      'Multi-agent orchestration frameworks frequently assume that individual agents act honestly and consistently. In high-stakes applications—such as automated code synthesis, peer review orchestration, or robotic navigation—this assumption breaks down catastrophically.',
+      'When dozens of autonomous agents query APIs, execute code cells, and propose hypotheses simultaneously, concurrent race conditions induce state divergence. An agent acting on stale memory invalidates downstream planning.',
+      'Aegis-BFT addresses this fundamental bottleneck by treating every agent as an untrusted peer in a Byzantine consensus network. By deploying lightweight Rust daemons that arbitrate turn proposals via deterministic Merkle hashes, we reduce synchronization overhead from seconds to sub-200 milliseconds.'
+    ]
+  },
+  {
+    id: 'eng-02',
+    slug: 'triton-top-k-sae-kernels',
+    title: 'Triton Top-K SAE Kernels: Inverting Residual Stream Polysemanticity at Scale',
+    subtitle: 'Achieving 94.2% H100 memory bandwidth saturation with fused custom CUDA/Triton kernels for 262k dictionary expansion.',
+    category: 'Kernel Engineering',
+    abstract: 'Mechanistic interpretability requires sparse autoencoders (SAEs) with dictionaries expanding 64x to 256x the model dimension. PyTorch native implementations choke on memory bandwidth during top-K thresholding. We detail our Triton kernel architecture that fuses dictionary projection and top-K activation into a single streaming pass.',
+    author: mockAuthors.aravind,
+    publishedAt: '2026-11-06',
+    readingTimeMinutes: 11,
+    coverImage: 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?auto=format&fit=crop&q=80&w=1200',
+    tags: ['Triton', 'CUDA', 'GPU Kernels', 'Sparse Autoencoders', 'Memory Bandwidth'],
+    systemArchitecture: {
+      topology: 'Fused SRAM Streaming Pipeline on NVIDIA Hopper (H100)',
+      components: [
+        { name: 'Streaming Encoder Kernel', role: 'Fused GEMM + Top-K selection in shared memory', latency: '0.42ms' },
+        { name: 'Sparse Accumulator Buffer', role: 'Bitmask-compressed active feature index registry', latency: '0.12ms' },
+        { name: 'Decoder Backpropagation', role: 'Sparsity-aware gradient dispatcher without dense unroll', latency: '0.88ms' }
+      ]
+    },
+    codeSnippets: [
+      {
+        title: 'fused_topk_sae.py — Triton Fused Encoder Kernel',
+        language: 'python',
+        code: `@triton.jit
+def _fused_sae_encoder_kernel(
+    x_ptr, w_enc_ptr, bias_ptr, out_idx_ptr, out_val_ptr,
+    stride_xm, stride_xk, stride_wnd, stride_wnf,
+    BLOCK_M: tl.constexpr, BLOCK_N: tl.constexpr, K: tl.constexpr
+):
+    pid_m = tl.program_id(0)
+    # Stream activations directly into SRAM shared cache
+    x_offsets = pid_m * BLOCK_M + tl.arange(0, BLOCK_M)
+    # Compute projection dot product in registers
+    acc = tl.zeros((BLOCK_M, BLOCK_N), dtype=tl.float32)
+    # Fused in-register Top-K bitonic sort without global memory spill
+    topk_vals, topk_indices = tl.extra.cuda.topk(acc, k=K, dim=-1)
+    tl.store(out_val_ptr + x_offsets, topk_vals)
+    tl.store(out_idx_ptr + x_offsets, topk_indices)`,
+        explanation: 'Fusing the projection and Top-K filter avoids round-trips to HBM, boosting arithmetic intensity by 4.8x compared to native PyTorch.'
+      }
+    ],
+    benchmarks: [
+      { metric: 'H100 Memory Bandwidth Utilization', value: '94.2%', baseline: '38.6% (Torch compile)', note: 'Measured via NVIDIA Nsight Compute profiling on 262k expansion' },
+      { metric: 'Forward Pass Latency (Layer 28, 70B)', value: '1.42ms', baseline: '6.85ms', note: 'Batch size 32, sequence length 2048' },
+      { metric: 'Host-to-Device Memory Overhead', value: '0 bytes', baseline: '1.2 GB/layer', note: 'All intermediate activations discarded post-Top-K' }
+    ],
+    content: [
+      'Sparse Autoencoders have emerged as the most rigorous lens for reverse-engineering the residual streams of frontier transformer models. However, scaling dictionary sizes from 16,000 to 262,144 features creates an acute memory bandwidth bottleneck on modern accelerator hardware.',
+      'Under standard frameworks, the linear projection generates tens of gigabytes of intermediate activation tensors that immediately get thresholded away. This stalls tensor cores as memory busses saturate.',
+      'Our custom Triton kernel architecture solves this by computing the projection directly into register files, executing top-K thresholding in shared memory, and writing only non-zero coordinates back to HBM.'
+    ]
+  },
+  {
+    id: 'eng-03',
+    slug: 'zero-knowledge-foundation-auditing',
+    title: 'Cryptographic Circuit Attestation: Zero-Knowledge Verification for Autonomous Models',
+    subtitle: 'Verifying that safety ablation circuits were executed without exposing private model weights or training datasets.',
+    category: 'Security & Invariants',
+    abstract: 'Regulatory compliance for frontier models typically forces a terrible tradeoff: either proprietary weights must be leaked to statutory bodies, or audits must rely on unverified self-attestation. We introduce cryptographic circuit attestation using recursive zk-SNARKs to prove circuit inactivation on private weights.',
+    author: mockAuthors.clara,
+    publishedAt: '2026-10-24',
+    readingTimeMinutes: 16,
+    coverImage: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&q=80&w=1200',
+    tags: ['Cryptography', 'Zero Knowledge', 'zk-SNARKs', 'AI Safety', 'Auditing'],
+    systemArchitecture: {
+      topology: 'Halo2 Recursive Proof Pipeline with KZG Commitments',
+      components: [
+        { name: 'Circuit Arithmeticizer', role: 'Compiles residual circuit ablations into R1CS polynomial constraints', latency: '4.2s' },
+        { name: 'Halo2 Prover Engine', role: 'Generates zero-knowledge proof of execution without disclosing weights', latency: '12.8s' },
+        { name: 'Statutory Verifier Gate', role: 'Sub-5ms on-chain or CLI proof checker for regulatory auditors', latency: '3.4ms' }
+      ]
+    },
+    codeSnippets: [
+      {
+        title: 'circuit_attestation.zk — Halo2 Circuit Invariant Gate',
+        language: 'rust',
+        code: `fn synthesize_ablation_proof<F: PrimeField>(
+    &self,
+    config: &CircuitConfig,
+    mut layouter: impl Layouter<F>,
+) -> Result<(), Error> {
+    layouter.assign_region(
+        || "safety_circuit_ablation_gate",
+        |mut region| {
+            // Verify that ablation weight vector W_ablate zeroes dangerous heads
+            config.q_ablate.enable(&mut region, 0)?;
+            let weight_commitment = region.assign_advice(|| "weight_hash", config.adv[0], 0)?;
+            let residual_norm = region.assign_advice(|| "residual_norm", config.adv[1], 0)?;
+            // Constraint: residual projection on dangerous vector <= epsilon
+            region.constrain_equal(residual_norm.cell(), config.zero_witness.cell())?;
+            Ok(())
+        },
+    )
+}`,
+        explanation: 'Enables an external statutory auditor to mathematically verify that dangerous hazardous-knowledge circuits were rendered inactive during inference.'
+      }
+    ],
+    benchmarks: [
+      { metric: 'Proof Verification Duration', value: '3.4ms', baseline: '45,000ms (Full model re-run)', note: 'Instantaneous statutory certification on standard consumer laptop' },
+      { metric: 'Proof Size', value: '840 bytes', baseline: '140 GB (Weight disclosure)', note: 'Cryptographically succinct KZG proof polynomial' },
+      { metric: 'False Positive Invariance Rate', value: '0.00%', baseline: '12.4% (Blackbox redteaming)', note: 'Formal mathematical guarantee backed by elliptic curve discrete log hardness' }
+    ],
+    content: [
+      'As artificial intelligence systems are deployed into critical national infrastructure, external auditors require mathematical proof that safety guarantees hold in practice.',
+      'Blackbox redteaming is inherently stochastic and incomplete. A model that refuses a dangerous query 99 times out of 100 may still capitulate on adversarial phrasing.',
+      'By formulating mechanistic circuit ablation as a zero-knowledge proof, AI Tathastu provides an air-gapped method for statutory bodies to confirm safety compliance without accessing proprietary model weights.'
+    ]
+  }
+];
+
+// ============================================================================
+// COMPANY UPDATES & CHANGELOG (Master UI/UX Specification - Section 6 & 8)
+// ============================================================================
+
+export const mockCompanyUpdates: CompanyUpdate[] = [
+  {
+    id: 'upd-01',
+    slug: 'mentormaze-v3-2-speculative-socratic',
+    title: 'MentorMaze 3.2: Speculative Socratic Reasoning & 48% Lower Latency',
+    summary: 'MentorMaze 3.2 introduces speculative Socratic decoding, reducing dialogue turnaround to 240ms while maintaining pedagogical scaffolding invariants.',
+    category: 'Product Release',
+    productId: 'mentormaze',
+    version: 'v3.2.0',
+    date: '2026-11-18',
+    author: mockAuthors.marcus,
+    coverImage: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&q=80&w=1200',
+    tags: ['MentorMaze', 'Product Release', 'Socratic AI', 'Latency', 'Speculative Decoding'],
+    milestoneMetric: { label: 'Active Students Mentored', value: '14,200+' },
+    relatedLinks: [
+      { label: 'Explore MentorMaze Product Details', url: '#/products' },
+      { label: 'Read Technical Benchmark', url: '#/engineering' }
+    ],
+    content: [
+      'Today we are shipping MentorMaze 3.2 to over 14,000 active students and academic researchers across 40 institutions.',
+      'The primary technical upgrade in 3.2 is our speculative Socratic engine. Traditional dialogue tutors hesitate for 1.8 to 2.4 seconds while computing curriculum paths. By running a draft pedagogical model alongside our 70B reasoning backend, turnaround time drops to 240 milliseconds.',
+      'Importantly, the system preserves our anti-hallucination guardrail: it will never give direct code solutions to coursework problems, guiding students through first-principles Socratic questioning instead.'
+    ]
+  },
+  {
+    id: 'upd-02',
+    slug: 'iris-v2-1-spatial-voxel-engine',
+    title: 'Iris 2.1: Continuous Egocentric 3D Voxel Memory at 88 FPS on Edge Silicon',
+    summary: 'Iris 2.1 brings real-time 3D spatial voxel occupancy grids to edge hardware, allowing autonomous robots to track occluded objects with zero drift.',
+    category: 'Product Release',
+    productId: 'iris',
+    version: 'v2.1.0',
+    date: '2026-11-12',
+    author: mockAuthors.elena,
+    coverImage: 'https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&q=80&w=1200',
+    tags: ['Iris', 'Spatial Intelligence', 'Edge AI', 'Computer Vision', 'Robotics'],
+    milestoneMetric: { label: 'Perceptual Throughput', value: '88 FPS' },
+    relatedLinks: [
+      { label: 'Iris Technical Specification', url: '#/products' }
+    ],
+    content: [
+      'Iris 2.1 is now generally available for partner robotics labs and perceptual intelligence researchers.',
+      'This release introduces our continuous egocentric voxel buffer. Previous computer vision backends forgot object coordinates the moment an object moved behind an occlusion. Iris maintains a 4D volumetric tensor memory in edge SRAM, guaranteeing persistence even in unstructured physical environments.',
+      'Benchmarked on standard NVIDIA Jetson Orin modules, Iris 2.1 delivers 88 frames per second at 4.2W power consumption.'
+    ]
+  },
+  {
+    id: 'upd-03',
+    slug: 'collaborate-v2-4-byzantine-swarms',
+    title: 'Collaborate 2.4: Aegis-BFT Consensus Ships to 3,800+ Research Labs',
+    summary: 'Collaborate 2.4 embeds our Aegis Byzantine consensus daemon directly into collaborative notebooks, preventing conflicting multi-agent tool execution.',
+    category: 'Product Release',
+    productId: 'collaborate',
+    version: 'v2.4.1',
+    date: '2026-11-04',
+    author: mockAuthors.marcus,
+    coverImage: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=1200',
+    tags: ['Collaborate', 'Multi-Agent', 'Byzantine Consensus', 'Reproducible Science'],
+    milestoneMetric: { label: 'Active Lab Clusters', value: '3,800+' },
+    relatedLinks: [
+      { label: 'Read Aegis-BFT Engineering Deep Dive', url: '#/engineering' }
+    ],
+    content: [
+      'Collaborate 2.4 brings distributed consensus to multi-agent scientific discovery.',
+      'Scientific research teams orchestrating autonomous literature-review and code-synthesis agents frequently encounter race conditions. Collaborate 2.4 arbitrates agent actions through linearizable quorum commits, guaranteeing that code notebooks remain perfectly reproducible across turns.'
+    ]
+  },
+  {
+    id: 'upd-04',
+    slug: 'avsar-2-4m-peer-grants-seeded',
+    title: 'AI Tathastu Seeds $2.4M in Peer Research Grants via Avsar Foundation Network',
+    summary: 'Avsar reaches a milestone of $2.4M in non-dilutive research micro-grants distributed across 120 independent open-source AI safety contributors.',
+    category: 'Milestone',
+    productId: 'avsar',
+    date: '2026-10-28',
+    author: mockAuthors.clara,
+    coverImage: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&q=80&w=1200',
+    tags: ['Avsar', 'Grants', 'Open Source', 'Fellowship', 'Non-Dilutive'],
+    milestoneMetric: { label: 'Grants Seeded', value: '$2.4M+' },
+    relatedLinks: [
+      { label: 'Avsar Grant Opportunities', url: '#/products' }
+    ],
+    content: [
+      'We are proud to announce that the Avsar grant registry has distributed over $2.4 million in equity-free, non-dilutive funding to 120 independent researchers across 22 countries.',
+      'Unlike traditional bureaucratic grant applications that take 9 months to evaluate, Avsar uses an algorithmic peer-attestation protocol that disburses micro-grants within 72 hours of open-source benchmark reproduction.'
+    ]
+  },
+  {
+    id: 'upd-05',
+    slug: 'architectural-invariant-4-0-sandboxes',
+    title: 'Architectural Invariant 4.0: Mandatory Statutory Sandboxes for Autonomous Weights',
+    summary: 'AI Tathastu updates its internal engineering standards, requiring cryptographic proof-of-sandboxing for any weights exceeding 10^24 FLOP training thresholds.',
+    category: 'Engineering',
+    date: '2026-10-19',
+    author: mockAuthors.clara,
+    coverImage: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=1200',
+    tags: ['Safety Invariants', 'Governance', 'FLOP Thresholds', 'Sandboxing'],
+    milestoneMetric: { label: 'Safety Threshold', value: '10^24 FLOPs' },
+    relatedLinks: [
+      { label: 'Read Zero-Knowledge Audit Architecture', url: '#/engineering' },
+      { label: 'Review Editorial Charter', url: '#/about' }
+    ],
+    content: [
+      'As frontier compute clusters surpass critical training thresholds, self-reported evaluation cards are insufficient to guarantee catastrophic safety invariants.',
+      'Under Tathastu Architectural Invariant 4.0, all our internal model checkpoints must execute within air-gapped statutory sandboxes with formal circuit attestation before any public release or API endpoint activation.'
+    ]
+  },
+  {
+    id: 'upd-06',
+    slug: 'ai-tathastu-master-design-specification-1-0',
+    title: 'AI Tathastu Publishes Master Design Specification 1.0 for Open Publication',
+    summary: 'Announcing the unified design language and architectural experience specification powering the next generation of Tathastu digital publications.',
+    category: 'Company',
+    date: '2026-11-20',
+    author: mockAuthors.aravind,
+    coverImage: 'https://images.unsplash.com/photo-1507238691740-187a5b1d37b8?auto=format&fit=crop&q=80&w=1200',
+    tags: ['Design System', 'Typography', 'Company Vision', 'Fraunces', 'Inter'],
+    milestoneMetric: { label: 'Specification Version', value: 'v1.0' },
+    relatedLinks: [
+      { label: 'Explore Publication Ecosystem', url: '#/discover' }
+    ],
+    content: [
+      'Today we are inaugurating the Master UI/UX Design Specification 1.0 for AI Tathastu.',
+      'Our mission is to build what comes next and document how it works with unprecedented transparency. By marrying the intellectual depth of academic research with the readability of modern engineering publications, we provide the global community with a reliable, open window into our work.'
+    ]
+  }
+];
+

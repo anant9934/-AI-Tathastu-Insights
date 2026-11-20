@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import { 
   GraduationCap, 
@@ -13,10 +13,17 @@ import {
   Cpu, 
   ShieldCheck,
   Terminal,
-  ArrowDownRight,
-  GitBranch,
   Activity,
-  AlertCircle
+  AlertCircle,
+  Clock,
+  Calendar,
+  Check,
+  Code2,
+  Workflow,
+  HelpCircle,
+  FileText,
+  Compass,
+  ArrowUpRight
 } from 'lucide-react';
 import { EcosystemProduct } from '../types';
 import { EcosystemCard } from '../components/cards/EcosystemCard';
@@ -41,6 +48,12 @@ export const EcosystemPage: React.FC<EcosystemPageProps> = ({
   const [activeTab, setActiveTab] = useState<string>(selectedProduct ? selectedProduct.id : 'mentormaze');
   const shouldReduceMotion = useReducedMotion();
 
+  useEffect(() => {
+    if (selectedProduct) {
+      setActiveTab(selectedProduct.id);
+    }
+  }, [selectedProduct]);
+
   const currentProduct = products.find((p) => p.id === activeTab) || products[0];
 
   const getProductIcon = (id: string) => {
@@ -58,327 +71,434 @@ export const EcosystemPage: React.FC<EcosystemPageProps> = ({
     }
   };
 
-  // Structured problem statements addressed by each platform (Section 4.D)
-  const productProblemStatements: Record<string, { problem: string; resolution: string }> = {
-    mentormaze: {
-      problem: 'Advanced ML research literature has steep prerequisite lattices; traditional textbooks lag 3 years behind frontier preprints, leaving students stranded on complex formal proofs.',
-      resolution: 'Synthesizes individualized Socratic learning graphs that diagnose missing prerequisites across tensor calculus, CUDA kernels, and mechanistic interpretability.'
-    },
-    collaborate: {
-      problem: 'Distributed research teams and multi-agent synthesis loops suffer from non-deterministic reasoning drift, Byzantine node hallucinations, and unverified data leaks.',
-      resolution: 'Deploys the Aegis-BFT consensus protocol to coordinate heterogeneous agents under sub-200ms turn latencies with cryptographic assertion hashes.'
-    },
-    avsar: {
-      problem: 'Traditional university credentialing filters out talented non-traditional developers and self-directed researchers in emerging economies despite significant open-source contributions.',
-      resolution: 'Calculates objective proof-of-contribution scores based on verified GitHub commits, reproducible arXiv code harnesses, and automated benchmark milestones.'
-    },
-    iris: {
-      problem: 'Standard vision-language-action foundation models are frame-ephemeral; the moment an object leaves optical sensor view, spatial state and physical affordances are forgotten.',
-      resolution: 'Maintains an egocentric 3D voxel-semantic neural memory that retains spatial permanence across 24 hours of occlusion and camera movement at 60 FPS.'
-    }
-  };
-
-  const activeProblem = productProblemStatements[currentProduct.id] || productProblemStatements.mentormaze;
-
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
-      {/* Header */}
+    <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
+      {/* Header Banner */}
       <Reveal>
-        <div className="max-w-3xl">
-          <span className="type-meta text-accent-violet block uppercase mb-2">
-            Applied Systems Infrastructure
-          </span>
-          <h1 className="type-page-headline text-foundation-ink dark:text-dark-ink font-normal">
-            The AI Tathastu Ecosystem
-          </h1>
-          <p className="type-body text-foundation-secondary dark:text-dark-secondary mt-3 leading-relaxed">
-            Four specialized platforms transforming theoretical breakthrough research into open community infrastructure—spanning personalized mentorship, collaborative peer synthesis, meritocratic grants, and embodied perception.
-          </p>
-        </div>
-      </Reveal>
-
-      {/* Interactive Platform Relationship Architecture Diagram (Section 4.D) */}
-      <Reveal>
-        <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <span className="type-meta text-foundation-secondary uppercase">
-                Interconnected Research Lifecycle
-              </span>
-              <h3 className="type-card-heading text-foundation-ink dark:text-dark-ink font-medium mt-1">
-                How AI Tathastu Platforms Interlock
-              </h3>
-            </div>
-            <span className="type-meta px-2.5 py-1 rounded bg-foundation-paper dark:bg-dark-elevated text-foundation-secondary self-start sm:self-auto">
-              Synchronized Node Mesh
+        <div className="border-b border-foundation-border dark:border-dark-border pb-10">
+          <div className="flex items-center gap-2 mb-3">
+            <span className="type-meta text-accent-violet uppercase tracking-widest font-semibold">
+              The Tathastu Platform
+            </span>
+            <span className="text-foundation-secondary dark:text-dark-muted">•</span>
+            <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted">
+              Living Software Systems
             </span>
           </div>
+          <h1 className="type-hero text-foundation-ink dark:text-dark-text tracking-tight font-normal">
+            Products &amp; Applied Laboratories
+          </h1>
+          <p className="mt-4 type-body text-foundation-secondary dark:text-dark-muted max-w-3xl leading-relaxed text-base sm:text-lg">
+            Our research is embodied in living software. We document what we build, why we build it, and how each system operates under rigorous mathematical and empirical invariants.
+          </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4 relative">
-            {/* Step 1: MentorMaze */}
-            <div 
-              onClick={() => setActiveTab('mentormaze')}
-              className={`p-4 rounded-xl border transition-all cursor-pointer ${
-                activeTab === 'mentormaze'
-                  ? 'bg-accent-lavender/40 border-accent-violet dark:bg-accent-violet/20'
-                  : 'bg-foundation-paper dark:bg-dark-elevated border-foundation-border/70 dark:border-dark-border'
-              }`}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="w-6 h-6 rounded-full bg-accent-violet text-white text-[11px] font-mono flex items-center justify-center font-bold">1</span>
-                <span className="text-[11px] font-mono text-accent-violet font-semibold">TALENT ACCELERATION</span>
-              </div>
-              <h4 className="text-sm font-semibold text-foundation-ink dark:text-dark-ink">MentorMaze</h4>
-              <p className="text-xs text-foundation-secondary mt-1">Identifies prerequisite gaps &amp; trains researchers.</p>
-            </div>
-
-            {/* Step 2: Avsar */}
-            <div 
-              onClick={() => setActiveTab('avsar')}
-              className={`p-4 rounded-xl border transition-all cursor-pointer ${
-                activeTab === 'avsar'
-                  ? 'bg-accent-peach/50 border-accent-terracotta dark:bg-accent-terracotta/20'
-                  : 'bg-foundation-paper dark:bg-dark-elevated border-foundation-border/70 dark:border-dark-border'
-              }`}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="w-6 h-6 rounded-full bg-accent-terracotta text-white text-[11px] font-mono flex items-center justify-center font-bold">2</span>
-                <span className="text-[11px] font-mono text-accent-terracotta font-semibold">GRANTS &amp; FELLOWSHIPS</span>
-              </div>
-              <h4 className="text-sm font-semibold text-foundation-ink dark:text-dark-ink">Avsar</h4>
-              <p className="text-xs text-foundation-secondary mt-1">Verifies code contributions &amp; funds research fellows.</p>
-            </div>
-
-            {/* Step 3: Collaborate */}
-            <div 
-              onClick={() => setActiveTab('collaborate')}
-              className={`p-4 rounded-xl border transition-all cursor-pointer ${
-                activeTab === 'collaborate'
-                  ? 'bg-accent-softblue/50 border-accent-blue dark:bg-accent-blue/20'
-                  : 'bg-foundation-paper dark:bg-dark-elevated border-foundation-border/70 dark:border-dark-border'
-              }`}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="w-6 h-6 rounded-full bg-accent-blue text-white text-[11px] font-mono flex items-center justify-center font-bold">3</span>
-                <span className="text-[11px] font-mono text-accent-blue font-semibold">MULTI-AGENT LAB</span>
-              </div>
-              <h4 className="text-sm font-semibold text-foundation-ink dark:text-dark-ink">Collaborate</h4>
-              <p className="text-xs text-foundation-secondary mt-1">Coordinates distributed agent swarms &amp; peer review.</p>
-            </div>
-
-            {/* Step 4: Iris */}
-            <div 
-              onClick={() => setActiveTab('iris')}
-              className={`p-4 rounded-xl border transition-all cursor-pointer ${
-                activeTab === 'iris'
-                  ? 'bg-accent-softmint/50 border-accent-mint dark:bg-accent-mint/20'
-                  : 'bg-foundation-paper dark:bg-dark-elevated border-foundation-border/70 dark:border-dark-border'
-              }`}
-            >
-              <div className="flex items-center justify-between mb-2">
-                <span className="w-6 h-6 rounded-full bg-accent-mint text-white text-[11px] font-mono flex items-center justify-center font-bold">4</span>
-                <span className="text-[11px] font-mono text-accent-mint font-semibold">EMBODIED DEPLOYMENT</span>
-              </div>
-              <h4 className="text-sm font-semibold text-foundation-ink dark:text-dark-ink">Iris</h4>
-              <p className="text-xs text-foundation-secondary mt-1">Grounds perception into persistent 3D spatial vision.</p>
-            </div>
+          {/* Product Selector Navigation Tabs */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-8">
+            {products.map((prod) => {
+              const isActive = activeTab === prod.id;
+              return (
+                <button
+                  key={prod.id}
+                  onClick={() => {
+                    setActiveTab(prod.id);
+                    onSelectProduct(prod);
+                  }}
+                  className={`p-4 rounded-2xl border text-left transition-all duration-200 cursor-pointer flex flex-col justify-between ${
+                    isActive
+                      ? 'bg-white dark:bg-dark-surface border-foundation-ink dark:border-white shadow-md ring-1 ring-foundation-ink dark:ring-white'
+                      : 'bg-foundation-paper dark:bg-dark-elevated border-foundation-border dark:border-dark-border hover:border-foundation-ink/50'
+                  }`}
+                >
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <div className="p-2 rounded-xl bg-foundation-paper dark:bg-dark-surface border border-foundation-border dark:border-dark-border">
+                      {getProductIcon(prod.id)}
+                    </div>
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded uppercase font-semibold bg-foundation-paper dark:bg-dark-surface text-foundation-secondary dark:text-dark-muted border border-foundation-border dark:border-dark-border">
+                      {prod.status || 'Active'}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-sm text-foundation-ink dark:text-dark-text">
+                      {prod.name}
+                    </h3>
+                    <p className="text-[11px] font-mono text-foundation-secondary dark:text-dark-muted truncate mt-0.5">
+                      {prod.badge}
+                    </p>
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </Reveal>
 
-      {/* Product Selector Tabs */}
-      <div className="border-b border-foundation-border dark:border-dark-border">
-        <div className="flex gap-2 sm:gap-6 overflow-x-auto pb-px">
-          {products.map((product) => {
-            const isActive = activeTab === product.id;
-            return (
-              <button
-                key={product.id}
-                onClick={() => setActiveTab(product.id)}
-                className={`relative pb-4 px-3 sm:px-4 flex items-center gap-2.5 text-sm sm:text-base font-medium transition-colors cursor-pointer whitespace-nowrap ${
-                  isActive
-                    ? 'text-foundation-ink dark:text-dark-ink'
-                    : 'text-foundation-secondary hover:text-foundation-ink dark:hover:text-dark-ink'
-                }`}
-              >
-                <span>{getProductIcon(product.id)}</span>
-                <span>{product.name}</span>
-                {isActive && (
-                  <motion.div
-                    layoutId="ecosystem-tab-active-line"
-                    className="absolute bottom-0 left-0 right-0 h-[2.5px] bg-accent-violet rounded-full"
-                    transition={{ duration: 0.25, ease: EDITORIAL_EASE }}
-                  />
-                )}
-              </button>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* Active Product Deep Dive View with Distinct Identity */}
+      {/* 15-Section Comprehensive Product Deep Dive */}
       <AnimatePresence mode="wait">
         <motion.div
           key={currentProduct.id}
-          initial={{ opacity: 0, y: 14 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -14 }}
-          transition={{ duration: MOTION_DURATIONS.cardTransition, ease: EDITORIAL_EASE }}
-          className="space-y-10"
+          exit={{ opacity: 0, y: -16 }}
+          transition={{ duration: 0.25, ease: EDITORIAL_EASE }}
+          className="space-y-16"
         >
-          {/* Main Hero Card for Active Product */}
-          <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-7 space-y-4">
-              <div className="flex items-center gap-2">
-                <Badge accent={currentProduct.accentColor} size="sm">
+          {/* SECTION 1: Product Overview & Hero */}
+          <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial">
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-6">
+              <div className="flex items-center gap-3">
+                <span className="px-3 py-1 rounded-md text-xs font-mono uppercase font-semibold bg-surface-lavender text-accent-violet dark:bg-accent-violet/20">
                   {currentProduct.badge}
-                </Badge>
-                <span className="type-meta text-foundation-secondary">
-                  Open Source Platform Node
+                </span>
+                <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted">
+                  Version {currentProduct.version || 'v2.0'}
+                </span>
+                <span className="text-xs font-mono text-green-600 dark:text-green-400 font-semibold flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
+                  {currentProduct.status || 'Live Platform'}
                 </span>
               </div>
-
-              <h2 className="type-page-headline text-foundation-ink dark:text-dark-ink font-normal">
-                {currentProduct.name}
-              </h2>
-
-              <p className="text-base sm:text-lg font-medium text-accent-violet dark:text-accent-lavender">
-                {currentProduct.tagline}
-              </p>
-
-              <p className="type-body text-foundation-secondary dark:text-dark-secondary leading-relaxed">
-                {currentProduct.fullOverview}
-              </p>
-
-              <div className="pt-3 flex flex-wrap items-center gap-3">
-                <AnimatedButton
-                  variant="primary"
-                  size="md"
-                  onClick={() =>
-                    onShowToast(
-                      `Connected to ${currentProduct.name}`,
-                      'Live cluster node initialized with verified checkpoints.',
-                      'success'
-                    )
-                  }
-                  icon={<ArrowRight className="w-4 h-4" />}
-                >
-                  Launch {currentProduct.name} Sandbox
-                </AnimatedButton>
-
-                <AnimatedButton
-                  variant="outline"
-                  size="md"
-                  onClick={() =>
-                    onShowToast(
-                      'API Specifications',
-                      `Downloaded technical interface docs for ${currentProduct.name}.`,
-                      'info'
-                    )
-                  }
-                  icon={<Terminal className="w-3.5 h-3.5" />}
-                  iconPosition="left"
-                >
-                  View Architecture API
-                </AnimatedButton>
-              </div>
-            </div>
-
-            {/* Live Product Telemetry Grid */}
-            <div className="lg:col-span-5 grid grid-cols-2 gap-4">
-              {currentProduct.stats.map((stat, idx) => (
-                <div
-                  key={idx}
-                  className="p-5 rounded-2xl bg-foundation-paper dark:bg-dark-elevated border border-foundation-border/60 dark:border-dark-border"
-                >
-                  <span className="type-meta text-foundation-secondary block mb-1">
-                    {stat.label}
-                  </span>
-                  <span className="text-2xl font-mono font-bold text-foundation-ink dark:text-dark-ink">
-                    {stat.value}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Problem vs Resolution Architecture Box (Section 4.D) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 sm:p-8 rounded-2xl bg-foundation-paper dark:bg-dark-elevated border border-foundation-border dark:border-dark-border space-y-2">
-              <div className="flex items-center gap-2 text-xs font-mono font-semibold text-red-600 dark:text-red-400 uppercase">
-                <AlertCircle className="w-4 h-4" />
-                <span>The Research Bottleneck It Solves</span>
-              </div>
-              <p className="type-body text-xs sm:text-sm text-foundation-ink/90 dark:text-dark-ink/90 leading-relaxed">
-                {activeProblem.problem}
-              </p>
-            </div>
-
-            <div className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-dark-surface border border-accent-violet/30 shadow-editorial space-y-2">
-              <div className="flex items-center gap-2 text-xs font-mono font-semibold text-accent-violet uppercase">
-                <CheckCircle2 className="w-4 h-4" />
-                <span>The Architectural Resolution</span>
-              </div>
-              <p className="type-body text-xs sm:text-sm text-foundation-ink/90 dark:text-dark-ink/90 leading-relaxed">
-                {activeProblem.resolution}
-              </p>
-            </div>
-          </div>
-
-          {/* Core Capabilities */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {currentProduct.coreCapabilities.map((cap, index) => (
-              <div
-                key={index}
-                className="p-6 rounded-2xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial flex flex-col justify-between"
+              <AnimatedButton
+                variant="primary"
+                size="sm"
+                onClick={() => onShowToast('Documentation Access', `Opening full technical spec for ${currentProduct.name}.`, 'info')}
+                icon={<ExternalLink className="w-3.5 h-3.5" />}
               >
-                <div>
-                  <div className="flex items-center justify-between mb-3">
-                    <span className="w-7 h-7 rounded-lg bg-accent-lavender text-accent-violet dark:bg-accent-violet/20 flex items-center justify-center font-mono text-xs font-bold">
-                      0{index + 1}
-                    </span>
-                    {cap.metric && (
-                      <span className="text-xs font-mono px-2 py-0.5 rounded bg-foundation-paper dark:bg-dark-elevated text-foundation-ink dark:text-dark-ink">
-                        {cap.metric}
-                      </span>
-                    )}
-                  </div>
-                  <h3 className="type-card-heading text-foundation-ink dark:text-dark-ink font-medium">
-                    {cap.title}
-                  </h3>
-                  <p className="mt-2 text-xs sm:text-sm text-foundation-secondary dark:text-dark-secondary leading-relaxed">
-                    {cap.description}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
+                Access Platform Documentation
+              </AnimatedButton>
+            </div>
 
-          {/* Architectural Invariants Checklist */}
-          <div className="p-6 sm:p-8 rounded-2xl bg-foundation-paper dark:bg-dark-elevated border border-foundation-border dark:border-dark-border">
-            <h3 className="type-meta text-foundation-ink dark:text-dark-ink font-semibold uppercase tracking-wider mb-4 flex items-center gap-2">
-              <Cpu className="w-4 h-4 text-accent-violet" />
-              <span>Technical Invariants &amp; Interface Standards</span>
-            </h3>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {currentProduct.architecturePoints.map((point, i) => (
-                <div key={i} className="flex items-start gap-2.5 text-xs text-foundation-ink/90 dark:text-dark-ink/90 leading-relaxed">
-                  <CheckCircle2 className="w-4 h-4 text-green-600 shrink-0 mt-0.5" />
-                  <span>{point}</span>
+            <h2 className="type-hero text-foundation-ink dark:text-dark-text font-normal mb-3">
+              {currentProduct.name}
+            </h2>
+            <p className="text-lg sm:text-xl font-medium text-foundation-ink/90 dark:text-dark-text/90 mb-4 leading-snug">
+              {currentProduct.tagline}
+            </p>
+            <p className="type-body text-foundation-secondary dark:text-dark-muted max-w-4xl text-base sm:text-lg leading-relaxed">
+              {currentProduct.overview || currentProduct.fullOverview || currentProduct.description}
+            </p>
+
+            {/* Quick Stats Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-foundation-border dark:border-dark-border">
+              {currentProduct.stats.map((st, sIdx) => (
+                <div key={sIdx} className="p-4 rounded-xl bg-foundation-paper dark:bg-dark-elevated border border-foundation-border dark:border-dark-border">
+                  <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted block">{st.label}</span>
+                  <span className="text-xl sm:text-2xl font-mono font-semibold text-foundation-ink dark:text-dark-text mt-1 block">{st.value}</span>
                 </div>
               ))}
             </div>
+          </div>
+
+          {/* SECTION 2 & 3: Problem Statement & Why We Started */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div className="p-6 sm:p-8 rounded-3xl bg-foundation-paper dark:bg-dark-elevated border border-foundation-border dark:border-dark-border space-y-3">
+              <div className="flex items-center gap-2 text-xs font-mono font-semibold text-red-600 dark:text-red-400 uppercase tracking-wider">
+                <AlertCircle className="w-4 h-4" />
+                <span>The Industry Bottleneck We Solved</span>
+              </div>
+              <h3 className="type-card-heading text-foundation-ink dark:text-dark-text font-medium">
+                Problem Statement
+              </h3>
+              <p className="type-body text-xs sm:text-sm text-foundation-secondary dark:text-dark-muted leading-relaxed">
+                {currentProduct.problem || 'Standard market approaches suffer from opaque failure modes, lack of formal verification, and unacceptable latency barriers.'}
+              </p>
+            </div>
+
+            <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-surface border border-accent-violet/30 dark:border-accent-violet/30 shadow-editorial space-y-3">
+              <div className="flex items-center gap-2 text-xs font-mono font-semibold text-accent-violet uppercase tracking-wider">
+                <Compass className="w-4 h-4" />
+                <span>Origin &amp; Conviction</span>
+              </div>
+              <h3 className="type-card-heading text-foundation-ink dark:text-dark-text font-medium">
+                Why We Started
+              </h3>
+              <p className="type-body text-xs sm:text-sm text-foundation-secondary dark:text-dark-muted leading-relaxed">
+                {currentProduct.whyWeStarted || 'We observed that theoretical breakthroughs in interpretability and consensus remained locked in academic PDFs instead of powering practical tools.'}
+              </p>
+            </div>
+          </div>
+
+          {/* SECTION 4 & 5: Research Foundations & Our Approach */}
+          <div className="p-8 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial space-y-6">
+            <div className="border-b border-foundation-border dark:border-dark-border pb-4">
+              <span className="type-meta text-accent-violet uppercase tracking-wider font-semibold">
+                Theoretical Rigor
+              </span>
+              <h3 className="type-section-heading text-foundation-ink dark:text-dark-text font-normal mt-1">
+                Research Foundations &amp; Architectural Approach
+              </h3>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-ink dark:text-dark-text font-semibold mb-2 flex items-center gap-2">
+                  <FileText className="w-4 h-4 text-accent-blue" />
+                  <span>Formal Research Basis</span>
+                </h4>
+                <p className="text-xs sm:text-sm text-foundation-secondary dark:text-dark-muted leading-relaxed">
+                  {currentProduct.researchBasis || 'Directly derived from peer-reviewed residual stream circuit analysis and verified consensus proofs.'}
+                </p>
+              </div>
+              <div>
+                <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-ink dark:text-dark-text font-semibold mb-2 flex items-center gap-2">
+                  <Workflow className="w-4 h-4 text-accent-mint" />
+                  <span>Our Systematic Approach</span>
+                </h4>
+                <p className="text-xs sm:text-sm text-foundation-secondary dark:text-dark-muted leading-relaxed">
+                  {currentProduct.ourApproach || 'We enforce stateless functional kernels with deterministic state transition proofs across every user turn.'}
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* SECTION 6: How It Works (Step by Step Pipeline) */}
+          {currentProduct.howItWorks && (
+            <div>
+              <div className="mb-6">
+                <span className="type-meta text-accent-violet uppercase tracking-wider font-semibold">
+                  Execution Pipeline
+                </span>
+                <h3 className="type-section-heading text-foundation-ink dark:text-dark-text font-normal mt-1">
+                  How It Works
+                </h3>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                {currentProduct.howItWorks.map((st) => (
+                  <div key={st.step} className="p-6 rounded-2xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial flex flex-col justify-between">
+                    <div>
+                      <span className="w-8 h-8 rounded-xl bg-surface-lavender text-accent-violet dark:bg-accent-violet/20 flex items-center justify-center font-mono font-bold text-xs mb-4">
+                        0{st.step}
+                      </span>
+                      <h4 className="font-semibold text-sm text-foundation-ink dark:text-dark-text mb-2">
+                        {st.title}
+                      </h4>
+                      <p className="text-xs text-foundation-secondary dark:text-dark-muted leading-relaxed">
+                        {st.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* SECTION 7: Core Features & Capabilities */}
+          {currentProduct.features && (
+            <div>
+              <div className="mb-6">
+                <span className="type-meta text-accent-violet uppercase tracking-wider font-semibold">
+                  Platform Capabilities
+                </span>
+                <h3 className="type-section-heading text-foundation-ink dark:text-dark-text font-normal mt-1">
+                  Core Features
+                </h3>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                {currentProduct.features.map((feat, fIdx) => (
+                  <div key={fIdx} className="p-6 rounded-2xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial flex flex-col justify-between">
+                    <div>
+                      <span className="px-2 py-0.5 rounded text-[10px] font-mono bg-surface-softblue text-accent-blue dark:bg-accent-blue/20 font-semibold mb-3 inline-block">
+                        {feat.tag}
+                      </span>
+                      <h4 className="font-semibold text-sm text-foundation-ink dark:text-dark-text mb-2">
+                        {feat.title}
+                      </h4>
+                      <p className="text-xs text-foundation-secondary dark:text-dark-muted leading-relaxed">
+                        {feat.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* SECTION 8 & 9: Architecture & Technology Stack */}
+          {currentProduct.architecture && (
+            <div className="p-8 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial space-y-8">
+              <div>
+                <span className="type-meta text-accent-violet uppercase tracking-wider font-semibold">
+                  Engineering Blueprint
+                </span>
+                <h3 className="type-section-heading text-foundation-ink dark:text-dark-text font-normal mt-1">
+                  System Architecture &amp; Technology Stack
+                </h3>
+                <p className="text-xs sm:text-sm text-foundation-secondary dark:text-dark-muted mt-2">
+                  {currentProduct.architecture.overview}
+                </p>
+              </div>
+
+              {/* Topology Summary */}
+              <div className="p-4 rounded-xl bg-foundation-paper dark:bg-dark-elevated border border-foundation-border dark:border-dark-border font-mono text-xs text-foundation-ink dark:text-dark-text">
+                <span className="text-accent-violet font-semibold">Dataflow: </span>
+                {currentProduct.architecture.diagramDescription}
+              </div>
+
+              {/* Architecture Layers Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {currentProduct.architecture.layers.map((layer, lIdx) => (
+                  <div key={lIdx} className="p-5 rounded-2xl bg-foundation-paper dark:bg-dark-elevated border border-foundation-border dark:border-dark-border">
+                    <span className="text-xs font-mono uppercase tracking-wider text-accent-violet font-semibold block mb-1">
+                      {layer.layer}
+                    </span>
+                    <p className="text-xs text-foundation-secondary dark:text-dark-muted mb-3 leading-snug">
+                      {layer.purpose}
+                    </p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {layer.components.map((comp) => (
+                        <span key={comp} className="px-2 py-0.5 rounded text-[10px] font-mono bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border text-foundation-ink dark:text-dark-text">
+                          {comp}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Technology Stack Tags */}
+              {currentProduct.technologyStack && (
+                <div className="pt-6 border-t border-foundation-border dark:border-dark-border">
+                  <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-secondary dark:text-dark-muted mb-4 font-semibold">
+                    Core Technologies
+                  </h4>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                    {currentProduct.technologyStack.map((tech, tIdx) => (
+                      <div key={tIdx} className="p-4 rounded-xl bg-foundation-paper dark:bg-dark-elevated border border-foundation-border dark:border-dark-border">
+                        <span className="text-xs font-mono text-accent-violet font-semibold block mb-2">
+                          {tech.category}
+                        </span>
+                        <div className="flex flex-wrap gap-1">
+                          {tech.technologies.map((item) => (
+                            <span key={item} className="px-2 py-0.5 rounded text-[11px] font-mono bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border text-foundation-ink dark:text-dark-text">
+                              {item}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* SECTION 10 & 11: Challenges & Development Timeline */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {currentProduct.engineeringChallenges && (
+              <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial space-y-4">
+                <span className="type-meta text-accent-terracotta uppercase tracking-wider font-semibold">
+                  Engineering Obstacles
+                </span>
+                <h3 className="type-card-heading text-foundation-ink dark:text-dark-text font-normal">
+                  Challenges We Overcame
+                </h3>
+                <div className="space-y-4">
+                  {currentProduct.engineeringChallenges.map((ch, cIdx) => (
+                    <div key={cIdx} className="p-4 rounded-xl bg-foundation-paper dark:bg-dark-elevated border border-foundation-border dark:border-dark-border space-y-1">
+                      <span className="text-xs font-semibold text-foundation-ink dark:text-dark-text block">
+                        {ch.challenge}
+                      </span>
+                      <p className="text-xs text-foundation-secondary dark:text-dark-muted leading-relaxed">
+                        ↳ <span className="text-foundation-ink dark:text-dark-text font-medium">Resolution:</span> {ch.solution}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {currentProduct.developmentTimeline && (
+              <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial space-y-4">
+                <span className="type-meta text-accent-mint uppercase tracking-wider font-semibold">
+                  Development Journey
+                </span>
+                <h3 className="type-card-heading text-foundation-ink dark:text-dark-text font-normal">
+                  Historical Milestones
+                </h3>
+                <div className="space-y-3 relative border-l-2 border-foundation-border dark:border-dark-border ml-3 pl-4">
+                  {currentProduct.developmentTimeline.map((tm, tIdx) => (
+                    <div key={tIdx} className="relative">
+                      <div className="absolute -left-[23px] top-1.5 w-3 h-3 rounded-full bg-accent-mint" />
+                      <span className="text-[11px] font-mono text-accent-mint font-semibold block">
+                        {tm.date}
+                      </span>
+                      <h4 className="text-xs font-semibold text-foundation-ink dark:text-dark-text">
+                        {tm.milestone}
+                      </h4>
+                      <p className="text-[11px] text-foundation-secondary dark:text-dark-muted mt-0.5">
+                        {tm.impact}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+
+          {/* SECTION 12 & 13: Benefits & Future Roadmap */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {currentProduct.benefits && (
+              <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial space-y-4">
+                <span className="type-meta text-accent-blue uppercase tracking-wider font-semibold">
+                  Quantitative Impact
+                </span>
+                <h3 className="type-card-heading text-foundation-ink dark:text-dark-text font-normal">
+                  Verified Benefits
+                </h3>
+                <div className="space-y-3">
+                  {currentProduct.benefits.map((ben, bIdx) => (
+                    <div key={bIdx} className="flex items-start gap-3 p-3.5 rounded-xl bg-foundation-paper dark:bg-dark-elevated border border-foundation-border dark:border-dark-border">
+                      <CheckCircle2 className="w-4 h-4 text-accent-blue shrink-0 mt-0.5" />
+                      <div>
+                        <span className="text-xs font-semibold text-foundation-ink dark:text-dark-text block">
+                          {ben.benefit}
+                        </span>
+                        <span className="text-[11px] font-mono text-accent-blue mt-0.5 block">
+                          Audience: {ben.audience}
+                        </span>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {currentProduct.roadmap && (
+              <div className="p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial space-y-4">
+                <span className="type-meta text-accent-violet uppercase tracking-wider font-semibold">
+                  Forward Trajectory
+                </span>
+                <h3 className="type-card-heading text-foundation-ink dark:text-dark-text font-normal">
+                  Future Roadmap
+                </h3>
+                <div className="space-y-3">
+                  {currentProduct.roadmap.map((rd, rIdx) => (
+                    <div key={rIdx} className="p-3.5 rounded-xl bg-foundation-paper dark:bg-dark-elevated border border-foundation-border dark:border-dark-border">
+                      <div className="flex items-center justify-between gap-2 mb-1">
+                        <span className="text-xs font-semibold text-foundation-ink dark:text-dark-text">
+                          {rd.title}
+                        </span>
+                        <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-surface-lavender text-accent-violet dark:bg-accent-violet/20 font-semibold">
+                          {rd.target}
+                        </span>
+                      </div>
+                      <span className="text-[11px] text-foundation-secondary dark:text-dark-muted block">
+                        Phase: {rd.phase} • Status: {rd.status}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </motion.div>
       </AnimatePresence>
 
-      {/* Grid of All 4 Ecosystem Cards */}
+      {/* Grid of All 4 Ecosystem Cards Matrix */}
       <section className="pt-10 border-t border-foundation-border dark:border-dark-border">
         <div className="mb-8">
-          <h3 className="type-section-heading text-foundation-ink dark:text-dark-ink font-normal">
+          <h3 className="type-section-heading text-foundation-ink dark:text-dark-text font-normal">
             Ecosystem Platform Matrix
           </h3>
-          <p className="type-secondary text-xs mt-1">
+          <p className="type-secondary text-xs sm:text-sm mt-1">
             Compare capabilities and access endpoints across the four foundational systems.
           </p>
         </div>

@@ -99,18 +99,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
           </div>
         </div>
 
-        {/* Editorial Sections */}
+        {/* Publication Column */}
         <div>
           <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-ink dark:text-dark-text font-semibold mb-4">
-            Sections
+            Publication
           </h4>
           <ul className="space-y-2 text-xs">
             <li>
               <button
-                onClick={() => onNavigate('home')}
+                onClick={() => onNavigate('discover')}
                 className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
-                Lead Investigations
+                Discover
               </button>
             </li>
             <li>
@@ -118,23 +118,23 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
                 onClick={() => onNavigate('research')}
                 className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
-                Preprints &amp; Benchmarks
+                Research Library
               </button>
             </li>
             <li>
               <button
-                onClick={() => onNavigate('discover')}
+                onClick={() => onNavigate('engineering')}
                 className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
-                Topic Index
+                Engineering Insights
               </button>
             </li>
             <li>
               <button
-                onClick={() => onNavigate('perspectives')}
+                onClick={() => onNavigate('updates')}
                 className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
-                Perspectives &amp; Debates
+                Changelog &amp; Updates
               </button>
             </li>
             <li>
@@ -142,37 +142,37 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
                 onClick={() => onNavigate('media')}
                 className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
-                Tathastu Dialogues
+                Media Library
               </button>
             </li>
           </ul>
         </div>
 
-        {/* Ecosystem Products */}
+        {/* Products Column */}
         <div>
           <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-ink dark:text-dark-text font-semibold mb-4">
-            Ecosystem
+            Products
           </h4>
           <ul className="space-y-2 text-xs">
             <li>
               <button
-                onClick={() => onNavigate('ecosystem')}
+                onClick={() => onNavigate('products')}
                 className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
-                MentorMaze (Guidance)
+                MentorMaze (Mentorship)
               </button>
             </li>
             <li>
               <button
-                onClick={() => onNavigate('ecosystem')}
+                onClick={() => onNavigate('products')}
                 className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
-                Collaborate (Lab Nodes)
+                Collaborate (Agent Lab)
               </button>
             </li>
             <li>
               <button
-                onClick={() => onNavigate('ecosystem')}
+                onClick={() => onNavigate('products')}
                 className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
                 Avsar (Grants &amp; Talent)
@@ -180,52 +180,52 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
             </li>
             <li>
               <button
-                onClick={() => onNavigate('ecosystem')}
+                onClick={() => onNavigate('products')}
                 className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
-                Iris (Vision &amp; Robotics)
+                Iris (Spatial Vision)
               </button>
             </li>
           </ul>
         </div>
 
-        {/* Governance & Operations */}
+        {/* Company & Governance Column */}
         <div>
           <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-ink dark:text-dark-text font-semibold mb-4">
-            Editorial
+            Company
           </h4>
           <ul className="space-y-2 text-xs">
+            <li>
+              <button
+                onClick={() => onNavigate('about')}
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
+              >
+                Our Story &amp; Vision
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => onNavigate('about')}
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
+              >
+                Resident Team
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => onNavigate('about')}
+                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
+              >
+                Editorial Charter
+              </button>
+            </li>
             <li>
               <button
                 onClick={() => onNavigate('editorial-studio')}
                 className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
               >
-                Editorial Studio
+                Editorial Studio (CMS)
               </button>
-            </li>
-            <li>
-              <button
-                onClick={() => onNavigate('about')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
-              >
-                Peer Review Charter
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => onNavigate('about')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
-              >
-                Ethics &amp; Conflict Policy
-              </button>
-            </li>
-            <li>
-              <a
-                href="#archive"
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors"
-              >
-                Zenodo Archive Repository
-              </a>
             </li>
           </ul>
         </div>
