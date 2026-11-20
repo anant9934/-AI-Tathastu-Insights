@@ -23,7 +23,10 @@ import {
   ExternalLink,
   ChevronRight,
   Sparkles,
-  AlertCircle
+  AlertCircle,
+  Code,
+  FlaskConical,
+  X
 } from 'lucide-react';
 import { Article, ResearchPaper, EcosystemProduct } from '../types';
 import { StoryCard } from '../components/cards/StoryCard';
@@ -34,6 +37,7 @@ import { AnimatedChart } from '../components/motion/AnimatedChart';
 import { Reveal } from '../components/motion/Reveal';
 import { StaggerContainer, StaggerItem } from '../components/motion/StaggerContainer';
 import { AnimatedButton } from '../components/motion/AnimatedButton';
+import { MotionModal } from '../components/motion/MotionModal';
 import { NavTab } from '../components/layout/Navbar';
 import { 
   mockMediaItems, 
@@ -70,6 +74,7 @@ export const HomePage: React.FC<HomePageProps> = ({
 }) => {
   const [copiedBibtexId, setCopiedBibtexId] = useState<string | null>(null);
   const [activeHeroProduct, setActiveHeroProduct] = useState<string>('collaborate');
+  const [isStoryModalOpen, setIsStoryModalOpen] = useState(false);
 
   const shouldReduceMotion = useReducedMotion();
 
@@ -103,70 +108,195 @@ export const HomePage: React.FC<HomePageProps> = ({
   };
 
   return (
-    <div className="space-y-24 sm:space-y-32">
+    <div className="w-full">
       {/* =========================================================================
-          SECTION 1 — HERO: CORPORATE EDITORIAL MASTHEAD & FLAGSHIP SYSTEM STAGE
+          SECTION 1 — CINEMATIC FULL-WIDTH DARK HERO (APPROVED MOCKUP MATCH)
           ========================================================================= */}
-      <section className="relative pt-6 sm:pt-14 pb-8 border-b border-brand-stone-dark/60 dark:border-dark-border">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
-          {/* Authentic Corporate Masthead Statement */}
-          <div className="space-y-6 max-w-4xl">
+      <section className="relative w-full min-h-[580px] sm:min-h-[660px] lg:min-h-[720px] bg-[#060B14] text-white overflow-hidden flex flex-col justify-between -mt-16 pt-28 sm:pt-36 lg:pt-40 pb-16 sm:pb-24 border-b border-white/10 select-text">
+        {/* Cinematic Environmental Artwork (Mountains, Sunset Horizon, Reflective Foreground & Colossal Illuminated Portal) */}
+        <div className="absolute inset-0 z-0 pointer-events-none select-none overflow-hidden" aria-hidden="true">
+          <motion.img 
+            initial={shouldReduceMotion ? { scale: 1 } : { scale: 1.04 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            src="/media/hero/cinematic-hero-bg.jpg" 
+            alt="AI Tathastu Cinematic Horizon & Illuminated Portal" 
+            className="w-full h-full object-cover object-right sm:object-right-bottom"
+          />
+          {/* Left Dark Gradient Overlay for Maximum Typographic Contrast & WCAG Readability */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#060B14] via-[#060B14]/85 sm:via-[#060B14]/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-transparent to-[#060B14]/50" />
+        </div>
+
+        {/* Hero Narrative Stage */}
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full my-auto">
+          <div className="max-w-2xl space-y-6">
             <motion.h1
-              initial={shouldReduceMotion ? {} : { opacity: 0.92, y: 8 }}
+              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.35, ease: EDITORIAL_EASE }}
-              className="type-hero text-brand-charcoal dark:text-dark-text tracking-tight font-semibold"
+              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+              className="font-display text-4xl sm:text-5xl lg:text-[62px] font-bold tracking-tight text-white leading-[1.08]"
             >
-              We build open systems for research, distributed intelligence, and physical computing.
+              We build technology around problems worth solving.
             </motion.h1>
 
-            <p className="text-base sm:text-xl text-brand-muted dark:text-dark-muted max-w-3xl leading-relaxed font-normal">
-              AI Tathastu is an independent technology company. We identify foundational bottlenecks in machine learning, autonomous agent coordination, and spatial perception—and build the software to solve them. We publish our code, document our architectural challenges, and share what we learn.
-            </p>
+            <motion.p
+              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              className="text-sm sm:text-base lg:text-lg text-white/85 max-w-xl leading-relaxed font-normal font-sans"
+            >
+              Follow the products, research and engineering behind AI Tathastu — what we're building, why it matters and what we learn along the way.
+            </motion.p>
 
-            {/* Architectural Index Anchors */}
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-mono text-brand-muted dark:text-dark-muted border-t border-brand-stone-dark/60 dark:border-dark-border pt-4">
-              <button 
+            {/* Hero Interactive CTAs */}
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+              className="pt-2 flex flex-wrap items-center gap-4"
+            >
+              {/* Primary CTA (Lime Button) */}
+              <button
                 onClick={() => {
-                  const el = document.getElementById('systems-ledger');
+                  const el = document.getElementById('what-were-working-on');
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  else onNavigate('products');
                 }}
-                className="hover:text-brand-charcoal dark:hover:text-white transition-colors cursor-pointer"
+                className="px-6 py-3 rounded-full bg-[#D9EF68] hover:bg-[#CEE854] active:bg-[#BFD843] text-[#080E17] font-semibold text-sm flex items-center gap-2 transition-all duration-200 shadow-md hover:shadow-lime-500/20 group cursor-pointer"
               >
-                [01] Systems &amp; Products ↓
+                <span>Explore our work</span>
+                <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </button>
-              <button 
-                onClick={() => onNavigate('engineering')}
-                className="hover:text-brand-charcoal dark:hover:text-white transition-colors cursor-pointer"
-              >
-                [02] Engineering Dispatches →
-              </button>
-              <button 
-                onClick={() => onNavigate('research')}
-                className="hover:text-brand-charcoal dark:hover:text-white transition-colors cursor-pointer"
-              >
-                [03] Research Archive →
-              </button>
-              <button 
-                onClick={() => onNavigate('about')}
-                className="hover:text-brand-charcoal dark:hover:text-white transition-colors cursor-pointer"
-              >
-                [04] Company Vision →
-              </button>
-            </div>
-          </div>
 
-          {/* Interactive Flagship Cinematic Story Slider (Adapted from Owner Reference Pattern) */}
-          <HeroStorySlider 
-            onExploreProduct={(productId) => {
-              const p = ecosystemProducts.find((x) => x.id === productId);
-              if (p) onExploreEcosystem(p);
-            }} 
-            onNavigateEngineering={() => onNavigate('engineering')}
-            onNavigateResearch={() => onNavigate('research')}
-          />
+              {/* Secondary CTA (Transparent Outline) */}
+              <button
+                onClick={() => setIsStoryModalOpen(true)}
+                className="px-6 py-3 rounded-full bg-black/30 hover:bg-black/50 border border-white/30 text-white font-medium text-sm flex items-center gap-2 transition-all duration-200 cursor-pointer backdrop-blur-sm group"
+              >
+                <Play className="w-3.5 h-3.5 fill-current transition-transform group-hover:scale-110" />
+                <span>Watch our story</span>
+              </button>
+            </motion.div>
+          </div>
         </div>
       </section>
+
+      {/* =========================================================================
+          SECTION 1B — WHAT WE'RE WORKING ON: THREE FEATURED CONTENT CARDS
+          ========================================================================= */}
+      <section id="what-were-working-on" className="w-full bg-[#FAF9F6] dark:bg-dark-surface border-b border-brand-stone-dark/80 dark:border-dark-border py-16 sm:py-20 transition-colors">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Header Row */}
+          <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-8 border-b border-brand-stone-dark/40 dark:border-dark-border">
+            <h2 className="font-display text-3xl sm:text-4xl font-bold text-brand-charcoal dark:text-dark-text tracking-tight">
+              What we're working on
+            </h2>
+            <span className="text-[11px] font-mono uppercase tracking-widest text-brand-muted dark:text-dark-muted font-semibold">
+              PRODUCTS &nbsp;/&nbsp; ENGINEERING &nbsp;/&nbsp; RESEARCH
+            </span>
+          </div>
+
+          {/* Three Featured Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mt-8">
+            {/* CARD 1 — PRODUCTS */}
+            <div 
+              onClick={() => onNavigate('products')}
+              className="group rounded-2xl p-5 sm:p-6 bg-white dark:bg-dark-elevated border border-neutral-200/80 dark:border-neutral-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between cursor-pointer"
+            >
+              <div className="space-y-4">
+                <div className="rounded-xl overflow-hidden aspect-[16/9] bg-neutral-900 border border-neutral-100 dark:border-neutral-800">
+                  <img 
+                    src="/media/cards/card-products.png" 
+                    alt="MentorMaze Mentorship Workspace Interface" 
+                    className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
+                  />
+                </div>
+                <div className="flex items-center gap-2 pt-1">
+                  <Layers className="w-4 h-4 text-[#A855F7]" />
+                  <h3 className="font-display text-lg font-bold text-brand-charcoal dark:text-dark-text">
+                    Products
+                  </h3>
+                </div>
+                <p className="text-xs sm:text-[13px] text-brand-muted dark:text-dark-muted leading-relaxed font-sans">
+                  Products for mentorship, collaboration, opportunity discovery and intelligent systems.
+                </p>
+              </div>
+              <div className="pt-4 mt-2 border-t border-neutral-100 dark:border-neutral-800/80">
+                <span className="text-xs font-semibold text-accent-blue dark:text-accent-softblue flex items-center gap-1.5 group-hover:gap-2 transition-all">
+                  <span>Explore products</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
+            </div>
+
+            {/* CARD 2 — ENGINEERING */}
+            <div 
+              onClick={() => onNavigate('engineering')}
+              className="group rounded-2xl p-5 sm:p-6 bg-white dark:bg-dark-elevated border border-neutral-200/80 dark:border-neutral-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between cursor-pointer"
+            >
+              <div className="space-y-4">
+                <div className="rounded-xl overflow-hidden aspect-[16/9] bg-neutral-900 border border-neutral-100 dark:border-neutral-800">
+                  <img 
+                    src="/media/cards/card-engineering.png" 
+                    alt="Aegis-BFT Byzantine Consensus Engineering Source & Stats" 
+                    className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
+                  />
+                </div>
+                <div className="flex items-center gap-2 pt-1">
+                  <Code className="w-4 h-4 text-[#3B82F6]" />
+                  <h3 className="font-display text-lg font-bold text-brand-charcoal dark:text-dark-text">
+                    Engineering
+                  </h3>
+                </div>
+                <p className="text-xs sm:text-[13px] text-brand-muted dark:text-dark-muted leading-relaxed font-sans">
+                  How we design, build, test and improve the systems behind our products.
+                </p>
+              </div>
+              <div className="pt-4 mt-2 border-t border-neutral-100 dark:border-neutral-800/80">
+                <span className="text-xs font-semibold text-accent-blue dark:text-accent-softblue flex items-center gap-1.5 group-hover:gap-2 transition-all">
+                  <span>Read engineering notes</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
+            </div>
+
+            {/* CARD 3 — RESEARCH */}
+            <div 
+              onClick={() => onNavigate('research')}
+              className="group rounded-2xl p-5 sm:p-6 bg-white dark:bg-dark-elevated border border-neutral-200/80 dark:border-neutral-800 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between cursor-pointer"
+            >
+              <div className="space-y-4">
+                <div className="rounded-xl overflow-hidden aspect-[16/9] bg-neutral-900 border border-neutral-100 dark:border-neutral-800">
+                  <img 
+                    src="/media/cards/card-research.png" 
+                    alt="Iris 3D Voxel Occupancy Research Model HUD" 
+                    className="w-full h-full object-cover object-center group-hover:scale-[1.03] transition-transform duration-500"
+                  />
+                </div>
+                <div className="flex items-center gap-2 pt-1">
+                  <FlaskConical className="w-4 h-4 text-[#10B981]" />
+                  <h3 className="font-display text-lg font-bold text-brand-charcoal dark:text-dark-text">
+                    Research
+                  </h3>
+                </div>
+                <p className="text-xs sm:text-[13px] text-brand-muted dark:text-dark-muted leading-relaxed font-sans">
+                  Experiments, technical investigations and findings connected to our work.
+                </p>
+              </div>
+              <div className="pt-4 mt-2 border-t border-neutral-100 dark:border-neutral-800/80">
+                <span className="text-xs font-semibold text-accent-blue dark:text-accent-softblue flex items-center gap-1.5 group-hover:gap-2 transition-all">
+                  <span>Browse research</span>
+                  <ArrowRight className="w-3.5 h-3.5" />
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Remaining Homepage Sections Container */}
+      <div className="space-y-24 sm:space-y-32 pt-16">
 
       {/* =========================================================================
           SECTION 2 — FEATURED PRODUCT MILESTONE: MAJOR DEVELOPMENT
@@ -662,6 +792,68 @@ export const HomePage: React.FC<HomePageProps> = ({
           </div>
         </Reveal>
       </section>
+      </div>
+
+      {/* Story Introduction Modal */}
+      <MotionModal
+        isOpen={isStoryModalOpen}
+        onClose={() => setIsStoryModalOpen(false)}
+        title="Our Story & Founding Purpose"
+        maxWidth="lg"
+      >
+        <div className="space-y-6 text-sm text-brand-charcoal dark:text-dark-text leading-relaxed">
+          <div className="p-4 rounded-xl bg-brand-stone/60 dark:bg-dark-surface border border-brand-stone-dark/40 dark:border-dark-border flex items-center justify-between">
+            <span className="text-xs font-mono uppercase tracking-wider text-accent-blue font-semibold">
+              Company Documentary Film • In Production
+            </span>
+            <span className="text-[11px] font-mono text-brand-muted">AI Tathastu Labs</span>
+          </div>
+
+          <p>
+            AI Tathastu was founded in 2026 around a foundational premise: <strong>frontier technology must be engineered around problems worth solving</strong>, rather than speculative hype.
+          </p>
+
+          <p>
+            We identify deep structural friction across three critical domains:
+          </p>
+
+          <ul className="space-y-2.5 pl-4 list-disc text-xs sm:text-sm text-brand-muted dark:text-dark-muted">
+            <li>
+              <strong className="text-brand-charcoal dark:text-dark-text">Mentorship &amp; Education (MentorMaze):</strong> Turning static textbook curricula into interactive, Socratic Triton/CUDA kernel debugging.
+            </li>
+            <li>
+              <strong className="text-brand-charcoal dark:text-dark-text">Multi-Agent Systems (Collaborate):</strong> Enforcing sub-200ms Byzantine fault-tolerant linearizable execution to eliminate cascading hallucination across autonomous agent swarms.
+            </li>
+            <li>
+              <strong className="text-brand-charcoal dark:text-dark-text">Grant Allocations &amp; Talent (Avsar):</strong> Replacing 9-month institutional grant committees with automated, cryptographic preprint verification.
+            </li>
+            <li>
+              <strong className="text-brand-charcoal dark:text-dark-text">Physical Intelligence (Iris):</strong> Constructing continuous 3D voxel occupancy memory on edge hardware for real-world robotics.
+            </li>
+          </ul>
+
+          <div className="pt-4 flex flex-wrap items-center justify-end gap-3 border-t border-brand-stone-dark/40 dark:border-dark-border">
+            <AnimatedButton
+              variant="outline"
+              size="sm"
+              onClick={() => setIsStoryModalOpen(false)}
+            >
+              Close
+            </AnimatedButton>
+            <AnimatedButton
+              variant="primary"
+              size="sm"
+              onClick={() => {
+                setIsStoryModalOpen(false);
+                onNavigate('about');
+              }}
+              icon={<ArrowRight className="w-3.5 h-3.5" />}
+            >
+              Read full founding charter
+            </AnimatedButton>
+          </div>
+        </div>
+      </MotionModal>
     </div>
   );
 };

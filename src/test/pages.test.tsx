@@ -43,7 +43,8 @@ describe('Page Level Verification & User Workflows', () => {
       />
     );
 
-    expect(screen.getByText(/We build open systems for research, distributed intelligence/i)).toBeInTheDocument();
+    expect(screen.getByText(/We build technology around problems worth solving/i)).toBeInTheDocument();
+    expect(screen.getByText(/What we're working on/i)).toBeInTheDocument();
     expect(screen.getByText(/The problems we're tackling\./i)).toBeInTheDocument();
     expect(screen.getByText(/Software engineered around real technical barriers\./i)).toBeInTheDocument();
     expect(screen.getByText(/How we built it\./i)).toBeInTheDocument();
