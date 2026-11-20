@@ -3,10 +3,7 @@ import { motion, useReducedMotion } from 'motion/react';
 import { 
   ArrowRight, 
   ArrowUpRight, 
-  BookOpen, 
-  Sparkles, 
   Layers, 
-  ShieldCheck, 
   Check, 
   Download, 
   Copy, 
@@ -20,31 +17,29 @@ import {
   FileText, 
   Compass,
   Cpu,
-  Shield,
-  Activity,
-  Code2,
   Terminal,
   Calendar,
   Clock,
   ExternalLink,
-  ChevronRight
+  ChevronRight,
+  Sparkles,
+  AlertCircle
 } from 'lucide-react';
-import { Article, ResearchPaper, EcosystemProduct, PerspectiveItem, MediaItem } from '../types';
+import { Article, ResearchPaper, EcosystemProduct } from '../types';
 import { StoryCard } from '../components/cards/StoryCard';
-import { ResearchCard } from '../components/cards/ResearchCard';
+import { EcosystemCard } from '../components/cards/EcosystemCard';
+import { ProductHeroStage, ProductLedger } from '../components/products/ProductShowcase';
 import { AnimatedChart } from '../components/motion/AnimatedChart';
 import { Reveal } from '../components/motion/Reveal';
 import { StaggerContainer, StaggerItem } from '../components/motion/StaggerContainer';
 import { AnimatedButton } from '../components/motion/AnimatedButton';
-import { Badge } from '../components/ui/Badge';
 import { NavTab } from '../components/layout/Navbar';
 import { 
-  mockPerspectives, 
   mockMediaItems, 
   mockEngineeringArticles, 
   mockCompanyUpdates 
 } from '../lib/mockData';
-import { EDITORIAL_EASE, MOTION_DURATIONS, heroImageVariants } from '../lib/motion';
+import { EDITORIAL_EASE } from '../lib/motion';
 import { api } from '../lib/api';
 
 interface HomePageProps {
@@ -76,24 +71,23 @@ export const HomePage: React.FC<HomePageProps> = ({
   const [newsletterSubscribed, setNewsletterSubscribed] = useState(false);
   const [newsletterError, setNewsletterError] = useState('');
   const [copiedBibtexId, setCopiedBibtexId] = useState<string | null>(null);
+  const [activeHeroProduct, setActiveHeroProduct] = useState<string>('collaborate');
 
   const shouldReduceMotion = useReducedMotion();
 
-  // Selected Lead & Secondary Articles
-  const featuredArticle = articles.find((a) => a.isFeatured) || articles[0];
-  const secondaryArticles = articles.filter((a) => a.id !== featuredArticle.id);
+  const featuredArticle = articles[0];
+  const secondaryArticles = articles.slice(1);
   const featuredPaper = papers[0];
 
-  // Research Spotlight Chart Data (Empirical SAE Feature Purity)
+  // Research Chart Data
   const chartData = {
     title: 'Monosemantic Feature Purity vs Latent Dictionary Size',
     subtitle: 'Evaluation on Layer 28 residual stream across expansion factors (4x to 64x) on 70B parameter dense model',
     xAxisLabel: 'Expansion Factor (Dictionary Size)',
     yAxisLabel: 'Feature Purity (%)',
-    primaryDatasetLabel: 'Tathastu Top-K SAE (Model)',
+    primaryDatasetLabel: 'Tathastu Top-K SAE',
     baselineDatasetLabel: 'Standard Gated SAE',
     unit: '%',
-    isDemonstration: true,
     points: [
       { label: '4x (16k)', value: 68.4, baseline: 52.1 },
       { label: '8x (32k)', value: 79.2, baseline: 58.4 },
@@ -113,7 +107,7 @@ export const HomePage: React.FC<HomePageProps> = ({
   const handleNewsletterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!newsletterEmail || !newsletterEmail.includes('@')) {
-      setNewsletterError('Please provide a valid research or institutional email.');
+      setNewsletterError('Please provide a valid email address.');
       return;
     }
     setNewsletterError('');
@@ -130,172 +124,135 @@ export const HomePage: React.FC<HomePageProps> = ({
   };
 
   return (
-    <div className="space-y-20 sm:space-y-28">
+    <div className="space-y-24 sm:space-y-32">
       {/* =========================================================================
-          SECTION 2 — HERO SECTION (Master UI/UX Specification 1.0)
-          Headline: "Building what comes next."
-          Supporting copy: "Explore the ideas, research and engineering behind the AI Tathastu ecosystem."
+          SECTION 1 — HERO: CORPORATE EDITORIAL MASTHEAD & FLAGSHIP SYSTEM STAGE
           ========================================================================= */}
-      <section className="relative pt-6 sm:pt-14 pb-4 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
-            {/* Left Column: Deliberate Editorial Headline & Copy */}
-            <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-surface-lavender text-accent-violet dark:bg-accent-violet/20 dark:text-accent-lavender text-xs font-mono font-medium">
-                <Sparkles className="w-3.5 h-3.5" />
-                <span>AI Tathastu Company Publication • Master Edition</span>
-              </div>
+      <section className="relative pt-6 sm:pt-14 pb-8 border-b border-brand-stone-dark/60 dark:border-dark-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 sm:space-y-12">
+          {/* Authentic Corporate Masthead Statement */}
+          <div className="space-y-6 max-w-4xl">
+            <motion.h1
+              initial={shouldReduceMotion ? {} : { opacity: 0.92, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.35, ease: EDITORIAL_EASE }}
+              className="type-hero text-brand-charcoal dark:text-dark-text tracking-tight font-semibold"
+            >
+              We build open systems for research, distributed intelligence, and physical computing.
+            </motion.h1>
 
-              {/* Exact Requested Master Specification Headline */}
-              <div className="max-w-2xl">
-                <motion.h1
-                  initial={shouldReduceMotion ? {} : { opacity: 0.9, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.35,
-                    ease: EDITORIAL_EASE,
-                  }}
-                  className="type-hero text-foundation-ink dark:text-dark-text font-normal tracking-tight"
-                >
-                  Building what comes next.
-                </motion.h1>
-              </div>
+            <p className="text-base sm:text-xl text-brand-muted dark:text-dark-muted max-w-3xl leading-relaxed font-normal">
+              AI Tathastu is an independent technology company. We identify foundational bottlenecks in machine learning, autonomous agent coordination, and spatial perception—and build the software to solve them. We publish our code, document our architectural challenges, and share what we learn.
+            </p>
 
-              {/* Exact Requested Supporting Copy */}
-              <p className="type-body text-foundation-secondary dark:text-dark-muted max-w-xl leading-relaxed text-base sm:text-lg">
-                Explore the ideas, research and engineering behind the AI Tathastu ecosystem.
-              </p>
-
-              {/* Action Buttons */}
-              <div className="flex flex-wrap items-center gap-4 pt-2">
-                <AnimatedButton
-                  variant="primary"
-                  size="lg"
-                  onClick={() => {
-                    const el = document.getElementById('featured-investigation');
-                    if (el) {
-                      el.scrollIntoView({ behavior: 'smooth' });
-                    } else {
-                      onSelectArticle(featuredArticle);
-                    }
-                  }}
-                  icon={<ArrowRight className="w-4 h-4" />}
-                >
-                  Read Featured Story
-                </AnimatedButton>
-
-                <AnimatedButton
-                  variant="outline"
-                  size="lg"
-                  onClick={() => onNavigate('products')}
-                  icon={<Layers className="w-4 h-4" />}
-                  iconPosition="left"
-                >
-                  Explore Products
-                </AnimatedButton>
-              </div>
-
-              {/* Verified Editorial Invariants */}
-              <div className="pt-6 border-t border-foundation-border dark:border-dark-border flex flex-wrap items-center gap-6 text-xs font-mono text-foundation-secondary dark:text-dark-muted">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-accent-violet shrink-0" />
-                  <span>Double-blind peer review</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Activity className="w-4 h-4 text-accent-blue shrink-0" />
-                  <span>Open weights &amp; reproducible seeds</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <Code2 className="w-4 h-4 text-accent-mint shrink-0" />
-                  <span>Open Access (CC BY-NC 4.0)</span>
-                </div>
-              </div>
-            </div>
-
-            {/* Right Column: Featured Cinematic Visual */}
-            <div className="lg:col-span-5">
-              <div 
-                onClick={() => onSelectArticle(featuredArticle)}
-                className="relative rounded-3xl overflow-hidden border border-foundation-border dark:border-dark-border shadow-xl bg-foundation-ink aspect-[4/5] sm:aspect-[4/3] lg:aspect-[4/5] group cursor-pointer"
+            {/* Architectural Index Anchors */}
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-xs font-mono text-brand-muted dark:text-dark-muted border-t border-brand-stone-dark/60 dark:border-dark-border pt-4">
+              <button 
+                onClick={() => {
+                  const el = document.getElementById('systems-ledger');
+                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }}
+                className="hover:text-brand-charcoal dark:hover:text-white transition-colors cursor-pointer"
               >
-                <motion.img
-                  src={featuredArticle.coverImage}
-                  alt={featuredArticle.title}
-                  variants={shouldReduceMotion ? {} : heroImageVariants}
-                  initial="hidden"
-                  animate="visible"
-                  className="w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700 ease-editorial"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
-
-                {/* Lead Story Badge & Headline Overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-8 text-white space-y-2">
-                  <span className="inline-block px-2.5 py-1 rounded-md text-[11px] font-mono tracking-wider uppercase font-semibold bg-white/20 backdrop-blur-md text-white border border-white/20">
-                    Lead Story • {featuredArticle.category}
-                  </span>
-                  <h3 className="type-card-heading text-white font-normal line-clamp-2 drop-shadow-sm">
-                    {featuredArticle.title}
-                  </h3>
-                  <div className="flex items-center gap-3 pt-2 text-xs font-mono text-white/80">
-                    <span>{featuredArticle.author.name}</span>
-                    <span>•</span>
-                    <span>{featuredArticle.readingTimeMinutes} min read</span>
-                  </div>
-                </div>
-              </div>
+                [01] Systems &amp; Products ↓
+              </button>
+              <button 
+                onClick={() => onNavigate('engineering')}
+                className="hover:text-brand-charcoal dark:hover:text-white transition-colors cursor-pointer"
+              >
+                [02] Engineering Dispatches →
+              </button>
+              <button 
+                onClick={() => onNavigate('research')}
+                className="hover:text-brand-charcoal dark:hover:text-white transition-colors cursor-pointer"
+              >
+                [03] Research Archive →
+              </button>
+              <button 
+                onClick={() => onNavigate('about')}
+                className="hover:text-brand-charcoal dark:hover:text-white transition-colors cursor-pointer"
+              >
+                [04] Company Vision →
+              </button>
             </div>
           </div>
+
+          {/* Interactive Flagship System Console (Authentic UI Viewport) */}
+          <ProductHeroStage 
+            onExploreProduct={(productId) => {
+              const p = ecosystemProducts.find((x) => x.id === productId);
+              if (p) onExploreEcosystem(p);
+            }} 
+          />
         </div>
       </section>
 
       {/* =========================================================================
-          SECTION 3 — FEATURED INVESTIGATION (Deep Dive)
+          SECTION 2 — FEATURED PRODUCT MILESTONE: MAJOR DEVELOPMENT
           ========================================================================= */}
-      <section id="featured-investigation" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="featured-milestone" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial">
-            <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-center">
-              <div className="lg:w-1/2 space-y-4">
+          <div className="p-8 sm:p-12 lg:p-14 rounded-3xl bg-brand-surface dark:bg-dark-surface border border-brand-stone-dark/80 dark:border-dark-border shadow-editorial">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-14 items-center">
+              <div className="lg:col-span-7 space-y-4">
                 <div className="flex items-center gap-2">
-                  <span className="type-meta text-accent-violet uppercase font-semibold tracking-wider">
-                    Featured Investigation
+                  <span className="text-xs font-mono uppercase tracking-wider text-accent-blue font-semibold">
+                    Major Development • Collaborate 2.4
                   </span>
-                  <span className="text-foundation-secondary dark:text-dark-muted">•</span>
-                  <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted">
-                    {featuredArticle.publishedAt}
+                  <span className="text-brand-muted dark:text-dark-muted">•</span>
+                  <span className="text-xs font-mono text-brand-muted dark:text-dark-muted">
+                    November 2026
                   </span>
                 </div>
-                <h2 className="type-section-heading text-foundation-ink dark:text-dark-text font-normal">
-                  {featuredArticle.title}
+                <h2 className="type-section-heading text-brand-charcoal dark:text-dark-text font-semibold">
+                  How we solved multi-agent state drift with sub-200ms Byzantine consensus.
                 </h2>
-                <p className="type-body text-foundation-secondary dark:text-dark-muted text-sm sm:text-base leading-relaxed">
-                  {featuredArticle.subtitle || featuredArticle.abstract}
+                <p className="text-sm sm:text-base text-brand-muted dark:text-dark-muted leading-relaxed max-w-2xl">
+                  When teams of autonomous AI agents collaborate in code generation and hypothesis verification, race conditions cause cascading hallucination. We built the Aegis-BFT consensus daemon in Rust to enforce linearizable, reproducible execution across 64 heterogeneous workers.
                 </p>
-                <div className="pt-2 flex items-center gap-4">
+                <div className="pt-2 flex flex-wrap items-center gap-4">
                   <AnimatedButton
                     variant="primary"
                     size="md"
-                    onClick={() => onSelectArticle(featuredArticle)}
+                    onClick={() => onNavigate('engineering')}
                     icon={<ArrowRight className="w-4 h-4" />}
                   >
-                    Read Full Investigation
+                    Read engineering breakdown
                   </AnimatedButton>
-                  <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted">
-                    {featuredArticle.readingTimeMinutes} min read
-                  </span>
+                  <AnimatedButton
+                    variant="outline"
+                    size="md"
+                    onClick={() => onNavigate('products')}
+                  >
+                    Explore Collaborate
+                  </AnimatedButton>
                 </div>
               </div>
-              <div className="lg:w-1/2 w-full">
+
+              <div className="lg:col-span-5">
                 <div 
-                  onClick={() => onSelectArticle(featuredArticle)}
-                  className="rounded-2xl overflow-hidden aspect-video relative group cursor-pointer border border-foundation-border dark:border-dark-border"
+                  onClick={() => onNavigate('engineering')}
+                  style={{ backgroundColor: '#0C1322', color: '#FFFFFF' }}
+                  className="rounded-2xl overflow-hidden aspect-[16/11] relative group cursor-pointer border border-brand-stone-dark/80 dark:border-dark-border bg-brand-navy p-5 text-white flex flex-col justify-between"
                 >
-                  <img
-                    src={featuredArticle.coverImage}
-                    alt={featuredArticle.title}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors" />
+                  <div className="flex items-center justify-between text-xs font-mono text-white/70">
+                    <span className="text-accent-softblue">aegis_consensus.rs</span>
+                    <span>2f + 1 Quorum</span>
+                  </div>
+                  <pre className="text-xs font-mono leading-relaxed text-white/90 overflow-hidden line-clamp-6 bg-black/30 p-3 rounded-lg border border-white/10">
+                    <code>{`// Enforce linearizable epoch
+let quorum = (2 * byzantine_threshold) + 1;
+let valid = verify_signatures(proposal)?;
+if valid >= quorum {
+    state_ledger.atomic_append(proposal).await?;
+}`}</code>
+                  </pre>
+                  <div className="text-[11px] font-mono text-white/80 flex items-center justify-between pt-2 border-t border-white/10">
+                    <span>99th Percentile: 142ms</span>
+                    <span className="text-accent-softblue group-hover:translate-x-1 transition-transform flex items-center gap-1">
+                      Read full note →
+                    </span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -304,57 +261,95 @@ export const HomePage: React.FC<HomePageProps> = ({
       </section>
 
       {/* =========================================================================
-          SECTION 4 — LATEST STORIES (Asymmetric Editorial Grid)
+          SECTION 3 — THE PROBLEMS WE ARE WORKING ON (Full-Width Stone Surface)
           ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between border-b border-foundation-border dark:border-dark-border pb-4 mb-8">
-          <div>
-            <span className="type-meta text-accent-violet block uppercase tracking-wider font-semibold">
-              Editorial Dispatch
+      <section className="bg-brand-stone dark:bg-dark-elevated py-16 sm:py-20 border-y border-brand-stone-dark/80 dark:border-dark-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-2xl mb-12">
+            <span className="text-xs font-mono uppercase tracking-wider text-brand-muted dark:text-dark-muted font-semibold block mb-2">
+              Market Inefficiencies
             </span>
-            <h2 className="type-section-heading text-foundation-ink dark:text-dark-text">
-              Latest Stories &amp; Inquiries
+            <h2 className="type-section-heading text-brand-charcoal dark:text-dark-text font-semibold">
+              The problems we're tackling.
             </h2>
+            <p className="mt-3 text-sm sm:text-base text-brand-muted dark:text-dark-muted leading-relaxed">
+              We started AI Tathastu because current AI tools either offer superficial chatbot answers or require proprietary infrastructure that leaves researchers locked out.
+            </p>
           </div>
-          <button
-            onClick={() => onNavigate('discover')}
-            className="text-xs sm:text-sm font-medium text-foundation-ink dark:text-dark-text hover:text-accent-violet transition-colors flex items-center gap-1 cursor-pointer"
-          >
-            Explore all stories <ArrowRight className="w-3.5 h-3.5" />
-          </button>
-        </div>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-          {secondaryArticles.slice(0, 3).map((article) => (
-            <StaggerItem key={article.id}>
-              <StoryCard
-                article={article}
-                onSelect={onSelectArticle}
-                isBookmarked={bookmarkedIds.includes(article.id)}
-                onBookmark={(e) => onToggleBookmark(e, article)}
-              />
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              {
+                number: '01',
+                title: 'The Prerequisite Wall in Education',
+                description: 'Advanced ML research moves too fast for university textbooks. Students get stuck on formal tensor calculus and GPU concurrency without Socratic diagnostic support.',
+                productSolved: 'MentorMaze',
+                accent: 'text-accent-blue',
+              },
+              {
+                number: '02',
+                title: 'State Drift in Multi-Agent Swarms',
+                description: 'Autonomous agents fail not on single turns, but on uncoordinated state drift across concurrent tool calls. Without consensus, experiments cannot be reproduced.',
+                productSolved: 'Collaborate',
+                accent: 'text-accent-blue',
+              },
+              {
+                number: '03',
+                title: 'Opaque Research Grant Allocation',
+                description: 'Traditional grant committees take 9 months to evaluate proposals. Independent open-source contributors need micro-grants distributed within days upon benchmark reproduction.',
+                productSolved: 'Avsar',
+                accent: 'text-accent-terracotta',
+              },
+              {
+                number: '04',
+                title: 'Missing Physical Memory in Vision',
+                description: 'Existing vision models process disconnected 2D video frames, forgetting occluded physical objects. Embodied robotics requires continuous 3D voxel tensor memory.',
+                productSolved: 'Iris',
+                accent: 'text-accent-sage',
+              },
+            ].map((prob) => (
+              <div
+                key={prob.number}
+                className="p-6 rounded-2xl bg-brand-surface dark:bg-dark-surface border border-brand-stone-dark/80 dark:border-dark-border shadow-editorial flex flex-col justify-between"
+              >
+                <div>
+                  <span className="text-xs font-mono font-bold text-brand-muted dark:text-dark-muted block mb-3">
+                    {prob.number}
+                  </span>
+                  <h3 className="text-base font-semibold text-brand-charcoal dark:text-dark-text mb-2">
+                    {prob.title}
+                  </h3>
+                  <p className="text-xs sm:text-sm text-brand-muted dark:text-dark-muted leading-relaxed">
+                    {prob.description}
+                  </p>
+                </div>
+                <div className="mt-6 pt-3 border-t border-brand-stone-dark/60 dark:border-dark-border flex items-center justify-between text-xs">
+                  <span className="text-brand-muted">Addressed by:</span>
+                  <span className={`font-semibold font-mono ${prob.accent}`}>
+                    {prob.productSolved}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* =========================================================================
-          SECTION 5 — PRODUCT ECOSYSTEM SHOWCASE (MentorMaze, Collaborate, Avsar, Iris)
-          Master Specification: 180-280ms duration hover scale 1.02-1.04, 3-4px elevation,
-          status pills, and 100% verified contrast.
+          SECTION 4 — PRODUCTS & SYSTEMS: THE ARCHITECTURAL LEDGER
           ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="systems-ledger" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-foundation-border dark:border-dark-border pb-6 mb-8 gap-4">
+          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-brand-stone-dark/80 dark:border-dark-border pb-6 mb-12 gap-4">
             <div className="max-w-2xl">
-              <span className="type-meta text-accent-violet block uppercase mb-1 font-semibold">
-                The Tathastu Platform
+              <span className="text-xs font-mono uppercase tracking-wider text-accent-blue dark:text-accent-softblue font-semibold block mb-1">
+                Engineering Portfolio
               </span>
-              <h2 className="type-section-heading text-foundation-ink dark:text-dark-text font-normal">
-                Applied Laboratories &amp; Research Systems
+              <h2 className="type-section-heading text-brand-charcoal dark:text-dark-text font-semibold">
+                Software engineered around real technical barriers.
               </h2>
-              <p className="mt-2 type-body text-foundation-secondary dark:text-dark-muted leading-relaxed">
-                Our research is married to living software. Discover how our open-source platforms turn theoretical interpretability, swarm consensus, and spatial vision into accessible community infrastructure.
+              <p className="mt-2 text-sm sm:text-base text-brand-muted dark:text-dark-muted leading-relaxed">
+                Explore the four core systems we develop, their technical architectures, and their verified performance parameters.
               </p>
             </div>
             <AnimatedButton
@@ -363,147 +358,144 @@ export const HomePage: React.FC<HomePageProps> = ({
               onClick={() => onNavigate('products')}
               icon={<ArrowRight className="w-3.5 h-3.5" />}
             >
-              Explore Full Ecosystem
+              Examine full systems documentation
             </AnimatedButton>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {ecosystemProducts.map((product) => {
-              const productConfig: Record<string, {
-                borderClass: string;
-                iconBg: string;
-                iconColor: string;
-                badgeClass: string;
-                icon: React.ReactNode;
-              }> = {
-                mentormaze: {
-                  borderClass: 'border-foundation-border hover:border-accent-violet hover:shadow-editorial-hover',
-                  iconBg: 'bg-surface-lavender dark:bg-accent-violet/20',
-                  iconColor: 'text-accent-violet',
-                  badgeClass: 'bg-surface-lavender text-accent-violet',
-                  icon: <GraduationCap className="w-5 h-5 text-accent-violet" />,
-                },
-                collaborate: {
-                  borderClass: 'border-foundation-border hover:border-accent-blue hover:shadow-editorial-hover',
-                  iconBg: 'bg-surface-softblue dark:bg-accent-blue/20',
-                  iconColor: 'text-accent-blue',
-                  badgeClass: 'bg-surface-softblue text-accent-blue',
-                  icon: <Users className="w-5 h-5 text-accent-blue" />,
-                },
-                avsar: {
-                  borderClass: 'border-foundation-border hover:border-accent-terracotta hover:shadow-editorial-hover',
-                  iconBg: 'bg-surface-peach dark:bg-accent-terracotta/20',
-                  iconColor: 'text-accent-terracotta',
-                  badgeClass: 'bg-surface-peach text-accent-terracotta',
-                  icon: <Award className="w-5 h-5 text-accent-terracotta" />,
-                },
-                iris: {
-                  borderClass: 'border-foundation-border hover:border-accent-mint hover:shadow-editorial-hover',
-                  iconBg: 'bg-surface-softmint dark:bg-accent-mint/20',
-                  iconColor: 'text-accent-mint',
-                  badgeClass: 'bg-surface-softmint text-accent-mint',
-                  icon: <Eye className="w-5 h-5 text-accent-mint" />,
-                },
-              };
+          {/* The Asymmetric Architectural Product Ledger */}
+          <ProductLedger
+            products={ecosystemProducts}
+            onExplore={onExploreEcosystem}
+            onNavigate={onNavigate}
+          />
+        </Reveal>
+      </section>
 
-              const config = productConfig[product.id] || {
-                borderClass: 'border-foundation-border hover:border-foundation-ink',
-                iconBg: 'bg-foundation-paper dark:bg-dark-elevated',
-                iconColor: 'text-foundation-ink dark:text-dark-text',
-                badgeClass: 'bg-foundation-paper text-foundation-secondary',
-                icon: <Layers className="w-5 h-5" />,
-              };
+      {/* =========================================================================
+          SECTION 5 — HOW WE BUILT IT (Contrasting Deep Midnight Navy Section)
+          ========================================================================= */}
+      <section 
+        style={{ backgroundColor: '#0C1322', color: '#FFFFFF' }}
+        className="bg-brand-navy text-white py-16 sm:py-24 rounded-3xl mx-4 sm:mx-6 lg:mx-8 px-6 sm:px-10 lg:px-14 border border-brand-navy-border shadow-navy-card"
+      >
+        <Reveal>
+          <div className="flex flex-col md:flex-row md:items-end justify-between border-b border-white/10 pb-6 mb-10 gap-4">
+            <div className="max-w-2xl">
+              <span className="text-xs font-mono uppercase tracking-wider text-accent-softblue font-semibold block mb-2">
+                Engineering Notes
+              </span>
+              <h2 className="type-section-heading text-white font-semibold">
+                How we built it.
+              </h2>
+              <p className="mt-2 text-sm sm:text-base text-white/70 leading-relaxed">
+                We document our kernel engineering, distributed consensus protocols, and hardware bottlenecks with complete transparency.
+              </p>
+            </div>
+            <AnimatedButton
+              variant="outline"
+              size="sm"
+              onClick={() => onNavigate('engineering')}
+              className="text-white border-white/20 hover:border-white hover:bg-white/10"
+              icon={<ArrowRight className="w-3.5 h-3.5" />}
+            >
+              Explore all engineering notes
+            </AnimatedButton>
+          </div>
 
-              return (
-                <div
-                  key={product.id}
-                  onClick={() => onExploreEcosystem(product)}
-                  className={`p-6 rounded-2xl bg-white dark:bg-dark-surface border transition-all duration-200 ease-editorial cursor-pointer group flex flex-col justify-between shadow-editorial hover:-translate-y-1 ${config.borderClass}`}
-                >
-                  <div className="space-y-4">
-                    <div className="flex items-center justify-between">
-                      <div className={`w-10 h-10 rounded-xl ${config.iconBg} flex items-center justify-center shrink-0`}>
-                        {config.icon}
-                      </div>
-                      <span className={`text-[10px] px-2 py-0.5 rounded font-mono uppercase font-semibold ${config.badgeClass}`}>
-                        {product.status || product.badge}
-                      </span>
-                    </div>
-
-                    <div>
-                      <div className="flex items-center justify-between mb-1">
-                        <h3 className="type-card-heading text-foundation-ink dark:text-dark-text font-medium group-hover:text-accent-violet transition-colors">
-                          {product.name}
-                        </h3>
-                        <ArrowUpRight className="w-4 h-4 text-foundation-secondary group-hover:text-accent-violet group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-                      </div>
-                      <p className="type-secondary text-xs text-foundation-secondary dark:text-dark-muted leading-relaxed line-clamp-3">
-                        {product.tagline}
-                      </p>
-                    </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            {mockEngineeringArticles.map((article) => (
+              <div
+                key={article.id}
+                onClick={() => onNavigate('engineering')}
+                style={{ backgroundColor: '#141D32', color: '#FFFFFF' }}
+                className="p-6 sm:p-7 rounded-2xl bg-brand-navy-surface border border-white/10 hover:border-white/30 transition-all cursor-pointer group flex flex-col justify-between"
+              >
+                <div className="space-y-4">
+                  <div className="flex items-center justify-between text-xs font-mono text-white/60">
+                    <span className="px-2 py-0.5 rounded bg-white/10 text-white font-semibold">
+                      {article.category}
+                    </span>
+                    <span>{article.readingTimeMinutes} min read</span>
                   </div>
 
-                  <div className="mt-6 pt-4 border-t border-foundation-border dark:border-dark-border text-xs font-mono text-foundation-secondary dark:text-dark-muted flex justify-between items-center">
-                    <span>{product.stats[0]?.label}</span>
-                    <span className="text-foundation-ink dark:text-dark-text font-semibold">{product.stats[0]?.value}</span>
+                  <div>
+                    <h3 className="text-lg font-semibold text-white group-hover:text-accent-softblue transition-colors line-clamp-2">
+                      {article.title}
+                    </h3>
+                    <p className="mt-2 text-xs text-white/70 leading-relaxed line-clamp-3">
+                      {article.abstract}
+                    </p>
                   </div>
+
+                  {article.benchmarks && article.benchmarks[0] && (
+                    <div className="p-3 rounded-xl bg-black/30 border border-white/5 font-mono text-xs">
+                      <span className="text-white/50 block text-[11px]">{article.benchmarks[0].metric}:</span>
+                      <span className="text-accent-softblue font-semibold">{article.benchmarks[0].value}</span>
+                      <span className="text-white/40 line-through ml-2 text-[11px]">{article.benchmarks[0].baseline}</span>
+                    </div>
+                  )}
                 </div>
-              );
-            })}
+
+                <div className="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-white/60 group-hover:text-accent-softblue">
+                  <span>Architecture Deep Dive</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </div>
+            ))}
           </div>
         </Reveal>
       </section>
 
       {/* =========================================================================
-          SECTION 6 — RESEARCH SPOTLIGHT (Empirical SAE Purity)
+          SECTION 6 — RESEARCH & EXPERIMENTS
           ========================================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="flex items-end justify-between border-b border-foundation-border dark:border-dark-border pb-4 mb-8">
+          <div className="flex items-end justify-between border-b border-brand-stone-dark/80 dark:border-dark-border pb-4 mb-8">
             <div>
-              <span className="type-meta text-accent-violet block uppercase tracking-wider font-semibold">
-                Rigorous Methodology
+              <span className="text-xs font-mono uppercase tracking-wider text-accent-sage font-semibold block mb-1">
+                Empirical Research
               </span>
-              <h2 className="type-section-heading text-foundation-ink dark:text-dark-text">
-                Research Spotlight
+              <h2 className="type-section-heading text-brand-charcoal dark:text-dark-text font-semibold">
+                Research &amp; experiments.
               </h2>
             </div>
             <button
               onClick={() => onNavigate('research')}
-              className="text-xs sm:text-sm font-medium text-foundation-ink dark:text-dark-text hover:text-accent-violet transition-colors flex items-center gap-1 cursor-pointer"
+              className="text-xs sm:text-sm font-medium text-brand-charcoal dark:text-dark-text hover:text-accent-blue transition-colors flex items-center gap-1 cursor-pointer"
             >
-              Browse all papers <ArrowRight className="w-3.5 h-3.5" />
+              Browse research library <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             {/* Left: Research Description & Invariants */}
-            <div className="lg:col-span-5 p-6 sm:p-8 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial">
-              <span className="type-meta text-accent-violet uppercase font-semibold block mb-2">
-                Empirical Evaluation
+            <div className="lg:col-span-5 p-6 sm:p-8 rounded-3xl bg-brand-surface dark:bg-dark-surface border border-brand-stone-dark/80 dark:border-dark-border shadow-editorial">
+              <span className="text-xs font-mono uppercase font-semibold text-accent-sage block mb-2">
+                Active Investigation
               </span>
-              <h3 className="type-card-heading text-foundation-ink dark:text-dark-text font-normal mb-3">
+              <h3 className="text-xl font-semibold text-brand-charcoal dark:text-dark-text mb-3">
                 {featuredPaper.title}
               </h3>
-              <p className="type-body text-xs sm:text-sm text-foundation-secondary dark:text-dark-muted leading-relaxed mb-6">
+              <p className="text-xs sm:text-sm text-brand-muted dark:text-dark-muted leading-relaxed mb-6">
                 {featuredPaper.abstract}
               </p>
 
               {/* Key Findings */}
-              <div className="space-y-3 pt-4 border-t border-foundation-border dark:border-dark-border">
-                <span className="text-xs font-mono uppercase tracking-wider text-foundation-ink dark:text-dark-text font-semibold block">
-                  Key Empirical Invariants:
+              <div className="space-y-3 pt-4 border-t border-brand-stone-dark/60 dark:border-dark-border">
+                <span className="text-xs font-mono uppercase tracking-wider text-brand-charcoal dark:text-dark-text font-semibold block">
+                  Observed Findings:
                 </span>
                 {featuredPaper.keyFindings.slice(0, 3).map((finding, idx) => (
-                  <div key={idx} className="flex items-start gap-2 text-xs text-foundation-secondary dark:text-dark-muted">
-                    <Check className="w-3.5 h-3.5 text-accent-violet shrink-0 mt-0.5" />
+                  <div key={idx} className="flex items-start gap-2 text-xs text-brand-muted dark:text-dark-muted">
+                    <Check className="w-3.5 h-3.5 text-accent-sage shrink-0 mt-0.5" />
                     <span>{finding}</span>
                   </div>
                 ))}
               </div>
 
               {/* Actions */}
-              <div className="mt-6 pt-4 border-t border-foundation-border dark:border-dark-border flex flex-wrap items-center justify-between gap-3">
+              <div className="mt-6 pt-4 border-t border-brand-stone-dark/60 dark:border-dark-border flex flex-wrap items-center justify-between gap-3">
                 <div className="flex items-center gap-2">
                   <AnimatedButton
                     size="sm"
@@ -511,7 +503,7 @@ export const HomePage: React.FC<HomePageProps> = ({
                     onClick={() => onDownloadPaper(featuredPaper)}
                     icon={<Download className="w-3.5 h-3.5" />}
                   >
-                    Download PDF
+                    Download Paper
                   </AnimatedButton>
                   <AnimatedButton
                     size="sm"
@@ -522,11 +514,6 @@ export const HomePage: React.FC<HomePageProps> = ({
                     {copiedBibtexId === featuredPaper.id ? 'Copied' : 'BibTeX'}
                   </AnimatedButton>
                 </div>
-                {featuredPaper.doi && (
-                  <span className="text-[11px] font-mono text-foundation-secondary dark:text-dark-muted">
-                    DOI: {featuredPaper.doi}
-                  </span>
-                )}
               </div>
             </div>
 
@@ -539,112 +526,53 @@ export const HomePage: React.FC<HomePageProps> = ({
       </section>
 
       {/* =========================================================================
-          SECTION 7 — ENGINEERING INSIGHTS (Kernel & Systems Deep Dives)
+          SECTION 7 — WHAT'S NEW: CHANGELOG & UPDATES
           ========================================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="flex items-end justify-between border-b border-foundation-border dark:border-dark-border pb-4 mb-8">
+          <div className="flex items-end justify-between border-b border-brand-stone-dark/80 dark:border-dark-border pb-4 mb-8">
             <div>
-              <span className="type-meta text-accent-violet block uppercase tracking-wider font-semibold">
-                Technical Depth
+              <span className="text-xs font-mono uppercase tracking-wider text-brand-muted font-semibold block mb-1">
+                Changelog
               </span>
-              <h2 className="type-section-heading text-foundation-ink dark:text-dark-text">
-                Engineering Insights &amp; Kernels
-              </h2>
-            </div>
-            <button
-              onClick={() => onNavigate('engineering')}
-              className="text-xs sm:text-sm font-medium text-foundation-ink dark:text-dark-text hover:text-accent-violet transition-colors flex items-center gap-1 cursor-pointer"
-            >
-              Explore engineering <ArrowRight className="w-3.5 h-3.5" />
-            </button>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {mockEngineeringArticles.map((item) => (
-              <div
-                key={item.id}
-                onClick={() => onNavigate('engineering')}
-                className="p-6 rounded-2xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial hover:shadow-editorial-hover transition-all cursor-pointer group flex flex-col justify-between"
-              >
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between text-xs">
-                    <span className="px-2 py-0.5 rounded font-mono text-[10px] uppercase font-semibold bg-surface-lavender text-accent-violet dark:bg-accent-violet/20">
-                      {item.category}
-                    </span>
-                    <span className="font-mono text-foundation-secondary dark:text-dark-muted text-[11px]">
-                      {item.readingTimeMinutes} min read
-                    </span>
-                  </div>
-
-                  <div>
-                    <h3 className="type-card-heading text-foundation-ink dark:text-dark-text font-medium group-hover:text-accent-violet transition-colors line-clamp-2">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-xs text-foundation-secondary dark:text-dark-muted leading-relaxed line-clamp-3">
-                      {item.abstract}
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-foundation-border dark:border-dark-border flex items-center justify-between text-xs font-mono text-foundation-secondary dark:text-dark-muted group-hover:text-accent-violet">
-                  <span>Architecture Deep Dive</span>
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </div>
-              </div>
-            ))}
-          </div>
-        </Reveal>
-      </section>
-
-      {/* =========================================================================
-          SECTION 8 — DEVELOPMENT UPDATES (Newsroom & Changelog Feed)
-          ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal>
-          <div className="flex items-end justify-between border-b border-foundation-border dark:border-dark-border pb-4 mb-8">
-            <div>
-              <span className="type-meta text-accent-violet block uppercase tracking-wider font-semibold">
-                Living Changelog
-              </span>
-              <h2 className="type-section-heading text-foundation-ink dark:text-dark-text">
-                Development Updates &amp; Milestones
+              <h2 className="type-section-heading text-brand-charcoal dark:text-dark-text font-semibold">
+                What's new.
               </h2>
             </div>
             <button
               onClick={() => onNavigate('updates')}
-              className="text-xs sm:text-sm font-medium text-foundation-ink dark:text-dark-text hover:text-accent-violet transition-colors flex items-center gap-1 cursor-pointer"
+              className="text-xs sm:text-sm font-medium text-brand-charcoal dark:text-dark-text hover:text-accent-blue transition-colors flex items-center gap-1 cursor-pointer"
             >
-              View full newsroom <ArrowRight className="w-3.5 h-3.5" />
+              View full changelog <ArrowRight className="w-3.5 h-3.5" />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {mockCompanyUpdates.slice(0, 3).map((upd) => (
               <div
                 key={upd.id}
                 onClick={() => onNavigate('updates')}
-                className="p-6 rounded-2xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial hover:shadow-editorial-hover transition-all cursor-pointer group flex flex-col justify-between"
+                className="p-6 rounded-2xl bg-brand-surface dark:bg-dark-surface border border-brand-stone-dark/80 dark:border-dark-border shadow-editorial hover:shadow-editorial-hover transition-all cursor-pointer group flex flex-col justify-between"
               >
                 <div className="space-y-3">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-foundation-paper dark:bg-dark-elevated text-foundation-ink dark:text-dark-text font-semibold border border-foundation-border dark:border-dark-border">
+                    <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-brand-stone dark:bg-dark-elevated text-brand-charcoal dark:text-dark-text font-semibold border border-brand-stone-dark/60">
                       {upd.version || upd.category}
                     </span>
-                    <span className="text-[11px] font-mono text-foundation-secondary dark:text-dark-muted">
+                    <span className="text-[11px] font-mono text-brand-muted dark:text-dark-muted">
                       {upd.date}
                     </span>
                   </div>
-                  <h3 className="type-card-heading text-foundation-ink dark:text-dark-text font-medium group-hover:text-accent-violet transition-colors">
+                  <h3 className="text-base font-semibold text-brand-charcoal dark:text-dark-text group-hover:text-accent-blue transition-colors">
                     {upd.title}
                   </h3>
-                  <p className="text-xs text-foundation-secondary dark:text-dark-muted leading-relaxed line-clamp-3">
+                  <p className="text-xs text-brand-muted dark:text-dark-muted leading-relaxed line-clamp-3">
                     {upd.summary}
                   </p>
                 </div>
 
-                <div className="mt-4 pt-3 border-t border-foundation-border dark:border-dark-border text-xs font-mono text-accent-violet flex items-center gap-1">
-                  <span>Read update notes</span>
+                <div className="mt-4 pt-3 border-t border-brand-stone-dark/60 dark:border-dark-border text-xs font-mono text-accent-blue flex items-center gap-1">
+                  <span>Read update</span>
                   <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                 </div>
               </div>
@@ -654,21 +582,21 @@ export const HomePage: React.FC<HomePageProps> = ({
       </section>
 
       {/* =========================================================================
-          SECTION 9 — MEDIA SHOWCASE (Cinematic Investigations & Dialogues)
+          SECTION 8 — MEDIA & VISUAL STORIES
           ========================================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-end justify-between border-b border-foundation-border dark:border-dark-border pb-4 mb-8">
+        <div className="flex items-end justify-between border-b border-brand-stone-dark/80 dark:border-dark-border pb-4 mb-8">
           <div>
-            <span className="type-meta text-foundation-secondary dark:text-dark-muted block uppercase tracking-wider">
-              Multimedia
+            <span className="text-xs font-mono uppercase tracking-wider text-brand-muted font-semibold block mb-1">
+              Visual Documentation
             </span>
-            <h2 className="type-section-heading text-foundation-ink dark:text-dark-text">
-              Cinematic Investigations &amp; Dialogues
+            <h2 className="type-section-heading text-brand-charcoal dark:text-dark-text font-semibold">
+              Media &amp; discussions.
             </h2>
           </div>
           <button
             onClick={() => onNavigate('media')}
-            className="text-xs sm:text-sm font-medium text-foundation-ink dark:text-dark-text hover:text-accent-violet transition-colors flex items-center gap-1 cursor-pointer"
+            className="text-xs sm:text-sm font-medium text-brand-charcoal dark:text-dark-text hover:text-accent-blue transition-colors flex items-center gap-1 cursor-pointer"
           >
             Explore media library <ArrowRight className="w-3.5 h-3.5" />
           </button>
@@ -679,17 +607,17 @@ export const HomePage: React.FC<HomePageProps> = ({
             <div
               key={item.id}
               onClick={() => onNavigate('media')}
-              className="rounded-2xl overflow-hidden bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial hover:shadow-editorial-hover transition-all cursor-pointer group flex flex-col justify-between"
+              className="rounded-2xl overflow-hidden bg-brand-surface dark:bg-dark-surface border border-brand-stone-dark/80 dark:border-dark-border shadow-editorial hover:shadow-editorial-hover transition-all cursor-pointer group flex flex-col justify-between"
             >
-              <div className="relative aspect-video overflow-hidden bg-foundation-ink">
+              <div className="relative aspect-video overflow-hidden bg-brand-charcoal">
                 <img
                   src={item.coverImage}
                   alt={item.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-full object-cover group-hover:scale-104 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                  <div className="w-12 h-12 rounded-full bg-white/90 text-foundation-ink flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                    <Play className="w-5 h-5 ml-0.5 text-accent-violet" />
+                  <div className="w-11 h-11 rounded-full bg-white text-brand-charcoal flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <Play className="w-4 h-4 ml-0.5 text-brand-charcoal fill-current" />
                   </div>
                 </div>
                 <div className="absolute bottom-2.5 right-2.5 px-2 py-0.5 rounded bg-black/75 text-white text-[11px] font-mono">
@@ -697,13 +625,13 @@ export const HomePage: React.FC<HomePageProps> = ({
                 </div>
               </div>
               <div className="p-5 space-y-2">
-                <span className="text-[10px] font-mono uppercase font-semibold text-accent-violet">
+                <span className="text-[10px] font-mono uppercase font-semibold text-accent-blue">
                   {item.format}
                 </span>
-                <h3 className="type-card-heading text-foundation-ink dark:text-dark-text font-medium group-hover:text-accent-violet transition-colors line-clamp-2">
+                <h3 className="text-base font-semibold text-brand-charcoal dark:text-dark-text group-hover:text-accent-blue transition-colors line-clamp-2">
                   {item.title}
                 </h3>
-                <p className="text-xs text-foundation-secondary dark:text-dark-muted line-clamp-2 leading-relaxed">
+                <p className="text-xs text-brand-muted dark:text-dark-muted line-clamp-2 leading-relaxed">
                   {item.description}
                 </p>
               </div>
@@ -713,29 +641,29 @@ export const HomePage: React.FC<HomePageProps> = ({
       </section>
 
       {/* =========================================================================
-          SECTION 10 — COMPANY VISION & JOURNEY (Our Story & Purpose)
+          SECTION 9 — WHY WE FOUNDED AI TATHASTU (Mission & Principles)
           ========================================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Reveal>
-          <div className="p-8 sm:p-12 rounded-3xl bg-foundation-paper dark:bg-dark-elevated border border-foundation-border dark:border-dark-border">
-            <div className="max-w-3xl space-y-4">
-              <span className="type-meta text-accent-violet uppercase tracking-wider font-semibold">
-                Company Vision &amp; Conviction
+          <div className="p-8 sm:p-14 rounded-3xl bg-brand-stone dark:bg-dark-elevated border border-brand-stone-dark/80 dark:border-dark-border">
+            <div className="max-w-3xl space-y-5">
+              <span className="text-xs font-mono uppercase tracking-wider text-brand-muted dark:text-dark-muted font-semibold block">
+                Why We Founded AI Tathastu
               </span>
-              <h2 className="type-section-heading text-foundation-ink dark:text-dark-text font-normal">
-                Why AI Tathastu Exists
+              <h2 className="type-section-heading text-brand-charcoal dark:text-dark-text font-semibold">
+                Technology should be explained, not obscured.
               </h2>
-              <p className="type-body text-foundation-secondary dark:text-dark-muted text-sm sm:text-base leading-relaxed">
-                We believe that artificial intelligence should not be governed by corporate secrecy or opaque marketing rhetoric. AI Tathastu is committed to building what comes next and openly documenting every system architecture, mechanistic circuit, and empirical failure mode.
+              <p className="text-sm sm:text-base text-brand-muted dark:text-dark-muted leading-relaxed">
+                We started AI Tathastu with a clear conviction: the next decade of artificial intelligence cannot be governed by corporate secrecy or speculative marketing rhetoric. We openly document what we build, why we build it, and how each system functions in practice.
               </p>
-              <div className="pt-4 flex flex-wrap items-center gap-4">
+              <div className="pt-2 flex flex-wrap items-center gap-4">
                 <AnimatedButton
                   variant="primary"
                   size="sm"
                   onClick={() => onNavigate('about')}
                   icon={<ArrowRight className="w-3.5 h-3.5" />}
                 >
-                  Read Our Full Story &amp; Charter
+                  Read our story and principles
                 </AnimatedButton>
               </div>
             </div>
@@ -744,19 +672,19 @@ export const HomePage: React.FC<HomePageProps> = ({
       </section>
 
       {/* =========================================================================
-          SECTION 11 — NEWSLETTER DISPATCH
+          SECTION 10 — STAY UPDATED & NEWSLETTER
           ========================================================================= */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-8">
-        <div className="p-8 sm:p-12 rounded-3xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial">
-          <div className="max-w-2xl space-y-3">
-            <span className="type-meta text-accent-violet uppercase tracking-widest block font-medium">
-              Fortnightly Peer Dispatch
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-4">
+        <div className="p-8 sm:p-12 rounded-3xl bg-brand-surface dark:bg-dark-surface border border-brand-stone-dark/80 dark:border-dark-border shadow-editorial">
+          <div className="max-w-2xl space-y-2">
+            <span className="text-xs font-mono uppercase tracking-wider text-brand-muted font-semibold block">
+              Stay Updated
             </span>
-            <h3 className="type-section-heading text-foundation-ink dark:text-dark-text font-normal">
-              Read verified research before public preprint distribution.
+            <h3 className="type-section-heading text-brand-charcoal dark:text-dark-text font-semibold">
+              Get updates as we ship new products and notes.
             </h3>
-            <p className="type-secondary text-foundation-secondary dark:text-dark-muted leading-relaxed">
-              We send concise summaries of verified residual circuits, multi-agent benchmarks, and statutory policy standards every second Tuesday. Zero promotional filler.
+            <p className="text-xs sm:text-sm text-brand-muted dark:text-dark-muted leading-relaxed">
+              We send updates when new product releases, engineering write-ups, or open benchmarks are published. Zero marketing spam.
             </p>
           </div>
 
@@ -767,8 +695,8 @@ export const HomePage: React.FC<HomePageProps> = ({
                 required
                 value={newsletterEmail}
                 onChange={(e) => setNewsletterEmail(e.target.value)}
-                placeholder="name@institution.edu"
-                className="flex-1 px-4 py-3 rounded-xl border border-foundation-border dark:border-dark-border bg-foundation-paper dark:bg-dark-elevated text-sm text-foundation-ink dark:text-dark-text focus:outline-none focus:ring-2 focus:ring-accent-violet transition-all"
+                placeholder="Enter your email"
+                className="flex-1 px-4 py-3 rounded-xl border border-brand-stone-dark dark:border-dark-border bg-brand-canvas dark:bg-dark-elevated text-sm text-brand-charcoal dark:text-dark-text focus:outline-none focus:ring-2 focus:ring-accent-blue transition-all"
               />
               <AnimatedButton
                 type="submit"
@@ -781,7 +709,7 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
             {newsletterSubscribed && (
               <p className="text-xs font-mono text-green-600 dark:text-green-400">
-                ✓ Dispatch confirmed. Volume 4 will arrive in your institutional inbox.
+                ✓ You're signed up. We'll send updates as new milestones land.
               </p>
             )}
             {newsletterError && (

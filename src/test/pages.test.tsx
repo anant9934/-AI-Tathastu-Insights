@@ -43,16 +43,15 @@ describe('Page Level Verification & User Workflows', () => {
       />
     );
 
-    expect(screen.getByText(/Building what comes next\./i)).toBeInTheDocument();
-    expect(screen.getByRole('button', { name: /read featured story/i })).toBeInTheDocument();
-    expect(screen.getByText(/Featured Investigation/i)).toBeInTheDocument();
-    expect(screen.getByText(/Research Spotlight/i)).toBeInTheDocument();
-    expect(screen.getByText(/Applied Laboratories & Research Systems/i)).toBeInTheDocument();
-    expect(screen.getByText(/Engineering Insights & Kernels/i)).toBeInTheDocument();
-    expect(screen.getByText(/Development Updates & Milestones/i)).toBeInTheDocument();
-    expect(screen.getByText(/Cinematic Investigations & Dialogues/i)).toBeInTheDocument();
-    expect(screen.getByText(/Why AI Tathastu Exists/i)).toBeInTheDocument();
-    expect(screen.getByText(/Read verified research before public preprint distribution\./i)).toBeInTheDocument();
+    expect(screen.getByText(/We build open systems for research, distributed intelligence/i)).toBeInTheDocument();
+    expect(screen.getByText(/The problems we're tackling\./i)).toBeInTheDocument();
+    expect(screen.getByText(/Software engineered around real technical barriers\./i)).toBeInTheDocument();
+    expect(screen.getByText(/How we built it\./i)).toBeInTheDocument();
+    expect(screen.getByText(/Research & experiments\./i)).toBeInTheDocument();
+    expect(screen.getByText(/What's new\./i)).toBeInTheDocument();
+    expect(screen.getByText(/Media & discussions\./i)).toBeInTheDocument();
+    expect(screen.getByText(/Technology should be explained, not obscured\./i)).toBeInTheDocument();
+    expect(screen.getByText(/Get updates as we ship new products and notes\./i)).toBeInTheDocument();
   });
 
   it('renders ArticlePage with table of contents, abstract, and references', () => {
@@ -131,12 +130,12 @@ describe('Page Level Verification & User Workflows', () => {
     expect(showToast).toHaveBeenCalledWith('Block Inserted', expect.any(String), 'success');
   });
 
-  it('renders AboutPage with editorial charter and board members', () => {
+  it('renders AboutPage with company story and principles', () => {
     render(<AboutPage />);
-    expect(screen.getByText(/The Tathastu Editorial Charter/i)).toBeInTheDocument();
+    expect(screen.getByText(/Why we founded AI Tathastu\./i)).toBeInTheDocument();
+    expect(screen.getByText(/The principles that guide our work\./i)).toBeInTheDocument();
     expect(screen.getByText(/Dr. Aravind Nair/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/Preamble & Empirical Mandate/i).length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByRole('button', { name: /cite charter/i })).toBeInTheDocument();
+    expect(screen.getByText(/Our engineering & research team\./i)).toBeInTheDocument();
   });
 
   it('renders DiscoverPage and filters articles by topic tag', () => {
@@ -164,7 +163,7 @@ describe('Page Level Verification & User Workflows', () => {
       />
     );
 
-    expect(screen.getByText(/Audiovisual Research Channel/i)).toBeInTheDocument();
+    expect(screen.getByText(/Visual & Audio Stories/i)).toBeInTheDocument();
     expect(screen.getByText(/Watch 24-Min Film/i)).toBeInTheDocument();
   });
 
@@ -206,7 +205,7 @@ describe('Page Level Verification & User Workflows', () => {
       />
     );
 
-    expect(screen.getByText(/Engineering at AI Tathastu/i)).toBeInTheDocument();
+    expect(screen.getByText(/How we built it\./i)).toBeInTheDocument();
     expect(screen.getByText(/Aegis-BFT: Sub-200ms Byzantine Consensus/i)).toBeInTheDocument();
     expect(screen.getByText(/Triton Top-K SAE Kernels/i)).toBeInTheDocument();
   });
@@ -220,7 +219,7 @@ describe('Page Level Verification & User Workflows', () => {
       />
     );
 
-    expect(screen.getByText(/Company Updates & Releases/i)).toBeInTheDocument();
+    expect(screen.getByText(/What's new\./i)).toBeInTheDocument();
     expect(screen.getByText(/MentorMaze 3.2: Speculative Socratic Reasoning/i)).toBeInTheDocument();
     expect(screen.getByText(/Iris 2.1: Continuous Egocentric 3D Voxel Memory/i)).toBeInTheDocument();
   });

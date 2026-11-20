@@ -1,9 +1,8 @@
 import React from 'react';
 import { motion, useReducedMotion } from 'motion/react';
-import { ArrowUpRight, GraduationCap, Users, Award, Eye, CheckCircle2 } from 'lucide-react';
+import { ArrowUpRight, GraduationCap, Users, Award, Eye, CheckCircle2, ChevronRight } from 'lucide-react';
 import { EcosystemProduct } from '../../types';
-import { Badge } from '../ui/Badge';
-import { EDITORIAL_EASE, MOTION_DURATIONS } from '../../lib/motion';
+import { EDITORIAL_EASE } from '../../lib/motion';
 
 interface EcosystemCardProps {
   product: EcosystemProduct;
@@ -21,93 +20,116 @@ export const EcosystemCard: React.FC<EcosystemCardProps> = ({
   const getProductIcon = () => {
     switch (product.id) {
       case 'mentormaze':
-        return <GraduationCap className="w-5 h-5 text-accent-violet" />;
+        return <GraduationCap className="w-5 h-5 text-accent-blue" />;
       case 'collaborate':
-        return <Users className="w-5 h-5 text-[#205493]" />;
+        return <Users className="w-5 h-5 text-accent-blue" />;
       case 'avsar':
-        return <Award className="w-5 h-5 text-[#C2410C]" />;
+        return <Award className="w-5 h-5 text-accent-terracotta" />;
       case 'iris':
-        return <Eye className="w-5 h-5 text-[#166534]" />;
+        return <Eye className="w-5 h-5 text-accent-sage" />;
+      default:
+        return <GraduationCap className="w-5 h-5 text-accent-blue" />;
+    }
+  };
+
+  const getStatusBadgeColor = (status: string) => {
+    switch (status) {
+      case 'Live Platform':
+        return 'bg-accent-softmint text-accent-sage dark:bg-accent-sage/20 dark:text-green-300';
+      case 'Beta Lab':
+        return 'bg-accent-softblue text-accent-blue dark:bg-accent-blue/20 dark:text-blue-300';
+      case 'Frontier Preview':
+        return 'bg-accent-peach text-accent-terracotta dark:bg-accent-terracotta/20 dark:text-orange-300';
+      default:
+        return 'bg-brand-stone text-brand-muted dark:bg-dark-elevated dark:text-dark-muted';
     }
   };
 
   return (
     <motion.div
       onClick={() => onExplore(product)}
-      whileHover={shouldReduceMotion ? {} : { y: -4 }}
-      transition={{ duration: MOTION_DURATIONS.cardTransition, ease: EDITORIAL_EASE }}
-      className={`group cursor-pointer bg-white dark:bg-dark-surface rounded-2xl border border-foundation-charcoal/10 dark:border-dark-border p-6 sm:p-8 shadow-editorial hover:shadow-editorial-hover transition-all flex flex-col justify-between ${className}`}
+      whileHover={shouldReduceMotion ? {} : { y: -3 }}
+      transition={{ duration: 0.2, ease: EDITORIAL_EASE }}
+      className={`group cursor-pointer bg-brand-surface dark:bg-dark-surface rounded-2xl border border-brand-stone-dark/80 dark:border-dark-border p-6 shadow-editorial hover:shadow-editorial-hover hover:border-brand-charcoal/30 dark:hover:border-white/30 transition-all flex flex-col justify-between ${className}`}
     >
       <div>
-        <div className="flex items-center justify-between gap-3 mb-5">
+        {/* Header: Icon, Name & Status */}
+        <div className="flex items-center justify-between gap-3 mb-4">
           <div className="flex items-center gap-3">
-            <motion.div
-              className="w-10 h-10 rounded-xl bg-foundation-ivory dark:bg-dark-elevated border border-foundation-charcoal/5 dark:border-dark-border flex items-center justify-center shrink-0"
-              whileHover={shouldReduceMotion ? {} : { scale: 1.05 }}
-              transition={{ duration: 0.2 }}
-            >
+            <div className="w-10 h-10 rounded-xl bg-brand-stone dark:bg-dark-elevated flex items-center justify-center shrink-0">
               {getProductIcon()}
-            </motion.div>
+            </div>
             <div>
-              <h3 className="font-editorial-serif text-2xl text-foundation-charcoal dark:text-dark-text tracking-tight font-normal">
-                {product.name}
-              </h3>
-              <p className="text-[11px] font-mono text-foundation-muted dark:text-dark-muted">
+              <div className="flex items-center gap-1.5">
+                <h3 className="text-xl font-semibold text-brand-charcoal dark:text-dark-text tracking-tight group-hover:text-accent-blue transition-colors">
+                  {product.name}
+                </h3>
+                <span className="text-[11px] font-mono text-brand-muted">
+                  {product.version}
+                </span>
+              </div>
+              <p className="text-xs text-brand-muted dark:text-dark-muted">
                 {product.badge}
               </p>
             </div>
           </div>
 
-          <Badge accent={product.accentColor} size="xs">
-            Live Platform
-          </Badge>
+          <span className={`text-[10px] font-mono uppercase tracking-wider font-semibold px-2 py-0.5 rounded-full ${getStatusBadgeColor(product.status)}`}>
+            {product.status}
+          </span>
         </div>
 
-        <p className="text-sm font-medium text-foundation-charcoal/90 dark:text-dark-text/90 leading-snug">
-          {product.tagline}
+        {/* Product Image / Interface Thumbnail */}
+        {product.coverImage && (
+          <div className="relative rounded-xl overflow-hidden aspect-[16/9] mb-4 bg-brand-stone dark:bg-dark-elevated border border-brand-stone-dark/50 dark:border-dark-border">
+            <img
+              src={product.coverImage}
+              alt={product.name}
+              className="w-full h-full object-cover group-hover:scale-103 transition-transform duration-500 ease-editorial"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
+            <div className="absolute bottom-2.5 left-3 right-3 text-white text-[11px] font-medium truncate drop-shadow">
+              {product.tagline}
+            </div>
+          </div>
+        )}
+
+        {/* Problem Statement Preview */}
+        <div className="mb-3 p-3 rounded-xl bg-brand-stone/60 dark:bg-dark-elevated/60 text-xs">
+          <span className="font-semibold text-brand-charcoal dark:text-dark-text block mb-0.5">
+            Problem addressed:
+          </span>
+          <p className="text-brand-muted dark:text-dark-muted line-clamp-2 leading-relaxed">
+            {product.problem}
+          </p>
+        </div>
+
+        {/* What It Does */}
+        <p className="text-xs sm:text-sm text-brand-charcoal/90 dark:text-dark-text/90 leading-relaxed line-clamp-2">
+          {product.overview || product.description}
         </p>
 
-        <p className="mt-3 text-xs sm:text-sm text-foundation-muted dark:text-dark-muted leading-relaxed line-clamp-3">
-          {product.description}
-        </p>
-
-        {/* Stats Grid */}
-        <div className="grid grid-cols-2 gap-3 my-6 pt-4 border-t border-foundation-charcoal/5 dark:border-dark-border">
-          {product.stats.slice(0, 2).map((stat) => (
-            <div key={stat.label} className="bg-foundation-ivory dark:bg-dark-elevated p-3 rounded-xl">
-              <span className="block text-lg font-mono font-semibold text-foundation-charcoal dark:text-dark-text">
-                {stat.value}
-              </span>
-              <span className="text-[11px] text-foundation-muted dark:text-dark-muted">
-                {stat.label}
-              </span>
-            </div>
-          ))}
-        </div>
-
-        {/* Core Capabilities */}
-        <div className="space-y-2">
-          {product.coreCapabilities.slice(0, 2).map((cap, i) => (
-            <div key={i} className="flex items-start gap-2 text-xs text-foundation-charcoal/80 dark:text-dark-text/80">
-              <CheckCircle2 className="w-3.5 h-3.5 text-accent-violet shrink-0 mt-0.5" />
-              <span className="truncate">{cap.title}</span>
-            </div>
-          ))}
-        </div>
+        {/* Stats Preview */}
+        {product.stats && product.stats.length > 0 && (
+          <div className="grid grid-cols-2 gap-2 mt-4 pt-4 border-t border-brand-stone-dark/60 dark:border-dark-border text-xs">
+            {product.stats.slice(0, 2).map((st) => (
+              <div key={st.label}>
+                <span className="block text-[11px] text-brand-muted dark:text-dark-muted truncate">
+                  {st.label}
+                </span>
+                <span className="block font-semibold font-mono text-sm text-brand-charcoal dark:text-dark-text">
+                  {st.value}
+                </span>
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
-      <div className="pt-6 mt-6 border-t border-foundation-charcoal/5 dark:border-dark-border flex items-center justify-between">
-        <span className="text-xs font-medium text-accent-violet group-hover:underline flex items-center gap-1">
-          Explore Product Architecture
-        </span>
-
-        <motion.div
-          className="w-8 h-8 rounded-lg bg-foundation-charcoal/5 dark:bg-white/5 flex items-center justify-center text-foundation-charcoal dark:text-dark-text group-hover:bg-accent-violet group-hover:text-white transition-colors"
-          whileHover={shouldReduceMotion ? {} : { x: 2 }}
-          transition={{ duration: MOTION_DURATIONS.hoverFocus, ease: EDITORIAL_EASE }}
-        >
-          <ArrowUpRight className="w-4 h-4" />
-        </motion.div>
+      {/* Card Footer Action */}
+      <div className="pt-4 mt-4 border-t border-brand-stone-dark/60 dark:border-dark-border flex items-center justify-between text-xs font-medium text-accent-blue group-hover:text-brand-charcoal dark:group-hover:text-white transition-colors">
+        <span>View product details</span>
+        <ArrowUpRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
       </div>
     </motion.div>
   );

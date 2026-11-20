@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { motion } from 'motion/react';
-import { ArrowRight, Check, ShieldCheck, BookOpen, ExternalLink } from 'lucide-react';
+import { ArrowRight, Check } from 'lucide-react';
 import { NavTab } from './Navbar';
 import { AnimatedButton } from '../motion/AnimatedButton';
 
@@ -17,7 +16,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email || !email.includes('@')) {
-      setError('Please provide a valid research institutional or personal email address.');
+      setError('Please provide a valid email address.');
       return;
     }
     setError('');
@@ -29,20 +28,20 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
   };
 
   return (
-    <footer className="border-t border-foundation-border dark:border-dark-border bg-white dark:bg-dark-surface transition-colors mt-20">
-      {/* Newsletter Dispatch Banner (Conditional: hidden on Homepage which has Section 11) */}
+    <footer className="border-t border-brand-stone-dark/80 dark:border-dark-border bg-brand-surface dark:bg-dark-surface transition-colors mt-20">
+      {/* Newsletter Dispatch Banner (Conditional: hidden on Homepage which has its own section) */}
       {!hideNewsletter && (
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-foundation-border dark:border-dark-border">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 border-b border-brand-stone-dark/80 dark:border-dark-border">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-7">
-              <span className="text-[11px] font-mono uppercase tracking-widest text-brand-editorial-violet block mb-2 font-medium">
-                The Tathastu Dispatch
+              <span className="text-[11px] font-mono uppercase tracking-widest text-brand-muted block mb-2 font-medium">
+                Stay Updated
               </span>
-              <h3 className="font-editorial-serif text-2xl sm:text-3xl text-foundation-ink dark:text-dark-text tracking-tight font-normal">
-                Empirical breakthroughs and peer-reviewed dispatches, delivered fortnightly.
+              <h3 className="text-2xl sm:text-3xl text-brand-charcoal dark:text-dark-text tracking-tight font-semibold">
+                Follow what we're building and what we're learning.
               </h3>
-              <p className="mt-2 text-xs sm:text-sm text-foundation-secondary dark:text-dark-muted leading-relaxed">
-                No generic hype or speculative summaries. Only verified research findings, open model checkpoints, and statutory policy analyses.
+              <p className="mt-2 text-xs sm:text-sm text-brand-muted dark:text-dark-muted leading-relaxed">
+                Direct updates on new product releases, engineering write-ups, and the research behind our systems. No marketing noise.
               </p>
             </div>
 
@@ -53,8 +52,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
-                    placeholder="name@institution.edu"
-                    className="flex-1 px-4 py-2.5 rounded-xl border border-foundation-border dark:border-dark-border bg-foundation-paper dark:bg-dark-elevated text-sm text-foundation-ink dark:text-dark-text placeholder:text-foundation-secondary/60 focus:outline-none focus:ring-2 focus:ring-brand-editorial-violet transition-all"
+                    placeholder="Enter your email"
+                    className="flex-1 px-4 py-2.5 rounded-xl border border-brand-stone-dark dark:border-dark-border bg-brand-canvas dark:bg-dark-elevated text-sm text-brand-charcoal dark:text-dark-text placeholder:text-brand-muted/60 focus:outline-none focus:ring-2 focus:ring-accent-blue transition-all"
                   />
                   <AnimatedButton
                     type="submit"
@@ -68,7 +67,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
                 {error && <p className="text-xs text-red-500 font-mono">{error}</p>}
                 {subscribed && (
                   <p className="text-xs text-green-600 dark:text-green-400 font-mono">
-                    ✓ Subscription recorded with verified double opt-in consent. Outbound dispatch pending production mail provider integration.
+                    ✓ You're signed up. We'll send updates as new milestones land.
                   </p>
                 )}
               </form>
@@ -82,90 +81,36 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
         {/* Brand Column */}
         <div className="col-span-1 sm:col-span-2">
           <div className="flex items-center gap-2 mb-3">
-            <div className="w-7 h-7 rounded-lg bg-foundation-ink text-white dark:bg-white dark:text-foundation-ink flex items-center justify-center font-editorial-serif font-bold text-sm">
+            <div className="w-7 h-7 rounded-lg bg-brand-charcoal text-white dark:bg-white dark:text-brand-charcoal flex items-center justify-center font-bold text-sm">
               T
             </div>
-            <span className="font-editorial-serif text-xl font-medium tracking-tight text-foundation-ink dark:text-dark-text">
+            <span className="text-lg font-semibold tracking-tight text-brand-charcoal dark:text-dark-text">
               AI Tathastu Insights
             </span>
           </div>
-          <p className="text-xs text-foundation-secondary dark:text-dark-muted leading-relaxed max-w-sm">
-            An open editorial publication and computational research journal committed to mechanistic clarity, Byzantine multi-agent safety, and grounded physical intelligence.
+          <p className="text-xs text-brand-muted dark:text-dark-muted leading-relaxed max-w-sm">
+            The official public knowledge and storytelling platform of AI Tathastu. Documenting what we build, why we build it, and how our products, research, and engineering work.
           </p>
-
-          <div className="mt-5 flex items-center gap-2 text-[11px] font-mono text-foundation-secondary dark:text-dark-muted">
-            <ShieldCheck className="w-4 h-4 text-brand-editorial-violet" />
-            <span>Open Access (CC BY-NC 4.0) • DOI Indexed</span>
-          </div>
-        </div>
-
-        {/* Publication Column */}
-        <div>
-          <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-ink dark:text-dark-text font-semibold mb-4">
-            Publication
-          </h4>
-          <ul className="space-y-2 text-xs">
-            <li>
-              <button
-                onClick={() => onNavigate('discover')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
-              >
-                Discover
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => onNavigate('research')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
-              >
-                Research Library
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => onNavigate('engineering')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
-              >
-                Engineering Insights
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => onNavigate('updates')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
-              >
-                Changelog &amp; Updates
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => onNavigate('media')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
-              >
-                Media Library
-              </button>
-            </li>
-          </ul>
         </div>
 
         {/* Products Column */}
         <div>
-          <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-ink dark:text-dark-text font-semibold mb-4">
+          <h4 className="text-xs font-mono uppercase tracking-wider text-brand-charcoal dark:text-dark-text font-semibold mb-4">
             Products
           </h4>
-          <ul className="space-y-2 text-xs">
+          <ul className="space-y-2.5 text-xs">
             <li>
               <button
                 onClick={() => onNavigate('products')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-brand-muted hover:text-brand-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer"
               >
-                MentorMaze (Mentorship)
+                MentorMaze (AI Mentorship)
               </button>
             </li>
             <li>
               <button
                 onClick={() => onNavigate('products')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-brand-muted hover:text-brand-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer"
               >
                 Collaborate (Agent Lab)
               </button>
@@ -173,7 +118,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
             <li>
               <button
                 onClick={() => onNavigate('products')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-brand-muted hover:text-brand-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer"
               >
                 Avsar (Grants &amp; Talent)
               </button>
@@ -181,7 +126,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
             <li>
               <button
                 onClick={() => onNavigate('products')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-brand-muted hover:text-brand-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer"
               >
                 Iris (Spatial Vision)
               </button>
@@ -189,42 +134,75 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
           </ul>
         </div>
 
-        {/* Company & Governance Column */}
+        {/* Engineering & Stories Column */}
         <div>
-          <h4 className="text-xs font-mono uppercase tracking-wider text-foundation-ink dark:text-dark-text font-semibold mb-4">
+          <h4 className="text-xs font-mono uppercase tracking-wider text-brand-charcoal dark:text-dark-text font-semibold mb-4">
+            Engineering &amp; Work
+          </h4>
+          <ul className="space-y-2.5 text-xs">
+            <li>
+              <button
+                onClick={() => onNavigate('engineering')}
+                className="text-brand-muted hover:text-brand-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer"
+              >
+                How We Built It
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => onNavigate('research')}
+                className="text-brand-muted hover:text-brand-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer"
+              >
+                Research &amp; Experiments
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => onNavigate('updates')}
+                className="text-brand-muted hover:text-brand-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer"
+              >
+                What's New (Changelog)
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => onNavigate('media')}
+                className="text-brand-muted hover:text-brand-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer"
+              >
+                Media &amp; Visual Stories
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        {/* Company Column */}
+        <div>
+          <h4 className="text-xs font-mono uppercase tracking-wider text-brand-charcoal dark:text-dark-text font-semibold mb-4">
             Company
           </h4>
-          <ul className="space-y-2 text-xs">
+          <ul className="space-y-2.5 text-xs">
             <li>
               <button
                 onClick={() => onNavigate('about')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-brand-muted hover:text-brand-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer"
               >
-                Our Story &amp; Vision
+                Why We Founded AI Tathastu
               </button>
             </li>
             <li>
               <button
                 onClick={() => onNavigate('about')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-brand-muted hover:text-brand-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer"
               >
-                Resident Team
+                Our Team &amp; Principles
               </button>
             </li>
             <li>
               <button
                 onClick={() => onNavigate('about')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
+                className="text-brand-muted hover:text-brand-charcoal dark:text-dark-muted dark:hover:text-dark-text transition-colors cursor-pointer"
               >
-                Editorial Charter
-              </button>
-            </li>
-            <li>
-              <button
-                onClick={() => onNavigate('editorial-studio')}
-                className="text-foundation-secondary hover:text-brand-editorial-violet dark:text-dark-muted transition-colors cursor-pointer"
-              >
-                Editorial Studio (CMS)
+                Long-Term Vision
               </button>
             </li>
           </ul>
@@ -232,12 +210,12 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, hideNewsletter = fal
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-foundation-border dark:border-dark-border py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-foundation-secondary dark:text-dark-muted text-center sm:text-left">
-          <p>© 2026 AI Tathastu Insights. Published under CC BY-NC 4.0 International Open Access.</p>
-          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-3 sm:gap-6">
-            <span>Open Access (CC BY-NC 4.0)</span>
-            <span>Typography: Fraunces &amp; Geist</span>
+      <div className="border-t border-brand-stone-dark/80 dark:border-dark-border py-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-brand-muted dark:text-dark-muted text-center sm:text-left">
+          <p>© 2026 AI Tathastu. Openly documenting what we build and why.</p>
+          <div className="flex flex-wrap items-center justify-center sm:justify-end gap-4 sm:gap-6 font-mono text-[11px]">
+            <span>San Francisco &amp; Global Labs</span>
+            <span>Open Research &amp; Engineering</span>
           </div>
         </div>
       </div>

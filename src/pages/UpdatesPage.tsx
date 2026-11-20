@@ -68,21 +68,21 @@ export const UpdatesPage: React.FC<UpdatesPageProps> = ({
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-12">
       {/* Header */}
       <Reveal>
-        <div className="border-b border-foundation-border dark:border-dark-border pb-10">
+        <div className="border-b border-brand-stone-dark/80 dark:border-dark-border pb-10">
           <div className="flex items-center gap-2 mb-3">
-            <span className="type-meta text-accent-violet uppercase tracking-widest font-semibold">
-              Newsroom &amp; Changelog
+            <span className="text-xs font-mono uppercase tracking-widest text-accent-blue font-semibold">
+              Changelog &amp; Newsroom
             </span>
-            <span className="text-foundation-secondary dark:text-dark-muted">•</span>
-            <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted">
+            <span className="text-brand-muted dark:text-dark-muted">•</span>
+            <span className="text-xs font-mono text-brand-muted dark:text-dark-muted">
               Live Progress
             </span>
           </div>
-          <h1 className="type-hero text-foundation-ink dark:text-dark-text tracking-tight font-normal">
-            Company Updates &amp; Releases
+          <h1 className="type-hero text-brand-charcoal dark:text-dark-text tracking-tight font-semibold">
+            What's new.
           </h1>
-          <p className="mt-4 type-body text-foundation-secondary dark:text-dark-muted max-w-3xl leading-relaxed text-base sm:text-lg">
-            A chronological ledger of product rollouts, architectural breakthroughs, research milestones, and institutional dispatches across the AI Tathastu ecosystem.
+          <p className="mt-4 text-base sm:text-xl text-brand-muted dark:text-dark-muted max-w-3xl leading-relaxed">
+            A chronological ledger of product rollouts, architectural notes, and milestone releases across AI Tathastu.
           </p>
         </div>
       </Reveal>

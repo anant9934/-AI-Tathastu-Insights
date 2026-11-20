@@ -75,21 +75,21 @@ export const EcosystemPage: React.FC<EcosystemPageProps> = ({
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
       {/* Header Banner */}
       <Reveal>
-        <div className="border-b border-foundation-border dark:border-dark-border pb-10">
+        <div className="border-b border-brand-stone-dark/80 dark:border-dark-border pb-10">
           <div className="flex items-center gap-2 mb-3">
-            <span className="type-meta text-accent-violet uppercase tracking-widest font-semibold">
-              The Tathastu Platform
+            <span className="text-xs font-mono uppercase tracking-widest text-accent-blue font-semibold">
+              Our Products
             </span>
-            <span className="text-foundation-secondary dark:text-dark-muted">•</span>
-            <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted">
-              Living Software Systems
+            <span className="text-brand-muted dark:text-dark-muted">•</span>
+            <span className="text-xs font-mono text-brand-muted dark:text-dark-muted">
+              Live Software &amp; Tools
             </span>
           </div>
-          <h1 className="type-hero text-foundation-ink dark:text-dark-text tracking-tight font-normal">
-            Products &amp; Applied Laboratories
+          <h1 className="type-hero text-brand-charcoal dark:text-dark-text tracking-tight font-semibold">
+            Products &amp; Systems
           </h1>
-          <p className="mt-4 type-body text-foundation-secondary dark:text-dark-muted max-w-3xl leading-relaxed text-base sm:text-lg">
-            Our research is embodied in living software. We document what we build, why we build it, and how each system operates under rigorous mathematical and empirical invariants.
+          <p className="mt-4 text-base sm:text-xl text-brand-muted dark:text-dark-muted max-w-3xl leading-relaxed">
+            We document what we build, why we build it, and how each system operates. Explore our four foundational platforms below.
           </p>
 
           {/* Product Selector Navigation Tabs */}

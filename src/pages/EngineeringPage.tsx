@@ -58,43 +58,43 @@ export const EngineeringPage: React.FC<EngineeringPageProps> = ({
     <div className="min-h-screen py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto space-y-16">
       {/* Header Banner */}
       <Reveal>
-        <div className="border-b border-foundation-border dark:border-dark-border pb-10">
+        <div className="border-b border-brand-stone-dark/80 dark:border-dark-border pb-10">
           <div className="flex items-center gap-2 mb-3">
-            <span className="type-meta text-accent-violet uppercase tracking-widest font-semibold">
+            <span className="text-xs font-mono uppercase tracking-widest text-accent-blue font-semibold">
               Systems &amp; Architecture
             </span>
-            <span className="text-foundation-secondary dark:text-dark-muted">•</span>
-            <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted">
-              Production Invariants
+            <span className="text-brand-muted dark:text-dark-muted">•</span>
+            <span className="text-xs font-mono text-brand-muted dark:text-dark-muted">
+              Engineering Notes
             </span>
           </div>
-          <h1 className="type-hero text-foundation-ink dark:text-dark-text tracking-tight font-normal">
-            Engineering at AI Tathastu
+          <h1 className="type-hero text-brand-charcoal dark:text-dark-text tracking-tight font-semibold">
+            How we built it.
           </h1>
-          <p className="mt-4 type-body text-foundation-secondary dark:text-dark-muted max-w-3xl leading-relaxed text-base sm:text-lg">
-            We document the kernels, distributed consensus protocols, and cryptographic safety proofs that turn frontier theoretical research into deterministic production software.
+          <p className="mt-4 text-base sm:text-xl text-brand-muted dark:text-dark-muted max-w-3xl leading-relaxed">
+            Direct technical documentation of the kernels, distributed consensus protocols, and hardware bottlenecks behind AI Tathastu products.
           </p>
 
           {/* Quick Metrics Bar */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-foundation-border dark:border-dark-border">
-            <div className="p-4 rounded-xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial">
-              <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted block">Consensus Latency</span>
-              <span className="text-2xl font-mono font-semibold text-foundation-ink dark:text-dark-text mt-1 block">142ms</span>
-              <span className="text-[11px] text-accent-violet font-mono mt-0.5 block">Sub-200ms bound</span>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-brand-stone-dark/80 dark:border-dark-border">
+            <div className="p-4 rounded-xl bg-brand-surface dark:bg-dark-surface border border-brand-stone-dark/80 dark:border-dark-border shadow-editorial">
+              <span className="text-xs font-mono text-brand-muted dark:text-dark-muted block">Consensus Latency</span>
+              <span className="text-2xl font-mono font-semibold text-brand-charcoal dark:text-dark-text mt-1 block">142ms</span>
+              <span className="text-[11px] text-accent-blue font-mono mt-0.5 block">Sub-200ms bound</span>
             </div>
-            <div className="p-4 rounded-xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial">
-              <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted block">Triton Memory Saturation</span>
-              <span className="text-2xl font-mono font-semibold text-foundation-ink dark:text-dark-text mt-1 block">94.2%</span>
+            <div className="p-4 rounded-xl bg-brand-surface dark:bg-dark-surface border border-brand-stone-dark/80 dark:border-dark-border shadow-editorial">
+              <span className="text-xs font-mono text-brand-muted dark:text-dark-muted block">Triton Memory Saturation</span>
+              <span className="text-2xl font-mono font-semibold text-brand-charcoal dark:text-dark-text mt-1 block">94.2%</span>
               <span className="text-[11px] text-accent-blue font-mono mt-0.5 block">NVIDIA H100 SXM5</span>
             </div>
-            <div className="p-4 rounded-xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial">
-              <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted block">ZK Verification Check</span>
-              <span className="text-2xl font-mono font-semibold text-foundation-ink dark:text-dark-text mt-1 block">3.4ms</span>
-              <span className="text-[11px] text-accent-mint font-mono mt-0.5 block">Statutory circuit proof</span>
+            <div className="p-4 rounded-xl bg-brand-surface dark:bg-dark-surface border border-brand-stone-dark/80 dark:border-dark-border shadow-editorial">
+              <span className="text-xs font-mono text-brand-muted dark:text-dark-muted block">ZK Verification Check</span>
+              <span className="text-2xl font-mono font-semibold text-brand-charcoal dark:text-dark-text mt-1 block">3.4ms</span>
+              <span className="text-[11px] text-accent-sage font-mono mt-0.5 block">Statutory circuit proof</span>
             </div>
-            <div className="p-4 rounded-xl bg-white dark:bg-dark-surface border border-foundation-border dark:border-dark-border shadow-editorial">
-              <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted block">Byzantine Rejection</span>
-              <span className="text-2xl font-mono font-semibold text-foundation-ink dark:text-dark-text mt-1 block">100%</span>
+            <div className="p-4 rounded-xl bg-brand-surface dark:bg-dark-surface border border-brand-stone-dark/80 dark:border-dark-border shadow-editorial">
+              <span className="text-xs font-mono text-brand-muted dark:text-dark-muted block">Byzantine Rejection</span>
+              <span className="text-2xl font-mono font-semibold text-brand-charcoal dark:text-dark-text mt-1 block">100%</span>
               <span className="text-[11px] text-accent-terracotta font-mono mt-0.5 block">Zero state drift</span>
             </div>
           </div>

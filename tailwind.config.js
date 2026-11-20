@@ -8,95 +8,80 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Redesign V2 Foundation Palette
+        // Redesigned AI Tathastu Brand Palette
+        brand: {
+          canvas: '#FAF9F5',       // Warm off-white main background
+          surface: '#FFFFFF',      // Pure white card and panel surface
+          stone: '#F3F1EC',        // Warm tactile stone for contrasting sections
+          'stone-dark': '#E6E3DA', // Architectural borders & separators
+          charcoal: '#171815',     // Primary ink for bold titles and crisp text
+          muted: '#666861',        // Balanced neutral for descriptions and subtitles
+          navy: '#0C1322',         // Deep midnight navy for rich contrasting sections
+          'navy-surface': '#141D32', // Elevated navy card surface
+          'navy-border': 'rgba(255, 255, 255, 0.1)',
+          // Backward compatibility safeguards for legacy classes
+          slate: {
+            900: '#0C1322',
+            950: '#070A12',
+            800: '#141D32',
+            100: '#F5F5F0',
+            200: '#E6E3DA',
+          },
+          'editorial-violet': '#1E60D5',
+        },
+        // Backwards compatibility mappings for smooth migration
         foundation: {
-          paper: '#F8F7F3',
+          paper: '#FAF9F5',
           white: '#FFFFFF',
-          ink: '#22231F',
-          secondary: '#70736F',
-          border: '#E7E5DF',
-          stone: '#E8E6DF',
-          // Backwards compatibility mappings
-          ivory: '#F8F7F3',
-          charcoal: '#22231F',
-          muted: '#70736F',
+          ink: '#171815',
+          secondary: '#666861',
+          border: '#E6E3DA',
+          stone: '#F3F1EC',
+          ivory: '#FAF9F5',
+          charcoal: '#171815',
+          muted: '#666861',
         },
-        // Brand & Accent Colors
+        // Purposeful Accent Palette (Restrained, not saturated neon)
         accent: {
-          violet: '#7955D5',
-          blue: '#4775C9',
-          mint: '#368A70',
-          terracotta: '#D9785D',
-          ochre: '#C58B35',
-          // Soft Surfaces
-          lavender: '#EEE8FA',
-          softblue: '#E8EFFB',
-          softmint: '#E4F1E9',
-          peach: '#F8EAE2',
-          butter: '#F5EEDB',
-          // Semantic aliases
-          sage: '#E4F1E9',
-          coral: '#D9785D',
-        },
-        // Semantic Category System
-        category: {
-          interpretability: {
-            DEFAULT: '#7955D5',
-            surface: '#EEE8FA',
-          },
-          agentic: {
-            DEFAULT: '#4775C9',
-            surface: '#E8EFFB',
-          },
-          perceptual: {
-            DEFAULT: '#368A70',
-            surface: '#E4F1E9',
-          },
-          governance: {
-            DEFAULT: '#C58B35',
-            surface: '#F5EEDB',
-          },
-          inference: {
-            DEFAULT: '#D9785D',
-            surface: '#F8EAE2',
-          },
+          blue: '#1E60D5',         // Engineering & systems accent
+          softblue: '#EBF2FC',     // Light surface blue
+          terracotta: '#D46238',   // Products & hardware accent
+          peach: '#FDF1EB',        // Light surface terracotta
+          sage: '#2E6852',         // Research & science accent
+          softmint: '#EBF4F0',     // Light surface sage
+          amber: '#C07D1C',        // Milestones & attention accent
+          butter: '#FCF7ED',       // Light surface amber
+          violet: '#6366F1',       // Vision & creative accent
+          lavender: '#F0F0FF',     // Light surface violet
+          mint: '#2E6852',
+          ochre: '#C07D1C',
+          coral: '#D46238',
         },
         // Refined Dark Reading Theme
         dark: {
-          bg: '#161714',
-          surface: '#1F201C',
-          elevated: '#282A24',
+          bg: '#0F100E',
+          surface: '#181916',
+          elevated: '#21221E',
           border: 'rgba(255, 255, 255, 0.08)',
-          ink: '#FAF9F6',
-          text: '#FAF9F6',
-          secondary: '#A1A39E',
-          muted: '#A1A39E',
+          ink: '#F5F5F0',
+          text: '#F5F5F0',
+          secondary: '#9CA096',
+          muted: '#9CA096',
         }
       },
       fontFamily: {
-        serif: ['"Fraunces"', '"Instrument Serif"', 'Newsreader', 'Georgia', 'serif'],
         sans: ['Inter', 'Geist', 'system-ui', '-apple-system', 'sans-serif'],
+        serif: ['"Fraunces"', '"Instrument Serif"', 'Georgia', 'serif'],
         mono: ['"JetBrains Mono"', '"Geist Mono"', 'monospace'],
       },
       transitionTimingFunction: {
-        editorial: 'cubic-bezier(0.22, 1, 0.36, 1)',
-      },
-      transitionDuration: {
-        '150': '150ms',
-        '240': '240ms',
-        '250': '250ms',
-        '320': '320ms',
-        '350': '350ms',
-        '600': '600ms',
-        '650': '650ms',
-        '800': '800ms',
-        '850': '850ms',
+        editorial: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
       },
       boxShadow: {
-        editorial: '0 2px 12px -1px rgba(34, 35, 31, 0.04), 0 1px 3px 0 rgba(34, 35, 31, 0.02)',
-        'editorial-hover': '0 10px 28px -3px rgba(34, 35, 31, 0.08), 0 3px 8px -2px rgba(34, 35, 31, 0.04)',
-        'editorial-card': '0 1px 2px 0 rgba(34, 35, 31, 0.03)',
-        'dark-editorial': '0 8px 30px 0 rgba(0, 0, 0, 0.4)',
+        editorial: '0 1px 3px 0 rgba(23, 24, 21, 0.04), 0 1px 2px -1px rgba(23, 24, 21, 0.03)',
+        'editorial-hover': '0 10px 25px -4px rgba(23, 24, 21, 0.07), 0 4px 10px -2px rgba(23, 24, 21, 0.04)',
+        'editorial-card': '0 2px 8px 0 rgba(23, 24, 21, 0.04)',
+        'navy-card': '0 10px 30px 0 rgba(0, 0, 0, 0.35)',
       }
     },
   },
