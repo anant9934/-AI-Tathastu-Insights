@@ -8,79 +8,119 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Redesigned AI Tathastu Brand Palette
+        // DESIGN.md Foundation Tokens
+        canvas: '#F5F6F4',
+        surface: {
+          DEFAULT: '#FFFFFF',
+          muted: '#ECEFEB',
+        },
+        ink: {
+          DEFAULT: '#151A20',
+          soft: '#27313B',
+        },
+        'text-secondary': '#626D77',
+        border: '#DDE2DF',
+
+        // DESIGN.md Brand Accents
+        blue: {
+          DEFAULT: '#315FE8',
+          deep: '#173B77',
+          soft: '#E7EEFF',
+        },
+        lime: {
+          DEFAULT: '#D9EF68',
+        },
+        mint: {
+          DEFAULT: '#DCEDE3',
+        },
+        coral: {
+          DEFAULT: '#E98770',
+        },
+        sand: {
+          DEFAULT: '#F0E8DA',
+        },
+        lavender: {
+          DEFAULT: '#E9E3F5',
+        },
+
+        // Backward compatibility brand tokens
         brand: {
-          canvas: '#FAF9F5',       // Warm off-white main background
-          surface: '#FFFFFF',      // Pure white card and panel surface
-          stone: '#F3F1EC',        // Warm tactile stone for contrasting sections
-          'stone-dark': '#E6E3DA', // Architectural borders & separators
-          charcoal: '#171815',     // Primary ink for bold titles and crisp text
-          muted: '#666861',        // Balanced neutral for descriptions and subtitles
-          navy: '#0C1322',         // Deep midnight navy for rich contrasting sections
-          'navy-surface': '#141D32', // Elevated navy card surface
+          canvas: '#F5F6F4',
+          surface: '#FFFFFF',
+          'surface-muted': '#ECEFEB',
+          stone: '#ECEFEB',
+          'stone-dark': '#DDE2DF',
+          charcoal: '#151A20',
+          ink: '#151A20',
+          'ink-soft': '#27313B',
+          muted: '#626D77',
+          navy: '#101722',
+          'navy-surface': '#172231',
           'navy-border': 'rgba(255, 255, 255, 0.1)',
-          // Backward compatibility safeguards for legacy classes
           slate: {
-            900: '#0C1322',
-            950: '#070A12',
-            800: '#141D32',
-            100: '#F5F5F0',
-            200: '#E6E3DA',
+            900: '#101722',
+            950: '#0B0F17',
+            800: '#172231',
+            100: '#F4F6F7',
+            200: '#DDE2DF',
           },
-          'editorial-violet': '#1E60D5',
+          'editorial-violet': '#315FE8',
         },
-        // Backwards compatibility mappings for smooth migration
         foundation: {
-          paper: '#FAF9F5',
+          paper: '#F5F6F4',
           white: '#FFFFFF',
-          ink: '#171815',
-          secondary: '#666861',
-          border: '#E6E3DA',
-          stone: '#F3F1EC',
-          ivory: '#FAF9F5',
-          charcoal: '#171815',
-          muted: '#666861',
+          ink: '#151A20',
+          secondary: '#626D77',
+          border: '#DDE2DF',
+          stone: '#ECEFEB',
+          ivory: '#F5F6F4',
+          charcoal: '#151A20',
+          muted: '#626D77',
         },
-        // Purposeful Accent Palette (Restrained, not saturated neon)
         accent: {
-          blue: '#1E60D5',         // Engineering & systems accent
-          softblue: '#EBF2FC',     // Light surface blue
-          terracotta: '#D46238',   // Products & hardware accent
-          peach: '#FDF1EB',        // Light surface terracotta
-          sage: '#2E6852',         // Research & science accent
-          softmint: '#EBF4F0',     // Light surface sage
-          amber: '#C07D1C',        // Milestones & attention accent
-          butter: '#FCF7ED',       // Light surface amber
-          violet: '#6366F1',       // Vision & creative accent
-          lavender: '#F0F0FF',     // Light surface violet
-          mint: '#2E6852',
-          ochre: '#C07D1C',
-          coral: '#D46238',
+          blue: '#315FE8',
+          softblue: '#E7EEFF',
+          terracotta: '#E98770',
+          peach: '#F0E8DA',
+          sage: '#DCEDE3',
+          softmint: '#DCEDE3',
+          lime: '#D9EF68',
+          amber: '#C07D1C',
+          butter: '#F0E8DA',
+          violet: '#315FE8',
+          lavender: '#E9E3F5',
+          mint: '#DCEDE3',
+          coral: '#E98770',
+          sand: '#F0E8DA',
         },
-        // Refined Dark Reading Theme
+        // DESIGN.md Dark Theme Tokens
         dark: {
-          bg: '#0F100E',
-          surface: '#181916',
-          elevated: '#21221E',
-          border: 'rgba(255, 255, 255, 0.08)',
-          ink: '#F5F5F0',
-          text: '#F5F5F0',
-          secondary: '#9CA096',
-          muted: '#9CA096',
+          canvas: '#101722',
+          surface: '#172231',
+          'surface-raised': '#202D3D',
+          ink: '#F4F6F7',
+          muted: '#AAB5BF',
+          border: '#344252',
+          bg: '#101722',
+          elevated: '#202D3D',
+          text: '#F4F6F7',
+          secondary: '#AAB5BF',
         }
       },
       fontFamily: {
-        sans: ['Inter', 'Geist', 'system-ui', '-apple-system', 'sans-serif'],
-        serif: ['"Fraunces"', '"Instrument Serif"', 'Georgia', 'serif'],
-        mono: ['"JetBrains Mono"', '"Geist Mono"', 'monospace'],
+        sans: ['"DM Sans"', 'Inter', 'system-ui', '-apple-system', 'sans-serif'],
+        display: ['Manrope', '"DM Sans"', 'system-ui', 'sans-serif'],
+        editorial: ['Newsreader', 'Georgia', 'serif'],
+        serif: ['Newsreader', '"Fraunces"', 'Georgia', 'serif'],
+        mono: ['"IBM Plex Mono"', '"JetBrains Mono"', 'monospace'],
       },
       transitionTimingFunction: {
-        editorial: 'cubic-bezier(0.2, 0.8, 0.2, 1)',
+        editorial: 'cubic-bezier(0.22, 1, 0.36, 1)',
       },
       boxShadow: {
-        editorial: '0 1px 3px 0 rgba(23, 24, 21, 0.04), 0 1px 2px -1px rgba(23, 24, 21, 0.03)',
-        'editorial-hover': '0 10px 25px -4px rgba(23, 24, 21, 0.07), 0 4px 10px -2px rgba(23, 24, 21, 0.04)',
-        'editorial-card': '0 2px 8px 0 rgba(23, 24, 21, 0.04)',
+        editorial: '0 1px 3px 0 rgba(21, 26, 32, 0.04), 0 1px 2px -1px rgba(21, 26, 32, 0.03)',
+        'editorial-hover': '0 10px 25px -4px rgba(21, 26, 32, 0.07), 0 4px 10px -2px rgba(21, 26, 32, 0.04)',
+        'editorial-card': '0 2px 8px 0 rgba(21, 26, 32, 0.04)',
         'navy-card': '0 10px 30px 0 rgba(0, 0, 0, 0.35)',
       }
     },

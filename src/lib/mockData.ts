@@ -525,10 +525,10 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     relatedMediaIds: ['documentary-residual-stream'],
 
     stats: [
-      { label: 'Active Students Mentored', value: '14,200+' },
-      { label: 'Research Projects Launched', value: '890+' },
-      { label: 'Curriculum Mastery Rate', value: '91.4%' },
-      { label: 'University Partnerships', value: '48' }
+      { label: 'Kernel Compiler', value: 'Triton / CUDA 12' },
+      { label: 'Sandbox Isolation', value: 'gVisor Container' },
+      { label: 'Memory Guard', value: 'eBPF Syscall Filter' },
+      { label: 'Pedagogy Engine', value: 'Socratic Proof DAG' }
     ],
     coreCapabilities: [
       {
@@ -619,10 +619,10 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     relatedMediaIds: ['podcast-tathastu-dialogues-ep14'],
 
     stats: [
-      { label: 'Collaborative Lab Sessions', value: '3,800+' },
-      { label: 'Synthesized Experiments', value: '18,500' },
-      { label: 'Peer Review Turnaround', value: '48 Hours' },
-      { label: 'Code Reproducibility Rate', value: '99.2%' }
+      { label: 'Consensus Protocol', value: 'Aegis-BFT (Rust)' },
+      { label: 'Network Topology', value: '64 Heterogeneous Nodes' },
+      { label: 'Quorum Threshold', value: '2f + 1 Signatures' },
+      { label: 'State Invariant', value: 'Linearizable Commits' }
     ],
     coreCapabilities: [
       {
@@ -713,10 +713,10 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     relatedMediaIds: ['lecture-spatial-vision-iris'],
 
     stats: [
-      { label: 'Research Grants Awarded', value: '$2.4M+' },
-      { label: 'Fellows Placed', value: '320+' },
-      { label: 'Countries Represented', value: '42' },
-      { label: 'Sponsoring Institutions', value: '64' }
+      { label: 'Evaluation Cluster', value: '8x H100 80GB Nodes' },
+      { label: 'Target Preprints', value: 'arXiv Open Index' },
+      { label: 'Verification Turnaround', value: '< 24h Automated' },
+      { label: 'Audit Trail', value: 'Cryptographic Ledger' }
     ],
     coreCapabilities: [
       {
@@ -807,10 +807,10 @@ export const mockEcosystemProducts: EcosystemProduct[] = [
     relatedMediaIds: ['lecture-spatial-vision-iris'],
 
     stats: [
-      { label: 'Framerate Inference', value: '60 FPS' },
-      { label: 'Spatial Memory Retention', value: '24 Hours' },
-      { label: 'Zero-Shot Affordance Precision', value: '92.6%' },
-      { label: 'Hardware Deployments', value: '1,200+' }
+      { label: 'Perception Model', value: '3D Voxel Occupancy' },
+      { label: 'Edge Silicon', value: 'Jetson Orin AGX' },
+      { label: 'Sustained Throughput', value: '88.4 FPS' },
+      { label: 'Sensor Inputs', value: 'Stereo RGB-D + IMU' }
     ],
     coreCapabilities: [
       {

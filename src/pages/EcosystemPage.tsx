@@ -177,12 +177,12 @@ export const EcosystemPage: React.FC<EcosystemPageProps> = ({
               {currentProduct.overview || currentProduct.fullOverview || currentProduct.description}
             </p>
 
-            {/* Quick Stats Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-foundation-border dark:border-dark-border">
+            {/* Architectural Specifications Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8 pt-8 border-t border-brand-stone-dark/60 dark:border-dark-border">
               {currentProduct.stats.map((st, sIdx) => (
-                <div key={sIdx} className="p-4 rounded-xl bg-foundation-paper dark:bg-dark-elevated border border-foundation-border dark:border-dark-border">
-                  <span className="text-xs font-mono text-foundation-secondary dark:text-dark-muted block">{st.label}</span>
-                  <span className="text-xl sm:text-2xl font-mono font-semibold text-foundation-ink dark:text-dark-text mt-1 block">{st.value}</span>
+                <div key={sIdx} className="p-4 rounded-xl bg-brand-stone/60 dark:bg-dark-elevated border border-brand-stone-dark/60 dark:border-dark-border">
+                  <span className="text-xs font-mono text-brand-muted dark:text-dark-muted block">{st.label}</span>
+                  <span className="text-sm sm:text-base font-mono font-semibold text-brand-charcoal dark:text-white mt-1 block">{st.value}</span>
                 </div>
               ))}
             </div>

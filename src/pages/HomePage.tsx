@@ -28,7 +28,8 @@ import {
 import { Article, ResearchPaper, EcosystemProduct } from '../types';
 import { StoryCard } from '../components/cards/StoryCard';
 import { EcosystemCard } from '../components/cards/EcosystemCard';
-import { ProductHeroStage, ProductLedger } from '../components/products/ProductShowcase';
+import { ProductLedger } from '../components/products/ProductShowcase';
+import { HeroStorySlider } from '../components/hero/HeroStorySlider';
 import { AnimatedChart } from '../components/motion/AnimatedChart';
 import { Reveal } from '../components/motion/Reveal';
 import { StaggerContainer, StaggerItem } from '../components/motion/StaggerContainer';
@@ -177,12 +178,14 @@ export const HomePage: React.FC<HomePageProps> = ({
             </div>
           </div>
 
-          {/* Interactive Flagship System Console (Authentic UI Viewport) */}
-          <ProductHeroStage 
+          {/* Interactive Flagship Cinematic Story Slider (Adapted from Owner Reference Pattern) */}
+          <HeroStorySlider 
             onExploreProduct={(productId) => {
               const p = ecosystemProducts.find((x) => x.id === productId);
               if (p) onExploreEcosystem(p);
             }} 
+            onNavigateEngineering={() => onNavigate('engineering')}
+            onNavigateResearch={() => onNavigate('research')}
           />
         </div>
       </section>
