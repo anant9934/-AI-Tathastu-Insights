@@ -102,7 +102,7 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenSe
 
   return (
     <header className="sticky top-0 z-50 w-full pt-3 sm:pt-4 pb-2 transition-all duration-300 pointer-events-none select-none">
-      <div className="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto px-3 sm:px-6 lg:px-8">
         {/* =========================================================================
             THE FLOATING GLASS CAPSULE NAVBAR (AWARD-WINNING DOCK ARCHITECTURE)
             ========================================================================= */}

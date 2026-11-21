@@ -123,9 +123,10 @@ export const HomePage: React.FC<HomePageProps> = ({
             alt="AI Tathastu Cinematic Horizon & Illuminated Portal" 
             className="w-full h-full object-cover object-right sm:object-right-bottom"
           />
-          {/* Left Dark Gradient Overlay for Maximum Typographic Contrast & WCAG Readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#060B14] via-[#060B14]/85 sm:via-[#060B14]/70 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#060B14] via-transparent to-[#060B14]/50" />
+          {/* Pristine Deep Midnight Overlay: Eliminates any underlying mockup text or card artifacts while preserving the glowing portal */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#060B14] from-30% via-[#060B14]/95 via-48% to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#060B14] via-[#060B14]/90 to-transparent" />
+          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#060B14]/80 to-transparent" />
         </div>
 
         {/* Hero Narrative Stage */}
