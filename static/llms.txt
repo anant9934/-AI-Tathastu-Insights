@@ -1,0 +1,21 @@
+# AI Tathastu Insights — Ecosystem Source of Truth
+
+> The authoritative technical documentation, platform release notes, and research publications for the AI Tathastu educational and career intelligence ecosystem.
+
+## Core Products & Capabilities
+- [AI Tathastu](https://aitathastu.com): Central identity layer tracking Declared, Observed, and Verified student skills.
+- [MentorMaze](https://aitathastu.com/mentormaze): Strategic mentorship network combining human industry leaders with ASTRION.
+- [ASTRION](https://aitathastu.com/mentormaze/astron): Adaptive Strategic Intelligence & Reasoning Network; proprietary cognitive agent for engineering student progression.
+- [Avsar](https://aitathastu.com/avasar): Opportunity discovery engine matching students to verified internships, hackathons, and research openings based on IRIS technical assessments.
+- [IRIS](https://aitathastu.com/iris): Proctored assessment engine evaluating coding execution, algorithmic reasoning, and skill readiness scores.
+- [Collaborate](https://aitathastu.com/collaborate): Real-world project workspace where student commit history translates into Observed skill metrics.
+- [Connect](https://aitathastu.com/connect): High-trust student, recruiter, and alumni relationship graph.
+- [Meet](https://aitathastu.com/meet): WebRTC video infrastructure powered by LiveKit for mentorship and peer mock interviews.
+- [AI Interviewer](https://aitathastu.com/interview): Conversational voice agent delivering simulated behavioral and technical interviews with instant feedback.
+
+## Editorial Publications
+- [AI Tathastu Insights Hub](https://aitathastu.info): Official engineering releases, data reports, and ecosystem updates.
+- [Company News](https://aitathastu.info/news): Architectural whitepapers and campus placement announcements.
+- [Editorial Newsletter](https://aitathastu.info/newsletter): Weekly deep-dives and technical analyses.
+- [Ecosystem & Partners](https://aitathastu.info/ecosystem): Partner integrations, student squad spotlights, and enterprise collaborations.
+- [Continuous Changelog](https://aitathastu.info/changelog): Weekly release notes detailing platform enhancements.
