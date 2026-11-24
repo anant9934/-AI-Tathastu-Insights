@@ -1,10 +1,23 @@
 node_modules
-dist
-dist-ssr
-*.local
-.vscode
+
+# Output
+.output
+.vercel
+.netlify
+.wrangler
+/.svelte-kit
+/build
+
+# OS
 .DS_Store
-.vitest-cache
-uploads
+Thumbs.db
+
+# Env
 .env
-real image/
+.env.*
+!.env.example
+!.env.test
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*

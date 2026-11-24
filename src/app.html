@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+		<meta name="theme-color" content="#F8F7F4" />
+		<meta name="color-scheme" content="light" />
+
+		<!-- 1. Resource Hints for Critical 3rd-Party Origins (Eliminate DNS/TLS Latency for LCP) -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link rel="preconnect" href="https://res.cloudinary.com" crossorigin />
+		<link rel="preconnect" href="https://images.unsplash.com" crossorigin />
+
+		<!-- 2. Non-Render-Blocking Web Font Loading (Lighthouse Best Practice & Performance) -->
+		<!-- Preload stylesheet with print/all switch to prevent blocking the first paint -->
+		<link
+			rel="preload"
+			as="style"
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
+			media="print"
+			onload="this.media='all'"
+		/>
+		<noscript>
+			<link
+				rel="stylesheet"
+				href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap"
+			/>
+		</noscript>
+
+		%sveltekit.head%
+	</head>
+	<!-- data-sveltekit-preload-data="hover" enables instant client-side prefetching on hover -->
+	<body data-sveltekit-preload-data="hover" class="bg-[#F8F7F4] text-[#0F172A] antialiased">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>

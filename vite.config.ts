@@ -1,25 +1,18 @@
-/// <reference types="vitest" />
+import tailwindcss from '@tailwindcss/vite';
+import adapter from '@sveltejs/adapter-vercel';
+import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
-import react from '@vitejs/plugin-react';
 
 export default defineConfig({
-  plugins: [react()],
-  server: {
-    port: 5173,
-    host: true,
-    proxy: {
-      '/api': {
-        target: 'http://localhost:3001',
-        changeOrigin: true,
-      },
-    },
-  },
-  test: {
-    globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/test/setup.ts',
-  },
-  build: {
-    chunkSizeWarningLimit: 1000,
-  },
+	plugins: [
+		tailwindcss(),
+		sveltekit({
+			compilerOptions: {
+				// Force runes mode for the project, except for libraries. Can be removed in svelte 6.
+				runes: ({ filename }) =>
+					filename.split(/[/\\]/).includes('node_modules') ? undefined : true
+			},
+			adapter: adapter()
+		})
+	]
 });
